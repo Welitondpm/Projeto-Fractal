@@ -54,6 +54,6 @@ else:
         ys.append(y)
 
 print("Montando o Gráfico")
-plt.scatter(xs, ys, color = "black")
+plt.scatter(xs, ys, color="black")
 # plt.axis([0, 45000, -45000, 45000])
 plt.show()

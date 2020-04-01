@@ -77,5 +77,5 @@ while vez < vezes:
 
 
 print("Montando o Gráfico")
-plt.plot(x, y, "k")
+plt.plot(x, y, color="K")
 plt.show()

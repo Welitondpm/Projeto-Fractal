@@ -16,5 +16,5 @@ while contador <= vezes:
     y.append((y1[a] + y[-1]) / valor)
 
 print("Montando o gráfico")
-plt.scatter(x, y, color = "black")
+plt.scatter(x, y, color="K")
 plt.show()

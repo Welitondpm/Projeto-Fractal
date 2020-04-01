@@ -35,8 +35,8 @@ def triangulodesierpinski(x, y):
     return t1x, t2x, t3x, t1y, t2y, t3y
 
 
-vezes = int(input("Digite quantas vezes(recomendado 6): "))
-t = int(input("Digite a altura do triângulo (recomendado 50): "))
+vezes = int(input("Digite quantas vezes (recomendado 6): "))
+t = int(input("Digite o tamanho do lado do triângulo (recomendado 50): "))
 vez = 0
 x = [[-t / 2, 0, t / 2]]
 y = [[-t * 3 ** 0.5 / 2, 0, -t * 3 ** 0.5 / 2]]
@@ -53,5 +53,5 @@ for item in y:
 
 print("Montando o Gráfico")
 for item in range(len(x)):
-    plt.plot(novox[item], novoy[item], "k", linewidth=1)
+    plt.plot(novox[item], novoy[item], color="K", linewidth=1)
 plt.show()
