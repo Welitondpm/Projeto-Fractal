@@ -29,31 +29,37 @@ def decimal(lista):
     return soma
 
 
-xs = []
-ys = []
-fim = int(input("Fim: "))
+def fazfractal(fim, contagem):
+    xs = []
+    ys = []
+    if contagem:
+        for item in range(fim):
+            print("%d de %d" % (item, fim))
+            y = 0
+            if é_primo(item): 
+                bina = binario(item)
+                deci = decimal(bina)
+                y = item - deci
+            xs.append(item)
+            ys.append(y)
+    else:
+        for item in range(fim):
+            y = 0
+            if é_primo(item): 
+                bina = binario(item)
+                deci = decimal(bina)
+                y = item - deci
+            xs.append(item)
+            ys.append(y)
+    return xs, ys
+
+
+fim = int(input("Fim (recomendado <= 262144): "))
 contagem = bool(input("Deseja ver o valor atual? (True/False): "))
-if contagem:
-    for item in range(fim):
-        print("%d de %d" % (item, fim))
-        y = 0
-        if é_primo(item): 
-            bina = binario(item)
-            deci = decimal(bina)
-            y = item - deci
-        xs.append(item)
-        ys.append(y)
-else:
-    for item in range(fim):
-        y = 0
-        if é_primo(item): 
-            bina = binario(item)
-            deci = decimal(bina)
-            y = item - deci
-        xs.append(item)
-        ys.append(y)
+xs, ys = fazfractal(fim, contagem)
+
 
 print("Montando o Gráfico")
-plt.scatter(xs, ys, color="black")
+plt.scatter(xs, ys, color="black", s=0.01)
 # plt.axis([0, 45000, -45000, 45000])
 plt.show()

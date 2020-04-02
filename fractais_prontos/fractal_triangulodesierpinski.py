@@ -56,7 +56,7 @@ def fazfractal(vezes, t):
     return x, y
 
 
-vezes = int(input("Digite quantas vezes (recomendado 6): "))
+vezes = int(input("Digite quantas vezes (recomendado <= 7): "))
 t = int(input("Digite o tamanho do lado do triângulo (recomendado 50): "))
 
 x, y = fazfractal(vezes, t)

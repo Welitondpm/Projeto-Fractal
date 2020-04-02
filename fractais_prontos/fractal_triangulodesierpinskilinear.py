@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 x = [[0, 2], [2, 3], [3, 2], [2, 3], [3, 5], [5, 6], [6, 5], [5, 6], [6, 8]]
 y = [[0, 0], [0, 1], [1, 2], [2, 3], [3, 3], [3, 2], [2, 1], [1, 0], [0, 0]]
-vezes = int(input("Digite a quantidade de vezes ( <6): "))
+vezes = int(input("Digite a quantidade de vezes ( <= 12): "))
 
 
 def fazfractal(xrecebido, yrecebido):
@@ -71,6 +71,7 @@ def fazfractal(xrecebido, yrecebido):
 
 for vez in range(vezes):
     x, y = fazfractal(x, y)
+    print("%d de %d" % (vez, vezes))
 
 listax, listay = [], []
 

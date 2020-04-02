@@ -81,7 +81,7 @@ def fazarvore(x, y, ang, tamanho, z, w):
     angulo = adicionaproximosangulos(ang)
     return x, y, angulo, tamanho
 
-vezes = int(input("Número de iterações(Recomendado < 13): "))
+vezes = int(input("Número de iterações(Recomendado <= 13): "))
 barra()
 
 tamanho = int(input("Digite o tamanho: "))
@@ -106,7 +106,7 @@ barra()
 
 for vez in range(vezes):
     x, y, angulo, tamanho = fazarvore(x, y, angulo, tamanho, z, w)
-    print(vez)
+    print("%d de %d" % (vez + 1, vezes))
 
 criaunicalista(x, y)
 

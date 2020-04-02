@@ -14,8 +14,7 @@ def individualizasegmento(calc):
 def deliberador(x, y):
     x = individualizasegmento(x)
     y = individualizasegmento(y)
-    novalistax = []
-    novalistay = []
+    novalistax, novalistay = [], []
     tamanho = len(x)
     for item in range(tamanho):
         a = x[item]
@@ -54,13 +53,19 @@ def fazcurvadekoch(x, y):
     return([xinicial, x1, x2, x3, xfinal], [yinicial, y1, y2, y3, yfinal])
 
 
-vezes = int(input("Quantidade de vezes (<6): "))
-x = [0, 3]
-y = [0, 0]
-vez = 0
-while vez < vezes:
-    vez += 1
-    x, y = deliberador(x, y)
+def fazfractal(vezes):
+    x = [0, 3]
+    y = [0, 0]
+    vez = 0
+    while vez < vezes:
+        vez += 1
+        x, y = deliberador(x, y)
+        print("%d de %d" % (vez, vezes))
+    return x, y
+
+
+vezes = int(input("Quantidade de vezes ( <= 10): "))
+x, y = fazfractal(vezes)
 
 
 print("Montando o Gráfico")

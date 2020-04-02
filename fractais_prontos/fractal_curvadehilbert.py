@@ -66,14 +66,20 @@ def girahorario(x, y):
     return novox, novoy
 
 
-vezes = int(input("Escolha quantas vezes (<5): "))
-escala = int(input("Escolha a Escala: "))
-x = [0, 0, escala, escala]
-y = [escala, 0, 0, escala]
-vez = 0
-while vez < vezes:
-    vez += 1
-    x, y = curvadehilbert(x, y, vez)
+def fazfractal(vezes, escala):
+    x = [0, 0, escala, escala]
+    y = [escala, 0, 0, escala]
+    vez = 0
+    while vez < vezes:
+        vez += 1
+        x, y = curvadehilbert(x, y, vez)
+        print("%d de %d" % (vez, vezes))
+    return x, y
+
+
+vezes = int(input("Escolha quantas vezes ( <= 5): "))
+escala = int(input("Escolha a Escala (recomendado 1): "))
+x, y = fazfractal(vezes, escala)
 
 
 print("Montando o Gráfico")
