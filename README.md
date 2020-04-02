@@ -42,7 +42,7 @@ Este fractal é resultado de um algoritmo que, para cada valor natural do eixo d
   <li></li>
 </ul>
 
-####Definição:
+#### Definição:
 
 Esse fractal é gerado marcando os pontos que, a cada iteração, vê-se o ponto méio entre o anterior e um dos vértices que é escolhido aleatóriamente.
 
@@ -50,7 +50,7 @@ Esse fractal é gerado marcando os pontos que, a cada iteração, vê-se o ponto
 
 ![fractal_triangulodesierpinski(vezes7_tamanho50)](https://user-images.githubusercontent.com/49809730/78200487-32249a80-7465-11ea-80c9-76cc8b38697b.png)
 
-####Definição:
+#### Definição:
 
 Esse fractal se define como um triângulo equilátero, do qual é subtraído o triãngulo equilátero formado pelos pontos médios de seus lados; sendo o mesmo feito para todos os triângulos equiláteros restante *ad infinitum*.
 
@@ -58,7 +58,7 @@ Esse fractal se define como um triângulo equilátero, do qual é subtraído o t
 
 ![fractal_curvadodragrao(vezes22)img2](https://user-images.githubusercontent.com/49809730/78201211-6b5e0a00-7467-11ea-9eca-1503248ee06c.png)
 
-####Definição:
+#### Definição:
 
 Esse fractal surge ao sempre copiar o(s) segmento(s) do iniciador após uma rotação de um quarto de volta, tendo como eixo de rotação o uma das extremidades desse.
 
@@ -66,9 +66,9 @@ Esse fractal surge ao sempre copiar o(s) segmento(s) do iniciador após uma rota
 
 ![fractal_curvadehilbert(vezes5)img2](https://user-images.githubusercontent.com/49809730/78201280-9e080280-7467-11ea-96b2-02cf0ee30c23.png)
 
-####Definição:
+#### Definição:
 
-seguir daqui
+Essa curva de preenchimento de espaço é gerada acrescentando a 
 
 ### Fractal Curva de Koch <a name="koch"></a>
 
