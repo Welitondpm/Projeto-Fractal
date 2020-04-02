@@ -17,7 +17,7 @@
   <li><a href="#sierpinskilinear">Triângulo De Sierpinski Linear</a></li>
 </ul>
 
-### Fractal Binário Invertido <a name="binario"></a>
+### Conjunto dos Números Primos com as Casas Binárias Trocadas Subtraídos do Próprio Número <a name="binario"></a>
 
 #### Definição:
 
@@ -32,7 +32,7 @@ Este fractal é resultado de um algoritmo que, para cada valor natural do eixo d
   <li><b>Contagem:</b> Mostrará em qual valor está sendo feito o calculo (para facilitar utilize 1 para sim e 0 para não)</li>
 </ul>
 
-### Fractal Triângulo de Sierpinski Caótico <a name="caotico"></a>
+### Triângulo de Sierpinky Gerado a partir de escolhas randômicas <a name="caotico"></a>
 
 #### Definição:
 
@@ -46,7 +46,7 @@ Esse fractal é gerado marcando os pontos que, a cada iteração, vê-se o ponto
   <li></li>
 </ul>
 
-### Fractal Triângulo de Sierpinski <a name="sierpinski"></a>
+### Triângulo de Sierpinski <a name="sierpinski"></a>
 
 #### Definição:
 
@@ -54,7 +54,7 @@ Esse fractal se define como um triângulo equilátero, do qual é subtraído o t
 
 ![fractal_triangulodesierpinski(vezes7_tamanho50)](https://user-images.githubusercontent.com/49809730/78200487-32249a80-7465-11ea-80c9-76cc8b38697b.png)
 
-### Fractal Curva do Dragão <a name="dragao"></a>
+### Curva do Dragão <a name="dragao"></a>
 
 #### Definição:
 
@@ -62,7 +62,7 @@ Esse fractal surge ao sempre copiar o(s) segmento(s) do iniciador ou do cunjunto
 
 ![fractal_curvadodragrao(vezes22)img2](https://user-images.githubusercontent.com/49809730/78201211-6b5e0a00-7467-11ea-9eca-1503248ee06c.png)
 
-### Fractal Curva de Hilbert <a name="hilbert"></a>
+### Curva de Hilbert <a name="hilbert"></a>
 
 #### Definição:
 
@@ -71,30 +71,44 @@ Ao final, após o redimensionamento, todos os pontos com coordenadas reais estã
 
 ![fractal_curvadehilbert(vezes5)img2](https://user-images.githubusercontent.com/49809730/78201280-9e080280-7467-11ea-96b2-02cf0ee30c23.png)
 
-### Fractal Curva de Koch <a name="koch"></a>
+### Curva de Koch <a name="koch"></a>
+
+Em cada iteração, cada segmento é substituído por quatro segmentos com um terço do seu comprimento, com as extremidades coincidindo e os segmentos centrais inclinados em 60º e 300º(-60º) respectivamente.
 
 ![fractal_curvadekoch(vezes12)](https://user-images.githubusercontent.com/49809730/78201478-0ce55b80-7468-11ea-97e0-346aadb54cd8.png)
 
-### Fractal Floco <a name="floco"></a>
+### Floco de Koch <a name="floco"></a>
+
+O iniciador é um triângulo, e cada um de seus lados passa pelo processo da Curva de Koch. Como resultado, esse polígono apresenta área finita, e um perímetro infinito.
 
 ![fractal_floco(vezes10)](https://user-images.githubusercontent.com/49809730/78201597-5cc42280-7468-11ea-9a22-0e9cc0c097b2.png)
 
-### Fractal dpmfrr <a name="dpmfrr"></a>
+### Curva de Koch modificada para ângulos retos(Fractal dpmfrr) <a name="dpmfrrumalinha"></a>
 
-![fractal_dpmfrr(vezes8)](https://user-images.githubusercontent.com/49809730/78200561-757f0900-7465-11ea-9e4c-e91942250bcf.png)
-
-### Fractal dpmfrr uma linha <a name="dpmfrrumalinha"></a>
+Em cada iteração, cada segmento é substituído por cinco segmentos com um terço do seu comprimento, com as extremidades coincidindo, os adjascentes a esses sendo perpendiculares e o central paralelo ao original, mas transladado acima em um terço do comprimento.
 
 ![fractal_dpmfrrumalinha(vezes10)](https://user-images.githubusercontent.com/49809730/78200579-7f087100-7465-11ea-82d1-81c0467c9e6d.png)
 
-### Fractal Curva de Koch X <a name="kochx"></a>
+### Quadrado dpmfrr <a name="dpmfrr"></a>
+
+O iniciador é um quadrado, e cada um de seus lados passa pelo processo da Curva de Koch modificada para ângulos retos. Como resultado, esse polígono apresenta área finita, e um perímetro infinito. Diferencia-se do Fractal dpmfrr X porque seus pontos contados em sentido horário aumentam a área do fractal em relação ao iniciador.
+
+![fractal_dpmfrr(vezes8)](https://user-images.githubusercontent.com/49809730/78200561-757f0900-7465-11ea-9e4c-e91942250bcf.png)
+
+### Fractal dpmfrr X <a name="kochx"></a>
+
+O iniciador é um quadrado, e cada um de seus lados passa pelo processo da Curva de Koch modificada para ângulos retos. Como resultado, esse polígono apresenta área nula, e um perímetro infinito. Diferencia-se do Quadrado dpmfrr porque seus pontos contados em sentido anti-horário diminuem a área do fractal em relação ao iniciador.
 
 ![fractal_curvadekochX(vezes10)](https://user-images.githubusercontent.com/49809730/78200601-8c256000-7465-11ea-9e1e-9946bdc33421.png)
 
 ### Fractal Árvore <a name="arvore"></a>
 
+A semente são três segmetos concorrentes. Inclinação e tamanho customizáveis incluiundo aleatórios.
+
 ![fractal_arvore(vezes17_ang15)](https://user-images.githubusercontent.com/49809730/78199712-db1dc600-7462-11ea-9251-1fab9133d297.png)
 
 ### Fractal Triângulo De Sierpinski Linear <a name="sierpinskilinear"></a>
+
+Uma curva que tende a formar um Triângulo De Sierpinski. A semente são três segmentos, as extremidades coincidentes ao segmento original e o segmento central paralelo.
 
 ![fractal_triangulodesierpinskilinear(vezes10)](https://user-images.githubusercontent.com/49809730/78200625-a52e1100-7465-11ea-99f9-b0780185791f.png)
