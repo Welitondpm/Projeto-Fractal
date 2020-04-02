@@ -21,5 +21,5 @@ while vez < vezes:
     x, y = curvadodragao(x, y)
 
 print("Montando o Gráfico")
-plt.plot(x, y, color="K")
+plt.plot(x, y, color="black")
 plt.show()

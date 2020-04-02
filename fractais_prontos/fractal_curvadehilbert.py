@@ -66,7 +66,7 @@ def girahorario(x, y):
     return novox, novoy
 
 
-vezes = int(input("Escolha quantas vezes: "))
+vezes = int(input("Escolha quantas vezes (<5): "))
 escala = int(input("Escolha a Escala: "))
 x = [0, 0, escala, escala]
 y = [escala, 0, 0, escala]
@@ -77,5 +77,5 @@ while vez < vezes:
 
 
 print("Montando o Gráfico")
-plt.plot(x, y, color="K")
+plt.plot(x, y, color="black")
 plt.show()

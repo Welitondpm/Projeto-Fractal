@@ -59,6 +59,6 @@ while vez < vezes:
 
 
 print("Montando o Gráfico")
-# plt.scatter(x, y, color="K")
-plt.plot(x, y, color="K")
+# plt.scatter(x, y, color="black")
+plt.plot(x, y, color="black")
 plt.show()

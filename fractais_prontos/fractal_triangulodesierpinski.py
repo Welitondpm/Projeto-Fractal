@@ -53,5 +53,5 @@ for item in y:
 
 print("Montando o Gráfico")
 for item in range(len(x)):
-    plt.plot(novox[item], novoy[item], color="K", linewidth=1)
+    plt.plot(novox[item], novoy[item], color="black", linewidth=1)
 plt.show()

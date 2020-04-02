@@ -84,5 +84,5 @@ for item in y:
 
 
 print("Montando o Gráfico")
-plt.plot(listax, listay, color="K")
+plt.plot(listax, listay, color="black")
 plt.show()
