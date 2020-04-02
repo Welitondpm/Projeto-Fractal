@@ -43,9 +43,9 @@ Esse fractal é gerado marcando os pontos que, a cada iteração, vê-se o ponto
 #### Variáveis de input:
 
 <ul>
-  <li>Vezes</li>
-  <li>Passo???</li>
-  <li>*vamo acrescentar mais coisas, eu acho que com o mesmo codigo da pra fazer o tapete caótico.*</li>
+  <li><b>Vezes</b></li>
+  <li><b>Passo???</b></li>
+  <li><b>vamo acrescentar mais coisas, eu acho que com o mesmo codigo da pra fazer o tapete caótico.</b></li>
 </ul>
 
 ### Triângulo de Sierpinski <a name="sierpinski"></a>
@@ -59,7 +59,7 @@ Esse fractal se define como um triângulo equilátero, do qual é subtraído o t
 #### Variáveis de input:
 
 <ul>
-  <li>Vezes</li>
+  <li><b>Vezes</b></li>
 </ul>
 
 ### Curva do Dragão <a name="dragao"></a>
@@ -73,8 +73,8 @@ Esse fractal surge ao sempre copiar o(s) segmento(s) do iniciador ou do cunjunto
 #### Variáveis de input:
 
 <ul>
-  <li>Vezes</li>
-  <li> **vamo acrescentar mais opções** </li>
+  <li><b>Vezes:</b></li>
+  <li><b> **vamo acrescentar mais opções**</b> </li>
 </ul>
 
 ### Curva de Hilbert <a name="hilbert"></a>
@@ -89,7 +89,7 @@ Ao final, após o redimensionamento, todos os pontos com coordenadas reais estã
 #### Variáveis de input:
 
 <ul>
-  <li>Vezes</li>
+  <li><b>Vezes:</b></li>
 </ul>
 
 ### Curva de Koch <a name="koch"></a>
@@ -101,7 +101,7 @@ Em cada iteração, cada segmento é substituído por quatro segmentos com um te
 #### Variáveis de input:
 
 <ul>
-  <li>Vezes</li>
+  <li><b>Vezes:</b></li>
 </ul>
 
 ### Floco de Koch <a name="floco"></a>
@@ -113,7 +113,7 @@ O iniciador é um triângulo, e cada um de seus lados passa pelo processo da Cur
 #### Variáveis de input:
 
 <ul>
-  <li>Vezes</li>
+  <li><b>Vezes:</b></li>
 </ul>
 
 ### Curva de Koch modificada para ângulos retos(Fractal dpmfrr) <a name="dpmfrrumalinha"></a>
@@ -125,7 +125,7 @@ Em cada iteração, cada segmento é substituído por cinco segmentos com um ter
 #### Variáveis de input:
 
 <ul>
-  <li>Vezes</li>
+  <li><b>Vezes:</b></li>
 </ul>
 
 ### Quadrado dpmfrr <a name="dpmfrr"></a>
@@ -137,7 +137,7 @@ O iniciador é um quadrado, e cada um de seus lados passa pelo processo da Curva
 #### Variáveis de input:
 
 <ul>
-  <li>Vezes</li>
+  <li><b>Vezes:</b></li>
 </ul>
 
 ### Fractal dpmfrr X <a name="kochx"></a>
@@ -149,7 +149,7 @@ O iniciador é um quadrado, e cada um de seus lados passa pelo processo da Curva
 #### Variáveis de input:
 
 <ul>
-  <li>Vezes</li>
+  <li><b>Vezes:</b></li>
 </ul>
 
 ### Fractal Árvore <a name="arvore"></a>
