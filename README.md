@@ -31,19 +31,19 @@
 
 ### Fractal Curva do Dragão <a name="dragao"></a>
 
-![fractal_curvadodragrao(vezes22)](https://user-images.githubusercontent.com/49809730/78200503-423c7a00-7465-11ea-941d-31bc023038b0.png)
+![fractal_curvadodragrao(vezes22)img2](https://user-images.githubusercontent.com/49809730/78201211-6b5e0a00-7467-11ea-9eca-1503248ee06c.png)
 
 ### Fractal Curva de Hilbert <a name="hilbert"></a>
 
-![fractal_curvadehilbert(vezes5)](https://user-images.githubusercontent.com/49809730/78200518-51232c80-7465-11ea-9de8-6a4e6e9a1709.png)
+![fractal_curvadehilbert(vezes5)img2](https://user-images.githubusercontent.com/49809730/78201280-9e080280-7467-11ea-96b2-02cf0ee30c23.png)
 
 ### Fractal Curva de Koch <a name="koch"></a>
 
-![fractal_curvadekoch(vezes12)](https://user-images.githubusercontent.com/49809730/78200537-5f714880-7465-11ea-9772-4aa150bae588.png)
+![fractal_curvadekoch(vezes12)](https://user-images.githubusercontent.com/49809730/78201478-0ce55b80-7468-11ea-97e0-346aadb54cd8.png)
 
 ### Fractal Floco <a name="floco"></a>
 
-![fractal_floco(vezes10)](https://user-images.githubusercontent.com/49809730/78200551-6a2bdd80-7465-11ea-8754-fc3639a8b363.png)
+![fractal_floco(vezes10)](https://user-images.githubusercontent.com/49809730/78201597-5cc42280-7468-11ea-9a22-0e9cc0c097b2.png)
 
 ### Fractal dpmfrr <a name="dpmfrr"></a>
 
