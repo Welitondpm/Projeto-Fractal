@@ -4,12 +4,8 @@ import matplotlib.pyplot as plt
 def organizaprafazer(x, y):
     for item in range(len(x)):
         x1, x2, x3, y1, y2, y3 = triangulodesierpinski(x[item], y[item])
-        x.append(x1)
-        x.append(x2)
-        x.append(x3)
-        y.append(y1)
-        y.append(y2)
-        y.append(y3)
+        x.extend((x1, x2, x3))
+        y.extend((y1, y2, y3))
     return x, y
 
 
@@ -35,23 +31,37 @@ def triangulodesierpinski(x, y):
     return t1x, t2x, t3x, t1y, t2y, t3y
 
 
+def fazcadatriangulo(x, y):
+    novox, novoy = [], []
+    for item in x:
+        novox.append([item[0], item[1], item[2], item[0]])
+    for item in y:
+        novoy.append([item[0], item[1], item[2], item[0]])
+    return novox, novoy
+
+
+def montagrafico(novox, novoy):
+    for item in range(len(x)):
+        plt.plot(novox[item], novoy[item], color="black", linewidth=1)
+
+
+def fazfractal(vezes, t):
+    vez = 0
+    x = [[-t / 2, 0, t / 2]]
+    y = [[-t * 3 ** 0.5 / 2, 0, -t * 3 ** 0.5 / 2]]
+    while vez < vezes:
+        vez += 1
+        x, y = organizaprafazer(x, y)
+        print("%d de %d" % (vez, vezes))
+    return x, y
+
+
 vezes = int(input("Digite quantas vezes (recomendado 6): "))
 t = int(input("Digite o tamanho do lado do triângulo (recomendado 50): "))
-vez = 0
-x = [[-t / 2, 0, t / 2]]
-y = [[-t * 3 ** 0.5 / 2, 0, -t * 3 ** 0.5 / 2]]
-while vez < vezes:
-    vez += 1
-    x, y = organizaprafazer(x, y)
-    print("%d de %d" % (vez, vezes))
-novox = []
-novoy = []
-for item in x:
-    novox.append([item[0], item[1], item[2], item[0]])
-for item in y:
-    novoy.append([item[0], item[1], item[2], item[0]])
+
+x, y = fazfractal(vezes, t)
+novox, novoy = fazcadatriangulo(x, y)
 
 print("Montando o Gráfico")
-for item in range(len(x)):
-    plt.plot(novox[item], novoy[item], color="black", linewidth=1)
+montagrafico(novox, novoy)
 plt.show()
