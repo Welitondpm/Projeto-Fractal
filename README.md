@@ -28,6 +28,10 @@
   <li><b>Contagem:</b> Mostrará em qual valor está sendo feito o calculo (para facilitar utilize 1 para sim e 0 para não)</li>
 </ul>
 
+####Definição:
+
+Este fractal é resultado de um algoritmo que, para cada valor natural do eixo das abscissas, ele atribui um valor no eixo das ordenadas que é a diferença entre o número, e o próprio número lido da direita para a esquerda em base 2; caso esse seja primo
+
 ### Fractal Triângulo de Sierpinski Caótico <a name="caotico"></a>
 
 ![fractal_triangulocaotico(vezes100000)](https://user-images.githubusercontent.com/49809730/78200212-4e740780-7464-11ea-96f0-650bd785fb83.png)
@@ -38,17 +42,33 @@
   <li></li>
 </ul>
 
+####Definição:
+
+Esse fractal é gerado marcando os pontos que, a cada iteração, vê-se o ponto méio entre o anterior e um dos vértices que é escolhido aleatóriamente.
+
 ### Fractal Triângulo de Sierpinski <a name="sierpinski"></a>
 
 ![fractal_triangulodesierpinski(vezes7_tamanho50)](https://user-images.githubusercontent.com/49809730/78200487-32249a80-7465-11ea-80c9-76cc8b38697b.png)
+
+####Definição:
+
+Esse fractal se define como um triângulo equilátero, do qual é subtraído o triãngulo equilátero formado pelos pontos médios de seus lados; sendo o mesmo feito para todos os triângulos equiláteros restante *ad infinitum*.
 
 ### Fractal Curva do Dragão <a name="dragao"></a>
 
 ![fractal_curvadodragrao(vezes22)img2](https://user-images.githubusercontent.com/49809730/78201211-6b5e0a00-7467-11ea-9eca-1503248ee06c.png)
 
+####Definição:
+
+Esse fractal surge ao sempre copiar o(s) segmento(s) do iniciador após uma rotação de um quarto de volta, tendo como eixo de rotação o uma das extremidades desse.
+
 ### Fractal Curva de Hilbert <a name="hilbert"></a>
 
 ![fractal_curvadehilbert(vezes5)img2](https://user-images.githubusercontent.com/49809730/78201280-9e080280-7467-11ea-96b2-02cf0ee30c23.png)
+
+####Definição:
+
+seguir daqui
 
 ### Fractal Curva de Koch <a name="koch"></a>
 
