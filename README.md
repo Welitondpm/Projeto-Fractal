@@ -32,7 +32,7 @@ Este fractal é resultado de um algoritmo que, para cada valor natural do eixo d
   <li><b>Contagem:</b> Mostrará em qual valor está sendo feito o calculo (para facilitar utilize 1 para sim e 0 para não)</li>
 </ul>
 
-#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_arvore.py"> Clique aqui </a>
+#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_binarioinvertido.py"> Clique aqui </a>
 
 ### Triângulo de Sierpinky Gerado a partir de escolhas randômicas <a name="caotico"></a>
 
@@ -50,7 +50,7 @@ Esse fractal é gerado marcando os pontos que, a cada iteração, vê-se o ponto
   <li><b>vamo acrescentar mais coisas, eu acho que com o mesmo codigo da pra fazer o tapete caótico.</b></li>
 </ul>
 
-#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_arvore.py"> Clique aqui </a>
+#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_triangulocaotico.py"> Clique aqui </a>
 
 ### Triângulo de Sierpinski <a name="sierpinski"></a>
 
@@ -66,7 +66,7 @@ Esse fractal se define como um triângulo equilátero, do qual é subtraído o t
   <li><b>Vezes</b></li>
 </ul>
 
-#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_arvore.py"> Clique aqui </a>
+#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_triangulodesierpinski.py"> Clique aqui </a>
 
 ### Curva do Dragão <a name="dragao"></a>
 
@@ -83,7 +83,7 @@ Esse fractal surge ao sempre copiar o(s) segmento(s) do iniciador ou do cunjunto
   <li><b> **vamo acrescentar mais opções**</b> </li>
 </ul>
 
-#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_arvore.py"> Clique aqui </a>
+#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_curvadodragao.py"> Clique aqui </a>
 
 ### Curva de Hilbert <a name="hilbert"></a>
 
@@ -100,7 +100,7 @@ Ao final, após o redimensionamento, todos os pontos com coordenadas reais estã
   <li><b>Vezes:</b></li>
 </ul>
 
-#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_arvore.py"> Clique aqui </a>
+#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_curvadehilbert.py"> Clique aqui </a>
 
 ### Curva de Koch <a name="koch"></a>
 
@@ -114,7 +114,7 @@ Em cada iteração, cada segmento é substituído por quatro segmentos com um te
   <li><b>Vezes:</b></li>
 </ul>
 
-#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_arvore.py"> Clique aqui </a>
+#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_curvadekoch.py"> Clique aqui </a>
 
 ### Floco de Koch <a name="floco"></a>
 
@@ -128,7 +128,7 @@ O iniciador é um triângulo, e cada um de seus lados passa pelo processo da Cur
   <li><b>Vezes:</b></li>
 </ul>
 
-#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_arvore.py"> Clique aqui </a>
+#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_floco.py"> Clique aqui </a>
 
 ### Curva de Koch modificada para ângulos retos(Fractal dpmfrr) <a name="dpmfrrumalinha"></a>
 
@@ -142,7 +142,7 @@ Em cada iteração, cada segmento é substituído por cinco segmentos com um ter
   <li><b>Vezes:</b></li>
 </ul>
 
-#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_arvore.py"> Clique aqui </a>
+#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_dpmfrrumalinha.py"> Clique aqui </a>
 
 ### Quadrado dpmfrr <a name="dpmfrr"></a>
 
@@ -156,7 +156,7 @@ O iniciador é um quadrado, e cada um de seus lados passa pelo processo da Curva
   <li><b>Vezes:</b></li>
 </ul>
 
-#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_arvore.py"> Clique aqui </a>
+#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_dpmfrr.py"> Clique aqui </a>
 
 ### Fractal dpmfrr X <a name="kochx"></a>
 
@@ -170,7 +170,7 @@ O iniciador é um quadrado, e cada um de seus lados passa pelo processo da Curva
   <li><b>Vezes:</b></li>
 </ul>
 
-#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_arvore.py"> Clique aqui </a>
+#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_curvadekochX.py"> Clique aqui </a>
 
 ### Fractal Árvore <a name="arvore"></a>
 
@@ -204,4 +204,4 @@ Uma curva que tende a formar um Triângulo De Sierpinski. A semente são três s
   <li><b>Vezes:</b> Quantidade de iterações</li>
 </ul>
 
-#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_arvore.py"> Clique aqui </a>
+#### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/fractais_prontos/fractal_triangulodesierpinskilinear.py"> Clique aqui </a>
