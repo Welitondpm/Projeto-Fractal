@@ -58,7 +58,7 @@ Esse fractal se define como um triângulo equilátero, do qual é subtraído o t
 
 #### Definição:
 
-Esse fractal surge ao sempre copiar o(s) segmento(s) do iniciador após uma rotação de um quarto de volta, tendo como eixo de rotação o uma das extremidades desse.
+Esse fractal surge ao sempre copiar o(s) segmento(s) do iniciador ou do cunjunto de retas já computado após uma rotação de um quarto de volta, tendo como eixo de rotação o uma das extremidades desse.
 
 ![fractal_curvadodragrao(vezes22)img2](https://user-images.githubusercontent.com/49809730/78201211-6b5e0a00-7467-11ea-9eca-1503248ee06c.png)
 
@@ -66,7 +66,8 @@ Esse fractal surge ao sempre copiar o(s) segmento(s) do iniciador após uma rota
 
 #### Definição:
 
-Essa curva de preenchimento de espaço é gerada acrescentando a 
+Essa curva de preenchimento de espaço é gerada acrescentando ao iniciador ou ao conjunto de retas já computado uma cópia transladada à direita, outra transladada para cima e rotacionada 90º e uma quarta transladada para a direita e para cima rotacionada 270º (ou -90º).
+Ao final, após o redimensionamento, todos os pontos com coordenadas reais estão inclusos nessa curva.
 
 ![fractal_curvadehilbert(vezes5)img2](https://user-images.githubusercontent.com/49809730/78201280-9e080280-7467-11ea-96b2-02cf0ee30c23.png)
 
