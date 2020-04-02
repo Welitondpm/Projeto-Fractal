@@ -21,9 +21,22 @@
 
 ![fractal_binarioinvertido(524288)](https://user-images.githubusercontent.com/49809730/78200187-3bf9ce00-7464-11ea-8946-0e8f2affc6a5.png)
 
+#### Variáveis de input:
+
+<ul>
+  <li><b>Fim:</b> Até que valor o fractal será feito recomendado uma potência de 2 (para processadores inferior ao i5 5ºg recomendado valor <= 2<sup>18</sup> = 262.144</li>
+  <li><b>Contagem:</b> Mostrará em qual valor está sendo feito o calculo (para facilitar utilize 1 para sim e 0 para não)</li>
+</ul>
+
 ### Fractal Triângulo de Sierpinski Caótico <a name="caotico"></a>
 
 ![fractal_triangulocaotico(vezes100000)](https://user-images.githubusercontent.com/49809730/78200212-4e740780-7464-11ea-96f0-650bd785fb83.png)
+
+#### Variáveis de input:
+
+<ul>
+  <li></li>
+</ul>
 
 ### Fractal Triângulo de Sierpinski <a name="sierpinski"></a>
 
