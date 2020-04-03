@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+# import time
 
 
 def curvadodragao(x, y):
@@ -24,8 +25,11 @@ def fazfractal(vezes):
 
 
 vezes = int(input("Digite a quantidade de vezes(recomendado <= 20): "))
+# inicio = time.time()
 x, y = fazfractal(vezes)
 
 print("Montando o Gráfico")
 plt.plot(x, y, color="black")
+# fim = time.time()
+# print(str(round(fim-inicio, 5)) + "s")
 plt.show()

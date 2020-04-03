@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+# import time
 
 
 def organizaprafazer(x, y):
@@ -58,10 +59,12 @@ def fazfractal(vezes, t):
 
 vezes = int(input("Digite quantas vezes (recomendado <= 7): "))
 t = int(input("Digite o tamanho do lado do triângulo (recomendado 50): "))
-
+# inicio = time.time()
 x, y = fazfractal(vezes, t)
 novox, novoy = fazcadatriangulo(x, y)
 
 print("Montando o Gráfico")
 montagrafico(novox, novoy)
+# fim = time.time()
+# print(str(round(fim-inicio, 5)) + "s")
 plt.show()

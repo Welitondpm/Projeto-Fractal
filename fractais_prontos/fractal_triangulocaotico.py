@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from random import randint
+# import time
 
 
 def fazfractal(vezes, valor):
@@ -19,9 +20,11 @@ def fazfractal(vezes, valor):
 
 vezes = int(input("Digite a Quantidade de vezes(recomendado 100000 <= x <= 1000000): "))
 valor = float(input("Valor(triangulo de sierpinski coloque 2): "))
-
+# inicio = time.time()
 x, y = fazfractal(vezes, valor)
 
 print("Montando o gráfico")
 plt.scatter(x, y, color="black", s=0.01)
+# fim = time.time()
+# print(str(round(fim-inicio, 5)) + "s")
 plt.show()

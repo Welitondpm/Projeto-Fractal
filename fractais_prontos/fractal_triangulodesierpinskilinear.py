@@ -1,8 +1,11 @@
 import matplotlib.pyplot as plt
+# import time
 
+
+vezes = int(input("Digite a quantidade de vezes ( <= 12): "))
+# inicio = time.time()
 x = [[0, 2], [2, 3], [3, 2], [2, 3], [3, 5], [5, 6], [6, 5], [5, 6], [6, 8]]
 y = [[0, 0], [0, 1], [1, 2], [2, 3], [3, 3], [3, 2], [2, 1], [1, 0], [0, 0]]
-vezes = int(input("Digite a quantidade de vezes ( <= 12): "))
 
 
 def fazfractal(xrecebido, yrecebido):
@@ -86,4 +89,6 @@ for item in y:
 
 print("Montando o Gráfico")
 plt.plot(listax, listay, color="black")
+# fim = time.time()
+# print(str(round(fim-inicio, 5)) + "s")
 plt.show()

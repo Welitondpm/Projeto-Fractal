@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+# import time
 
 
 def individualizasegmento(calc):
@@ -60,10 +61,13 @@ def fazfractal(vezes):
 
 
 vezes = int(input("Quantidade de vezes ( <= 9): "))
+# inicio = time.time()
 x, y = fazfractal(vezes)
 
 
 print("Montando o Gráfico")
 # plt.scatter(x, y, color="black")
 plt.plot(x, y, color="black")
+# fim = time.time()
+# print(str(round(fim-inicio, 5)) + "s")
 plt.show()

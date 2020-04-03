@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+# import time
 
 
 def é_primo(valor):
@@ -56,10 +57,13 @@ def fazfractal(fim, contagem):
 
 fim = int(input("Fim (recomendado <= 262144): "))
 contagem = bool(input("Deseja ver o valor atual? (True/False): "))
+# inicio = time.time()
 xs, ys = fazfractal(fim, contagem)
 
 
 print("Montando o Gráfico")
 plt.scatter(xs, ys, color="black", s=0.01)
 # plt.axis([0, 45000, -45000, 45000])
+# fim = time.time()
+# print(str(round(fim-inicio, 5)) + "s")
 plt.show()

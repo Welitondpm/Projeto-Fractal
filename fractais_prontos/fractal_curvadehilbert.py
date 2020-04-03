@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+# import time
 
 
 def curvadehilbert(x, y, vez):
@@ -79,9 +80,12 @@ def fazfractal(vezes, escala):
 
 vezes = int(input("Escolha quantas vezes ( <= 5): "))
 escala = int(input("Escolha a Escala (recomendado 1): "))
+# inicio = time.time()
 x, y = fazfractal(vezes, escala)
 
 
 print("Montando o Gráfico")
 plt.plot(x, y, color="black")
+# fim = time.time()
+# print(str(round(fim-inicio, 5)) + "s")
 plt.show()

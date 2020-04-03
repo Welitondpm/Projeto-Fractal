@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import math
 import random
+# import time
 
 
 def barra():
@@ -104,6 +105,8 @@ w = 1 - w / 100 + w / 50
 wimp = float(input("Randomizar aspecto em quanto?: "))
 barra()
 
+# inicio = time.time()
+
 for vez in range(vezes):
     x, y, angulo, tamanho = fazarvore(x, y, angulo, tamanho, z, w)
     print("%d de %d" % (vez + 1, vezes))
@@ -112,4 +115,6 @@ criaunicalista(x, y)
 
 
 print("Montando o Gráfico")
+# fim = time.time()
+# print(str(round(fim-inicio, 5)) + "s")
 plt.show()

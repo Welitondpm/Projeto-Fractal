@@ -1,3 +1,6 @@
+# import time
+
+
 def fazPascalposicao(vezes):
     lista = [0, 1, 0]
     if vezes == 1:
@@ -49,4 +52,7 @@ def triangulostr(vezes):
 
 
 vezes = int(input("Digite quantas vezes(Recomendado <= 20): "))
+# inicio = time.time()
 triangulostr(vezes) # vezes 15 tamanho 5
+# fim = time.time()
+# print(str(round(fim-inicio, 5)) + "s")
