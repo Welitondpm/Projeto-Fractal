@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 # import time
 
 
@@ -62,7 +63,9 @@ xs, ys = fazfractal(fim, contagem)
 
 
 print("Montando o Gráfico")
-plt.scatter(xs, ys, color="black", s=0.01)
+with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\binarioinvertido(vezes262144).pdf') as export_pdf:
+    plt.scatter(xs, ys, color="black", s=0.01)
+    export_pdf.savefig()
 # plt.axis([0, 45000, -45000, 45000])
 # fim = time.time()
 # print(str(round(fim-inicio, 5)) + "s")

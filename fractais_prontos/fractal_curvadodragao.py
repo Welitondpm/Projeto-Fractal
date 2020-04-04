@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 # import time
 
 
@@ -29,7 +30,9 @@ vezes = int(input("Digite a quantidade de vezes(recomendado <= 20): "))
 x, y = fazfractal(vezes)
 
 print("Montando o Gráfico")
-plt.plot(x, y, color="black")
+with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\curvadodragrao(vezes22).pdf') as export_pdf:
+    plt.plot(x, y, color="black")
+    export_pdf.savefig()
 # fim = time.time()
 # print(str(round(fim-inicio, 5)) + "s")
 plt.show()

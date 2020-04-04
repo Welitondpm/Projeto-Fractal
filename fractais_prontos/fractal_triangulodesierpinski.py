@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 # import time
 
 
@@ -67,4 +68,6 @@ print("Montando o Gráfico")
 montagrafico(novox, novoy)
 # fim = time.time()
 # print(str(round(fim-inicio, 5)) + "s")
+with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\triangulodesierpinski(vezes7_tamanho50).pdf') as export_pdf:
+    export_pdf.savefig()
 plt.show()

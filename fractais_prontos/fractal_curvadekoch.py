@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 # import time
 
 
@@ -72,7 +73,9 @@ x, y = fazfractal(vezes)
 
 print("Montando o Gráfico")
 # plt.scatter(x, y, color="black")
-plt.plot(x, y, color="black")
+with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\curvadekoch(vezes12).pdf') as export_pdf:
+    plt.plot(x, y, color="black")
+    export_pdf.savefig()
 # fim = time.time()
 # print(str(round(fim-inicio, 5)) + "s")
 plt.show()
