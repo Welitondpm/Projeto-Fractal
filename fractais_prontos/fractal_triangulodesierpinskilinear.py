@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
+# from matplotlib.backends.backend_pdf import PdfPages
 # import time
 
 
@@ -89,9 +89,9 @@ for item in y:
 
 
 print("Montando o Gráfico")
-with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\triangulodesierpinskilinear(vezes10).pdf') as export_pdf:
-    plt.plot(listax, listay, color="black")
-    export_pdf.savefig()
+# with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\triangulodesierpinskilinearpasso3.pdf') as export_pdf:
+plt.plot(listax, listay, color="black")
+    # export_pdf.savefig()
 # fim = time.time()
 # print(str(round(fim-inicio, 5)) + "s")
 plt.show()

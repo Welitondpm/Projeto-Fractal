@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from random import randint
-from matplotlib.backends.backend_pdf import PdfPages
+# from matplotlib.backends.backend_pdf import PdfPages
 # import time
 
 
@@ -25,9 +25,9 @@ valor = float(input("Valor(triangulo de sierpinski coloque 2): "))
 x, y = fazfractal(vezes, valor)
 
 print("Montando o gráfico")
-with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\triangulocaotico(vezes100000).pdf') as export_pdf:
-    plt.scatter(x, y, color="black", s=0.01)
-    export_pdf.savefig()
+# with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\triangulocaoticopasso3(10000).pdf') as export_pdf:
+plt.scatter(x, y, color="black", s=0.01)
+    # export_pdf.savefig()
 # fim = time.time()
 # print(str(round(fim-inicio, 5)) + "s")
 plt.show()

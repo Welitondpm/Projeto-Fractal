@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import math
 import random
-from matplotlib.backends.backend_pdf import PdfPages
+# from matplotlib.backends.backend_pdf import PdfPages
 # import time
 
 
@@ -116,8 +116,8 @@ criaunicalista(x, y)
 
 
 print("Montando o Gráfico")
-with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\binarioinvertido(vezes262144).pdf') as export_pdf:
-    export_pdf.savefig()
+# with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\arvorepasso3.pdf') as export_pdf:
+#     export_pdf.savefig()
 # fim = time.time()
 # print(str(round(fim-inicio, 5)) + "s")
 plt.show()
