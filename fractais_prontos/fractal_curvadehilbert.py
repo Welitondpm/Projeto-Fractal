@@ -45,7 +45,7 @@ def curvadehilbert(x, y, vez):
 def diminui(n, vez):
     l = []
     for item in n:
-        l.append(item / (((2 ** (vez + 1)) - 1) / ((((2 ** (vez + 1)) - 1) - 1) / 2)))
+        l.append(item / ((2 ** (vez + 1) - 1) / ((2 ** (vez + 1) - 2) / 2)))
     return l
 
 
