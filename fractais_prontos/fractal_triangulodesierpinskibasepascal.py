@@ -47,7 +47,7 @@ def triangulostr(vezes):
         x = fazPascalposicao(vez)
         x = x[1:-1]
         xstr = fazespasamentonos(x, xstr)
-        print(xstr.center(200))
+        print(xstr.center(175))
         xstr = ""
 
 
