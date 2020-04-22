@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def é_primo(valor):
-    for item in range(2, valor):
+    for item in range(2, int(valor**.5)+1):
         if valor % item == 0:
             return False
     return True
