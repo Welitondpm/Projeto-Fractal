@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 # from matplotlib.backends.backend_pdf import PdfPages
-# import time
+import time
 
 
 def é_primo(valor):
-    for item in range(2, int(valor**.5)+1):
+    for item in range(2, int(valor ** 0.5) + 1):
         if valor % item == 0:
             return False
     return True
@@ -58,7 +58,7 @@ def fazfractal(fim, contagem):
 
 fim = int(input("Fim (recomendado <= 262144): "))
 contagem = bool(input("Deseja ver o valor atual? (True/False): "))
-# inicio = time.time()
+inicio = time.time()
 xs, ys = fazfractal(fim, contagem)
 
 
@@ -67,6 +67,6 @@ print("Montando o Gráfico")
 plt.scatter(xs, ys, color="black", s=0.01)
     # export_pdf.savefig()
 # plt.axis([0, 45000, -45000, 45000])
-# fim = time.time()
-# print(str(round(fim-inicio, 5)) + "s")
+fim = time.time()
+print(str(round(fim - inicio, 5)) + "s")
 plt.show()

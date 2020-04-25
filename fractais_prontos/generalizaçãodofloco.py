@@ -68,7 +68,7 @@ for vez in range(vezes):
 
 print("Montando Gráfico")
 # with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\generalizacaodacurvadekoch.pdf') as export_pdf:
-plt.plot(x, y)
+plt.fill(x, y)
     # export_pdf.savefig()
 # fim = time.time()
 # print(str(round(fim - inicio, 5)) + "s")
