@@ -44,7 +44,7 @@ def fazcadatriangulo(x, y):
 
 def montagrafico(novox, novoy):
     for item in range(len(x)):
-        plt.plot(novox[item], novoy[item], color="black", linewidth=1)
+        plt.fill(novox[item], novoy[item], color="black", linewidth=1)
 
 
 def fazfractal(vezes, t):

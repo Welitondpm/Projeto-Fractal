@@ -82,7 +82,7 @@ for i in range(3, lados+1):
         y = [desce, desce]
         x, y = monta(x, y, vezes, i)
         # with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\generalizacaodacurvadekoch.pdf') as export_pdf:
-        plt.plot(x, y)
+        plt.fill(x, y)
             # export_pdf.savefig()
     elif estilo == "2":
         desce = (tam / 2) / math.tan ((math.pi / i))
@@ -90,12 +90,12 @@ for i in range(3, lados+1):
         y = [desce, desce]
         x, y = monta(x, y, vezes, i)
         # with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\generalizacaodacurvadekoch.pdf') as export_pdf:
-        plt.plot(x, y)
+        plt.fill(x, y)
             # export_pdf.savefig()
     else:
         x, y = monta(x, y, vezes, i)
         # with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\generalizacaodacurvadekoch.pdf') as export_pdf:
-        plt.plot(x, y)
+        plt.fill(x, y)
             # export_pdf.savefig()
         x = [0, tam]
         y = [0, 0]

@@ -73,7 +73,7 @@ x, y = fazfractal(vezes)
 print("Montando o Gráfico")
 # plt.scatter(x, y, color="black")
 # with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\flocopasso3.pdf') as export_pdf:
-plt.plot(x, y, color="black")
+plt.fill(x, y, color="black")
     # export_pdf.savefig()
 # fim = time.time()
 # print(str(round(fim-inicio, 5)) + "s")
