@@ -1,21 +1,10 @@
 import matplotlib.pyplot as plt
 import math
-# from matplotlib.backends.backend_pdf import PdfPages
-# import time
-
-vezes = int(input("Vezes: "))
-lados = int(input("lados: "))
-l = []
-tam = int(input("Escala: "))
-desce = 0
-x = [0, tam]
-y = [desce, desce]
-mudar = input("[s/n]Pra dentro?: ")
-estilo = str(input("Estilo (centralizados: digite 1) (alinhamento de ápise: digite 2) (alinhamento de base: digite 3): "))
-# inicio = time.time()
+from matplotlib.backends.backend_pdf import PdfPages
+import time
 
 
-def f(x, y, lados, vez):
+def f(x, y, lados, vez, mudar):
     somadosangint = 180 * (lados - 2)
     ang = somadosangint / lados * math.pi / 180
     oang = ang
@@ -66,42 +55,87 @@ def f(x, y, lados, vez):
     return nxf, nyf
 
 
-def monta(x, y, vezes, lados):
+def monta(x, y, vezes, lados, mudar):
     for vez in range(1, vezes + 1):
         print(vez, " de ", vezes)
-        x, y = f(x, y, lados, vez)
+        x, y = f(x, y, lados, vez, mudar)
     return x, y
 
 
-for i in range(3, lados+1):
-    i = lados + 3 - i
-    print("Está fazendo o fractal do maior até o 3: ", i)
-    if estilo == "1":
-        desce = - (tam / 2) / math.tan ((math.pi / i))
-        x = [0, tam]
-        y = [desce, desce]
-        x, y = monta(x, y, vezes, i)
-        # with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\generalizacaodacurvadekoch.pdf') as export_pdf:
-        plt.fill(x, y)
-            # export_pdf.savefig()
-    elif estilo == "2":
-        desce = (tam / 2) / math.tan ((math.pi / i))
-        x = [0, tam]
-        y = [desce, desce]
-        x, y = monta(x, y, vezes, i)
-        # with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\generalizacaodacurvadekoch.pdf') as export_pdf:
-        plt.fill(x, y)
-            # export_pdf.savefig()
+def VariaveisDeInput(Valores):
+    if Valores:
+        vezes, lados, tam, mudar, estilo = 5, 6, 10, "n", 1
     else:
-        x, y = monta(x, y, vezes, i)
-        # with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\generalizacaodacurvadekoch.pdf') as export_pdf:
-        plt.fill(x, y)
-            # export_pdf.savefig()
-        x = [0, tam]
-        y = [0, 0]
-        
+        vezes = int(input("Vezes: "))
+        lados = int(input("lados: "))
+        tam = int(input("Escala: "))
+        mudar = input("[s/n]Pra dentro?: ")
+        estilo = str(input("Estilo (centralizados: digite 1) (alinhamento de ápise: digite 2) (alinhamento de base: digite 3): "))
+    return vezes, lados, tam, mudar, estilo
 
-print("Montando Gráfico")
-# fim = time.time()
-# print(str(round(fim - inicio, 5)) + "s")
-plt.show()
+
+def FazFractal(vezes, lados, tam, mudar, estilo):
+    desce = 0
+    x = [0, tam]
+    y = [desce, desce]
+    for i in range(3, lados+1):
+        i = lados + 3 - i
+        print("Está fazendo o fractal do maior até o 3: ", i)
+        if estilo == "1":
+            desce = - (tam / 2) / math.tan ((math.pi / i))
+            x = [0, tam]
+            y = [desce, desce]
+            x, y = monta(x, y, vezes, i, mudar)
+            plt.fill(x, y)
+        elif estilo == "2":
+            desce = (tam / 2) / math.tan ((math.pi / i))
+            x = [0, tam]
+            y = [desce, desce]
+            x, y = monta(x, y, vezes, i, mudar)
+            plt.fill(x, y)
+        else:
+            x, y = monta(x, y, vezes, i, mudar)
+            plt.fill(x, y)
+            x = [0, tam]
+            y = [0, 0]
+
+
+def FazFractalComTempo(Valores):
+    vezes, lados, tam, mudar, estilo = VariaveisDeInput(Valores)
+    inicio = time.time()
+    FazFractal(vezes, lados, tam, mudar, estilo)
+    print("Montando Gráfico")
+    fim = time.time()
+    print(str(round(fim - inicio, 5)) + "s")
+    plt.show()
+
+
+def FazFractalSemTempo(Valores):
+    vezes, lados, tam, mudar, estilo = VariaveisDeInput(Valores)
+    FazFractal(vezes, lados, tam, mudar, estilo)
+    print("Montando Gráfico")
+    plt.show()
+
+
+def SalvarEmPDF(Valores):
+    vezes, lados, tam, mudar, estilo = VariaveisDeInput(Valores)
+    FazFractal(vezes, lados, tam, mudar, estilo)
+    with PdfPages(r'progresaodageneralizacaodofloco.pdf') as export_pdf:
+        export_pdf.savefig()
+
+
+def Begin():
+    SalvarPDF = bool(input("(False) Para não salvar em PDF e (True) Para salvar: "))
+    if SalvarPDF:
+        Valores = bool(input("(False) para valores personalizados e (True) para usar os valores padrões: "))
+        SalvarEmPDF(Valores)
+    else:
+        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+        if MostrarDesempenho:
+            FazFractalComTempo(Valores)
+        else:
+            FazFractalSemTempo(Valores)
+
+
+if __name__ == "__main__":
+    Begin()

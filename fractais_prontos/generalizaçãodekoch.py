@@ -1,15 +1,8 @@
 import matplotlib.pyplot as plt
 import math
-# from matplotlib.backends.backend_pdf import PdfPages
-# import time
+from matplotlib.backends.backend_pdf import PdfPages
+import time
 
-vezes = int(input("Vezes: "))
-lados = int(input("lados: "))
-l = []
-tam = int(input("Escala: "))
-x = [0, tam]
-y = [0, 0]
-# inicio = time.time()
 
 def f(x, y, lados):
     somadosangint = 180 * (lados - 2)
@@ -47,14 +40,65 @@ def f(x, y, lados):
         nyf += ny
     return nxf,nyf
 
-for vez in range(vezes):
-    print(vez + 1, " de ", vezes)
-    x, y = f(x, y, lados)
 
-print("Montando Gráfico")
-# with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\generalizacaodacurvadekoch.pdf') as export_pdf:
-plt.plot(x, y)
-    # export_pdf.savefig()
-# fim = time.time()
-# print(str(round(fim - inicio, 5)) + "s")
-plt.show()
+def VariaveisDeInput(Valores):
+    if Valores:
+        vezes, lados, tam = 5, 7, 10
+    else:
+        vezes = int(input("Vezes: "))
+        lados = int(input("lados: "))
+        tam = int(input("Escala: "))
+    return vezes, lados, tam
+
+
+def FazFractal(vezes, lados, tam):
+    x = [0, tam]
+    y = [0, 0]
+    for vez in range(vezes):
+        print(vez + 1, " de ", vezes)
+        x, y = f(x, y, lados)
+    return x, y
+
+
+def FazFractalComTempo(Valores):
+    vezes, lados, tam = VariaveisDeInput(Valores)
+    inicio = time.time()
+    x, y = FazFractal(vezes, lados, tam)
+    print("Montando Gráfico")
+    plt.plot(x, y)
+    fim = time.time()
+    print(str(round(fim - inicio, 5)) + "s")
+    plt.show()
+
+
+def FazFractalSemTempo(Valores):
+    vezes, lados, tam = VariaveisDeInput(Valores)
+    x, y = FazFractal(vezes, lados, tam)
+    print("Montando Gráfico")
+    plt.plot(x, y)
+    plt.show()
+
+
+def SalvarEmPDF(Valores):
+    vezes, lados, tam = VariaveisDeInput(Valores)
+    x, y = FazFractal(vezes, lados, tam)
+    plt.plot(x, y)
+    with PdfPages(r'generalizacaodekoch.pdf') as export_pdf:
+        export_pdf.savefig()
+
+
+def Begin():
+    SalvarPDF = bool(input("(False) Para não salvar em PDF e (True) Para salvar: "))
+    Valores = bool(input("(False) para valores personalizados e (True) para usar os valores padrões: "))
+    if SalvarPDF:
+        SalvarEmPDF(Valores)
+    else:
+        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+        if MostrarDesempenho:
+            FazFractalComTempo(Valores)
+        else:
+            FazFractalSemTempo(Valores)
+
+
+if __name__ == "__main__":
+    Begin()

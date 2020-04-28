@@ -1,15 +1,9 @@
 import matplotlib.pyplot as plt
-# from matplotlib.backends.backend_pdf import PdfPages
-# import time
+from matplotlib.backends.backend_pdf import PdfPages
+import time
 
 
-vezes = int(input("Digite a quantidade de vezes ( <= 12): "))
-# inicio = time.time()
-x = [[0, 1]]
-y = [[0, 0]]
-
-
-def fazfractal(xrecebido, yrecebido):
+def faztriangulo(xrecebido, yrecebido):
     xdevolver, ydevolver = [], []
     for item in range(len(xrecebido)):
         x = xrecebido[item]
@@ -73,25 +67,69 @@ def fazfractal(xrecebido, yrecebido):
     return xdevolver, ydevolver
 
 
-for vez in range(vezes):
-    x, y = fazfractal(x, y)
-    print("%d de %d" % (vez, vezes))
-
-listax, listay = [], []
-
-for item in x:
-    for subitem in item:
-        listax.append(subitem)
-
-for item in y:
-    for subitem in item:
-        listay.append(subitem)
+def VariaveisDeInput(Valores):
+    if Valores:
+        vezes = 10
+    else:
+        vezes = int(input("Digite a quantidade de vezes ( <= 12): "))
+    x = [[0, 1]]
+    y = [[0, 0]]
+    return vezes, x, y
 
 
-print("Montando o Gráfico")
-# with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\triangulodesierpinskilinearpasso3.pdf') as export_pdf:
-plt.plot(listax, listay, color="black")
-    # export_pdf.savefig()
-# fim = time.time()
-# print(str(round(fim-inicio, 5)) + "s")
-plt.show()
+def FazFractal(vezes, x, y):
+    for vez in range(vezes):
+        x, y = faztriangulo(x, y)
+        print("%d de %d" % (vez, vezes))
+    listax, listay = [], []
+    for item in x:
+        for subitem in item:
+            listax.append(subitem)
+    for item in y:
+        for subitem in item:
+            listay.append(subitem)
+    return listax, listay
+
+
+def FazFractalComTempo(Valores):
+    vezes, x, y = VariaveisDeInput(Valores)
+    inicio = time.time()
+    listax, listay = FazFractal(vezes, x, y)
+    print("Montando o Gráfico")
+    plt.plot(listax, listay, color="black")
+    fim = time.time()
+    print(str(round(fim-inicio, 5)) + "s")
+    plt.show()
+
+
+def FazFractalSemTempo(Valores):
+    vezes, x, y = VariaveisDeInput(Valores)
+    listax, listay = FazFractal(vezes, x, y)
+    print("Montando o Gráfico")
+    plt.plot(listax, listay, color="black")
+    plt.show()
+
+
+def SalvarEmPDF(Valores):
+    vezes, x, y = VariaveisDeInput(Valores)
+    listax, listay = FazFractal(vezes, x, y)
+    plt.plot(listax, listay, color="black")
+    with PdfPages(r'triangulodesierpinklinear.pdf') as export_pdf:
+        export_pdf.savefig()
+
+
+def Begin():
+    SalvarPDF = bool(input("(False) Para não salvar em PDF e (True) Para salvar: "))
+    Valores = bool(input("(False) para valores personalizados e (True) para usar os valores padrões: "))
+    if SalvarPDF:
+        SalvarEmPDF(Valores)
+    else:
+        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+        if MostrarDesempenho:
+            FazFractalComTempo(Valores)
+        else:
+            FazFractalSemTempo(Valores)
+
+
+if __name__ == "__main__":
+    Begin()

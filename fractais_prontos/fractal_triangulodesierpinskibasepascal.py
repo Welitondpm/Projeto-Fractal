@@ -1,4 +1,4 @@
-# import time
+import time
 
 
 def fazPascalposicao(vezes):
@@ -51,8 +51,35 @@ def triangulostr(vezes):
         xstr = ""
 
 
-vezes = int(input("Digite quantas vezes(Recomendado <= 20): "))
-# inicio = time.time()
-triangulostr(vezes) # vezes 15 tamanho 5
-# fim = time.time()
-# print(str(round(fim-inicio, 5)) + "s")
+def VariaveisDeInput(Valores):
+    if Valores:
+        vezes = 20
+    else:
+        vezes = int(input("Digite quantas vezes(Recomendado <= 20): "))
+    return vezes
+
+
+def FazFractalComTempo(Valores):
+    vezes = VariaveisDeInput(Valores)
+    inicio = time.time()
+    triangulostr(vezes)
+    fim = time.time()
+    print(str(round(fim-inicio, 5)) + "s")
+
+
+def FazFractalSemTempo(Valores):
+    vezes = VariaveisDeInput(Valores)
+    triangulostr(vezes)
+
+
+def Begin():
+    MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+    Valores = bool(input("(False) para valores personalizados e (True) para usar os valores padrões: "))
+    if MostrarDesempenho:
+        FazFractalComTempo(Valores)
+    else:
+        FazFractalSemTempo(Valores)
+
+
+if __name__ == "__main__":
+    Begin()

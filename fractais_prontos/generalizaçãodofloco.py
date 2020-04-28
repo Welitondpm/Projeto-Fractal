@@ -1,18 +1,10 @@
 import matplotlib.pyplot as plt
 import math
-# from matplotlib.backends.backend_pdf import PdfPages
-# import time
+from matplotlib.backends.backend_pdf import PdfPages
+import time
 
-vezes = int(input("Vezes: "))
-lados = int(input("lados: "))
-l = []
-tam = int(input("Escala: "))
-x = [0, tam]
-y = [0, 0]
-mudar = input("[s/n]Pra dentro?: ")
-# inicio = time.time()
 
-def f(x, y, lados, vez):
+def f(x, y, lados, vez, mudar):
     somadosangint = 180 * (lados - 2)
     ang = somadosangint / lados * math.pi / 180
     oang = ang
@@ -62,14 +54,66 @@ def f(x, y, lados, vez):
         nyf += ny
     return nxf, nyf
 
-for vez in range(vezes):
-    print(vez + 1, " de ", vezes)
-    x, y = f(x, y, lados, vez)
 
-print("Montando Gráfico")
-# with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\generalizacaodacurvadekoch.pdf') as export_pdf:
-plt.fill(x, y)
-    # export_pdf.savefig()
-# fim = time.time()
-# print(str(round(fim - inicio, 5)) + "s")
-plt.show()
+def VariaveisDeInput(Valores):
+    if Valores:
+        vezes, lados, tam, mudar = 5, 7, 10, "n"
+    else:
+        vezes = int(input("Vezes: "))
+        lados = int(input("lados: "))
+        tam = int(input("Escala: "))
+        mudar = input("[s/n]Pra dentro?: ")
+    return vezes, lados, tam, mudar
+
+
+def FazFractal(vezes, lados, tam, mudar):
+    x = [0, tam]
+    y = [0, 0]
+    for vez in range(vezes):
+        print(vez + 1, " de ", vezes)
+        x, y = f(x, y, lados, vez, mudar)
+    return x, y
+
+
+def FazFractalComTempo(Valores):
+    vezes, lados, tam, mudar = VariaveisDeInput(Valores)
+    inicio = time.time()
+    x, y = FazFractal(vezes, lados, tam, mudar)
+    print("Montando Gráfico")
+    plt.fill(x, y)
+    fim = time.time()
+    print(str(round(fim - inicio, 5)) + "s")
+    plt.show()
+
+
+def FazFractalSemTempo(Valores):
+    vezes, lados, tam, mudar = VariaveisDeInput(Valores)
+    x, y = FazFractal(vezes, lados, tam, mudar)
+    print("Montando Gráfico")
+    plt.fill(x, y)
+    plt.show()
+
+
+def SalvarEmPDF(Valores):
+    vezes, lados, tam, mudar = VariaveisDeInput(Valores)
+    x, y = FazFractal(vezes, lados, tam, mudar)
+    plt.fill(x, y)
+    with PdfPages(r'generalizacaodofloco.pdf') as export_pdf:
+        export_pdf.savefig()
+
+
+def Begin():
+    SalvarPDF = bool(input("(False) Para não salvar em PDF e (True) Para salvar: "))
+    Valores = bool(input("(False) para valores personalizados e (True) para usar os valores padrões: "))
+    if SalvarPDF:
+        SalvarEmPDF(Valores)
+    else:
+        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+        if MostrarDesempenho:
+            FazFractalComTempo(Valores)
+        else:
+            FazFractalSemTempo(Valores)
+
+
+if __name__ == "__main__":
+    Begin()

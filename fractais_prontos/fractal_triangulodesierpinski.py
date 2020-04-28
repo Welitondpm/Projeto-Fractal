@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
-# from matplotlib.backends.backend_pdf import PdfPages
-# import time
+from matplotlib.backends.backend_pdf import PdfPages
+import time
 
 
 def organizaprafazer(x, y):
@@ -43,11 +43,11 @@ def fazcadatriangulo(x, y):
 
 
 def montagrafico(novox, novoy):
-    for item in range(len(x)):
+    for item in range(len(novox)):
         plt.fill(novox[item], novoy[item], color="black", linewidth=1)
 
 
-def fazfractal(vezes, t):
+def fazsierpinski(vezes, t):
     vez = 0
     x = [[-t / 2, 0, t / 2]]
     y = [[-t * 3 ** 0.5 / 2, 0, -t * 3 ** 0.5 / 2]]
@@ -58,16 +58,56 @@ def fazfractal(vezes, t):
     return x, y
 
 
-vezes = int(input("Digite quantas vezes (recomendado <= 7): "))
-t = int(input("Digite o tamanho do lado do triângulo (recomendado 50): "))
-# inicio = time.time()
-x, y = fazfractal(vezes, t)
-novox, novoy = fazcadatriangulo(x, y)
+def VariaveisDeInput(Valores):
+    if Valores:
+        vezes, tamanho = 7, 50
+    else:
+        vezes = int(input("Digite quantas vezes (recomendado <= 7): "))
+        tamanho = int(input("Digite o tamanho do lado do triângulo (recomendado 50): "))
+    return vezes, tamanho
 
-print("Montando o Gráfico")
-montagrafico(novox, novoy)
-# fim = time.time()
-# print(str(round(fim-inicio, 5)) + "s")
-# with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\triangulodesierpinskipasso3.pdf') as export_pdf:
-#     export_pdf.savefig()
-plt.show()
+
+def FazFractal(vezes, tamanho):
+    x, y = fazsierpinski(vezes, tamanho)
+    novox, novoy = fazcadatriangulo(x, y)
+    print("Montando o Gráfico")
+    montagrafico(novox, novoy)
+
+
+def FazFractalComTempo(Valores):
+    vezes, tamanho = VariaveisDeInput(Valores)
+    inicio = time.time()
+    FazFractal(vezes, tamanho)
+    fim = time.time()
+    print(str(round(fim-inicio, 5)) + "s")
+    plt.show()
+
+
+def FazFractalSemTempo(Valores):
+    vezes, tamanho = VariaveisDeInput(Valores)
+    FazFractal(vezes, tamanho)
+    plt.show()
+
+
+def SalvarEmPDF(Valores):
+    vezes, tamanho = VariaveisDeInput(Valores)
+    FazFractal(vezes, tamanho)
+    with PdfPages(r'triangulodesierpinski.pdf') as export_pdf:
+        export_pdf.savefig()
+
+
+def Begin():
+    SalvarPDF = bool(input("(False) Para não salvar em PDF e (True) Para salvar: "))
+    Valores = bool(input("(False) para valores personalizados e (True) para usar os valores padrões: "))
+    if SalvarPDF:
+        SalvarEmPDF(Valores)
+    else:
+        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+        if MostrarDesempenho:
+            FazFractalComTempo(Valores)
+        else:
+            FazFractalSemTempo(Valores)
+
+
+if __name__ == "__main__":
+    Begin()

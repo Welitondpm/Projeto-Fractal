@@ -1,15 +1,7 @@
 import matplotlib.pyplot as plt
 import math
-# from matplotlib.backends.backend_pdf import PdfPages
-# import time
-
-vezes = int(input("Vezes: "))
-lados = int(input("lados: "))
-l = []
-tam = int(input("Escala: "))
-x = [0, tam]
-y = [0, 0]
-# inicio = time.time()
+from matplotlib.backends.backend_pdf import PdfPages
+import time
 
 
 def f(x, y, lados):
@@ -56,17 +48,64 @@ def monta(x, y, vezes, lados):
     return x, y
 
 
-for i in range(3, lados + 1):
-    i = lados + 1 - i
-    print("Está fazendo o fractal do maior até o 3: ", i)
-    x, y = monta(x, y, vezes, i)
-    # with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\generalizacaodacurvadekoch.pdf') as export_pdf:
-    plt.plot(x, y)
-        # export_pdf.savefig()
+def VariaveisDeInput(Valores):
+    if Valores:
+        vezes, lados, tam = 5, 7, 10
+    else:
+        vezes = int(input("Vezes: "))
+        lados = int(input("lados: "))
+        tam = int(input("Escala: "))
+    return vezes, lados, tam
+
+
+def FazFractal(vezes, lados, tam):
     x = [0, tam]
     y = [0, 0]
+    for i in range(3, lados + 1):
+        i = lados + 1 - i
+        print("Está fazendo o fractal do maior até o 3: ", i)
+        x, y = monta(x, y, vezes, i)
+        plt.plot(x, y)
+        x = [0, tam]
+        y = [0, 0]
+    
 
-print("Montando Gráfico")
-# fim = time.time()
-# print(str(round(fim - inicio, 5)) + "s")
-plt.show()
+def FazFractalComTempo(Valores):
+    vezes, lados, tam = VariaveisDeInput(Valores)
+    inicio = time.time()
+    FazFractal(vezes, lados, tam)
+    print("Montando Gráfico")
+    fim = time.time()
+    print(str(round(fim - inicio, 5)) + "s")
+    plt.show()
+
+
+def FazFractalSemTempo(Valores):
+    vezes, lados, tam = VariaveisDeInput(Valores)
+    FazFractal(vezes, lados, tam)
+    print("Montando Gráfico")
+    plt.show()
+
+
+def SalvarEmPDF(Valores):
+    vezes, lados, tam = VariaveisDeInput(Valores)
+    FazFractal(vezes, lados, tam)
+    with PdfPages(r'progresaodageneralizacaodekoch.pdf') as export_pdf:
+        export_pdf.savefig()
+
+
+def Begin():
+    SalvarPDF = bool(input("(False) Para não salvar em PDF e (True) Para salvar: "))
+    Valores = bool(input("(False) para valores personalizados e (True) para usar os valores padrões: "))
+    if SalvarPDF:
+        SalvarEmPDF(Valores)
+    else:
+        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+        if MostrarDesempenho:
+            FazFractalComTempo(Valores)
+        else:
+            FazFractalSemTempo(Valores)
+
+
+if __name__ == "__main__":
+    Begin()

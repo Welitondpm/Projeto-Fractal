@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
-# from matplotlib.backends.backend_pdf import PdfPages
-# import time
+from matplotlib.backends.backend_pdf import PdfPages
+import time
 
 
 def curvadehilbert(x, y, vez):
@@ -68,7 +68,7 @@ def girahorario(x, y):
     return novox, novoy
 
 
-def fazfractal(vezes, escala):
+def fazhilbert(vezes, escala):
     x = [0, 0, escala, escala]
     y = [escala, 0, 0, escala]
     vez = 0
@@ -79,16 +79,59 @@ def fazfractal(vezes, escala):
     return x, y
 
 
-vezes = int(input("Escolha quantas vezes ( <= 5): "))
-escala = int(input("Escolha a Escala (recomendado 1): "))
-# inicio = time.time()
-x, y = fazfractal(vezes, escala)
+def VariaveisDeInput(Valores):
+    if Valores:
+        vezes, escala = 5, 10
+    else:
+        vezes = int(input("Escolha quantas vezes ( <= 5): "))
+        escala = int(input("Escolha a Escala (recomendado 1): "))
+    return vezes, escala
 
 
-print("Montando o Gráfico")
-# with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\curvadehilbertpasso3.pdf') as export_pdf:
-plt.plot(x, y, color="black")
-    # export_pdf.savefig()
-# fim = time.time()
-# print(str(round(fim-inicio, 5)) + "s")
-plt.show()
+def FazFractal(vezes, escala):
+    x, y = fazhilbert(vezes, escala)
+    return x, y
+
+
+def FazFractalComTempo(Valores):
+    vezes, escala = VariaveisDeInput(Valores)
+    inicio = time.time()
+    x, y = FazFractal(vezes, escala)
+    print("Montando o Gráfico")
+    plt.plot(x, y, color="black")
+    fim = time.time()
+    print(str(round(fim-inicio, 5)) + "s")
+    plt.show()
+
+
+def FazFractalSemTempo(Valores):
+    vezes, escala = VariaveisDeInput(Valores)
+    x, y = FazFractal(vezes, escala)
+    print("Montando o Gráfico")
+    plt.plot(x, y, color="black")
+    plt.show()
+
+
+def SalvarEmPDF(Valores):
+    vezes, escala = VariaveisDeInput(Valores)
+    x, y = FazFractal(vezes, escala)
+    plt.plot(x, y, color="black")
+    with PdfPages(r'curvadehilbert.pdf') as export_pdf:
+        export_pdf.savefig()
+
+
+def Begin():
+    SalvarPDF = bool(input("(False) Para não salvar em PDF e (True) Para salvar: "))
+    Valores = bool(input("(False) para valores personalizados e (True) para usar os valores padrões: "))
+    if SalvarPDF:
+        SalvarEmPDF(Valores)
+    else:
+        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+        if MostrarDesempenho:
+            FazFractalComTempo(Valores)
+        else:
+            FazFractalSemTempo(Valores)
+
+
+if __name__ == "__main__":
+    Begin()

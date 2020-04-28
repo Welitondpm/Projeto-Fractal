@@ -1,17 +1,16 @@
 import matplotlib.pyplot as plt
 import math
 import random
-# from matplotlib.backends.backend_pdf import PdfPages
-# import time
+from matplotlib.backends.backend_pdf import PdfPages
+import time
 
 
 def barra():
     print(40 * "-")
 
 
-def adicionaproximosangulos(angulo):
+def adicionaproximosangulos(angulo, theta):
     lista1, lista2 = [], []
-    global theta
     for item in angulo:
         lista1.append(item + theta)
         lista2.append(item - theta)
@@ -65,7 +64,7 @@ def imperfeiciona(x, imperfeicao):
         return nx
 
 
-def fazarvore(x, y, ang, tamanho, z, w):
+def fazarvore(x, y, ang, tamanho, z, w, wimp, zimp, theta):
     nang = []
     for item in ang:
         item *= imperfeiciona(w, wimp)
@@ -80,44 +79,81 @@ def fazarvore(x, y, ang, tamanho, z, w):
         novoy.append(y[-1][item] + tamanho * imperfeiciona(z, zimp) * math.cos(ang[2 * item + 1]))
     x.append(novox)
     y.append(novoy)
-    angulo = adicionaproximosangulos(ang)
+    angulo = adicionaproximosangulos(ang, theta)
     return x, y, angulo, tamanho
 
-vezes = int(input("Número de iterações(Recomendado <= 13): "))
-barra()
 
-tamanho = int(input("Digite o tamanho: "))
-barra()
-
-x, y = [[0], [0]], [[0], [tamanho]]
-
-theta =float(input("Ângulo(em graus): "))
-theta = (theta * math.pi) / 180
-barra()
-angulo = [theta, -theta]
-
-z = float(input("Mudança no tamanho por iteração(% para + ou para -): "))
-z = 1 - z / 100 + z / 50
-zimp = float(input("Randomizar aspecto em quanto?: "))
-barra()
-
-w = float(input("Mudança no ângulo por iteração(% para + ou para -): "))
-w = 1 - w / 100 + w / 50
-wimp = float(input("Randomizar aspecto em quanto?: "))
-barra()
-
-# inicio = time.time()
-
-for vez in range(vezes):
-    x, y, angulo, tamanho = fazarvore(x, y, angulo, tamanho, z, w)
-    print("%d de %d" % (vez + 1, vezes))
-
-criaunicalista(x, y)
+def VariaveisDeInput(Valores):
+    if Valores:
+        vezes, tamanho, theta, z, zimp, w, wimp = 12, 50, 15, 0, 0, 0, 0
+    else:
+        vezes = int(input("Número de iterações(Recomendado <= 13): "))
+        barra()
+        tamanho = int(input("Digite o tamanho: "))
+        barra()
+        theta = float(input("Ângulo(em graus): "))
+        barra()
+        z = float(input("Mudança no tamanho por iteração(% para + ou para -): "))
+        zimp = float(input("Randomizar aspecto em quanto?: "))
+        barra()
+        w = float(input("Mudança no ângulo por iteração(% para + ou para -): "))
+        wimp = float(input("Randomizar aspecto em quanto?: "))
+        barra()
+    return vezes, tamanho, theta, z, zimp, w, wimp
 
 
-print("Montando o Gráfico")
-# with PdfPages(r'E:\Projeto_Fractal\img_dos_fractais_prontos\arvorepasso3.pdf') as export_pdf:
-#     export_pdf.savefig()
-# fim = time.time()
-# print(str(round(fim-inicio, 5)) + "s")
-plt.show()
+def FazPreCalculos(vezes, tamanho, theta, z, zimp, w, wimp):
+    x, y = [[0], [0]], [[0], [tamanho]]
+    theta = (theta * math.pi) / 180
+    angulo = [theta, -theta]
+    z = 1 - z / 100 + z / 50
+    w = 1 - w / 100 + w / 50
+    return vezes, tamanho, theta, z, zimp, w, wimp, angulo, x, y
+
+
+def FazFractal(vezes, tamanho, theta, z, zimp, w, wimp):
+    vezes, tamanho, theta, z, zimp, w, wimp, angulo, x, y = FazPreCalculos(vezes, tamanho, theta, z, zimp, w, wimp)
+    for vez in range(vezes):
+        x, y, angulo, tamanho = fazarvore(x, y, angulo, tamanho, z, w, wimp, zimp, theta)
+        print("%d de %d" % (vez + 1, vezes))
+    criaunicalista(x, y)
+    print("Montando o Gráfico")
+
+
+def FazFractalComTempo(Valores):
+    vezes, tamanho, theta, z, zimp, w, wimp = VariaveisDeInput(Valores)
+    inicio = time.time()
+    FazFractal(vezes, tamanho, theta, z, zimp, w, wimp)
+    fim = time.time()
+    print(str(round(fim-inicio, 5)) + "s")
+    plt.show()
+
+
+def FazFractalSemTempo(Valores):
+    vezes, tamanho, theta, z, zimp, w, wimp = VariaveisDeInput(Valores)
+    FazFractal(vezes, tamanho, theta, z, zimp, w, wimp)
+    plt.show()
+
+
+def SalvarEmPDF(Valores):
+    vezes, tamanho, theta, z, zimp, w, wimp = VariaveisDeInput(Valores)
+    FazFractal(vezes, tamanho, theta, z, zimp, w, wimp)
+    with PdfPages(r'arvore.pdf') as export_pdf:
+        export_pdf.savefig()
+
+
+def Begin():
+    SalvarPDF = bool(input("(False) Para não salvar em PDF e (True) Para salvar: "))
+    Valores = bool(input("(False) para valores personalizados e (True) para usar os valores padrões: "))
+    if SalvarPDF:
+        SalvarEmPDF(Valores)
+    else:
+        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+        if MostrarDesempenho:
+            FazFractalComTempo(Valores)
+        else:
+            FazFractalSemTempo(Valores)
+
+
+if __name__ == "__main__":
+    Begin()
