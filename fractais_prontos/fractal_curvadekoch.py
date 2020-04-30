@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import time
+from propriedadeporquadrados import *
 
 
 def individualizasegmento(calc):
@@ -98,6 +99,15 @@ def FazFractalSemTempo(Valores):
     plt.show()
 
 
+def PropriedadeQuadrado(Valores):
+    vezes = VariaveisDeInput(Valores)
+    x, y = FazFractal(vezes)
+    FazCalculo(x, y)
+    print("Montando o Gráfico")
+    plt.plot(x, y, color="black")
+    plt.show()
+
+
 def SalvarEmPDF(Valores):
     vezes = VariaveisDeInput(Valores)
     x, y = FazFractal(vezes)
@@ -112,11 +122,15 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-        if MostrarDesempenho:
-            FazFractalComTempo(Valores)
+        ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+        if ExecutarPropriedade:
+            PropriedadeQuadrado(Valores)
         else:
-            FazFractalSemTempo(Valores)
+            MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+            if MostrarDesempenho:
+                FazFractalComTempo(Valores)
+            else:
+                FazFractalSemTempo(Valores)
 
 
 if __name__ == "__main__":

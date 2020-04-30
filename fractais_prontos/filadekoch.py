@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import math
 from matplotlib.backends.backend_pdf import PdfPages
 import time
+from propriedadeporquadrados import *
 
 
 def f(x, y, lados):
@@ -85,6 +86,24 @@ def FazFractalSemTempo(Valores):
     plt.show()
 
 
+def PropriedadeQuadrado(Valores):
+    vezes, lados, tam = VariaveisDeInput(Valores)
+    masterx = []
+    mastery = []
+    for i in range(3, lados + 1):
+        x = [tam * i, tam * (i + 1)]
+        y = [0, 0]
+        i = lados + 3 - i
+        print("\n", i, ' lados de ', lados)
+        x, y = monta(x, y, vezes, i)
+        masterx.extend(x[::])
+        mastery.extend(y[::])
+        plt.plot(x, y)
+    FazCalculo(masterx, mastery)
+    print("Montando Gráfico")
+    plt.show()
+
+
 def SalvarEmPDF(Valores):
     vezes, lados, tam = VariaveisDeInput(Valores)
     FazFractal(vezes, lados, tam)
@@ -98,11 +117,15 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-        if MostrarDesempenho:
-            FazFractalComTempo(Valores)
+        ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+        if ExecutarPropriedade:
+            PropriedadeQuadrado(Valores)
         else:
-            FazFractalSemTempo(Valores)
+            MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+            if MostrarDesempenho:
+                FazFractalComTempo(Valores)
+            else:
+                FazFractalSemTempo(Valores)
 
 
 if __name__ == "__main__":

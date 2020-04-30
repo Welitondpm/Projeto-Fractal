@@ -130,11 +130,15 @@ def Begin():
         Valores = bool(input("(False) para valores personalizados e (True) para usar os valores padrões: "))
         SalvarEmPDF(Valores)
     else:
-        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-        if MostrarDesempenho:
-            FazFractalComTempo(Valores)
+        ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+        if ExecutarPropriedade:
+            PropriedadeQuadrado(Valores)
         else:
-            FazFractalSemTempo(Valores)
+            MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+            if MostrarDesempenho:
+                FazFractalComTempo(Valores)
+            else:
+                FazFractalSemTempo(Valores)
 
 
 if __name__ == "__main__":

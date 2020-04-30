@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import time
 from matplotlib.backends.backend_pdf import PdfPages
+from propriedadeporquadrados import *
 
 
 def é_primo(valor):
@@ -89,6 +90,15 @@ def FazFractalSemTempo(Valores):
     plt.show()
 
 
+def PropriedadeQuadrado(Valores):
+    fim, contagem = VariaveisDeInput(Valores)
+    xs, ys = FazFractal(fim, contagem)
+    FazCalculo(xs, ys)
+    print("Montando o Gráfico")
+    plt.scatter(xs, ys, color="black", s=0.01)
+    plt.show()
+
+
 def SalvarEmPDF(Valores):
     fim, contagem = VariaveisDeInput(Valores)
     xs, ys = FazFractal(fim, contagem)
@@ -103,11 +113,15 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-        if MostrarDesempenho:
-            FazFractalComTempo(Valores)
+        ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+        if ExecutarPropriedade:
+            PropriedadeQuadrado(Valores)
         else:
-            FazFractalSemTempo(Valores)
+            MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+            if MostrarDesempenho:
+                FazFractalComTempo(Valores)
+            else:
+                FazFractalSemTempo(Valores)
 
 
 if __name__ == "__main__":

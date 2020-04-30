@@ -3,6 +3,7 @@ import math
 import random
 from matplotlib.backends.backend_pdf import PdfPages
 import time
+from propriedadeporquadrados import *
 
 
 def barra():
@@ -44,6 +45,40 @@ def criaunicalista(x, y):
             ly.append(l1y[subitem][item])
         plt.plot(lx, ly, color="black")
         lx, ly = [], []
+
+    
+def criaunicalistapropriedade(x, y):
+    listadescartavel = []
+    lx, l1x = [], []
+    ly, l1y = [], []
+    masterx = []
+    mastery = []
+    maxtam = len(x[-1])
+    for item in x:
+        while len(item) < maxtam:
+            for subitem in item:
+                listadescartavel.append(subitem)
+                listadescartavel.append(subitem)
+            item = listadescartavel
+            listadescartavel = []
+        l1x.append(item)
+    for item in y:
+        while len(item) < maxtam:
+            for subitem in item:
+                listadescartavel.append(subitem)
+                listadescartavel.append(subitem)
+            item = listadescartavel
+            listadescartavel = []
+        l1y.append(item)
+    for item in range(maxtam - 1):
+        for subitem in range(len(x) - 1):
+            lx.append(l1x[subitem][item])
+            ly.append(l1y[subitem][item])
+        plt.plot(lx, ly, color="black")
+        masterx.extend(lx[::])
+        mastery.extend(ly[::])
+        lx, ly = [], []
+    return masterx, mastery
 
 
 def imperfeiciona(x, imperfeicao):
@@ -135,6 +170,18 @@ def FazFractalSemTempo(Valores):
     plt.show()
 
 
+def PropriedadeQuadrado(Valores):
+    vezes, tamanho, theta, z, zimp, w, wimp = VariaveisDeInput(Valores)
+    vezes, tamanho, theta, z, zimp, w, wimp, angulo, x, y = FazPreCalculos(vezes, tamanho, theta, z, zimp, w, wimp)
+    for vez in range(vezes):
+        x, y, angulo, tamanho = fazarvore(x, y, angulo, tamanho, z, w, wimp, zimp, theta)
+        print("%d de %d" % (vez + 1, vezes))
+    masterx, mastery = criaunicalistapropriedade(x, y)
+    FazCalculo(masterx, mastery)
+    print("Montando o Gráfico")
+    plt.show()
+
+
 def SalvarEmPDF(Valores):
     vezes, tamanho, theta, z, zimp, w, wimp = VariaveisDeInput(Valores)
     FazFractal(vezes, tamanho, theta, z, zimp, w, wimp)
@@ -148,11 +195,15 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-        if MostrarDesempenho:
-            FazFractalComTempo(Valores)
+        ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+        if ExecutarPropriedade:
+            PropriedadeQuadrado(Valores)
         else:
-            FazFractalSemTempo(Valores)
+            MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+            if MostrarDesempenho:
+                FazFractalComTempo(Valores)
+            else:
+                FazFractalSemTempo(Valores)
 
 
 if __name__ == "__main__":

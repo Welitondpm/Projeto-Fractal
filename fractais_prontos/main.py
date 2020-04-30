@@ -4,6 +4,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 import time
 import random
 from random import randint
+from propriedadeporquadrados import *
 
 
 NaoEscolheo = True

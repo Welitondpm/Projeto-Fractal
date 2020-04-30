@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from random import randint
 from matplotlib.backends.backend_pdf import PdfPages
 import time
+from propriedadeporquadrados import *
 
 
 def fazcaotico(vezes, valor):
@@ -52,6 +53,15 @@ def FazFractalSemTempo(Valores):
     plt.show()
 
 
+def PropriedadeQuadrado(Valores):
+    vezes, valor = VariaveisDeInput(Valores)
+    x, y = FazFractal(vezes, valor)
+    FazCalculo(x, y)
+    print("Montando o gráfico")
+    plt.scatter(x, y, color="black", s=0.01)
+    plt.show()
+
+
 def SalvarEmPDF(Valores):
     vezes, valor = VariaveisDeInput(Valores)
     x, y = FazFractal(vezes, valor)
@@ -66,11 +76,15 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-        if MostrarDesempenho:
-            FazFractalComTempo(Valores)
+        ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+        if ExecutarPropriedade:
+            PropriedadeQuadrado(Valores)
         else:
-            FazFractalSemTempo(Valores)
+            MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+            if MostrarDesempenho:
+                FazFractalComTempo(Valores)
+            else:
+                FazFractalSemTempo(Valores)
 
 
 if __name__ == "__main__":

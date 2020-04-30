@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import time
+# from propriedadeporquadrados import *
 
 
 def organizaprafazer(x, y):
@@ -89,6 +90,15 @@ def FazFractalSemTempo(Valores):
     plt.show()
 
 
+def PropriedadeQuadrado(Valores):
+    vezes, tamanho = VariaveisDeInput(Valores)
+    x, y = fazsierpinski(vezes, tamanho)
+    novox, novoy = fazcadatriangulo(x, y)
+    print("Montando o Gráfico")
+    montagrafico(novox, novoy)
+    plt.show()
+
+
 def SalvarEmPDF(Valores):
     vezes, tamanho = VariaveisDeInput(Valores)
     FazFractal(vezes, tamanho)
@@ -102,6 +112,10 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
+        # ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: (!!INDIPONÍVEL!!"))
+        # if ExecutarPropriedade:
+        #     PropriedadeQuadrado(Valores)
+        # else:
         MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
         if MostrarDesempenho:
             FazFractalComTempo(Valores)
