@@ -1,15 +1,16 @@
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import time
-# from propriedadeporquadrados import *
+from propriedadeporquadrados import *
 
 
 def organizaprafazer(x, y):
+    nx, ny = [], []
     for item in range(len(x)):
         x1, x2, x3, y1, y2, y3 = triangulodesierpinski(x[item], y[item])
-        x.extend((x1, x2, x3))
-        y.extend((y1, y2, y3))
-    return x, y
+        nx.extend((x1, x2, x3))
+        ny.extend((y1, y2, y3))
+    return nx, ny
 
 
 def triangulodesierpinski(x, y):
@@ -37,9 +38,9 @@ def triangulodesierpinski(x, y):
 def fazcadatriangulo(x, y):
     novox, novoy = [], []
     for item in x:
-        novox.append([item[0], item[1], item[2], item[0]])
+        novox.append([item[0], item[1], item[2]])
     for item in y:
-        novoy.append([item[0], item[1], item[2], item[0]])
+        novoy.append([item[0], item[1], item[2]])
     return novox, novoy
 
 
@@ -75,6 +76,7 @@ def FazFractal(vezes, tamanho):
     montagrafico(novox, novoy)
 
 
+
 def FazFractalComTempo(Valores):
     vezes, tamanho = VariaveisDeInput(Valores)
     inicio = time.time()
@@ -89,11 +91,19 @@ def FazFractalSemTempo(Valores):
     FazFractal(vezes, tamanho)
     plt.show()
 
+def criaunicalista(x):
+    novox = []
+    for i in x:
+        for j in i:
+            novox.append(j)
+    return novox
 
 def PropriedadeQuadrado(Valores):
     vezes, tamanho = VariaveisDeInput(Valores)
     x, y = fazsierpinski(vezes, tamanho)
-    novox, novoy = fazcadatriangulo(x, y)
+    novox, novoy= fazcadatriangulo(x,y)
+    x, y = criaunicalista(x), criaunicalista(y)
+    FazCalculo(x, y)
     print("Montando o Gráfico")
     montagrafico(novox, novoy)
     plt.show()
@@ -112,15 +122,15 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        # ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: (!!INDIPONÍVEL!!"))
-        # if ExecutarPropriedade:
-        #     PropriedadeQuadrado(Valores)
-        # else:
-        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-        if MostrarDesempenho:
-            FazFractalComTempo(Valores)
+        ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: (!!INDIPONÍVEL!!"))
+        if ExecutarPropriedade:
+            PropriedadeQuadrado(Valores)
         else:
-            FazFractalSemTempo(Valores)
+            MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+            if MostrarDesempenho:
+                FazFractalComTempo(Valores)
+            else:
+                FazFractalSemTempo(Valores)
 
 
 if __name__ == "__main__":

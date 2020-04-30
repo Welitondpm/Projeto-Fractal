@@ -1,18 +1,18 @@
 import matplotlib.pyplot as plt
-from random import randint
+import random 
 
 
 def ExecutaNesseArquivo():
     listax = []
     listay = []
     vez = 0
-    vezes = 100
-    while vez <= vezes:
-        listax.append(randint(0, 100))
-        listay.append(randint(0, 100))
+    vezes = 5
+    maxx,maxy=100,100
+    while vez < vezes:
+        listax.append(random.random()*maxx)
+        listay.append(random.random()*maxy)
         vez += 1
     return listax, listay
-
 
 def CriaAsVariaveisASeremUsadas(listax, listay):
     valor = int(input("Digite um valor inteiro, essa é a quantidade de quadrados,\n(Atenção o valor será elevado ao quadrado!!):\n\n >>> "))
@@ -68,7 +68,7 @@ def FazCalculo(listax, listay):
             for item in duplox:
                 if item >= xanterior and item <= xquadrado:
                     if duploy[seila] >= yanterior and duploy[seila] <= yquadrado:
-                        # plt.fill([xanterior, xanterior, xquadrado, xquadrado], [yanterior, yquadrado, yquadrado, yanterior], color="black")
+                        plt.fill([xanterior, xanterior, xquadrado, xquadrado], [yanterior, yquadrado, yquadrado, yanterior], color="#ffff00")
                         contador += 1
                         respx, respy = RemovePontosNasExtremidades(duplox, duploy, seila, xanterior, xquadrado, yanterior, yquadrado)
                         novox.extend(respx[::])

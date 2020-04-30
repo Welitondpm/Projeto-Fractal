@@ -19,11 +19,20 @@ def fazdragao(vezes):
     x = [0, 1]
     y = [0, 0]
     vez = 0
+    esc=bool(input("(False) Para não escalonar e (True) Para escalonar: "))
     while vez < vezes:
         vez += 1
         x, y = curvadodragao(x, y)
+        if esc and vez > 2:
+            x, y = arruma_escala(x), arruma_escala(y)
         print("%d de %d" % (vez, vezes))
     return x, y
+
+def arruma_escala(x):
+    novox=[]
+    for i in x:
+        novox.append(i/(2**.5))
+    return novox
 
 
 def VariaveisDeInput(Valores):
