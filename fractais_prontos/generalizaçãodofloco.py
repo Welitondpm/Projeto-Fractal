@@ -97,7 +97,7 @@ def FazFractalSemTempo(Valores):
 def SalvarEmPDF(Valores):
     vezes, lados, tam, mudar = VariaveisDeInput(Valores)
     x, y = FazFractal(vezes, lados, tam, mudar)
-    plt.fill(x, y)
+    plt.fill(x, y, color="black")
     with PdfPages(r'generalizacaodofloco.pdf') as export_pdf:
         export_pdf.savefig()
 

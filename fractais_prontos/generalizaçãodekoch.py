@@ -82,7 +82,7 @@ def FazFractalSemTempo(Valores):
 def SalvarEmPDF(Valores):
     vezes, lados, tam = VariaveisDeInput(Valores)
     x, y = FazFractal(vezes, lados, tam)
-    plt.plot(x, y)
+    plt.plot(x, y, color="black")
     with PdfPages(r'generalizacaodekoch.pdf') as export_pdf:
         export_pdf.savefig()
 
