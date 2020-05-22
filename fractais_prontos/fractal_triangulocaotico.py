@@ -9,12 +9,12 @@ def fazcaotico(vezes, valor):
     contador = 0
     x1 = [0, 50, -50]
     y1 = [7500 ** 0.5, 0, 0]
-    x = [0]
-    y = [(7500 ** 0.5) / 2]
+    x = [sum(x1)/len(x1)]
+    y = [sum(y1)/len(y1)]
     while contador <= vezes:
         # print("%d de %d" % (contador, vezes))
         contador += 1
-        a = randint(0, 2)
+        a = randint(0, len(x1)-1)
         x.append((x1[a] + x[-1]) / valor)
         y.append((y1[a] + y[-1]) / valor)
     return x, y
