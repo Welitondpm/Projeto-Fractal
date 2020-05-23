@@ -1,44 +1,44 @@
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import time
-from propriedadeporquadrados import *
+# from propriedadeporquadrados import *
 
 
 def organizaprafazer(x, y):
-    nx, ny = [], []
+    novox, novoy = [], []
     for item in range(len(x)):
         x1, x2, x3, x4, x5, x6, x7, x8, y1, y2, y3, y4, y5, y6, y7, y8 = tapetedesierpinski(x[item], y[item])
-        nx.extend((x1, x2, x3, x4, x5, x6, x7, x8))
-        ny.extend((y1, y2, y3, y4, y5, y6, y7, y8))
-    return nx, ny
+        novox.extend((x1, x2, x3, x4, x5, x6, x7, x8))
+        novoy.extend((y1, y2, y3, y4, y5, y6, y7, y8))
+    return novox, novoy
 
 
 def tapetedesierpinski(x, y):
     x1 = x[0]
-    x2 = x1+(x[3] - x[0]) / 3
-    x3 = x1+(x[3] - x[0]) * 2 / 3
+    x2 = x1 + (x[3] - x[0]) / 3
+    x3 = x1 + (x[3] - x[0]) * 2 / 3
     x4 = x[3]
     y1 = y[0]
-    y2 = y1+(y[2] - y[0]) / 3
-    y3 = y1+(y[2] - y[0]) * 2 / 3
+    y2 = y1 + (y[2] - y[0]) / 3
+    y3 = y1 + (y[2] - y[0]) * 2 / 3
     y4 = y[2]
-    t1x = [x1, x1, x2, x2]
-    t1y = [y1, y2, y2, y1]
-    t2x = [x2, x2, x3, x3]
-    t2y = [y1, y2, y2, y1]
-    t3x = [x3, x3, x4, x4]
-    t3y = [y1, y2, y2, y1]
-    t4x = [x1, x1, x2, x2]
-    t4y = [y2, y3, y3, y2]
-    t5x = [x3, x3, x4, x4]
-    t5y = [y2, y3, y3, y2]
-    t6x = [x1, x1, x2, x2]
-    t6y = [y3, y4, y4, y3]
-    t7x = [x2, x2, x3, x3]
-    t7y = [y3, y4, y4, y3]
-    t8x = [x3, x3, x4, x4]
-    t8y = [y3, y4, y4, y3]
-    return t1x, t2x, t3x, t4x, t5x, t6x, t7x, t8x, t1y, t2y, t3y, t4y, t5y, t6y, t7y, t8y
+    xquadrado1 = [x1, x1, x2, x2]
+    yquadrado1 = [y1, y2, y2, y1]
+    xquadrado2 = [x2, x2, x3, x3]
+    yquadrado2 = [y1, y2, y2, y1]
+    xquadrado3 = [x3, x3, x4, x4]
+    yquadrado3 = [y1, y2, y2, y1]
+    xquadrado4 = [x1, x1, x2, x2]
+    yquadrado4 = [y2, y3, y3, y2]
+    xquadrado5 = [x3, x3, x4, x4]
+    yquadrado5 = [y2, y3, y3, y2]
+    xquadrado6 = [x1, x1, x2, x2]
+    yquadrado6 = [y3, y4, y4, y3]
+    xquadrado7 = [x2, x2, x3, x3]
+    yquadrado7 = [y3, y4, y4, y3]
+    xquadrado8 = [x3, x3, x4, x4]
+    yquadrado8 = [y3, y4, y4, y3]
+    return xquadrado1, xquadrado2, xquadrado3, xquadrado4, xquadrado5, xquadrado6, xquadrado7, xquadrado8, yquadrado1, yquadrado2, yquadrado3, yquadrado4, yquadrado5, yquadrado6, yquadrado7, yquadrado8
 
 
 def montagrafico(novox, novoy):
@@ -87,11 +87,11 @@ def FazFractalSemTempo(Valores):
     plt.show()
 
 
-def criaunicalista(x):
-    novox = []
-    for i in x:
-        novox.extend(i)
-    return novox
+# def criaunicalista(x):
+#     novox = []
+#     for item in x:
+#         novox.extend(item)
+#     return novox
 
 
 # def PropriedadeQuadrado(Valores):

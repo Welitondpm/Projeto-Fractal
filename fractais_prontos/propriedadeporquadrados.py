@@ -7,10 +7,10 @@ def ExecutaNesseArquivo():
     listay = []
     vez = 0
     vezes = 5
-    maxx,maxy=100,100
+    maxx, maxy = 100,100
     while vez < vezes:
-        listax.append(random.random()*maxx)
-        listay.append(random.random()*maxy)
+        listax.append(random.random() * maxx)
+        listay.append(random.random() * maxy)
         vez += 1
     return listax, listay
 

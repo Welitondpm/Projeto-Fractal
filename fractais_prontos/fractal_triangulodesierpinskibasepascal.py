@@ -64,7 +64,7 @@ def FazFractalComTempo(Valores):
     inicio = time.time()
     triangulostr(vezes)
     fim = time.time()
-    print(str(round(fim-inicio, 5)) + "s")
+    print(str(round(fim - inicio, 5)) + "s")
 
 
 def FazFractalSemTempo(Valores):

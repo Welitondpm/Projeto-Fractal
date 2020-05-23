@@ -5,12 +5,12 @@ from propriedadeporquadrados import *
 
 
 def organizaprafazer(x, y):
-    nx, ny = [], []
+    novox, novoy = [], []
     for item in range(len(x)):
         x1, x2, x3, y1, y2, y3 = triangulodesierpinski(x[item], y[item])
-        nx.extend((x1, x2, x3))
-        ny.extend((y1, y2, y3))
-    return nx, ny
+        novox.extend((x1, x2, x3))
+        novoy.extend((y1, y2, y3))
+    return novox, novoy
 
 
 def triangulodesierpinski(x, y):
@@ -26,21 +26,23 @@ def triangulodesierpinski(x, y):
     y4 = (y[1] + y[2]) / 2
     y5 = y[2]
     y6 = (y[2] + y[0]) / 2
-    t1x = [x1, x6, x2]
-    t1y = [y1, y6, y2]
-    t2x = [x2, x3, x4]
-    t2y = [y2, y3, y4]
-    t3x = [x6, x4, x5]
-    t3y = [y6, y4, y5]
-    return t1x, t2x, t3x, t1y, t2y, t3y
+    xtriangulo1 = [x1, x6, x2]
+    ytriangulo1 = [y1, y6, y2]
+    xtriangulo2 = [x2, x3, x4]
+    ytriangulo2 = [y2, y3, y4]
+    xtriangulo3 = [x6, x4, x5]
+    ytriangulo3 = [y6, y4, y5]
+    return xtriangulo1, xtriangulo2, xtriangulo3, ytriangulo1, ytriangulo2, ytriangulo3
 
 
 def fazcadatriangulo(x, y):
     novox, novoy = [], []
-    for item in x:
-        novox.append([item[0], item[1], item[2]])
-    for item in y:
-        novoy.append([item[0], item[1], item[2]])
+    indice = 0
+    limite = len(x)
+    while indice < limite:
+        novox.append([x[indice][0], x[indice][1], x[indice][2]])
+        novoy.append([y[indice][0], y[indice][1], y[indice][2]])
+        indice += 1
     return novox, novoy
 
 
@@ -62,9 +64,9 @@ def fazsierpinski(vezes, t):
 
 def VariaveisDeInput(Valores):
     if Valores:
-        vezes, tamanho = 7, 50
+        vezes, tamanho = 8, 50
     else:
-        vezes = int(input("Digite quantas vezes (recomendado <= 7): "))
+        vezes = int(input("Digite quantas vezes (recomendado <= 8): "))
         tamanho = int(input("Digite o tamanho do lado do triângulo (recomendado 50): "))
     return vezes, tamanho
 
@@ -81,7 +83,7 @@ def FazFractalComTempo(Valores):
     inicio = time.time()
     FazFractal(vezes, tamanho)
     fim = time.time()
-    print(str(round(fim-inicio, 5)) + "s")
+    print(str(round(fim - inicio, 5)) + "s")
     plt.show()
 
 
@@ -92,9 +94,8 @@ def FazFractalSemTempo(Valores):
 
 def criaunicalista(x):
     novox = []
-    for i in x:
-        for j in i:
-            novox.append(j)
+    for item in x:
+        novox.extend(item)
     return novox
 
 def PropriedadeQuadrado(Valores):

@@ -69,7 +69,7 @@ def faztriangulo(xrecebido, yrecebido):
 
 def VariaveisDeInput(Valores):
     if Valores:
-        vezes = 10
+        vezes = 12
     else:
         vezes = int(input("Digite a quantidade de vezes ( <= 12): "))
     x = [[0, 1]]
@@ -82,12 +82,12 @@ def FazFractal(vezes, x, y):
         x, y = faztriangulo(x, y)
         print("%d de %d" % (vez, vezes))
     listax, listay = [], []
-    for item in x:
-        for subitem in item:
-            listax.append(subitem)
-    for item in y:
-        for subitem in item:
-            listay.append(subitem)
+    indice = 0
+    limite = len(x)
+    while indice < limite:
+        listax.extend(x[indice])
+        listay.extend(y[indice])
+        indice += 1       
     return listax, listay
 
 
@@ -98,7 +98,7 @@ def FazFractalComTempo(Valores):
     print("Montando o Gráfico")
     plt.plot(listax, listay, color="black")
     fim = time.time()
-    print(str(round(fim-inicio, 5)) + "s")
+    print(str(round(fim - inicio, 5)) + "s")
     plt.show()
 
 

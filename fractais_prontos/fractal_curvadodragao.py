@@ -15,43 +15,48 @@ def curvadodragao(x, y):
     return x, y
 
 
-def fazdragao(vezes):
+def fazdragao(vezes, escalonar):
     x = [0, 1]
     y = [0, 0]
     vez = 0
-    esc = bool(input("(False) Para não escalonar e (True) Para escalonar: "))
     while vez < vezes:
         vez += 1
         x, y = curvadodragao(x, y)
-        if esc and vez > 2:
-            x, y = arruma_escala(x), arruma_escala(y)
+        if escalonar and vez > 2:
+            x, y = arruma_escala(x, y)
         print("%d de %d" % (vez, vezes))
     return x, y
 
-def arruma_escala(x):
-    novox=[]
-    for i in x:
-        novox.append(i/(2**.5))
-    return novox
+
+def arruma_escala(x, y):
+    novox, novoy = [], []
+    indice = 0
+    limite = len(x)
+    while indice < limite:
+        novox.append(x[indice] / (2 ** 0.5))
+        novoy.append(y[indice] / (2 ** 0.5))
+        indice += 1
+    return novox, novoy
 
 
 def VariaveisDeInput(Valores):
     if Valores:
-        vezes = 20
+        vezes, escalonar = 20, False
     else:
         vezes = int(input("Digite a quantidade de vezes(recomendado <= 20): "))
-    return vezes
+        escalonar = bool(input("(False) Para não escalonar e (True) Para escalonar: "))
+    return vezes, escalonar
 
 
-def FazFractal(vezes):
-    x, y = fazdragao(vezes)
+def FazFractal(vezes, escalonar):
+    x, y = fazdragao(vezes, escalonar)
     return x, y
 
 
 def FazFractalComTempo(Valores):
-    vezes = VariaveisDeInput(Valores)
+    vezes, escalonar = VariaveisDeInput(Valores)
     inicio = time.time()
-    x, y = FazFractal(vezes)
+    x, y = FazFractal(vezes, escalonar)
     print("Montando o Gráfico")
     plt.plot(x, y, color="black")
     fim = time.time()
@@ -60,16 +65,16 @@ def FazFractalComTempo(Valores):
 
 
 def FazFractalSemTempo(Valores):
-    vezes = VariaveisDeInput(Valores)
-    x, y = FazFractal(vezes)
+    vezes, escalonar = VariaveisDeInput(Valores)
+    x, y = FazFractal(vezes, escalonar)
     print("Montando o Gráfico")
     plt.plot(x, y, color="black")
     plt.show()
 
 
 def PropriedadeQuadrado(Valores):
-    vezes = VariaveisDeInput(Valores)
-    x, y = FazFractal(vezes)
+    vezes, escalonar = VariaveisDeInput(Valores)
+    x, y = FazFractal(vezes, escalonar)
     FazCalculo(x, y)
     print("Montando o Gráfico")
     plt.plot(x, y, color="black")
@@ -77,8 +82,8 @@ def PropriedadeQuadrado(Valores):
 
 
 def SalvarEmPDF(Valores):
-    vezes = VariaveisDeInput(Valores)
-    x, y = FazFractal(vezes)
+    vezes, escalonar = VariaveisDeInput(Valores)
+    x, y = FazFractal(vezes, escalonar)
     plt.plot(x, y, color="black")
     with PdfPages(r'curvadodragao.pdf') as export_pdf:
         export_pdf.savefig()

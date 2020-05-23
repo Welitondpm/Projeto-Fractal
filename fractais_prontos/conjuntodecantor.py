@@ -122,8 +122,8 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        MostrarTempo(Valores)
         # MostrarPropriedade(Valores)        
+        MostrarTempo(Valores)
 
 
 if __name__ == "__main__":

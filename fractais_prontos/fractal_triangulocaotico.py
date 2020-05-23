@@ -9,14 +9,14 @@ def fazcaotico(vezes, valor):
     contador = 0
     x1 = [0, 50, -50]
     y1 = [7500 ** 0.5, 0, 0]
-    x = [sum(x1)/len(x1)]
-    y = [sum(y1)/len(y1)]
+    x = [sum(x1) / len(x1)]
+    y = [sum(y1) / len(y1)]
     while contador <= vezes:
         # print("%d de %d" % (contador, vezes))
         contador += 1
-        a = randint(0, len(x1)-1)
-        x.append((x1[a] + x[-1]) / valor)
-        y.append((y1[a] + y[-1]) / valor)
+        indice = randint(0, len(x1) - 1)
+        x.append((x1[indice] + x[-1]) / valor)
+        y.append((y1[indice] + y[-1]) / valor)
     return x, y
 
 
@@ -41,7 +41,7 @@ def FazFractalComTempo(Valores):
     print("Montando o gráfico")
     plt.scatter(x, y, color="black", s=0.01)
     fim = time.time()
-    print(str(round(fim-inicio, 5)) + "s")
+    print(str(round(fim - inicio, 5)) + "s")
     plt.show()
 
 

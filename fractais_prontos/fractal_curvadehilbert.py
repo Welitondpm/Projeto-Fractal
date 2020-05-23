@@ -11,12 +11,8 @@ def curvadehilbert(x, y, vez):
     x = diminui(x, vez)
     y = diminui(y, vez)
     adicao = tamanho / (2 ** (vez + 1) - 1)
-    x2 = x[::]
-    x3 = x[::]
-    x4 = x[::]
-    y2 = y[::]
-    y3 = y[::]
-    y4 = y[::]
+    x2, x3, x4 = x[::], x[::], x[::]
+    y2, y3, y4 = y[::], y[::], y[::]
     x3, y3 = giraantihorario(x3, y3)
     x4, y4 = girahorario(x4, y4)
     for item in x2:
@@ -36,11 +32,9 @@ def curvadehilbert(x, y, vez):
     y4 = listadescartavel[::]
     listadescartavel = []
     for item in [x3[::-1], x, x2, x4]:
-        for subitem in item:
-            X.append(subitem)
+        X.extend(item)
     for item in [y3[::-1], y, y2, y4]:
-        for subitem in item:
-            Y.append(subitem)
+        Y.extend(item)
     return X, Y
 
 
@@ -82,7 +76,7 @@ def fazhilbert(vezes, escala):
 
 def VariaveisDeInput(Valores):
     if Valores:
-        vezes, escala = 5, 10
+        vezes, escala = 5, 1
     else:
         vezes = int(input("Escolha quantas vezes ( <= 5): "))
         escala = int(input("Escolha a Escala (recomendado 1): "))

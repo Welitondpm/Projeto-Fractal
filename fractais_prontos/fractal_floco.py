@@ -4,19 +4,19 @@ import time
 from propriedadeporquadrados import *
 
 
-def individualizasegmento(calc):
-    tamanho = len(calc)
-    novalista = []
-    x = 0
+def individualizasegmento(x, y):
+    tamanho = len(x)
+    novalistax, novalistay = [], []
+    indice = 0
     for item in range(1, tamanho):
-        novalista.append([calc[x], calc[item]])
-        x += 1
-    return novalista
+        novalistax.append([x[indice], x[item]])
+        novalistay.append([y[indice], y[item]])
+        indice += 1
+    return novalistax, novalistay
 
 
 def deliberador(x, y):
-    x = individualizasegmento(x)
-    y = individualizasegmento(y)
+    x, y = individualizasegmento(x, y)
     novalistax, novalistay = [], []
     tamanho = len(x)
     for item in range(tamanho):
@@ -40,7 +40,7 @@ def fazcurvadekoch(x, y):
     yinicial, yfinal = y[0], y[1]
     if horizontal:
         x1, y1 = (xfinal + (2 * xinicial)) / 3, yinicial
-        x2, y2 = (xfinal - xinicial) / 2 + xinicial, yinicial + (0.75 ** 0.5)*(xfinal - xinicial) / 3
+        x2, y2 = (xfinal - xinicial) / 2 + xinicial, yinicial + (0.75 ** 0.5) * (xfinal - xinicial) / 3
         x3, y3 = (2 * xfinal + xinicial) / 3, y1
     elif _60:
         x1, y1 = xinicial + (xfinal - xinicial) / 3, yinicial + (yfinal - yinicial) / 3
@@ -86,7 +86,7 @@ def FazFractalComTempo(Valores):
     print("Montando o Gráfico")
     plt.fill(x, y, color="black")
     fim = time.time()
-    print(str(round(fim-inicio, 5)) + "s")
+    print(str(round(fim - inicio, 5)) + "s")
     plt.show()
 
 

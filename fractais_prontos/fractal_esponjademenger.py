@@ -2,31 +2,31 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_pdf import PdfPages
 import time
-from propriedadeporquadrados import *
+# from propriedadeporquadrados import *
 
 
 def organizaprafazer(x, y, z):
-    nx, ny, nz = [], [], []
+    novox, novoy, novoz = [], [], []
     for item in range(len(x)):
         x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14, y15, y16, y17, y18, y19, y20, z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11, z12, z13, z14, z15, z16, z17, z18, z19, z20 = esponjademenger(x[item], y[item], z[item])
-        nx.extend((x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20))
-        ny.extend((y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14, y15, y16, y17, y18, y19, y20))
-        nz.extend((z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11, z12, z13, z14, z15, z16, z17, z18, z19, z20))
-    return nx, ny, nz
+        novox.extend((x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20))
+        novoy.extend((y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14, y15, y16, y17, y18, y19, y20))
+        novoz.extend((z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11, z12, z13, z14, z15, z16, z17, z18, z19, z20))
+    return novox, novoy, novoz
 
 
 def esponjademenger(x, y, z):
     x1 = x[0]
-    x2 = x1+(x[3] - x[0]) / 3
-    x3 = x1+(x[3] - x[0]) * 2 / 3
+    x2 = x1 + (x[3] - x[0]) / 3
+    x3 = x1 + (x[3] - x[0]) * 2 / 3
     x4 = x[3]
     y1 = y[0]
-    y2 = y1+(y[2] - y[0]) / 3
-    y3 = y1+(y[2] - y[0]) * 2 / 3
+    y2 = y1 + (y[2] - y[0]) / 3
+    y3 = y1 + (y[2] - y[0]) * 2 / 3
     y4 = y[2]
     z1 = z[0]
-    z2 = z1+(z[4] - z[0]) / 3
-    z3 = z1+(z[4] - z[0]) * 2 / 3
+    z2 = z1 + (z[4] - z[0]) / 3
+    z3 = z1 + (z[4] - z[0]) * 2 / 3
     z4 = z[4]
     t1x = [x1, x1, x2, x2]
     t1x += t1x[::-1]
@@ -120,11 +120,11 @@ def FazFractalSemTempo(Valores):
     plt.show()
 
 
-def criaunicalista(x):
-    novox = []
-    for i in x:
-        novox.extend(i)
-    return novox
+# def criaunicalista(x):
+#     novox = []
+#     for item in x:
+#         novox.extend(item)
+#     return novox
 
 
 # def PropriedadeQuadrado(Valores):

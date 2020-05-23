@@ -20,8 +20,8 @@ def adicionaproximosangulos(angulo, theta):
 
 def criaunicalista(x, y):
     listadescartavel = []
-    lx, l1x = [], []
-    ly, l1y = [], []
+    listax, listadelistax = [], []
+    listay, listadelistay = [], []
     maxtam = len(x[-1])
     for item in x:
         while len(item) < maxtam:
@@ -30,7 +30,7 @@ def criaunicalista(x, y):
                 listadescartavel.append(subitem)
             item = listadescartavel
             listadescartavel = []
-        l1x.append(item)
+        listadelistax.append(item)
     for item in y:
         while len(item) < maxtam:
             for subitem in item:
@@ -38,19 +38,19 @@ def criaunicalista(x, y):
                 listadescartavel.append(subitem)
             item = listadescartavel
             listadescartavel = []
-        l1y.append(item)
+        listadelistay.append(item)
     for item in range(maxtam - 1):
         for subitem in range(len(x) - 1):
-            lx.append(l1x[subitem][item])
-            ly.append(l1y[subitem][item])
-        plt.plot(lx, ly, color="black")
-        lx, ly = [], []
+            listax.append(listadelistax[subitem][item])
+            listay.append(listadelistay[subitem][item])
+        plt.plot(listax, listay, color="black")
+        listax, listay = [], []
 
     
 def criaunicalistapropriedade(x, y):
     listadescartavel = []
-    lx, l1x = [], []
-    ly, l1y = [], []
+    listax, listadelistax = [], []
+    listay, listadelistay = [], []
     masterx = []
     mastery = []
     maxtam = len(x[-1])
@@ -61,7 +61,7 @@ def criaunicalistapropriedade(x, y):
                 listadescartavel.append(subitem)
             item = listadescartavel
             listadescartavel = []
-        l1x.append(item)
+        listadelistax.append(item)
     for item in y:
         while len(item) < maxtam:
             for subitem in item:
@@ -69,15 +69,15 @@ def criaunicalistapropriedade(x, y):
                 listadescartavel.append(subitem)
             item = listadescartavel
             listadescartavel = []
-        l1y.append(item)
+        listadelistay.append(item)
     for item in range(maxtam - 1):
         for subitem in range(len(x) - 1):
-            lx.append(l1x[subitem][item])
-            ly.append(l1y[subitem][item])
-        plt.plot(lx, ly, color="black")
-        masterx.extend(lx[::])
-        mastery.extend(ly[::])
-        lx, ly = [], []
+            listax.append(listadelistax[subitem][item])
+            listay.append(listadelistay[subitem][item])
+        plt.plot(listax, listay, color="black")
+        masterx.extend(listax[::])
+        mastery.extend(listay[::])
+        listax, listay = [], []
     return masterx, mastery
 
 
@@ -85,18 +85,18 @@ def imperfeiciona(x, imperfeicao):
     if type(x) == int or type(x) == float:
         return x * 1 - imperfeicao / 200 + (random.random() * imperfeicao) / 100
     else:
-        nx = []
-        for i in x:
-            if type(i) == int or type(i) == float:
-                i *= 1 - imperfeicao / 200 + (random.random() * imperfeicao) / 100
-                nx.append(i)
+        novox = []
+        for item in x:
+            if type(item) == int or type(item) == float:
+                item *= 1 - imperfeicao / 200 + (random.random() * imperfeicao) / 100
+                novox.append(item)
             else:
-                ni = []
-                for j in i:
-                    j *= 1 - imperfeicao / 200 + (random.random() * imperfeicao) / 100
-                    ni.append(j)
-                nx.append(ni)
-        return nx
+                novoxlista = []
+                for subitem in item:
+                    subitem *= 1 - imperfeicao / 200 + (random.random() * imperfeicao) / 100
+                    novoxlista.append(subitem)
+                novox.append(novoxlista)
+        return novox
 
 
 def fazarvore(x, y, ang, tamanho, z, w, wimp, zimp, theta):
@@ -106,12 +106,14 @@ def fazarvore(x, y, ang, tamanho, z, w, wimp, zimp, theta):
         nang.append(item)
     ang = nang
     novox, novoy = [], []
-    for item in range(len(x[-1])):
-        novox.append(x[-1][item] + tamanho * imperfeiciona(z, zimp) * math.sin(ang[2 * item]))
-        novox.append(x[-1][item] + tamanho * imperfeiciona(z, zimp) * math.sin(ang[2 * item + 1]))
-    for item in range(len(y[-1])):
-        novoy.append(y[-1][item] + tamanho * imperfeiciona(z, zimp) * math.cos(ang[2 * item]))
-        novoy.append(y[-1][item] + tamanho * imperfeiciona(z, zimp) * math.cos(ang[2 * item + 1]))
+    tamanhoultimoindice = len(x[-1])
+    indice = 0
+    while indice < tamanhoultimoindice:
+        novox.append(x[-1][indice] + tamanho * imperfeiciona(z, zimp) * math.sin(ang[2 * indice]))
+        novox.append(x[-1][indice] + tamanho * imperfeiciona(z, zimp) * math.sin(ang[2 * indice + 1]))
+        novoy.append(y[-1][indice] + tamanho * imperfeiciona(z, zimp) * math.cos(ang[2 * indice]))
+        novoy.append(y[-1][indice] + tamanho * imperfeiciona(z, zimp) * math.cos(ang[2 * indice + 1]))
+        indice += 1
     x.append(novox)
     y.append(novoy)
     angulo = adicionaproximosangulos(ang, theta)

@@ -4,19 +4,19 @@ import time
 from propriedadeporquadrados import *
 
 
-def individualizasegmento(calc):
-    tamanho = len(calc)
-    novalista = []
-    x = 0
+def individualizasegmento(x, y):
+    tamanho = len(x)
+    novalistax, novalistay = [], []
+    indice = 0
     for item in range(1, tamanho):
-        novalista.append([calc[x], calc[item]])
-        x += 1
-    return novalista
+        novalistax.append([x[indice], x[item]])
+        novalistay.append([y[indice], y[item]])
+        indice += 1
+    return novalistax, novalistay
 
 
 def deliberador(x, y):
-    x = individualizasegmento(x)
-    y = individualizasegmento(y)
+    x, y = individualizasegmento(x, y)
     novalistax, novalistay = [], []
     tamanho = len(x)
     for item in range(tamanho):

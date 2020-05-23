@@ -23,38 +23,37 @@ def binario(valor):
     return lista
 
 
-def decimal(lista):
-    a = 0
+def decimal(valor):
+    indice = 0
     soma = 0
-    for item in lista:
-        soma += (item * (2 ** a))
-        a += 1
+    for item in valor:
+        soma += (item * (2 ** indice))
+        indice += 1
     return soma
 
 
 def fazbinario(fim, contagem):
-    xs = []
-    ys = []
+    x, y = [], []
     if contagem:
         for item in range(fim):
             print("%d de %d" % (item, fim))
-            y = 0
+            ycalculado = 0
             if é_primo(item): 
                 bina = binario(item)
                 deci = decimal(bina)
-                y = item - deci
-            xs.append(item)
-            ys.append(y)
+                ycalculado = item - deci
+            x.append(item)
+            y.append(ycalculado)
     else:
         for item in range(fim):
-            y = 0
+            ycalculado = 0
             if é_primo(item): 
                 bina = binario(item)
                 deci = decimal(bina)
-                y = item - deci
-            xs.append(item)
-            ys.append(y)
-    return xs, ys
+                ycalculado = item - deci
+            x.append(item)
+            y.append(ycalculado)
+    return x, y
 
 
 def VariaveisDeInput(Valores):
@@ -67,16 +66,16 @@ def VariaveisDeInput(Valores):
 
 
 def FazFractal(fim, contagem):
-    xs, ys = fazbinario(fim, contagem)
-    return xs, ys
+    x, y = fazbinario(fim, contagem)
+    return x, y
 
 
 def FazFractalComTempo(Valores):
     fim, contagem = VariaveisDeInput(Valores)
     inicio = time.time()
-    xs, ys = FazFractal(fim, contagem)
+    x, y = FazFractal(fim, contagem)
     print("Montando o Gráfico")
-    plt.scatter(xs, ys, color="black", s=0.01)
+    plt.scatter(x, y, color="black", s=0.01)
     fim = time.time()
     print(str(round(fim - inicio, 5)) + "s")
     plt.show()
@@ -84,25 +83,25 @@ def FazFractalComTempo(Valores):
 
 def FazFractalSemTempo(Valores):
     fim, contagem = VariaveisDeInput(Valores)
-    xs, ys = FazFractal(fim, contagem)
+    x, y = FazFractal(fim, contagem)
     print("Montando o Gráfico")
-    plt.scatter(xs, ys, color="black", s=0.01)
+    plt.scatter(x, y, color="black", s=0.01)
     plt.show()
 
 
 def PropriedadeQuadrado(Valores):
     fim, contagem = VariaveisDeInput(Valores)
-    xs, ys = FazFractal(fim, contagem)
-    FazCalculo(xs, ys)
+    x, y = FazFractal(fim, contagem)
+    FazCalculo(x, y)
     print("Montando o Gráfico")
-    plt.scatter(xs, ys, color="black", s=0.01)
+    plt.scatter(x, y, color="black", s=0.01)
     plt.show()
 
 
 def SalvarEmPDF(Valores):
     fim, contagem = VariaveisDeInput(Valores)
-    xs, ys = FazFractal(fim, contagem)
-    plt.scatter(xs, ys, color="black", s=0.01)
+    x, y = FazFractal(fim, contagem)
+    plt.scatter(x, y, color="black", s=0.01)
     with PdfPages(r'binario.pdf') as export_pdf:
         export_pdf.savefig()
 

@@ -1,32 +1,32 @@
 import matplotlib.pyplot as plt
-# from mpl_toolkits.mplot3d import Axes3D
+from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_pdf import PdfPages
 import time
 # from propriedadeporquadrados import *
 
 
 def organizaprafazer(x, y, z):
-    nx, ny, nz = [], [], []
+    novox, novoy, novoz = [], [], []
     for item in range(len(x)):
         x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14, y15, y16, y17, y18, y19, y20, z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11, z12, z13, z14, z15, z16, z17, z18, z19, z20 = esponjademenger(x[item], y[item], z[item])
-        nx.extend((x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20))
-        ny.extend((y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14, y15, y16, y17, y18, y19, y20))
-        nz.extend((z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11, z12, z13, z14, z15, z16, z17, z18, z19, z20))
-    return nx, ny, nz
+        novox.extend((x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20))
+        novoy.extend((y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14, y15, y16, y17, y18, y19, y20))
+        novoz.extend((z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11, z12, z13, z14, z15, z16, z17, z18, z19, z20))
+    return novox, novoy, novoz
 
 
 def esponjademenger(x, y, z):
     x1 = x[0]
-    x2 = x1+(x[3] - x[0]) / 3
-    x3 = x1+(x[3] - x[0]) * 2 / 3
+    x2 = x1 + (x[3] - x[0]) / 3
+    x3 = x1 + (x[3] - x[0]) * 2 / 3
     x4 = x[3]
     y1 = y[0]
-    y2 = y1+(y[2] - y[0]) / 3
-    y3 = y1+(y[2] - y[0]) * 2 / 3
+    y2 = y1 + (y[2] - y[0]) / 3
+    y3 = y1 + (y[2] - y[0]) * 2 / 3
     y4 = y[2]
     z1 = z[0]
-    z2 = z1+(z[4] - z[0]) / 3
-    z3 = z1+(z[4] - z[0]) * 2 / 3
+    z2 = z1 + (z[4] - z[0]) / 3
+    z3 = z1 + (z[4] - z[0]) * 2 / 3
     z4 = z[4]
     t1x = [x1, x1, x2, x2]
     t1x += t1x[::-1]
@@ -68,7 +68,7 @@ def esponjademenger(x, y, z):
 
 def fazcubo(x, y, z):
     xx, yy, zz = [x[0], x[0], x[1], x[1], x[2], x[2], x[3], x[3], x[0]], [y[0], y[0], y[1], y[1], y[2], y[2], y[3], y[3], y[0]], [z[0], z[-1], z[-1], z[0], z[0], z[-1], z[-1], z[0], z[0]]
-    return xx+xx, yy+yy, zz+[z[0], z[0], z[0], z[-1], z[-1], z[0], z[0], z[-1], z[-1]]
+    return xx + xx, yy + yy, zz + [z[0], z[0], z[0], z[-1], z[-1], z[0], z[0], z[-1], z[-1]]
 
 
 def montagrafico(novox, novoy, novoz):
@@ -77,11 +77,11 @@ def montagrafico(novox, novoy, novoz):
         x, y, z = fazcubo(novox[item], novoy[item], novoz[item])
         c1, c2, c3 = str(hex(int(255*(x[0]/xyzmax))))[2:4], str(hex(int(255*(y[0]/xyzmax))))[2:4], str(hex(int(255*(z[0]/xyzmax))))[2:4]
         while len(c1) < 2:
-            c1 = "0"+c1
+            c1 = "0" + c1
         while len(c2) < 2:
-            c2 = "0"+c2
+            c2 = "0" + c2
         while len(c3) < 2:
-            c3 = "0"+c3
+            c3 = "0" + c3
         plt.plot(x, y, z, color="#"+c1+c2+c3, linewidth=1)
 
 
@@ -99,9 +99,9 @@ def fazsierpinski(vezes, t):
 
 def VariaveisDeInput(Valores):
     if Valores:
-        vezes, tamanho = 4, 50
+        vezes, tamanho = 3, 50
     else:
-        vezes = int(input("Digite quantas vezes (recomendado <= 7): "))
+        vezes = int(input("Digite quantas vezes (recomendado <= 3): "))
         tamanho = int(input("Digite o tamanho do lado do triângulo (recomendado 50): "))
     return vezes, tamanho
 
@@ -117,7 +117,7 @@ def FazFractalComTempo(Valores):
     inicio = time.time()
     FazFractal(vezes, tamanho)
     fim = time.time()
-    print(str(round(fim-inicio, 5)) + "s")
+    print(str(round(fim - inicio, 5)) + "s")
     plt.show()
 
 
@@ -127,11 +127,11 @@ def FazFractalSemTempo(Valores):
     plt.show()
 
 
-def criaunicalista(x):
-    novox = []
-    for i in x:
-        novox.extend(i)
-    return novox
+# def criaunicalista(x):
+#     novox = []
+#     for item in x:
+#         novox.extend(item)
+#     return novox
 
 
 # def PropriedadeQuadrado(Valores):
@@ -148,7 +148,7 @@ def criaunicalista(x):
 def SalvarEmPDF(Valores):
     vezes, tamanho = VariaveisDeInput(Valores)
     FazFractal(vezes, tamanho)
-    with PdfPages(r'esponjademenger.pdf') as export_pdf:
+    with PdfPages(r'esponjademengercolorida.pdf') as export_pdf:
         export_pdf.savefig()
 
     
