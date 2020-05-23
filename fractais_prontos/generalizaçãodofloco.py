@@ -101,6 +101,22 @@ def SalvarEmPDF(Valores):
     with PdfPages(r'generalizacaodofloco.pdf') as export_pdf:
         export_pdf.savefig()
 
+    
+def MostrarTempo(Valores):
+    MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+    if MostrarDesempenho:
+        FazFractalComTempo(Valores)
+    else:
+        FazFractalSemTempo(Valores)
+
+
+# def MostrarPropriedade(Valores):
+#     ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+#     if ExecutarPropriedade:
+#         PropriedadeQuadrado(Valores)
+#     else:
+#         MostrarTempo(Valores)
+
 
 def Begin():
     SalvarPDF = bool(input("(False) Para não salvar em PDF e (True) Para salvar: "))
@@ -108,11 +124,8 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-        if MostrarDesempenho:
-            FazFractalComTempo(Valores)
-        else:
-            FazFractalSemTempo(Valores)
+        # MostrarPropriedade(Valores)
+        MostrarTempo(Valores)
 
 
 if __name__ == "__main__":

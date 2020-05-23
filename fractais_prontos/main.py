@@ -71,6 +71,5 @@ while NaoEscolheo:
         elif Escolha == Options["R"]:
             from progressãodageneralizaçãodofloco import *
             Begin()
-
     else:
         Escolha = str(input("\nDIGITA DIREITO!!!\n\n (A)Fila de Koch:\n (B)Fractal Árvore:\n (C)Fractal Binário Invertido:\n (D)Fractal Curva de Hilbert:\n (E)Fractal Curva de Koch:\n (F)Fractal Curva de Koch X:\n (G)Fractal Curva do Dragão:\n (H)Fractal DPMFRR:\n (I)Fractal DPMFRR uma linha:\n (J)Fractal Floco:\n (K)Fractal Triângulo Caótico:\n (L)Fractal Triângulo de Sierpinski:\n (M)Fractal Triângulo de Sierpinski base Pascal:\n (N)Fractal Triângulo de Sierpinski Linear:\n (O)Generalização de Koch:\n (P)Generalização do Floco:\n (Q)Progressão da Generalização de Koch:\n (R)Progressão da Generalização do Floco:\n\n>>> "))

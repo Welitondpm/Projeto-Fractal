@@ -9,12 +9,12 @@ def fazcaotico(vezes, valor):
     contador = 0
     x1 = [0, 50, -50]
     y1 = [7500 ** 0.5, 0, 0]
-    x = [0]
-    y = [(7500 ** 0.5) / 2]
+    x = [sum(x1)/len(x1)]
+    y = [sum(y1)/len(y1)]
     while contador <= vezes:
         # print("%d de %d" % (contador, vezes))
         contador += 1
-        a = randint(0, 2)
+        a = randint(0, len(x1)-1)
         x.append((x1[a] + x[-1]) / valor)
         y.append((y1[a] + y[-1]) / valor)
     return x, y
@@ -68,6 +68,22 @@ def SalvarEmPDF(Valores):
     plt.scatter(x, y, color="black", s=0.01)
     with PdfPages(r'triangulocaotico.pdf') as export_pdf:
         export_pdf.savefig()
+    
+
+def MostrarTempo(Valores):
+    MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+    if MostrarDesempenho:
+        FazFractalComTempo(Valores)
+    else:
+        FazFractalSemTempo(Valores)
+
+
+def MostrarPropriedade(Valores):
+    ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+    if ExecutarPropriedade:
+        PropriedadeQuadrado(Valores)
+    else:
+        MostrarTempo(Valores)
 
 
 def Begin():
@@ -76,15 +92,7 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
-        if ExecutarPropriedade:
-            PropriedadeQuadrado(Valores)
-        else:
-            MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-            if MostrarDesempenho:
-                FazFractalComTempo(Valores)
-            else:
-                FazFractalSemTempo(Valores)
+        MostrarPropriedade(Valores)
 
 
 if __name__ == "__main__":

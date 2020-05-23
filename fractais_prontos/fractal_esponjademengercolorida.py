@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+# from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_pdf import PdfPages
 import time
-from propriedadeporquadrados import *
+# from propriedadeporquadrados import *
 
 
 def organizaprafazer(x, y, z):
@@ -74,7 +74,6 @@ def fazcubo(x, y, z):
 def montagrafico(novox, novoy, novoz):
     xyzmax = max(novox[-1])
     for item in range(len(novox)):
-        print(item, " de ", len(novox))
         x, y, z = fazcubo(novox[item], novoy[item], novoz[item])
         c1, c2, c3 = str(hex(int(255*(x[0]/xyzmax))))[2:4], str(hex(int(255*(y[0]/xyzmax))))[2:4], str(hex(int(255*(z[0]/xyzmax))))[2:4]
         while len(c1) < 2:
@@ -131,8 +130,7 @@ def FazFractalSemTempo(Valores):
 def criaunicalista(x):
     novox = []
     for i in x:
-        for j in i:
-            novox.append(j)
+        novox.extend(i)
     return novox
 
 
@@ -153,6 +151,22 @@ def SalvarEmPDF(Valores):
     with PdfPages(r'esponjademenger.pdf') as export_pdf:
         export_pdf.savefig()
 
+    
+def MostrarTempo(Valores):
+    MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+    if MostrarDesempenho:
+        FazFractalComTempo(Valores)
+    else:
+        FazFractalSemTempo(Valores)
+
+
+# def MostrarPropriedade(Valores):
+#     ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+#     if ExecutarPropriedade:
+#         PropriedadeQuadrado(Valores)
+#     else:
+#         MostrarTempo(Valores)
+
 
 def Begin():
     SalvarPDF = bool(input("(False) Para não salvar em PDF e (True) Para salvar: "))
@@ -160,18 +174,9 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        '''ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: (!!INDIPONÍVEL!!"))
-        if ExecutarPropriedade:
-            PropriedadeQuadrado(Valores)
-        else:'''
-        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-        if MostrarDesempenho:
-            FazFractalComTempo(Valores)
-        else:
-            FazFractalSemTempo(Valores)
+        # MostrarPropriedade(Valores)
+        MostrarTempo(Valores)
 
 
 if __name__ == "__main__":
-    # Begin()
-    FazFractal(3, 81)
-    plt.show()
+    Begin()

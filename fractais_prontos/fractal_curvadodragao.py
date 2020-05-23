@@ -19,7 +19,7 @@ def fazdragao(vezes):
     x = [0, 1]
     y = [0, 0]
     vez = 0
-    esc=bool(input("(False) Para não escalonar e (True) Para escalonar: "))
+    esc = bool(input("(False) Para não escalonar e (True) Para escalonar: "))
     while vez < vezes:
         vez += 1
         x, y = curvadodragao(x, y)
@@ -55,7 +55,7 @@ def FazFractalComTempo(Valores):
     print("Montando o Gráfico")
     plt.plot(x, y, color="black")
     fim = time.time()
-    print(str(round(fim-inicio, 5)) + "s")
+    print(str(round(fim - inicio, 5)) + "s")
     plt.show()
 
 
@@ -83,6 +83,22 @@ def SalvarEmPDF(Valores):
     with PdfPages(r'curvadodragao.pdf') as export_pdf:
         export_pdf.savefig()
 
+    
+def MostrarTempo(Valores):
+    MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+    if MostrarDesempenho:
+        FazFractalComTempo(Valores)
+    else:
+        FazFractalSemTempo(Valores)
+
+
+def MostrarPropriedade(Valores):
+    ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+    if ExecutarPropriedade:
+        PropriedadeQuadrado(Valores)
+    else:
+        MostrarTempo(Valores)
+
 
 def Begin():
     SalvarPDF = bool(input("(False) Para não salvar em PDF e (True) Para salvar: "))
@@ -90,15 +106,7 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
-        if ExecutarPropriedade:
-            PropriedadeQuadrado(Valores)
-        else:
-            MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-            if MostrarDesempenho:
-                FazFractalComTempo(Valores)
-            else:
-                FazFractalSemTempo(Valores)
+        MostrarPropriedade(Valores)
 
 
 if __name__ == "__main__":

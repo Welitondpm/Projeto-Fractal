@@ -73,7 +73,7 @@ def fazcubo(x, y, z):
 
 def montagrafico(novox, novoy, novoz):
     for item in range(len(novox)):
-        print(item, " de ", len(novox))
+        # print(item, " de ", len(novox))
         x, y, z = fazcubo(novox[item], novoy[item], novoz[item])
         plt.plot(x, y, z, color="black", linewidth=1)
 
@@ -92,10 +92,10 @@ def fazsierpinski(vezes, t):
 
 def VariaveisDeInput(Valores):
     if Valores:
-        vezes, tamanho = 4, 50
+        vezes, tamanho = 3, 50
     else:
-        vezes = int(input("Digite quantas vezes (recomendado <= 7): "))
-        tamanho = int(input("Digite o tamanho do lado do triângulo (recomendado 50): "))
+        vezes = int(input("Digite quantas vezes (recomendado <= 3): "))
+        tamanho = int(input("Digite o tamanho do lado do quadrado (recomendado 50): "))
     return vezes, tamanho
 
 
@@ -110,7 +110,7 @@ def FazFractalComTempo(Valores):
     inicio = time.time()
     FazFractal(vezes, tamanho)
     fim = time.time()
-    print(str(round(fim-inicio, 5)) + "s")
+    print(str(round(fim - inicio, 5)) + "s")
     plt.show()
 
 
@@ -123,8 +123,7 @@ def FazFractalSemTempo(Valores):
 def criaunicalista(x):
     novox = []
     for i in x:
-        for j in i:
-            novox.append(j)
+        novox.extend(i)
     return novox
 
 
@@ -144,6 +143,22 @@ def SalvarEmPDF(Valores):
     FazFractal(vezes, tamanho)
     with PdfPages(r'esponjademenger.pdf') as export_pdf:
         export_pdf.savefig()
+    
+
+def MostrarTempo(Valores):
+    MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+    if MostrarDesempenho:
+        FazFractalComTempo(Valores)
+    else:
+        FazFractalSemTempo(Valores)
+
+
+# def MostrarPropriedade(Valores):
+#     ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+#     if ExecutarPropriedade:
+#         PropriedadeQuadrado(Valores)
+#     else:
+#         MostrarTempo(Valores)
 
 
 def Begin():
@@ -152,18 +167,9 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        '''ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: (!!INDIPONÍVEL!!"))
-        if ExecutarPropriedade:
-            PropriedadeQuadrado(Valores)
-        else:'''
-        MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-        if MostrarDesempenho:
-            FazFractalComTempo(Valores)
-        else:
-            FazFractalSemTempo(Valores)
+        # MostrarPropriedade(Valores)
+        MostrarTempo(Valores)
 
 
 if __name__ == "__main__":
-    # Begin()
-    FazFractal(2, 81)
-    plt.show()
+    Begin()

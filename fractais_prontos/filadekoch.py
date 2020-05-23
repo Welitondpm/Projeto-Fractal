@@ -5,7 +5,7 @@ import time
 from propriedadeporquadrados import *
 
 
-def f(x, y, lados):
+def fazcalculo(x, y, lados):
     somadosanguloint = 180 * (lados - 2)
     angulo = somadosanguloint / lados * math.pi / 180
     oangulo = angulo
@@ -45,23 +45,23 @@ def f(x, y, lados):
 def monta(x, y, vezes, lados):
     for vez in range(1, vezes + 1):
         print(vez, " de ", vezes)
-        x, y = f(x, y, lados)
+        x, y = fazcalculo(x, y, lados)
     return x, y
 
 
 def VariaveisDeInput(Valores):
     if Valores:
-        vezes, lados, tam = 5, 7, 10
+        vezes, lados, escala = 5, 7, 10
     else:
         vezes = int(input("Vezes: "))
         lados = int(input("lados: "))
-        tam = int(input("Escala: "))
-    return vezes, lados, tam
+        escala = int(input("Escala: "))
+    return vezes, lados, escala
 
 
-def FazFractal(vezes, lados, tam):
-    for i in range(3, lados+1):
-        x = [tam * i, tam * (i + 1)]
+def FazFractal(vezes, lados, escala):
+    for i in range(3, lados + 1):
+        x = [escala * i, escala * (i + 1)]
         y = [0, 0]
         i = lados + 3 - i
         print("\n", i, ' lados de ', lados)
@@ -70,9 +70,9 @@ def FazFractal(vezes, lados, tam):
 
 
 def FazFractalComTempo(Valores):
-    vezes, lados, tam = VariaveisDeInput(Valores)
+    vezes, lados, escala = VariaveisDeInput(Valores)
     inicio = time.time()
-    FazFractal(vezes, lados, tam)
+    FazFractal(vezes, lados, escala)
     print("Montando Gráfico")
     fim = time.time()
     print(str(round(fim - inicio, 5)) + "s")
@@ -80,18 +80,18 @@ def FazFractalComTempo(Valores):
 
 
 def FazFractalSemTempo(Valores):
-    vezes, lados, tam = VariaveisDeInput(Valores)
-    FazFractal(vezes, lados, tam)
+    vezes, lados, escala = VariaveisDeInput(Valores)
+    FazFractal(vezes, lados, escala)
     print("Montando Gráfico")
     plt.show()
 
 
 def PropriedadeQuadrado(Valores):
-    vezes, lados, tam = VariaveisDeInput(Valores)
+    vezes, lados, escala = VariaveisDeInput(Valores)
     masterx = []
     mastery = []
     for i in range(3, lados + 1):
-        x = [tam * i, tam * (i + 1)]
+        x = [escala * i, escala * (i + 1)]
         y = [0, 0]
         i = lados + 3 - i
         print("\n", i, ' lados de ', lados)
@@ -105,10 +105,26 @@ def PropriedadeQuadrado(Valores):
 
 
 def SalvarEmPDF(Valores):
-    vezes, lados, tam = VariaveisDeInput(Valores)
-    FazFractal(vezes, lados, tam)
+    vezes, lados, escala = VariaveisDeInput(Valores)
+    FazFractal(vezes, lados, escala)
     with PdfPages(r'filadekoch.pdf') as export_pdf:
         export_pdf.savefig()
+
+
+def MostrarTempo(Valores):
+    MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
+    if MostrarDesempenho:
+        FazFractalComTempo(Valores)
+    else:
+        FazFractalSemTempo(Valores)
+
+
+def MostrarPropriedade(Valores):
+    ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+    if ExecutarPropriedade:
+        PropriedadeQuadrado(Valores)
+    else:
+        MostrarTempo(Valores)
 
 
 def Begin():
@@ -117,15 +133,7 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
-        if ExecutarPropriedade:
-            PropriedadeQuadrado(Valores)
-        else:
-            MostrarDesempenho = bool(input("(False) Para não contar o tempo de Execução e (True) para mostra: "))
-            if MostrarDesempenho:
-                FazFractalComTempo(Valores)
-            else:
-                FazFractalSemTempo(Valores)
+        MostrarPropriedade(Valores)      
 
 
 if __name__ == "__main__":
