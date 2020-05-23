@@ -99,14 +99,16 @@ def fazsierpinski(vezes, t):
 
 def VariaveisDeInput(Valores):
     if Valores:
-        vezes, tamanho = 3, 50
+        vezes, tamanho = 2, 50
     else:
-        vezes = int(input("Digite quantas vezes (recomendado <= 3): "))
+        vezes = int(input("Digite quantas vezes (recomendado <= 2): "))
         tamanho = int(input("Digite o tamanho do lado do triângulo (recomendado 50): "))
     return vezes, tamanho
 
 
 def FazFractal(vezes, tamanho):
+    fig = plt.figure()
+    sub = fig.add_subplot(1, 1, 1, projection='3d')
     x, y, z = fazsierpinski(vezes, tamanho)
     print("Montando o Gráfico")
     montagrafico(x, y, z)
