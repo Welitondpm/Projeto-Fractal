@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import cmath
-
+#ESSE É HARMÔNICO
 print("Use os valores igualmente pra todos EX: profundidade opção 1 o resto também \n(Os valores podem ser variados deste que mantenham sempre os reais e imaginarios inversamente proporsionais a densidade)")
 profundidade = int(input("Profundidade (Recomendado: 1°[1000], 2°[1000]): "))
 reais = int(input("Alcance dos reais (Recomendado: 1°[2], 2°[5]): "))
