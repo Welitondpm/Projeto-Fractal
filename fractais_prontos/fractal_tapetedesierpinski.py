@@ -1,7 +1,8 @@
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import time
-# from propriedadeporquadrados import *
+from propriedadeporquadrados import *
+from progressaopropriedadeporquadrados import *
 
 
 def organizaprafazer(x, y):
@@ -39,6 +40,36 @@ def tapetedesierpinski(x, y):
     xquadrado8 = [x3, x3, x4, x4]
     yquadrado8 = [y3, y4, y4, y3]
     return xquadrado1, xquadrado2, xquadrado3, xquadrado4, xquadrado5, xquadrado6, xquadrado7, xquadrado8, yquadrado1, yquadrado2, yquadrado3, yquadrado4, yquadrado5, yquadrado6, yquadrado7, yquadrado8
+
+
+def progressaodapropriedade():
+    vezes, tamanho = 7, 50
+    valor = int(input("Digite um valor inteiro, essa é a quantidade de quadrados,\n(Atenção o valor será elevado ao quadrado!!):\n\n >>> "))
+    vez = 0
+    x = [[0, 0, tamanho, tamanho]]
+    y = [[0, tamanho, tamanho, 0]]
+    novox = []
+    novoy = []
+    masterx = []
+    mastery = []
+    while vez < vezes:
+        novox, novoy = criaunicalista(x), criaunicalista(y)
+        quadradospintados = progressaoFazCalculo(novox, novoy, valor)
+        masterx.append(vez)
+        mastery.append(quadradospintados)
+        vez += 1
+        x, y = organizaprafazer(x, y)
+    novox, novoy = criaunicalista(x), criaunicalista(y)
+    quadradospintados = progressaoFazCalculo(novox, novoy, valor)
+    masterx.append(vez)
+    mastery.append(quadradospintados)
+    plt.plot(masterx, mastery)
+    plt.scatter(masterx, mastery)
+    plt.title("Progressão da Propriedade por quadrados\nFractal Tapete de sierpinski")
+    plt.xlabel("vezes")
+    plt.ylabel("Quadrados Pintados")
+    print("Montando o Gráfico")
+    plt.show()
 
 
 def montagrafico(novox, novoy):
@@ -87,22 +118,20 @@ def FazFractalSemTempo(Valores):
     plt.show()
 
 
-# def criaunicalista(x):
-#     novox = []
-#     for item in x:
-#         novox.extend(item)
-#     return novox
+def criaunicalista(x):
+    novox = []
+    for item in x:
+        novox.extend(item)
+    return novox
 
 
-# def PropriedadeQuadrado(Valores):
-#     vezes, tamanho = VariaveisDeInput(Valores)
-#     x, y = fazsierpinski(vezes, tamanho)
-#     novox, novoy = fazcadatriangulo(x, y)
-#     x, y = criaunicalista(x), criaunicalista(y)
-#     FazCalculo(x, y)
-#     print("Montando o Gráfico")
-#     montagrafico(novox, novoy)
-#     plt.show()
+def PropriedadeQuadrado(Valores):
+    vezes, tamanho = VariaveisDeInput(Valores)
+    x, y = fazsierpinski(vezes, tamanho)
+    x, y = criaunicalista(x), criaunicalista(y)
+    FazCalculo(x, y)
+    print("Montando o Gráfico")
+    plt.show()
 
 
 def SalvarEmPDF(Valores):
@@ -120,12 +149,12 @@ def MostrarTempo(Valores):
         FazFractalSemTempo(Valores)
 
 
-# def MostrarPropriedade(Valores):
-#     ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
-#     if ExecutarPropriedade:
-#         PropriedadeQuadrado(Valores)
-#     else:
-#         MostrarTempo(Valores)
+def MostrarPropriedade(Valores):
+    ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
+    if ExecutarPropriedade:
+        PropriedadeQuadrado(Valores)
+    else:
+        MostrarTempo(Valores)
 
 
 def Begin():
@@ -134,9 +163,9 @@ def Begin():
     if SalvarPDF:
         SalvarEmPDF(Valores)
     else:
-        # MostrarPropriedade(Valores)
-        MostrarTempo(Valores)
+        MostrarPropriedade(Valores)
 
 
 if __name__ == "__main__":
     Begin()
+    # progressaodapropriedade()
