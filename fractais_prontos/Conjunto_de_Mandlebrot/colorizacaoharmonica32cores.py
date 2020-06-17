@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+
 
 print("Use os valores igualmente pra todos EX: profundidade opção 1 o resto também \n(Os valores podem ser variados deste que mantenham sempre os reais e imaginarios inversamente proporsionais a densidade)")
 profundidade = int(input("Profundidade (Recomendado: 1°[1000], 2°[1000]): "))
@@ -167,4 +169,7 @@ plt.scatter(l30, ll30, color='#ffff99', s=s)
 plt.scatter(l31, ll31, color='#ffffcc', s=s)
 plt.scatter(l32, ll32, color='#ffffff', s=s)
 plt.scatter(l0, ll0, color='#000000', s=s/2)
+plt.savefig('Mandlebrot2500.png')
+with PdfPages(r'mandlebrot2500.pdf') as export_pdf:
+    export_pdf.savefig()
 plt.show()
