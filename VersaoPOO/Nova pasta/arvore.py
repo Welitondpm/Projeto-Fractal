@@ -1,11 +1,6 @@
 import matplotlib.pyplot as plt
 import math
 import random
-from propriedade_por_quadrados import *
-
-
-def barra():
-    print(40 * "-")
 
 
 def adicionaproximosangulos(angulo, theta):
@@ -43,40 +38,6 @@ def criaunicalista(x, y):
             listay.append(listadelistay[subitem][item])
         plt.plot(listax, listay, color="black")
         listax, listay = [], []
-
-    
-def criaunicalistapropriedade(x, y):
-    listadescartavel = []
-    listax, listadelistax = [], []
-    listay, listadelistay = [], []
-    masterx = []
-    mastery = []
-    maxtam = len(x[-1])
-    for item in x:
-        while len(item) < maxtam:
-            for subitem in item:
-                listadescartavel.append(subitem)
-                listadescartavel.append(subitem)
-            item = listadescartavel
-            listadescartavel = []
-        listadelistax.append(item)
-    for item in y:
-        while len(item) < maxtam:
-            for subitem in item:
-                listadescartavel.append(subitem)
-                listadescartavel.append(subitem)
-            item = listadescartavel
-            listadescartavel = []
-        listadelistay.append(item)
-    for item in range(maxtam - 1):
-        for subitem in range(len(x) - 1):
-            listax.append(listadelistax[subitem][item])
-            listay.append(listadelistay[subitem][item])
-        plt.plot(listax, listay, color="black")
-        masterx.extend(listax[::])
-        mastery.extend(listay[::])
-        listax, listay = [], []
-    return masterx, mastery
 
 
 def imperfeiciona(x, imperfeicao):
@@ -136,24 +97,9 @@ def FazFractal(vezes, tamanho, theta, z, zimp, w, wimp):
     print("Montando o Gráfico")
 
 
-def PropriedadeQuadrado(vezes, tamanho, theta, z, zimp, w, wimp):
-    vezes, tamanho, theta, z, zimp, w, wimp, angulo, x, y = FazPreCalculos(vezes, tamanho, theta, z, zimp, w, wimp)
-    for vez in range(vezes):
-        x, y, angulo, tamanho = fazarvore(x, y, angulo, tamanho, z, w, wimp, zimp, theta)
-        print("%d de %d" % (vez + 1, vezes))
-    masterx, mastery = criaunicalistapropriedade(x, y)
-    FazCalculo(masterx, mastery)
-    print("Montando o Gráfico")
-    plt.show()
-
-
 def Begin(vezes = 12, tamanho = 50, theta = 15, z = 0, zimp = 0, w = 0, wimp = 0):
-    ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
-    if ExecutarPropriedade:
-        PropriedadeQuadrado(vezes, tamanho, theta, z, zimp, w, wimp)
-    else:
-        FazFractal(vezes, tamanho, theta, z, zimp, w, wimp)
-        plt.show()
+    FazFractal(vezes, tamanho, theta, z, zimp, w, wimp)
+    plt.show()
 
 
 if __name__ == "__main__":
