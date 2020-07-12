@@ -48,12 +48,8 @@ def FazFractal(vezes, lados, tamanho):
     return x, y
 
 
-def Begin(vezes = 5, lados = 4, tamanho = 10):
-    x, y = FazFractal(vezes, lados, tamanho)
+if __name__ == "__main__":
+    x, y = FazFractal(5, 4, 10)
     print("Montando Gráfico")
     plt.plot(x, y)
     plt.show()
-
-
-if __name__ == "__main__":
-    Begin(5, 4, 10)

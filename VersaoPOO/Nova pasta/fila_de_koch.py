@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import math
-from propriedade_por_quadrados import *
 
 
 def fazcalculo(x, y, lados):
@@ -47,42 +46,14 @@ def monta(x, y, vezes, lados):
     return x, y
 
 
-def FazFractal(vezes, lados, escala):
-    for fractallados in range(3, lados + 1):
-        x = [escala * fractallados, escala * (fractallados + 1)]
+if __name__ == "__main__":
+    for fractallados in range(3, 7 + 1):
+        x = [10 * fractallados, 10 * (fractallados + 1)]
         y = [0, 0]
-        fractallados = lados + 3 - fractallados
-        print("\n", fractallados, ' lados de ', lados)
-        x, y = monta(x, y, vezes, fractallados)
+        fractallados = 7 + 3 - fractallados
+        print("\n", fractallados, ' lados de ', 7)
+        x, y = monta(x, y, 5, fractallados)
         plt.plot(x, y)
 
-
-def PropriedadeQuadrado(vezes, lados, escala):
-    masterx = []
-    mastery = []
-    for fractallados in range(3, lados + 1):
-        x = [escala * fractallados, escala * (fractallados + 1)]
-        y = [0, 0]
-        fractallados = lados + 3 - fractallados
-        print("\n", fractallados, ' lados de ', lados)
-        x, y = monta(x, y, vezes, fractallados)
-        masterx.extend(x[::])
-        mastery.extend(y[::])
-        plt.plot(x, y)
-    FazCalculo(masterx, mastery)
     print("Montando Gráfico")
     plt.show()
-
-
-def Begin(vezes = 5, lados = 7, escala = 10):
-    ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
-    if ExecutarPropriedade:
-        PropriedadeQuadrado(vezes, lados, escala)
-    else:
-        FazFractal(vezes, lados, escala)
-        print("Montando Gráfico")
-        plt.show()
-
-
-if __name__ == "__main__":
-    Begin(5, 7, 10)

@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from propriedade_por_quadrados import *
 
 
 def é_primo(valor):
@@ -54,29 +53,8 @@ def fazbinario(fim, contagem):
     return x, y
 
 
-def FazFractal(fim, contagem):
-    x, y = fazbinario(fim, contagem)
-    return x, y
-
-
-def PropriedadeQuadrado(fim, contagem):
-    x, y = FazFractal(fim, contagem)
-    FazCalculo(x, y)
+if __name__ == "__main__":
+    x, y = fazbinario(262144, False)
     print("Montando o Gráfico")
     plt.scatter(x, y, color="black", s=0.01)
     plt.show()
-
-
-def Begin(fim = 262144, contagem = False):
-    ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
-    if ExecutarPropriedade:
-        PropriedadeQuadrado(fim, contagem)
-    else:
-        x, y = FazFractal(fim, contagem)
-        print("Montando o Gráfico")
-        plt.scatter(x, y, color="black", s=0.01)
-        plt.show()
-
-
-if __name__ == "__main__":
-    Begin(262144, False)

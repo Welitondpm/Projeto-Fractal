@@ -100,12 +100,6 @@ class Menger(Fractal):
         return new_x + new_x, new_y + new_y, new_z + [z[0], z[0], z[0], z[-1], z[-1], z[0], z[0], z[-1], z[-1]]
 
 
-# Execute Menger Sponge
-# menger = Menger([], [], [])
-# menger.Create_Fractal({"times": 3})
-# menger.Show_Graph()
-
-
 class MengerColorful(Menger):
     def __init__(self, x, y, z):
         # Fractal.__init__(self, x, y)
@@ -129,6 +123,12 @@ class MengerColorful(Menger):
             while len(color_3) < 2:
                 color_3 = "0" + color_3
             plt.plot(new_x, new_y, new_z, color = "#" + color_1 + color_2 + color_3, linewidth = 0.1)
+
+
+# Execute Menger Sponge
+# menger = Menger([], [], [])
+# menger.Create_Fractal({"times": 3})
+# menger.Show_Graph()
 
 
 # Execute Menger Sponge

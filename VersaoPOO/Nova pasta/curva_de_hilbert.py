@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from propriedade_por_quadrados import *
 
 
 def curvadehilbert(x, y, vez):
@@ -72,29 +71,8 @@ def fazhilbert(vezes, escala):
     return x, y
 
 
-def FazFractal(vezes, escala):
-    x, y = fazhilbert(vezes, escala)
-    return x, y
-
-
-def PropriedadeQuadrado(vezes, escala):
-    x, y = FazFractal(vezes, escala)
-    FazCalculo(x, y)
+if __name__ == "__main__":
+    x, y = fazhilbert(5, 1)
     print("Montando o Gráfico")
     plt.plot(x, y, color="black")
     plt.show()
-
-
-def Begin(vezes = 5, escala = 1):
-    ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
-    if ExecutarPropriedade:
-        PropriedadeQuadrado(vezes, escala)
-    else:
-        x, y = FazFractal(vezes, escala)
-        print("Montando o Gráfico")
-        plt.plot(x, y, color="black")
-        plt.show()
-
-
-if __name__ == "__main__":
-    Begin(5, 1)

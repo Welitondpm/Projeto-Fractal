@@ -72,12 +72,6 @@ class Sierpinski(Fractal):
             plt.fill(self.x[item], self.y[item], color = color)
 
 
-# Execute Sierpinski Triangle
-# sierpins = Sierpinski([], [])
-# sierpins.Create_Fractal({"times": 5})
-# sierpins.Show_Graph()
-
-
 class SierpinskiCarpet(Sierpinski):
     def __init__(self, x, y):
         Sierpinski.__init__(self, x, y)
@@ -125,6 +119,12 @@ class SierpinskiCarpet(Sierpinski):
             self.Setting_Function()
             print("%d of %d" % (interation_number, variables["times"]))
         self.Make_Graph()
+
+
+# Execute Sierpinski Triangle
+# sierpins = Sierpinski([], [])
+# sierpins.Create_Fractal({"times": 5})
+# sierpins.Show_Graph()
 
 
 # Execute Sierpinski Carpet

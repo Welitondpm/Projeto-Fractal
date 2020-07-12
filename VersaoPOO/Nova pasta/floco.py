@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from propriedade_por_quadrados import *
 
 
 def individualizasegmento(x, y):
@@ -64,29 +63,8 @@ def fazfloco(vezes):
     return x, y
 
 
-def FazFractal(vezes):
-    x, y = fazfloco(vezes)
-    return x, y
-
-
-def PropriedadeQuadrado(vezes):
-    x, y = FazFractal(vezes)
-    FazCalculo(x, y)
+if __name__ == "__main__":
+    x, y = fazfloco(10)
     print("Montando o Gráfico")
     plt.fill(x, y, color="black")
     plt.show()
-
-
-def Begin(vezes = 10):
-    ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
-    if ExecutarPropriedade:
-        PropriedadeQuadrado(vezes)
-    else:
-        x, y = FazFractal(vezes)
-        print("Montando o Gráfico")
-        plt.fill(x, y, color="black")
-        plt.show()
-
-
-if __name__ == "__main__":
-    Begin(10)

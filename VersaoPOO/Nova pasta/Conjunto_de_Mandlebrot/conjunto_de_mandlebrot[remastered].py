@@ -2,11 +2,12 @@ import matplotlib.pyplot as plt
 import cmath
 
 
-print("Use os valores igualmente pra todos EX: profundidade opção 1 o resto também \n(Os valores podem ser variados deste que mantenham sempre os reais e imaginarios inversamente proporsionais a densidade)")
-profundidade = int(input("Profundidade (Recomendado: 1°[1000], 2°[1000]): "))
-reais = int(input("Alcance dos reais (Recomendado: 1°[2], 2°[20]): "))
-imaginarios = int(input("Alcance dos imaginários (Recomendado: 1°[2], 2°[20]): "))
-densidade = int(input("Densidade (Recomendado: 1°[200], 2°[100]): "))
+profundidade = 1000
+reais = 2
+imaginarios = 2
+densidade = 200
+
+
 la2, lb2 = [], []
 lim = 20
 

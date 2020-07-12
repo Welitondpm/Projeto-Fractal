@@ -2,12 +2,13 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 
 
-print("Use os valores igualmente pra todos EX: profundidade opção 1 o resto também \n(Os valores podem ser variados deste que mantenham sempre os reais e imaginarios inversamente proporsionais a densidade)")
-profundidade = int(input("Profundidade (Recomendado: 1°[1000], 2°[1000]): "))
-reais = int(input("Alcance dos reais (Recomendado: 1°[2], 2°[5]): "))
-imaginarios = int(input("Alcance dos imaginários (Recomendado: 1°[2], 2°[5]): "))
-densidade = int(input("Densidade (Recomendado: 1°[200], 2°[100]): "))
-cores = 's'  # bool(input("[s/n] Cores? "))
+profundidade = 1000
+reais = 2
+imaginarios = 2
+densidade = 100
+cores = 's'
+
+
 lim = profundidade
 lim1 = lim
 lim2 = 1 / lim
@@ -169,7 +170,4 @@ plt.scatter(l30, ll30, color='#ffff99', s=s)
 plt.scatter(l31, ll31, color='#ffffcc', s=s)
 plt.scatter(l32, ll32, color='#ffffff', s=s)
 plt.scatter(l0, ll0, color='#000000', s=s/2)
-plt.savefig('Mandlebrot2500.png')
-with PdfPages(r'mandlebrot2500.pdf') as export_pdf:
-    export_pdf.savefig()
 plt.show()

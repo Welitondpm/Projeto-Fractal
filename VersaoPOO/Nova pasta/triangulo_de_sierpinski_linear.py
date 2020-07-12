@@ -79,14 +79,10 @@ def FazFractal(vezes, x, y):
     return listax, listay   
 
 
-def Begin(vezes = 12):
+if __name__ == "__main__":
     x = [[0, 1]]
     y = [[0, 0]]
-    listax, listay = FazFractal(vezes, x, y)
+    listax, listay = FazFractal(12, x, y)
     print("Montando o Gráfico")
     plt.plot(listax, listay, color="black")
     plt.show()
-
-
-if __name__ == "__main__":
-    Begin(12)

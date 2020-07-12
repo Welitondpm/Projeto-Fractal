@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from propriedade_por_quadrados import *
 
 
 def curvadodragao(x, y):
@@ -37,29 +36,8 @@ def arruma_escala(x, y):
     return novox, novoy
 
 
-def FazFractal(vezes, escalonar):
-    x, y = fazdragao(vezes, escalonar)
-    return x, y
-
-
-def PropriedadeQuadrado(vezes, escalonar):
-    x, y = FazFractal(vezes, escalonar)
-    FazCalculo(x, y)
+if __name__ == "__main__":
+    x, y = fazdragao(20, False)
     print("Montando o Gráfico")
     plt.plot(x, y, color="black")
     plt.show()
-
-
-def Begin(vezes = 20, escalonar = False):
-    ExecutarPropriedade = bool(input("(False) Para não mostrar propriedades e (True) Para Mostrar: "))
-    if ExecutarPropriedade:
-        PropriedadeQuadrado(vezes, escalonar)
-    else:
-        x, y = FazFractal(vezes, escalonar)
-        print("Montando o Gráfico")
-        plt.plot(x, y, color="black")
-        plt.show()
-        
-
-if __name__ == "__main__":
-    Begin(20, False)

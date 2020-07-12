@@ -1,11 +1,12 @@
 import matplotlib.pyplot as plt
 
-print("Use os valores igualmente pra todos EX: profundidade opção 1 o resto também \n(Os valores podem ser variados deste que mantenham sempre os reais e imaginarios inversamente proporsionais a densidade)")
-profundidade = int(input("Profundidade (Recomendado: 1°[1000], 2°[1000]): "))
-reais = int(input("Alcance dos reais (Recomendado: 1°[2], 2°[5]): "))
-imaginarios = int(input("Alcance dos imaginários (Recomendado: 1°[2], 2°[5]): "))
-densidade = int(input("Densidade (Recomendado: 1°[200], 2°[100]): "))
-cores = 's'  # bool(input("[s/n] Cores? "))
+profundidade = 1000
+reais = 2
+imaginarios = 2
+densidade = 200
+cores = 's'
+
+
 lim = profundidade
 lim1 = lim
 lim2 = 1 / lim
@@ -16,7 +17,7 @@ s = 1000 / densidade
 
 for n in uni1:
     porc = round(50 + 100 * (n) / (len(uni1)), 2)
-    print("\r", porc, '%')
+    print(porc + " %")
     n /= densidade
     for m in uni2:
         m /= densidade
@@ -67,7 +68,6 @@ for n in uni1:
             else:
                 continue
 
-print("\n\nMontando o Gráfico\n\n")
 plt.scatter(a, a1, color='#ff8888', s=s, marker='s')
 plt.scatter(b, b1, color='#ff0000', s=s, marker='s')
 plt.scatter(outroc, c1, color='#ffbb00', s=s, marker='s')

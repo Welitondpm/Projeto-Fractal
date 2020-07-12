@@ -49,12 +49,8 @@ def fazcantor(vezes, t):
     return x, y
 
 
-def Begin(vezes = 10, tamanho = 50):
-    x, y = fazcantor(vezes, tamanho)
+if __name__ == "__main__":
+    x, y = fazcantor(10, 50)
     fazcadalinha(x, y)
     print("Montando o Gráfico")
     plt.show()
-
-
-if __name__ == "__main__":
-    Begin(10, 50)

@@ -72,18 +72,10 @@ def fazsierpinski(vezes, t):
     return x, y, z
 
 
-def FazFractal(vezes, tamanho):
+if __name__ == "__main__":
     fig = plt.figure()
     sub = fig.add_subplot(1, 1, 1, projection='3d')
-    x, y, z = fazsierpinski(vezes, tamanho)
+    x, y, z = fazsierpinski(4, 50)
     print("Montando o Gráfico")
     montagrafico(x, y, z)
-
-
-def Begin(vezes = 4, tamanho = 50):
-    FazFractal(vezes, tamanho)
     plt.show()
-
-
-if __name__ == "__main__":
-    Begin(4, 50)

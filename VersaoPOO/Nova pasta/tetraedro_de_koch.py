@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from matplotlib.backends.backend_pdf import PdfPages
 import math
 
 
@@ -65,7 +64,5 @@ for vez in range(1, 3):
     x, y, z = lx[::], ly[::], lz[::]
 
 
-# with PdfPages(r'tetraedrodekoch.pdf') as export_pdf:
-#     export_pdf.savefig()
 print("montando grafico")
 plt.show()

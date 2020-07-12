@@ -1,12 +1,13 @@
 import matplotlib.pyplot as plt
 
-# print("Use os valores igualmente pra todos EX: profundidade opção 1 o resto também")
-print("         !!!ATENÇÂO!!!\nESSE FRACTAL É ESTREMAMENTE PESADO NÃO USE VALORES MAIORES DO RECOMENDADOS")
-profundidade = int(input("Profundidade (Recomendado: 1°[1000], 2°[1000]): "))
-reais = int(input("Alcance dos reais (Recomendado: 1°[2], 2°[3]): "))
-imaginarios = int(input("Alcance dos imaginários (Recomendado: 1°[2], 2°[3]): "))
-densidade = int(input("Densidade (Recomendado: 1°[10], 2°[5]): "))
-cores = 's'  # bool(input("[s/n] Cores? "))
+
+profundidade = 1000
+reais = 3
+imaginarios = 3
+densidade = 5
+cores = 's'
+
+
 lim = profundidade
 lim1 = lim
 l, l1 = [], []
@@ -39,5 +40,4 @@ for n in uni1:
 
 
 print("\n\nMontando o Gráfico\n\n")
-# plt.scatter(l,l1,color='#000000',s=s)
 plt.show()

@@ -48,9 +48,5 @@ def triangulostr(vezes):
         xstr = ""
 
 
-def Begin(vezes = 20):
-    triangulostr(vezes)
-
-
 if __name__ == "__main__":
-    Begin(20)
+    triangulostr(20)

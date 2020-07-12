@@ -88,19 +88,11 @@ def FazPreCalculos(vezes, tamanho, theta, z, zimp, w, wimp):
     return vezes, tamanho, theta, z, zimp, w, wimp, angulo, x, y
 
 
-def FazFractal(vezes, tamanho, theta, z, zimp, w, wimp):
-    vezes, tamanho, theta, z, zimp, w, wimp, angulo, x, y = FazPreCalculos(vezes, tamanho, theta, z, zimp, w, wimp)
+if __name__ == "__main__":
+    vezes, tamanho, theta, z, zimp, w, wimp, angulo, x, y = FazPreCalculos(12, 50, 15, 0, 0, 0, 0)
     for vez in range(vezes):
         x, y, angulo, tamanho = fazarvore(x, y, angulo, tamanho, z, w, wimp, zimp, theta)
         print("%d de %d" % (vez + 1, vezes))
     criaunicalista(x, y)
     print("Montando o Gráfico")
-
-
-def Begin(vezes = 12, tamanho = 50, theta = 15, z = 0, zimp = 0, w = 0, wimp = 0):
-    FazFractal(vezes, tamanho, theta, z, zimp, w, wimp)
     plt.show()
-
-
-if __name__ == "__main__":
-    Begin(12, 50, 15, 0, 0, 0, 0)
