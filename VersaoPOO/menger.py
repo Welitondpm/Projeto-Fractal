@@ -13,17 +13,17 @@ class Menger(Fractal):
 
     def Create_Fractal(self, args):
         default_vars = {"times": 3, "size": 50}
-        variables = self.Define_Vars(args, default_vars)
+        self.variables = self.Define_Vars(args, default_vars)
         fig = plt.figure()
         sub = fig.add_subplot(1, 1, 1, projection="3d")
         interation_number = 0
-        self.x = [[0, 0, variables["size"], variables["size"], variables["size"], variables["size"], 0, 0]]
-        self.y = [[0, variables["size"], variables["size"], 0, 0, variables["size"], variables["size"], 0]]
-        self.z = [[0, 0, 0, 0, variables["size"], variables["size"], variables["size"], variables["size"]]]
-        while interation_number < variables["times"]:
+        self.x = [[0, 0, self.variables["size"], self.variables["size"], self.variables["size"], self.variables["size"], 0, 0]]
+        self.y = [[0, self.variables["size"], self.variables["size"], 0, 0, self.variables["size"], self.variables["size"], 0]]
+        self.z = [[0, 0, 0, 0, self.variables["size"], self.variables["size"], self.variables["size"], self.variables["size"]]]
+        while interation_number < self.variables["times"]:
             interation_number += 1
             self.Setting_Function()
-            print("%d of %d" % (interation_number, variables["times"]))
+            print("%d of %d" % (interation_number, self.variables["times"]))
         self.Make_Graph()
 
 
@@ -31,14 +31,14 @@ class Menger(Fractal):
         new_x, new_y, new_z = [], [], []
         siz = len(self.x)
         for item in range(siz):
-            x, y, z = self.Menger_Sponge(self.x[item], self.y[item], self.z[item])
+            x, y, z = self.Seed_Aplication(self.x[item], self.y[item], self.z[item])
             new_x.extend(x)
             new_y.extend(y)
             new_z.extend(z)
         self.x, self.y, self.z = new_x, new_y, new_z
 
     
-    def Menger_Sponge(self, x, y, z):
+    def Seed_Aplication(self, x, y, z):
         x_1 = x[0]
         x_2 = x_1 + (x[3] - x[0]) / 3
         x_3 = x_1 + (x[3] - x[0]) * 2 / 3
@@ -89,18 +89,18 @@ class Menger(Fractal):
     def Make_Graph(self, color = "#000000"):
         limit = len(self.x)
         for item in range(limit):
-            new_x, new_y, new_z = self.Make_Cube(self.x[item], self.y[item], self.z[item])
+            new_x, new_y, new_z = self.Path_Finder(self.x[item], self.y[item], self.z[item])
             plt.plot(new_x, new_y, new_z, color = color, linewidth = 0.1)
 
 
-    def Make_Cube(self, x, y, z):
+    def Path_Finder(self, x, y, z):
         new_x = [x[0], x[0], x[1], x[1], x[2], x[2], x[3], x[3], x[0]]
         new_y = [y[0], y[0], y[1], y[1], y[2], y[2], y[3], y[3], y[0]]
         new_z = [z[0], z[-1], z[-1], z[0], z[0], z[-1], z[-1], z[0], z[0]]
         return new_x + new_x, new_y + new_y, new_z + [z[0], z[0], z[0], z[-1], z[-1], z[0], z[0], z[-1], z[-1]]
 
 
-class MengerColorful(Menger):
+class ColorfulMenger(Menger):
     def __init__(self, x, y, z):
         # Fractal.__init__(self, x, y)
         self.x = x
@@ -112,7 +112,7 @@ class MengerColorful(Menger):
         x_y_z_max = max(self.x[-1])
         limit = len(self.x)
         for item in range(limit):
-            new_x, new_y, new_z = self.Make_Cube(self.x[item], self.y[item], self.z[item])
+            new_x, new_y, new_z = self.Path_Finder(self.x[item], self.y[item], self.z[item])
             color_1 = str(hex(int(255 * (new_x[0] / x_y_z_max))))[2:4]
             color_2 = str(hex(int(255 * (new_y[0] / x_y_z_max))))[2:4]
             color_3 = str(hex(int(255 * (new_z[0] / x_y_z_max))))[2:4]
@@ -125,13 +125,113 @@ class MengerColorful(Menger):
             plt.plot(new_x, new_y, new_z, color = "#" + color_1 + color_2 + color_3, linewidth = 0.1)
 
 
+class SierpinskiTetrahedron(Menger):
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+
+
+    def Seed_Aplication(self, x, y, z):
+        x_1 = x[0]
+        x_2 = x_1 + (x[1] - x[0]) / 2
+        x_3 = x[1]
+        x_4 = x_3 + (x[2] - x[1]) / 2
+        x_5 = x[2]
+        x_6 = x_1 + (x[2] - x[0]) / 2
+        x_8 = (x_1 + x[3]) / 2
+        x_9 = (x_3 + x[3]) / 2
+        x_10 = (x_5 + x[3]) / 2
+        x_11 = x[3]
+        y_1 = y[0]
+        y_2 = y_1 + (y[1] - y[0]) / 2
+        y_3 = y[1]
+        y_4 = y_3 + (y[2] - y[1]) / 2
+        y_5 = y[2]
+        y_6 = y_1 + (y[2] - y[0]) / 2
+        y_8 = (y_1 + y[3]) / 2
+        y_9 = (y_3 + y[3]) / 2
+        y_10 = (y_5 + y[3]) / 2
+        y_11 = y[3]
+        z_1 = z[0]
+        z_2 = z_1 + (z[1] - z[0]) / 2
+        z_3 = z[1]
+        z_4 = z_3 + (z[2] - z[1]) / 2
+        z_5 = z[2]
+        z_6 = z_1 + (z[2] - z[0]) / 2
+        z_8 = (z_1 + z[3]) / 2
+        z_9 = (z_3 + z[3]) / 2
+        z_10 = (z_5 + z[3]) / 2
+        z_11 = z[3]
+        return (
+            ((x_1, x_2, x_6, x_8), (x_2, x_3, x_4, x_9), (x_6, x_4, x_5, x_10), (x_8, x_9, x_10, x_11)),
+            ((y_1, y_2, y_6, y_8), (y_2, y_3, y_4, y_9), (y_6, y_4, y_5, y_10), (y_8, y_9, y_10, y_11)),
+            ((z_1, z_2, z_6, z_8), (z_2, z_3, z_4, z_9), (z_6, z_4, z_5, z_10), (z_8, z_9, z_10, z_11))
+        )
+
+
+    def Path_Finder(self, x, y, z):
+        x = [x[0], x[1], x[2], x[0], x[3], x[1], x[2], x[3]]
+        y = [y[0], y[1], y[2], y[0], y[3], y[1], y[2], y[3]]
+        z = [z[0], z[1], z[2], z[0], z[3], z[1], z[2], z[3]]
+        return x, y, z
+
+
+    def Create_Fractal(self, args):
+        default_vars = {"times": 4, "size": 50}
+        self.variables = self.Define_Vars(args, default_vars)
+        fig = plt.figure()
+        sub = fig.add_subplot(1, 1, 1, projection="3d")
+        interation_number = 0
+        self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2, 0]]
+        self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6, 0]]
+        self.z = [[- self.variables["size"] * 3 ** 0.5 / 24, - self.variables["size"] * 3 ** 0.5 / 24, - self.variables["size"] * 3 ** 0.5 / 24, self.variables["size"] * 3 ** 0.5 / 12]]
+        while interation_number < self.variables["times"]:
+            interation_number += 1
+            self.Setting_Function()
+            print("%d of %d" % (interation_number, self.variables["times"]))
+        self.Make_Graph()
+
+
+class ColorfulSierpinskiTetrahedron(SierpinskiTetrahedron):
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+
+    
+    def Make_Graph(self):
+        limit = len(self.x)
+        for item in range(limit):
+            new_x, new_y, new_z = self.Path_Finder(self.x[item], self.y[item], self.z[item])
+            number = ((new_x[0] ** 2 + new_y[0] ** 2 + new_z[0] ** 2) ** 0.5) / ((self.variables["size"] * 3 ** 0.5 / 2) * 2 / 3) * 255
+            color = str(hex(int(255 - number)))
+            if len(color) == 4 and color[2] != "x":
+                color = color[2:]
+            else:
+                color = "0" + color[-1]
+            plt.plot(new_x, new_y, new_z, color = "#" + color + color + color, linewidth = 0.5)
+
+
 # Execute Menger Sponge
 # menger = Menger([], [], [])
 # menger.Create_Fractal({"times": 3})
 # menger.Show_Graph()
 
 
-# Execute Menger Sponge
-mengercolor = MengerColorful([], [], [])
-mengercolor.Create_Fractal({"times": 3})
-mengercolor.Show_Graph()
+# Execute Colorful Menger Sponge
+# mengercolor = ColorfulMenger([], [], [])
+# mengercolor.Create_Fractal({"times": 3})
+# mengercolor.Show_Graph()
+
+
+# Execute Sierpinski Sponge
+# sierpinstetra = SierpinskiTetrahedron([], [], [])
+# sierpinstetra.Create_Fractal({"times": 4})
+# sierpinstetra.Show_Graph()
+
+
+# Execute Colorful Sierpinski Sponge
+# sierpinstetracolor = ColorfulSierpinskiTetrahedron([], [], [])
+# sierpinstetracolor.Create_Fractal({"times": 4})
+# sierpinstetracolor.Show_Graph()

@@ -6,8 +6,8 @@ profundidade = int(input("Profundidade (Recomendado: 1°[1000], 2°[1000]): "))
 reais = int(input("Alcance dos reais (Recomendado: 1°[2], 2°[5]): "))
 imaginarios = int(input("Alcance dos imaginários (Recomendado: 1°[2], 2°[5]): "))
 densidade = int(input("Densidade (Recomendado: 1°[200], 2°[100]): "))
-cores = bool(input("[s/n] Cores?: "))
-lim = 10
+cores = True
+lim = 3
 lim1 = lim
 lim2 = 1 / lim
 a, a1, b, b1, outroc, c1, d, d1, e, e1, f, f1, g, g1, h, h1, i, i1, j, j1, k, k1, l, l1 = [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []
@@ -65,8 +65,7 @@ for n in uni1:
             elif abs(z) < lim2:
                 l.append(n)
                 l1.append(m)
-            else:
-                continue
+            
 
 print("\n\nMontando o Gráfico\n\n")
 plt.scatter(a, a1, color='#ff8888', s=s)
