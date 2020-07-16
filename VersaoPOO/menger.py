@@ -213,25 +213,25 @@ class ColorfulSierpinskiTetrahedron(SierpinskiTetrahedron):
             plt.plot(new_x, new_y, new_z, color = "#" + color + color + color, linewidth = 0.5)
 
 
-# Execute Menger Sponge
+#### Execute Menger Sponge
 # menger = Menger([], [], [])
 # menger.Create_Fractal({"times": 3})
 # menger.Show_Graph()
 
 
-# Execute Colorful Menger Sponge
+#### Execute Colorful Menger Sponge
 # mengercolor = ColorfulMenger([], [], [])
 # mengercolor.Create_Fractal({"times": 3})
 # mengercolor.Show_Graph()
 
 
-# Execute Sierpinski Sponge
+#### Execute Sierpinski
 # sierpinstetra = SierpinskiTetrahedron([], [], [])
 # sierpinstetra.Create_Fractal({"times": 4})
 # sierpinstetra.Show_Graph()
 
 
-# Execute Colorful Sierpinski Sponge
+#### Execute Colorful Sierpinski
 # sierpinstetracolor = ColorfulSierpinskiTetrahedron([], [], [])
 # sierpinstetracolor.Create_Fractal({"times": 4})
 # sierpinstetracolor.Show_Graph()

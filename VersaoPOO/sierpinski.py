@@ -121,13 +121,112 @@ class SierpinskiCarpet(Sierpinski):
         self.Make_Graph()
 
 
-# Execute Sierpinski Triangle
+class ArrowHead(Fractal):
+    def __init__(self, x = [[0, 1]], y = [[0, 0]]):
+        self.x = x
+        self.y = y
+
+
+    def Make_Triangle(self):
+        new_x, new_y = [], []
+        limit = len(self.x)
+        for item in range(limit):
+            x_list = self.x[item]
+            y_list = self.y[item]
+            if y_list[1] - y_list[0] == 0:
+                x_1 = x_list[0]
+                x_2 = x_list[0] + (x_list[1] - x_list[0]) / 4
+                x_3 = x_list[0] + (x_list[1] - x_list[0]) * 3 / 4
+                x_4 = x_list[1]
+                y_1 = y_list[0]
+                y_2 = y_list[0] + abs(x_list[1] - x_list[0]) / 4
+                y_3 = y_2
+                y_4 = y_list[1]
+            elif x_list[1] - x_list[0] == 0:
+                x_1 = x_list[0]
+                x_2 = x_list[0] + abs(y_list[1] - y_list[0]) / 4
+                x_3 = x_2
+                x_4 = x_list[1]
+                y_1 = y_list[0]
+                y_2 = y_list[0] + (y_list[1] - y_list[0]) / 4
+                y_3 = y_list[0] + (y_list[1] - y_list[0]) * 2 / 4
+                y_4 = y_list[1]
+            elif x_list[1] > x_list[0] and y_list[1] > y_list[0]:
+                x_1 = x_list[0]
+                x_2 = x_list[1]
+                x_3 = x_2 + (y_list[1] - y_list[0]) / 2
+                x_4 = x_2
+                y_1 = y_list[0]
+                y_2 = y_1
+                y_3 = y_list[0] + (y_list[1] - y_list[0]) / 2
+                y_4 = y_list[1]
+            elif x_list[1] < x_list[0] and y_list[1] > y_list[0]:
+                x_1 = x_list[0]
+                x_2 = x_list[1]
+                x_3 = x_2 - (y_list[1] - y_list[0]) / 2
+                x_4 = x_2
+                y_1 = y_list[0]
+                y_2 = y_1
+                y_3 = y_list[0] + (y_list[1] - y_list[0]) / 2
+                y_4 = y_list[1]
+            elif x_list[1] < x_list[0] and y_list[1] < y_list[0]:
+                x_1 = x_list[0]
+                x_2 = x_list[0] - (y_list[1] - y_list[0]) / 2
+                x_3 = x_1
+                x_4 = x_list[1]
+                y_1 = y_list[0]
+                y_2 = y_list[0] + (y_list[1] - y_list[0]) / 2
+                y_3 = y_list[1]
+                y_4 = y_list[1]
+            elif x_list[1] > x_list[0] and y_list[1] < y_list[0]:
+                x_1 = x_list[0]
+                x_2 = x_list[0] + (y_list[1] - y_list[0]) / 2
+                x_3 = x_1
+                x_4 = x_list[1]
+                y_1 = y_list[0]
+                y_2 = y_list[0] + (y_list[1] - y_list[0]) / 2
+                y_3 = y_list[1]
+                y_4 = y_list[1]
+            new_x.extend(([x_1, x_2], [x_2, x_3], [x_3, x_4]))
+            new_y.extend(([y_1, y_2], [y_2, y_3], [y_3, y_4]))
+        self.x, self.y = new_x, new_y
+
+    
+    def Create_Fractal(self, args):
+        default_vars = {"times": 12}
+        self.variables = self.Define_Vars(args, default_vars)
+        for interation_number in range(1, self.variables["times"] + 1):
+            self.Make_Triangle()
+            print("%d de %d" % (interation_number, self.variables["times"]))
+        new_x, new_y = [], []
+        index = 0
+        limit = len(self.x)
+        while index < limit:
+            new_x.extend(self.x[index])
+            new_y.extend(self.y[index])
+            index += 1
+        self.x, self.y = new_x, new_y
+
+
+    def Make_Graph(self, color = "#000000"):
+        print("Montando o Gráfico")
+        plt.plot(self.x, self.y, color = color)
+
+
+#### Execute Sierpinski Triangle
 # sierpins = Sierpinski([], [])
 # sierpins.Create_Fractal({"times": 5})
 # sierpins.Show_Graph()
 
 
-# Execute Sierpinski Carpet
+#### Execute Sierpinski Carpet
 # carpet = SierpinskiCarpet([], [])
 # carpet.Create_Fractal({"times": 5})
 # carpet.Show_Graph()
+
+
+#### Execute Sierpinski Carpet
+# arrow = ArrowHead()
+# arrow.Create_Fractal({})
+# arrow.Make_Graph()
+# arrow.Show_Graph()
