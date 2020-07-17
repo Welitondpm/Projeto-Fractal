@@ -210,7 +210,6 @@ class ArrowHead(Fractal):
 
 
     def Make_Graph(self, color = "#000000"):
-        print("Montando o Gráfico")
         plt.plot(self.x, self.y, color = color)
 
 
@@ -240,7 +239,6 @@ class Chaotic_Triangle(Fractal):
 
 
     def Make_Graph(self, color = "#000000"):
-        print("Montando o Gráfico")
         plt.scatter(self.x, self.y, color = color, s=0.01)
 
 
