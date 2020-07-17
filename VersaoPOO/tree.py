@@ -11,7 +11,7 @@ class Tree(Fractal):
     
 
     def Create_Fractal(self, args = {}):
-        default_vars = {"times": 12, "size": 50, "angle": 15, "z": 0, "zimp": 0, "w": 0, "wimp": 0}
+        default_vars = {"times": 12, "size": 50, "angle": 15, "z": 10, "zimp": 10, "w": 10, "wimp": 10}
         self.variables = self.Define_Vars(args, default_vars)
         self.x = [[0], [0]]
         self.y = [[0], [self.variables["size"]]]
@@ -34,18 +34,17 @@ class Tree(Fractal):
             while len(item) < maximum_size:
                 for subitem in item:
                     disposable_list.extend((subitem, subitem))
-                item = disposable_list[::]
+                item = disposable_list
                 disposable_list = []
             list_of_list_x.append(item)
         for item in self.y:
             while len(item) < maximum_size:
                 for subitem in item:
                     disposable_list.extend((subitem, subitem))
-                item = disposable_list[::]
+                item = disposable_list
                 disposable_list = []
             list_of_list_y.append(item)
-        limit = len(self.x)
-        for item in range(limit - 1):
+        for item in range(maximum_size - 1):
             for subitem in range(len(self.x) - 1):
                 list_x.append(list_of_list_x[subitem][item])
                 list_y.append(list_of_list_y[subitem][item])
