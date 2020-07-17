@@ -80,6 +80,6 @@ class Koch_Tetrahedron(Fractal):
 
 
 #### Execute Koch Tetrahedron
-kochTetrahedron = Koch_Tetrahedron()
-kochTetrahedron.Create_Fractal()
-kochTetrahedron.Show_Graph()
+# kochTetrahedron = Koch_Tetrahedron()
+# kochTetrahedron.Create_Fractal()
+# kochTetrahedron.Show_Graph()

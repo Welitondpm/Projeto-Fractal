@@ -3,59 +3,59 @@ import math
 import random
 
 
-def adicionaproximosangulos(angulo, theta):
-    lista1, lista2 = [], []
-    for item in angulo:
-        lista1.append(item + theta)
-        lista2.append(item - theta)
-    return lista1 + lista2
+# def adicionaproximosangulos(angulo, theta):
+#     lista1, lista2 = [], []
+#     for item in angulo:
+#         lista1.append(item + theta)
+#         lista2.append(item - theta)
+#     return lista1 + lista2
 
 
-def criaunicalista(x, y):
-    listadescartavel = []
-    listax, listadelistax = [], []
-    listay, listadelistay = [], []
-    maxtam = len(x[-1])
-    for item in x:
-        while len(item) < maxtam:
-            for subitem in item:
-                listadescartavel.append(subitem)
-                listadescartavel.append(subitem)
-            item = listadescartavel
-            listadescartavel = []
-        listadelistax.append(item)
-    for item in y:
-        while len(item) < maxtam:
-            for subitem in item:
-                listadescartavel.append(subitem)
-                listadescartavel.append(subitem)
-            item = listadescartavel
-            listadescartavel = []
-        listadelistay.append(item)
-    for item in range(maxtam - 1):
-        for subitem in range(len(x) - 1):
-            listax.append(listadelistax[subitem][item])
-            listay.append(listadelistay[subitem][item])
-        plt.plot(listax, listay, color="black")
-        listax, listay = [], []
+# def criaunicalista(x, y):
+#     listadescartavel = []
+#     listax, listadelistax = [], []
+#     listay, listadelistay = [], []
+#     maxtam = len(x[-1])
+#     for item in x:
+#         while len(item) < maxtam:
+#             for subitem in item:
+#                 listadescartavel.append(subitem)
+#                 listadescartavel.append(subitem)
+#             item = listadescartavel
+#             listadescartavel = []
+#         listadelistax.append(item)
+#     for item in y:
+#         while len(item) < maxtam:
+#             for subitem in item:
+#                 listadescartavel.append(subitem)
+#                 listadescartavel.append(subitem)
+#             item = listadescartavel
+#             listadescartavel = []
+#         listadelistay.append(item)
+#     for item in range(maxtam - 1):
+#         for subitem in range(len(x) - 1):
+#             listax.append(listadelistax[subitem][item])
+#             listay.append(listadelistay[subitem][item])
+#         plt.plot(listax, listay, color="black")
+#         listax, listay = [], []
 
 
-def imperfeiciona(x, imperfeicao):
-    if type(x) == int or type(x) == float:
-        return x * 1 - imperfeicao / 200 + (random.random() * imperfeicao) / 100
-    else:
-        novox = []
-        for item in x:
-            if type(item) == int or type(item) == float:
-                item *= 1 - imperfeicao / 200 + (random.random() * imperfeicao) / 100
-                novox.append(item)
-            else:
-                novoxlista = []
-                for subitem in item:
-                    subitem *= 1 - imperfeicao / 200 + (random.random() * imperfeicao) / 100
-                    novoxlista.append(subitem)
-                novox.append(novoxlista)
-        return novox
+# def imperfeiciona(x, imperfeicao):
+#     if type(x) == int or type(x) == float:
+#         return x * 1 - imperfeicao / 200 + (random.random() * imperfeicao) / 100
+#     else:
+#         novox = []
+#         for item in x:
+#             if type(item) == int or type(item) == float:
+#                 item *= 1 - imperfeicao / 200 + (random.random() * imperfeicao) / 100
+#                 novox.append(item)
+#             else:
+#                 novoxlista = []
+#                 for subitem in item:
+#                     subitem *= 1 - imperfeicao / 200 + (random.random() * imperfeicao) / 100
+#                     novoxlista.append(subitem)
+#                 novox.append(novoxlista)
+#         return novox
 
 
 def fazarvore(x, y, ang, tamanho, z, w, wimp, zimp, theta):
