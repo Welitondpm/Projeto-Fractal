@@ -1,14 +1,10 @@
 import matplotlib.pyplot as plt
-from main import Fractal
+from fractal import Fractal
 
 
-class Hilbert_Curve(Fractal):
-    def __init__(self, x = [], y = []):
-        self.x = x
-        self.y = y
-    
-
-    def Create_Fractal(self, args = {}):
+class HilbertCurve(Fractal):
+    def __init__(self, x = [], y = [], args = {}):
+        Fractal.__init__(self, x, y)
         default_vars = {"times": 5, "scale": 1}
         self.variables = self.Define_Vars(args, default_vars)
         self.x = [0, 0, self.variables["scale"], self.variables["scale"]]
@@ -16,9 +12,9 @@ class Hilbert_Curve(Fractal):
         iteration_number = 0
         while iteration_number < self.variables["times"]:
             iteration_number += 1
-            self.DoCalculation(iteration_number)
+            self.Do_Calculation(iteration_number)
             print("%d of %d" % (iteration_number, self.variables["times"]))
-        self.Make_Graph()
+        self.Make_Graph()     
 
 
     def Make_Graph(self, color = "#000000"):
@@ -52,7 +48,7 @@ class Hilbert_Curve(Fractal):
         return new_x, new_y
 
 
-    def DoCalculation(self, iteration_number):
+    def Do_Calculation(self, iteration_number):
         size = self.x[-1] - self.x[0]
         disposable_list = []
         new_x, new_y = [], []
@@ -83,10 +79,3 @@ class Hilbert_Curve(Fractal):
         for item in [y_3[::-1], self.y, self.y, y_4]:
             new_y.extend(item)
         self.x, self.y = new_x, new_y
-
-
-#### Execute Hilbert Curve
-# hilbert = Hilbert_Curve()
-# hilbert.Create_Fractal()
-# hilbert.Make_Graph()
-# hilbert.Show_Graph()

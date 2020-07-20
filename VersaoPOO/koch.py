@@ -1,30 +1,26 @@
 import matplotlib.pyplot as plt
-from main import Fractal
+from fractal import Fractal
 import math
 
 
 class Koch(Fractal):
-    def __init__(self, x = [], y = []):
-        self.x = x
-        self.y = y
-    
-
-    def Create_Fractal(self, args = {}):
+    def __init__(self, x = [], y = [], args = {}):
+        Fractal.__init__(self, x, y)
         default_vars = {"times": 5, "amount_of_sides": 3, "size": 10}
         self.variables = self.Define_Vars(args, default_vars)
         self.x = [0, self.variables["size"]]
         self.y = [0, 0]
-        for interation_number in range(self.variables["times"]):
-            print("%d de %d" % (interation_number + 1, self.variables["times"]))
-            self.x, self.y = self.DoCalculation()
+        for iteration_number in range(self.variables["times"]):
+            print("%d de %d" % (iteration_number + 1, self.variables["times"]))
+            self.x, self.y = self.Do_Calculation()
         self.Make_Graph()
-
+    
 
     def Make_Graph(self, color = "#000000"):
         plt.plot(self.x, self.y, color = color)
 
 
-    def DoCalculation(self):
+    def Do_Calculation(self):
         sum_of_integer_angles = 180 * (self.variables["amount_of_sides"] - 2)
         angle = sum_of_integer_angles / self.variables["amount_of_sides"] * math.pi / 180
         angle_backup = angle
@@ -60,11 +56,3 @@ class Koch(Fractal):
             new_final_x.extend(new_x)
             new_final_y.extend(new_y)
         return new_final_x, new_final_y
-
-
-
-#### Execute Generalization of the Koch
-# koch = Koch()
-# koch.Create_Fractal({"amount_of_sides":6})
-# koch.Make_Graph()
-# koch.Show_Graph()

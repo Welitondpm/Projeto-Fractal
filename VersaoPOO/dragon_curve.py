@@ -1,14 +1,10 @@
 import matplotlib.pyplot as plt
-from main import Fractal
+from fractal import Fractal
 
 
-class Dragon_Curve(Fractal):
-    def __init__(self, x = [], y = []):
-        self.x = x
-        self.y = y
-
-
-    def Create_Fractal(self, args = {}):
+class DragonCurve(Fractal):
+    def __init__(self, x = [], y = [], args = {}):
+        Fractal.__init__(self, x, y)
         default_vars = {"times": 10, "scale_corrector": False}
         self.variables = self.Define_Vars(args, default_vars)
         self.x = [0, 1]
@@ -16,7 +12,7 @@ class Dragon_Curve(Fractal):
         iteration_number = 0
         while iteration_number < self.variables["times"]:
             iteration_number += 1
-            self.DoCalculation()
+            self.Do_Calculation()
             if self.variables["scale_corrector"] and iteration_number > 2:
                 self.Scale_Corrector()
             print("%d of %d" % (iteration_number, self.variables["times"]))
@@ -27,7 +23,7 @@ class Dragon_Curve(Fractal):
         plt.plot(self.x, self.y, color = color)
 
 
-    def DoCalculation(self):
+    def Do_Calculation(self):
         new_x = [self.x[-1]]
         new_y = [self.y[-1]]
         limit = len(self.x)
@@ -47,10 +43,3 @@ class Dragon_Curve(Fractal):
             new_y.append(self.y[index] / (2 ** 0.5))
             index += 1
         self.x, self.y = new_x, new_y
-
-
-#### Execute Dragon Curve
-# dragoncurve = Dragon_Curve()
-# dragoncurve.Create_Fractal()
-# dragoncurve.Make_Graph()
-# dragoncurve.Show_Graph()

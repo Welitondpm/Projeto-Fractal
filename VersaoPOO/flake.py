@@ -1,30 +1,26 @@
 import matplotlib.pyplot as plt
-from main import Fractal
+from fractal import Fractal
 import math
 
 
 class Flake(Fractal):
-    def __init__(self, x = [], y = []):
-        self.x = x
-        self.y = y
-    
-
-    def Create_Fractal(self, args = {}):
+    def __init__(self, x = [], y = [], args = {}):
+        Fractal.__init__(self, x, y)
         default_vars = {"times": 5, "amount_of_sides": 7, "size": 10, "inwards_out_wards": False}
         self.variables = self.Define_Vars(args, default_vars)
         self.x = [0, self.variables["size"]]
         self.y = [0, 0]
-        for interation_number in range(self.variables["times"]):
-            print("%d de %d" % (interation_number + 1, self.variables["times"]))
-            self.x, self.y = self.DoCalculation(interation_number)
-        self.Make_Graph()
+        for iteration_number in range(self.variables["times"]):
+            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
+            self.x, self.y = self.Do_Calculation(iteration_number)
+        self.Make_Graph()       
 
 
     def Make_Graph(self, color = "#000000"):
         plt.fill(self.x, self.y, color = color)
 
 
-    def DoCalculation(self, interation_number):
+    def Do_Calculation(self, iteration_number):
         sum_of_integer_angles = 180 * (self.variables["amount_of_sides"] - 2)
         angle = sum_of_integer_angles / self.variables["amount_of_sides"] * math.pi / 180
         angle_backup = angle
@@ -44,7 +40,7 @@ class Flake(Fractal):
                 current_angle = 3 * math.pi / 2
             else:
                 continue
-            if interation_number == 0:
+            if iteration_number == 0:
                 distance_x_y = 3 * distance_x_y
                 new_x = [self.x[index]]
                 new_y = [self.y[index]]
@@ -58,7 +54,7 @@ class Flake(Fractal):
                 angle -= (math.pi - angle_backup)
                 counter_while += 1
             angle = angle_backup
-            if interation_number == 0:
+            if iteration_number == 0:
                 new_x += [self.x[index + 1]]
                 new_y += [self.y[index + 1]]
                 new_x += [self.x[index]]
@@ -74,10 +70,3 @@ class Flake(Fractal):
             new_final_x.extend(new_x)
             new_final_y.extend(new_y)
         return new_final_x, new_final_y
-
-
-#### Execute Generalization of the Flake
-# snowflake = Flake()
-# snowflake.Create_Fractal({"inwards_out_wards": True})
-# snowflake.Make_Graph()
-# snowflake.Show_Graph()

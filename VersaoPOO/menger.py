@@ -1,21 +1,15 @@
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
-from main import Fractal
+from fractal_3d import Fractal3d
 
 
-class Menger(Fractal):
-    def __init__(self, x, y, z):
-        # Fractal.__init__(self, x, y)
-        self.x = x
-        self.y = y
-        self.z = z
-
-
-    def Create_Fractal(self, args):
-        default_vars = {"times": 3, "size": 50}
-        self.variables = self.Define_Vars(args, default_vars)
+class Menger(Fractal3d):
+    def __init__(self, x = [], y = [], z = [], args = {}):
         fig = plt.figure()
         sub = fig.add_subplot(1, 1, 1, projection="3d")
+        Fractal3d.__init__(self, x, y, z)
+        default_vars = {"times": 3, "size": 50}
+        self.variables = self.Define_Vars(args, default_vars)
         interation_number = 0
         self.x = [[0, 0, self.variables["size"], self.variables["size"], self.variables["size"], self.variables["size"], 0, 0]]
         self.y = [[0, self.variables["size"], self.variables["size"], 0, 0, self.variables["size"], self.variables["size"], 0]]
@@ -101,11 +95,8 @@ class Menger(Fractal):
 
 
 class ColorfulMenger(Menger):
-    def __init__(self, x, y, z):
-        # Fractal.__init__(self, x, y)
-        self.x = x
-        self.y = y
-        self.z = z
+    def __init__(self, x = [], y = [], z = [], args = {}):
+        Menger.__init__(self, x, y, z, args)
 
     
     def Make_Graph(self):
@@ -126,10 +117,21 @@ class ColorfulMenger(Menger):
 
 
 class SierpinskiTetrahedron(Menger):
-    def __init__(self, x, y, z):
-        self.x = x
-        self.y = y
-        self.z = z
+    def __init__(self, x = [], y = [], z = [], args = {}):
+        Fractal3d.__init__(self, x, y, z)
+        fig = plt.figure()
+        sub = fig.add_subplot(1, 1, 1, projection="3d")
+        default_vars = {"times": 4, "size": 50}
+        self.variables = self.Define_Vars(args, default_vars)
+        interation_number = 0
+        self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2, 0]]
+        self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6, 0]]
+        self.z = [[- self.variables["size"] * 3 ** 0.5 / 24, - self.variables["size"] * 3 ** 0.5 / 24, - self.variables["size"] * 3 ** 0.5 / 24, self.variables["size"] * 3 ** 0.5 / 12]]
+        while interation_number < self.variables["times"]:
+            interation_number += 1
+            self.Setting_Function()
+            print("%d of %d" % (interation_number, self.variables["times"]))
+        self.Make_Graph()
 
 
     def Seed_Aplication(self, x, y, z):
@@ -174,30 +176,12 @@ class SierpinskiTetrahedron(Menger):
         x = [x[0], x[1], x[2], x[0], x[3], x[1], x[2], x[3]]
         y = [y[0], y[1], y[2], y[0], y[3], y[1], y[2], y[3]]
         z = [z[0], z[1], z[2], z[0], z[3], z[1], z[2], z[3]]
-        return x, y, z
-
-
-    def Create_Fractal(self, args):
-        default_vars = {"times": 4, "size": 50}
-        self.variables = self.Define_Vars(args, default_vars)
-        fig = plt.figure()
-        sub = fig.add_subplot(1, 1, 1, projection="3d")
-        interation_number = 0
-        self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2, 0]]
-        self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6, 0]]
-        self.z = [[- self.variables["size"] * 3 ** 0.5 / 24, - self.variables["size"] * 3 ** 0.5 / 24, - self.variables["size"] * 3 ** 0.5 / 24, self.variables["size"] * 3 ** 0.5 / 12]]
-        while interation_number < self.variables["times"]:
-            interation_number += 1
-            self.Setting_Function()
-            print("%d of %d" % (interation_number, self.variables["times"]))
-        self.Make_Graph()
+        return x, y, z        
 
 
 class ColorfulSierpinskiTetrahedron(SierpinskiTetrahedron):
-    def __init__(self, x, y, z):
-        self.x = x
-        self.y = y
-        self.z = z
+    def __init__(self, x = [], y = [], z = [], args = {}):
+        SierpinskiTetrahedron.__init__(self, x, y, z, args)
 
     
     def Make_Graph(self):
@@ -211,27 +195,3 @@ class ColorfulSierpinskiTetrahedron(SierpinskiTetrahedron):
             else:
                 color = "0" + color[-1]
             plt.plot(new_x, new_y, new_z, color = "#" + color + color + color, linewidth = 0.5)
-
-
-#### Execute Menger Sponge
-# menger = Menger([], [], [])
-# menger.Create_Fractal({"times": 3})
-# menger.Show_Graph()
-
-
-#### Execute Colorful Menger Sponge
-# mengercolor = ColorfulMenger([], [], [])
-# mengercolor.Create_Fractal({"times": 3})
-# mengercolor.Show_Graph()
-
-
-#### Execute Sierpinski
-# sierpinstetra = SierpinskiTetrahedron([], [], [])
-# sierpinstetra.Create_Fractal({"times": 4})
-# sierpinstetra.Show_Graph()
-
-
-#### Execute Colorful Sierpinski
-# sierpinstetracolor = ColorfulSierpinskiTetrahedron([], [], [])
-# sierpinstetracolor.Create_Fractal({"times": 4})
-# sierpinstetracolor.Show_Graph()

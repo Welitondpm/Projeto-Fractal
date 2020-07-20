@@ -1,14 +1,10 @@
 import matplotlib.pyplot as plt
-from main import Fractal
+from fractal import Fractal
 
 
-class Cantor_Set(Fractal):
-    def __init__(self, x = [], y = []):
-        self.x = x
-        self.y = y
-
-
-    def Create_Fractal(self, args = {}):
+class CantorSet(Fractal):
+    def __init__(self, x = [], y = [], args = {}):
+        Fractal.__init__(self, x, y)
         default_vars = {"times": 10, "size": 50}
         self.variables = self.Define_Vars(args, default_vars)
         self.x = [[0, self.variables["size"]]]
@@ -44,10 +40,3 @@ class Cantor_Set(Fractal):
         x_3 = x_position[1]
         x_4 = x_3 - ((x_position[1] - x_position[0]) / 3)
         return ([x_1, x_2], [x_3, x_4]), ([value_of_y, value_of_y], [value_of_y, value_of_y])
-
-
-#### Execute Cantor Set
-# cantorSet = Cantor_Set()
-# cantorSet.Create_Fractal()
-# cantorSet.Make_Graph()
-# cantorSet.Show_Graph()

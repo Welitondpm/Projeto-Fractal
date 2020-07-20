@@ -1,13 +1,12 @@
 import matplotlib.pyplot as plt
-from main import Fractal
+from fractal import Fractal
 from random import randint
 
 
 class Sierpinski(Fractal):
-    def __init__(self, x, y):
+    def __init__(self, x = [], y = [], args = {}):
         Fractal.__init__(self, x, y)
-        self.x = x
-        self.y = y
+        self.Create_Fractal(args)
 
 
     def Create_Fractal(self, args = {}):
@@ -31,7 +30,7 @@ class Sierpinski(Fractal):
             x, y = self.Sierpinski_Triangle(self.x[item], self.y[item])
             new_x.extend(x)
             new_y.extend(y)
-        self.x, self.y = new_x, new_y # Suposto Fatiamento Necessário
+        self.x, self.y = new_x, new_y
 
     
     def Sierpinski_Triangle(self, x, y):
@@ -74,10 +73,8 @@ class Sierpinski(Fractal):
 
 
 class SierpinskiCarpet(Sierpinski):
-    def __init__(self, x, y):
-        Sierpinski.__init__(self, x, y)
-        self.x = x
-        self.y = y
+    def __init__(self, x = [], y = [], args = {}):
+        Sierpinski.__init__(self, x, y, args)
 
     
     def Sierpinski_Triangle(self, x, y):
@@ -123,9 +120,22 @@ class SierpinskiCarpet(Sierpinski):
 
 
 class ArrowHead(Fractal):
-    def __init__(self, x = [[0, 1]], y = [[0, 0]]):
-        self.x = x
-        self.y = y
+    def __init__(self, x = [[0, 1]], y = [[0, 0]], args = {}):
+        Fractal.__init__(self, x, y)
+        default_vars = {"times": 12}
+        self.variables = self.Define_Vars(args, default_vars)
+        for interation_number in range(1, self.variables["times"] + 1):
+            self.Make_Triangle()
+            print("%d of %d" % (interation_number, self.variables["times"]))
+        new_x, new_y = [], []
+        index = 0
+        limit = len(self.x)
+        while index < limit:
+            new_x.extend(self.x[index])
+            new_y.extend(self.y[index])
+            index += 1
+        self.x, self.y = new_x, new_y
+        self.Make_Graph()
 
 
     def Make_Triangle(self):
@@ -192,31 +202,18 @@ class ArrowHead(Fractal):
             new_y.extend(([y_1, y_2], [y_2, y_3], [y_3, y_4]))
         self.x, self.y = new_x, new_y
 
-    
-    def Create_Fractal(self, args = {}):
-        default_vars = {"times": 12}
-        self.variables = self.Define_Vars(args, default_vars)
-        for interation_number in range(1, self.variables["times"] + 1):
-            self.Make_Triangle()
-            print("%d de %d" % (interation_number, self.variables["times"]))
-        new_x, new_y = [], []
-        index = 0
-        limit = len(self.x)
-        while index < limit:
-            new_x.extend(self.x[index])
-            new_y.extend(self.y[index])
-            index += 1
-        self.x, self.y = new_x, new_y
-
 
     def Make_Graph(self, color = "#000000"):
         plt.plot(self.x, self.y, color = color)
 
 
-class Chaotic_Triangle(Fractal):
-    def __init__(self, x = [0, 50, -50], y = [7500 ** 0.5, 0, 0]):
-        self.x = x
-        self.y = y
+class ChaoticTriangle(Fractal):
+    def __init__(self, x = [0, 50, -50], y = [7500 ** 0.5, 0, 0], args = {}):
+        Fractal.__init__(self, x, y)
+        default_vars = {"times": 1000000, "value": 2}
+        self.variables = self.Define_Vars(args, default_vars)
+        self.Make_Chaotic_Triangle()
+        self.Make_Graph()
 
 
     def Make_Chaotic_Triangle(self):
@@ -232,22 +229,13 @@ class Chaotic_Triangle(Fractal):
             counter += 1
 
 
-    def Create_Fractal(self, args = {}):
-        default_vars = {"times": 1000000, "value": 2}
-        self.variables = self.Define_Vars(args, default_vars)
-        self.Make_Chaotic_Triangle()
-
-
     def Make_Graph(self, color = "#000000"):
         plt.scatter(self.x, self.y, color = color, s=0.01)
 
 
-class Sierpinski_Pascal(Fractal):
-    def __init__(self):
+class SierpinskiPascal(Fractal):
+    def __init__(self, args = {}):
         self.string_line = ""
-
-
-    def Create_Fractal(self, args = {}):
         default_vars = {"times": 20}
         self.variables = self.Define_Vars(args, default_vars)
         number_line = 0
@@ -297,34 +285,3 @@ class Sierpinski_Pascal(Fractal):
                     item_1 = " " + item_1
             string_line += item_1
         return string_line
-
-
-#### Execute Sierpinski Triangle
-# sierpins = Sierpinski([], [])
-# sierpins.Create_Fractal({"times": 5})
-# sierpins.Show_Graph()
-
-
-#### Execute Sierpinski Carpet
-# carpet = SierpinskiCarpet([], [])
-# carpet.Create_Fractal({"times": 5})
-# carpet.Show_Graph()
-
-
-#### Execute Sierpinski Carpet
-# arrow = ArrowHead()
-# arrow.Create_Fractal()
-# arrow.Make_Graph()
-# arrow.Show_Graph()
-
-
-#### Execute Chaotic Sierpinski
-# chaotic = Chaotic_Triangle()
-# chaotic.Create_Fractal()
-# chaotic.Make_Graph()
-# chaotic.Show_Graph()
-
-
-#### Execute Sierpinski Base Pascal
-# basePascal = Sierpinski_Pascal()
-# basePascal.Create_Fractal()

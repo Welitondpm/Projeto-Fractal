@@ -1,14 +1,17 @@
 import matplotlib.pyplot as plt
-from main import Fractal
+from fractal import Fractal
 
 
 class Mandelbrot(Fractal):
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+    def __init__(self, x = [], y = [], args = {}):
+        Fractal.__init__(self, x, y)
+        default_vars = {"depth": 50, "real_numbers": 2, "imaginary_numbers": 2, "density": 200, "amount_of_colors": 12}
+        self.variables = self.Define_Vars(args, default_vars)
+        self.Pre_Calculation()
+        self.Go_Through_Universe()
 
 
-    def pre_calculation(self):
+    def Pre_Calculation(self):
         list_of_lists_x = []
         list_of_lists_y = []
         for item in range(self.variables["amount_of_colors"]):
@@ -33,14 +36,14 @@ class Mandelbrot(Fractal):
                 for counter in range(self.variables["depth"]):
                     z = z * z + c
                     if abs(z) > self.variables["depth"]:
-                        self.coloring_separator(counter, real_number, imaginary_number)
+                        self.Coloring_Separator(counter, real_number, imaginary_number)
                         break
                     elif abs(z) < self.limit:
                         self.x[-1].append(real_number)
                         self.y[-1].append(imaginary_number)
 
 
-    def coloring_separator(self, counter, real_number, imaginary_number):
+    def Coloring_Separator(self, counter, real_number, imaginary_number):
         counter2 = 1
         while counter2 < self.variables["amount_of_colors"]:
             if counter < self.variables["depth"] / (2 ** counter2):
@@ -49,7 +52,7 @@ class Mandelbrot(Fractal):
             counter2 += 1
 
 
-    def define_colors_unique(self):
+    def Define_Colors_Unique(self):
         limit = len(self.x)
         for item in range(limit):
             color = (str(hex(int(16777216 * item // limit)))[2:])
@@ -59,22 +62,22 @@ class Mandelbrot(Fractal):
             plt.scatter(self.x[item], self.y[item], s=self.dot_size, color = color)
 
 
-    def define_colors_multi(self):
+    def Define_Colors_Multi(self):
         limit = len(self.x)
         for item in range(limit):
             R, G, B = 0, 0, 0
             if item <= limit / 6:
                 R, G, B = 255 * 6 * item / limit, 0, 0
             elif item <= limit / 3:
-                R, G, B = 255, 255 * 6 * item / limit, 0
+                R, G, B = 255, 255 * 3 * item / limit, 0
             elif item <= limit / 2:
-                R, G, B = 255 - (255 * 6 * item / limit), 255, 0
+                R, G, B = 255 - (255 * 2 * item / limit), 255, 0
             elif item <= limit * 2 / 3:
-                R, G, B = 0, 255, 255 * 6 * item / limit
+                R, G, B = 0, 255, 255 * 2 / 3 * item / limit
             elif item <= limit * 5 / 6:
-                R, G, B = 0, 255 - (255 * 6 * item / limit), 255
+                R, G, B = 0, 255 - (255 * 5 / 6 * item / limit), 255
             else:
-                R, G, B = 255 * 6 * item / limit, 0, 255
+                R, G, B = 255 * 1 * item / limit, 0, 255
             R, G, B = str(hex(int(R)))[2:], str(hex(int(G)))[2:], str(hex(int(B)))[2:]
             while len(R) < 2:
                 R = '0' + R
@@ -92,20 +95,12 @@ class Mandelbrot(Fractal):
             plt.scatter(self.x[item], self.y[item], s=self.dot_size, color = color)
 
 
-    def Create_Fractal(self, args):
-        default_vars = {"depth": 50, "real_numbers": 2, "imaginary_numbers": 2, "density": 200, "amount_of_colors": 12}
-        self.variables = self.Define_Vars(args, default_vars)
-        self.pre_calculation()
-        self.Go_Through_Universe()
+class HarmonicMandelbrot(Mandelbrot):
+    def __init__(self, x = [], y = [], args = {}):
+        Mandelbrot.__init__(self, x, y, args)
 
 
-class Harmonic_Mandelbrot(Mandelbrot):
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-
-    def coloring_separator(self, counter, real_number, imaginary_number):
+    def Coloring_Separator(self, counter, real_number, imaginary_number):
         counter2 = 2
         while counter2 < self.variables["amount_of_colors"]:
             if counter < self.variables["depth"] / counter2:
@@ -114,40 +109,15 @@ class Harmonic_Mandelbrot(Mandelbrot):
             counter2 += 1
 
 
-class Segmented_Mandelbrot(Mandelbrot):
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+class SegmentedMandelbrot(Mandelbrot):
+    def __init__(self, x = [], y = [], args = {}):
+        Mandelbrot.__init__(self, x, y, args)
 
 
-    def coloring_separator(self, counter, real_number, imaginary_number):
+    def Coloring_Separator(self, counter, real_number, imaginary_number):
         counter2 = self.variables["amount_of_colors"]
         while counter2 >= 1:
             if counter < self.variables["depth"] / counter2:
                 self.x[counter2 - 1].append(real_number)
                 self.y[counter2 - 1].append(imaginary_number)
             counter2 -= 1
-
-
-#### Execute Logarithmic Mandelbrot 
-# mandelbrot = Mandelbrot([], [])
-# mandelbrot.Create_Fractal({"amount_of_colors": 12})
-# mandelbrot.define_colors_unique()       ## Atenção nunca execute essa linha junto com a inferior
-# # mandelbrot.define_colors_multi()      ## Atenção nunca execute essa linha junto com superior
-# mandelbrot.Show_Graph()
-
-
-#### Execute Harmonic Mandelbrot
-# mandelbrot = Harmonic_Mandelbrot([], [])
-# mandelbrot.Create_Fractal({"amount_of_colors":500, "depth":200})
-# mandelbrot.define_colors_unique()       ## Atenção nunca execute essa linha junto com a inferior
-# # mandelbrot.define_colors_multi()      ## Atenção nunca execute essa linha junto com superior
-# mandelbrot.Show_Graph()
-
-
-#### Execute Segmented Mandelbrot
-# mandelbrot = Segmented_Mandelbrot([], [])
-# mandelbrot.Create_Fractal({})
-# mandelbrot.define_colors_unique()       ## Atenção nunca execute essa linha junto com a inferior
-# # mandelbrot.define_colors_multi()      ## Atenção nunca execute essa linha junto com superior
-# mandelbrot.Show_Graph()

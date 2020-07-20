@@ -1,17 +1,13 @@
 import matplotlib.pyplot as plt
-from main import Fractal
+from fractal import Fractal
 import random
 import math
 
 
 class Tree(Fractal):
-    def __init__(self, x = [], y = []):
-        self.x = x
-        self.y = y
-    
-
-    def Create_Fractal(self, args = {}):
-        default_vars = {"times": 12, "size": 50, "angle": 15, "z": 10, "zimp": 10, "w": 10, "wimp": 10}
+    def __init__(self, x = [], y = [], args = {}):
+        Fractal.__init__(self, x, y)
+        default_vars = {"times": 12, "size": 50, "angle": 15, "z": 0, "zimp": 0, "w": 0, "wimp": 0}
         self.variables = self.Define_Vars(args, default_vars)
         self.x = [[0], [0]]
         self.y = [[0], [self.variables["size"]]]
@@ -20,7 +16,7 @@ class Tree(Fractal):
         self.variables["z"] = 1 - self.variables["z"] / 100 + self.variables["z"] / 50
         self.variables["w"] = 1 - self.variables["w"] / 100 + self.variables["w"] / 50
         for iteration_number in range(self.variables["times"]):
-            self.DoCalculation()
+            self.Do_Calculation()
             print("%d of %d" % (iteration_number + 1, self.variables["times"]))
         self.Make_Graph()
 
@@ -78,7 +74,7 @@ class Tree(Fractal):
         self.variables["angle"] = list_1 + list_2
 
 
-    def DoCalculation(self):
+    def Do_Calculation(self):
         new_angle = []
         for item in self.variables["angle"]:
             item *= self.Imperfectionate(self.variables["w"], self.variables["wimp"])
@@ -96,10 +92,3 @@ class Tree(Fractal):
         self.x.append(new_x)
         self.y.append(new_y)
         self.Add_Angles()
-
-
-#### Execute Tree
-fractalTree = Tree()
-fractalTree.Create_Fractal()
-fractalTree.Make_Graph()
-fractalTree.Show_Graph()

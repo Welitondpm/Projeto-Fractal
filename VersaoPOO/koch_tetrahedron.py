@@ -1,17 +1,12 @@
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
-from main import Fractal
+from fractal_3d import Fractal3d
 import math
 
 
-class Koch_Tetrahedron(Fractal):
-    def __init__(self, x = [], y = [], z = []):
-        self.x = x
-        self.y = y
-        self.z = z
-
-
-    def Create_Fractal(self, args = {}):
+class KochTetrahedron(Fractal3d):
+    def __init__(self, x = [], y = [], z = [], args = {}):
+        Fractal3d.__init__(self, x, y, z)
         default_vars = {"times": 3, "size": 1}
         self.variables = self.Define_Vars(args, default_vars)
         fig = plt.figure()
@@ -49,7 +44,7 @@ class Koch_Tetrahedron(Fractal):
                     all_y_lists += [new_y]
                     all_z_lists += [new_z]
                     new_x, new_y, new_z = [], [], []
-            self.x, self.y, self.z = all_x_lists[::], all_y_lists[::], all_z_lists[::]
+            self.x, self.y, self.z = all_x_lists[::], all_y_lists[::], all_z_lists[::]    
         
 
     def Make_Graph(self, x, y, z, sub, color = "#000000"):
@@ -77,9 +72,3 @@ class Koch_Tetrahedron(Fractal):
         if iteration_number == 0:
             return (face_1, face_2, face_3, face_4)
         return (triangle_1, triangle_2, triangle_3, face_2, face_3, face_4)
-
-
-#### Execute Koch Tetrahedron
-# kochTetrahedron = Koch_Tetrahedron()
-# kochTetrahedron.Create_Fractal()
-# kochTetrahedron.Show_Graph()

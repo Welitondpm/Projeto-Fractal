@@ -1,54 +1,110 @@
-# from propriedades/propriedade_por_quadrado.py import *
-from matplotlib.backends.backend_pdf import PdfPages
-import matplotlib.pyplot as plt
-import time
+#### Execute Cantor Set
+# cantor_set = CantorSet()
+# cantor_set.Show_Graph()
 
 
-class Fractal():
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        print("Instância Criada (Fractal)")
+#### Execute Dragon Curve
+# dragon_curve = DragonCurve()
+# dragon_curve.Show_Graph()
 
-    
-    def Save_Pdf(self, file_name = "fractal", color = "#000000"):
-        plt.plot(self.x, self.y, color = color)
-        file_name = file_name + ".pdf"
-        with PdfPages(file_name) as export_pdf:
-            export_pdf.savefig()
 
-        
-    def Cronometer(self, args):
-        start = time.time()
-        self.Create_Fractal(args)
-        the_end = time.time()
-        print(str(round(the_end - start, 5)) + "s")
+#### Execute Generalization of the Flake
+# snow_flake = Flake(args = {"inwards_out_wards": True})
+# snow_flake.Show_Graph()
 
-    
-    def Define_Vars(self, args, default_vars):
-        for variable in default_vars:
-            if variable in args:
-                default_vars[variable] = args[variable]
-        return default_vars
 
-    
-    def Show_Graph(self):
-        print("Make Graph")
-        plt.show()
+#### Execute Hilbert Curve
+# hilbert = HilbertCurve()
+# hilbert.Show_Graph()
 
-    
-    # def Create_Sigle_List(self):
-    #     """ List of List """
-    #     new_x = []
-    #     new_y = []
-    #     for item in self.x:
-    #         new_x.extend(item)
-    #     for item in self.y:
-    #         new_y.extend(item)
-    #     return new_x, new_y  # Usar Self
 
-    
-    # def Does_Square_Property(self):
-    #     FazCalculo(self.x, self.y, self.value)
-    #     print("Montando o Gráfico")
-    #     plt.show()
+#### Execute Inverted Binary
+# binary = InvertedBinary()
+# binary.Show_Graph()
+
+
+#### Execute Generalization of the Koch
+# koch = Koch(args = {"amount_of_sides": 6})
+# koch.Show_Graph()
+
+
+##############################
+##############################
+##############################
+#### Execute Koch Tetrahedron
+# kochTetrahedron = KochTetrahedron()
+# kochTetrahedron.Show_Graph()
+
+
+#### Execute Menger Sponge
+# menger = Menger(args = {"times": 3})
+# menger.Show_Graph()
+
+
+#### Execute Colorful Menger Sponge
+# mengercolor = ColorfulMenger(args = {"times": 3})
+# mengercolor.Show_Graph()
+
+
+#### Execute Sierpinski
+# sierpinstetra = SierpinskiTetrahedron(args = {"times": 4})
+# sierpinstetra.Show_Graph()
+
+
+#### Execute Colorful Sierpinski
+# sierpinstetracolor = ColorfulSierpinskiTetrahedron(args = {"times": 4})
+# sierpinstetracolor.Show_Graph()
+##############################
+##############################
+##############################
+
+
+#### Execute Logarithmic Mandelbrot 
+# mandelbrot = Mandelbrot(args = {"amount_of_colors": 12})
+# # # mandelbrot.Define_Colors_Unique()       ## Atenção nunca execute essa linha junto com a inferior
+# mandelbrot.Define_Colors_Multi()      ## Atenção nunca execute essa linha junto com superior
+# mandelbrot.Show_Graph()
+
+
+#### Execute Harmonic Mandelbrot
+# mandelbrot = HarmonicMandelbrot(args = {"amount_of_colors":200, "depth":200})
+# mandelbrot.Define_Colors_Unique()       ## Atenção nunca execute essa linha junto com a inferior
+# # mandelbrot.Define_Colors_Multi()      ## Atenção nunca execute essa linha junto com superior
+# mandelbrot.Show_Graph()
+
+
+#### Execute Segmented Mandelbrot
+# mandelbrot = SegmentedMandelbrot()
+# mandelbrot.Define_Colors_Unique()       ## Atenção nunca execute essa linha junto com a inferior
+# # mandelbrot.Define_Colors_Multi()      ## Atenção nunca execute essa linha junto com superior
+# mandelbrot.Show_Graph()
+
+
+#### Execute Sierpinski Triangle
+# sierpins = Sierpinski(args = {"times": 5})
+# sierpins.Show_Graph()
+
+
+#### Execute Sierpinski Carpet
+# carpet = SierpinskiCarpet()
+# carpet.Show_Graph()
+
+
+#### Execute Linear Sierpinski
+# arrow = ArrowHead()
+# arrow.Show_Graph()
+
+
+#### Execute Chaotic Sierpinski
+# chaotic = ChaoticTriangle()
+# chaotic.Show_Graph()
+
+
+#### Execute Sierpinski Base Pascal
+# basePascal = SierpinskiPascal()
+# basePascal.Create_Fractal()
+
+
+#### Execute Tree
+# fractalTree = Tree()
+# fractalTree.Show_Graph()

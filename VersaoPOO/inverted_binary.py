@@ -1,14 +1,10 @@
 import matplotlib.pyplot as plt
-from main import Fractal
+from fractal import Fractal
 
 
-class Inverted_Binary(Fractal):
-    def __init__(self, x = [], y = []):
-        self.x = x
-        self.y = y
-
-
-    def Create_Fractal(self, args = {}):
+class InvertedBinary(Fractal):
+    def __init__(self, x = [], y = [], args = {}):
+        Fractal.__init__(self, x, y)
         default_vars = {"end": 18}
         self.variables = self.Define_Vars(args, default_vars)
         self.variables["end"] = 2 ** self.variables["end"]
@@ -54,10 +50,3 @@ class Inverted_Binary(Fractal):
             binary_sum += (item * (2 ** index))
             index += 1
         return binary_sum
-
-
-#### Execute Inverted Binary
-# binary = Inverted_Binary()
-# binary.Create_Fractal()
-# binary.Make_Graph()
-# binary.Show_Graph()
