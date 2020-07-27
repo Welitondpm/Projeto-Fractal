@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from fractal import Fractal
+from property_per_square_OOP import PropertyPerSquare
 
 
 class InvertedBinary(Fractal):
@@ -7,16 +8,47 @@ class InvertedBinary(Fractal):
         Fractal.__init__(self, x, y)
         default_vars = {"end": 18}
         self.variables = self.Define_Vars(args, default_vars)
+        self.start = 0
+
+    
+    def Create_Fractal(self):
         self.variables["end"] = 2 ** self.variables["end"]
-        for point_x in range(self.variables["end"]):
-            point_y = 0
+        self.Do_Calculation()
+        self.Make_Graph()
+
+
+    def Do_Calculation(self):
+        for point_x in range(self.start, self.variables["end"]):
             if self.Prime_Number(point_x):
                 binary_number = self.Binary(point_x)
                 decimal_number = self.Decimal(binary_number)
                 point_y = point_x - decimal_number
-            self.x.append(point_x)
-            self.y.append(point_y)
-        self.Make_Graph()
+                self.x.append(point_x)
+                self.y.append(point_y)
+
+
+    def Property_Square(self, value = 10, paint_squares = True):
+        self.Create_Fractal()
+        self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
+
+
+    def Progression_Property_Square(self, value = 10):
+        times = self.variables["end"]
+        master_x = []
+        master_y = []
+        for iterantion in range(1, times + 1):
+            self.variables["end"] = 2 ** iterantion
+            self.start = 2 ** (iterantion - 1)
+            self.Do_Calculation()
+            self.property_square = PropertyPerSquare(self.x, self.y, value)
+            master_x.append(iterantion)
+            master_y.append(self.property_square.amount_of_marcked_squares)
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property per square\nInverted Binary Fractal")
+        plt.xlabel("Iterantion")
+        plt.ylabel("Marcked Squares")
+        plt.show()
 
 
     def Make_Graph(self, color = "#000000"):

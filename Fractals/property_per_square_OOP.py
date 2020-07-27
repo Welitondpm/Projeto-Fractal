@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 
 class PropertyPerSquare():
-    def __init__(self, x = [], y = [], value = 10):
+    def __init__(self, x = [], y = [], value = 10, paint_squares = False):
         self.x = x
         self.y = y
         x_copy = self.x[::]
@@ -35,7 +35,10 @@ class PropertyPerSquare():
                     if item >= previous_x and item <= next_x:
                         if y_copy[y_position] >= previous_y and y_copy[y_position] <= next_y:
                             if square_already_painted:
-                                plt.fill([previous_x, previous_x, next_x, next_x], [previous_y, next_y, next_y, previous_y], color="#ffff00")
+                                if paint_squares:
+                                    self.fig = plt.fill([previous_x, previous_x, next_x, next_x], [previous_y, next_y, next_y, previous_y], color="#ffff00", alpha=0.3)
+                                else:
+                                    pass
                                 painted_squares += 1
                                 square_already_painted = False
                             else:
