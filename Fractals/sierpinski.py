@@ -1,3 +1,4 @@
+from property_per_square_OOP import PropertyPerSquare
 import matplotlib.pyplot as plt
 from fractal import Fractal
 from random import randint
@@ -212,22 +213,61 @@ class ChaoticTriangle(Fractal):
         Fractal.__init__(self, x, y)
         default_vars = {"times": 1000000, "value": 2}
         self.variables = self.Define_Vars(args, default_vars)
+
+    
+    def Create_Fractal(self):
         self.Make_Chaotic_Triangle()
         self.Make_Graph()
 
+    
+    def Property_Square(self, value = 10, paint_squares = True):
+        self.Create_Fractal()
+        self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
+
+    
+    def Progression_Property_Square(self, value = 10, new_points_per_measurement = 50000):
+        master_x = []
+        master_y = []
+        self.x_start = self.x
+        self.y_start = self.y
+        self.x = [sum(self.x_start) / len(self.x_start)]
+        self.y = [sum(self.y_start) / len(self.y_start)]
+        self.counter = 0
+        limit = new_points_per_measurement
+        iterantion = 1
+        while self.counter <= self.variables["times"]:
+            if self.counter == limit or self.counter == self.variables["times"]:
+                self.property_square = PropertyPerSquare(self.x, self.y, value)
+                master_x.append(iterantion)
+                master_y.append(self.property_square.amount_of_marcked_squares)
+                iterantion += 1
+                limit = iterantion * new_points_per_measurement
+            self.Do_Calculation()
+            # print(self.counter)
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property per square\nChaotic Triangle Fractal")
+        plt.xlabel("Points(n * new_points_per_measurement)")
+        plt.ylabel("Marcked Squares")
+        plt.show()
+
 
     def Make_Chaotic_Triangle(self):
-        counter = 0
-        x_start = self.x
-        y_start = self.y
-        self.x = [sum(x_start) / len(x_start)]
-        self.y = [sum(y_start) / len(y_start)]
-        while counter <= self.variables["times"]:
-            index = randint(0, len(x_start) - 1)
-            self.x.append((x_start[index] + self.x[-1]) / self.variables["value"])
-            self.y.append((y_start[index] + self.y[-1]) / self.variables["value"])
-            counter += 1
+        self.counter = 0
+        self.x_start = self.x
+        self.y_start = self.y
+        self.x = [sum(self.x_start) / len(self.x_start)]
+        self.y = [sum(self.y_start) / len(self.y_start)]
+        while self.counter <= self.variables["times"]:
+            self.Do_Calculation
+            
 
+    def Do_Calculation(self):
+        index = randint(0, len(self.x_start) - 1)
+        self.x.append((self.x_start[index] + self.x[-1]) / self.variables["value"])
+        self.y.append((self.y_start[index] + self.y[-1]) / self.variables["value"])
+        self.counter += 1
+        
 
     def Make_Graph(self, color = "#000000"):
         plt.scatter(self.x, self.y, color = color, s=0.01)

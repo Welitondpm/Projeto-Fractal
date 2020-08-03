@@ -1,3 +1,4 @@
+from property_per_square_OOP import PropertyPerSquare
 import matplotlib.pyplot as plt
 from fractal import Fractal
 
@@ -7,6 +8,9 @@ class Mandelbrot(Fractal):
         Fractal.__init__(self, x, y)
         default_vars = {"depth": 50, "real_numbers": 2, "imaginary_numbers": 2, "density": 200, "amount_of_colors": 12}
         self.variables = self.Define_Vars(args, default_vars)
+        
+
+    def Create_Fractal(self):
         self.Pre_Calculation()
         self.Go_Through_Universe()
 
@@ -93,6 +97,10 @@ class Mandelbrot(Fractal):
                 B = B[1:]
             color = '#' + R + G + B
             plt.scatter(self.x[item], self.y[item], s=self.dot_size, color = color)
+
+        
+    def Property_Square(self, value = 10, paint_squares = True):
+        self.property_square = PropertyPerSquare(self.x[-1], self.y[-1], value, paint_squares)
 
 
 class HarmonicMandelbrot(Mandelbrot):
