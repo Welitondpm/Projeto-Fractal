@@ -74,10 +74,42 @@ class CantorSet(Fractal):
     def Progression_Property_Perimeter(self, value = 10):
         master_x = []
         master_y = []
-        
-            # master_x.append(self.iteration_number)
-            # master_y.append(self.property_square.amount_of_marcked_squares)
 
+        list_x, list_y = [], []
+        
+        self.iteration_number = 0
+        passing = self.variables["size"] / value
+        while self.iteration_number < self.variables["times"]:
+            master_x.append(self.iteration_number)
+            self.iteration_number += 1
+            limit = len(self.x)
+            for item in range(limit):
+                self.property_perimeter = PropertyPerimeter(self.x[item], self.y[item])
+                new_x, new_y = self.property_perimeter.Perimeter(passing)
+                list_x.extend(new_x)
+                list_y.extend(new_y)
+                list_x.append(list_x[-1])
+                list_y.append(list_y[-1] + passing / 2)
+            self.property_square = PropertyPerSquare(list_x, list_y, value)
+            master_y.append(self.property_square.amount_of_marcked_squares)
+            list_x, list_y = [], []
+
+            self.x, self.y = self.Organizing_Function(self.iteration_number)
+            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+
+        limit = len(self.x)
+        for item in range(limit):
+            self.property_perimeter = PropertyPerimeter(self.x[item], self.y[item])
+            new_x, new_y = self.property_perimeter.Perimeter(passing)
+            list_x.extend(new_x)
+            list_y.extend(new_y)
+            list_x.append(list_x[-1])
+            list_y.append(list_y[-1] + passing / 2)
+        self.property_square = PropertyPerSquare(list_x, list_y, value)
+        master_x.append(self.iteration_number)
+        master_y.append(self.property_square.amount_of_marcked_squares)
+        list_x, list_y = [], []
+        
         plt.plot(master_x, master_y)
         plt.scatter(master_x, master_y)
         plt.title("Progression of property per square\nCantor Set Fractal")
@@ -86,7 +118,5 @@ class CantorSet(Fractal):
         plt.show()
 
 
-cantor = CantorSet(args={"times":2})
-cantor.Property_Perimeter(value=10)
-print("Quadrados pintados %d de %d" % (cantor.property_square.amount_of_marcked_squares, cantor.property_square.total_amount_of_squares))
-cantor.Show_Graph()
+cantor = CantorSet(args={"times":15})
+cantor.Progression_Property_Perimeter(value=150)
