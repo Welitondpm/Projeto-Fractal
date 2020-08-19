@@ -1,4 +1,5 @@
 from property_per_square_OOP import PropertyPerSquare
+from property_perimeter_OOP import PropertyPerimeter
 import matplotlib.pyplot as plt
 from fractal import Fractal
 from random import randint
@@ -125,9 +126,12 @@ class ArrowHead(Fractal):
         Fractal.__init__(self, x, y)
         default_vars = {"times": 12}
         self.variables = self.Define_Vars(args, default_vars)
-        for interation_number in range(1, self.variables["times"] + 1):
+        
+
+    def Create_Fractal(self):
+        for iteration_number in range(1, self.variables["times"] + 1):
             self.Make_Triangle()
-            print("%d of %d" % (interation_number, self.variables["times"]))
+            print("%d of %d" % (iteration_number, self.variables["times"]))
         new_x, new_y = [], []
         index = 0
         limit = len(self.x)
@@ -137,6 +141,41 @@ class ArrowHead(Fractal):
             index += 1
         self.x, self.y = new_x, new_y
         self.Make_Graph()
+
+    
+    def Property_Perimeter(self, value = 10, paint_squares = True):
+        self.Create_Fractal()
+        passing = (max(self.x) - min(self.y)) / value
+        self.property_perimeter = PropertyPerimeter(self.x, self.y)
+        self.x, self.y = self.property_perimeter.Perimeter(passing)
+        self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
+
+    
+    def Progression_Property_Perimeter(self, value = 10):
+        master_x = []
+        master_y = []
+        for iteration_number in range(1, self.variables["times"] + 1):
+            self.Make_Triangle()
+            new_x, new_y = [], []
+            index = 0
+            limit = len(self.x)
+            while index < limit:
+                new_x.extend(self.x[index])
+                new_y.extend(self.y[index])
+                index += 1
+            passing = (max(new_x) - min(new_y)) / value
+            self.property_perimeter = PropertyPerimeter(new_x, new_y)
+            new_x, new_y = self.property_perimeter.Perimeter(passing)
+            self.property_square = PropertyPerSquare(new_x, new_y, value, False)
+            master_x.append(iteration_number)
+            master_y.append(self.property_square.amount_of_marcked_squares)
+            print("%d of %d" % (iteration_number, self.variables["times"]))
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property perimeter\nArrowHead Fractal")
+        plt.xlabel("Iteration Number")
+        plt.ylabel("Marcked Squares")
+        plt.show()
 
 
     def Make_Triangle(self):
@@ -325,3 +364,8 @@ class SierpinskiPascal(Fractal):
                     item_1 = " " + item_1
             string_line += item_1
         return string_line
+
+
+arrow = ArrowHead(args={"times":10})
+arrow.Progression_Property_Perimeter(value=200)
+arrow.Show_Graph()

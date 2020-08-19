@@ -1,3 +1,5 @@
+from property_per_square_OOP import PropertyPerSquare
+from property_perimeter_OOP import PropertyPerimeter
 import matplotlib.pyplot as plt
 from fractal import Fractal
 import math
@@ -10,10 +12,41 @@ class Koch(Fractal):
         self.variables = self.Define_Vars(args, default_vars)
         self.x = [0, self.variables["size"]]
         self.y = [0, 0]
+        
+
+    def Create_Fractal(self):
         for iteration_number in range(self.variables["times"]):
-            print("%d de %d" % (iteration_number + 1, self.variables["times"]))
+            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.x, self.y = self.Do_Calculation()
         self.Make_Graph()
+
+    
+    def Property_Perimeter(self, value = 10, paint_squares = True):
+        self.Create_Fractal()
+        passing = self.variables["size"] / value
+        self.property_perimeter = PropertyPerimeter(self.x, self.y)
+        self.x, self.y = self.property_perimeter.Perimeter(passing)
+        self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
+
+
+    def Progression_Property_Perimeter(self, value = 10):
+        master_x = []
+        master_y = []
+        for iteration_number in range(self.variables["times"]):
+            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
+            self.x, self.y = self.Do_Calculation()
+            passing = self.variables["size"] / value
+            self.property_perimeter = PropertyPerimeter(self.x, self.y)
+            self.x, self.y = self.property_perimeter.Perimeter(passing)
+            self.property_square = PropertyPerSquare(self.x, self.y, value, False)
+            master_x.append(iteration_number)
+            master_y.append(self.property_square.amount_of_marcked_squares)   
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property perimeter\nKoch Curve Fractal")
+        plt.xlabel("Iteration")
+        plt.ylabel("Marcked Squares")
+        plt.show()
     
 
     def Make_Graph(self, color = "#000000"):
@@ -56,3 +89,10 @@ class Koch(Fractal):
             new_final_x.extend(new_x)
             new_final_y.extend(new_y)
         return new_final_x, new_final_y
+
+
+# koch = Koch(args = {"amount_of_sides": 4, "times": 4})
+# # koch.Property_Perimeter(value=400)
+# # print("Quadrados pintados %d de %d" % (koch.property_square.amount_of_marcked_squares, koch.property_square.total_amount_of_squares))
+# koch.Progression_Property_Perimeter(value=400)
+# koch.Show_Graph()

@@ -118,5 +118,5 @@ class CantorSet(Fractal):
         plt.show()
 
 
-cantor = CantorSet(args={"times":15})
-cantor.Progression_Property_Perimeter(value=150)
+# cantor = CantorSet(args={"times":15})
+# cantor.Progression_Property_Perimeter(value=150)
