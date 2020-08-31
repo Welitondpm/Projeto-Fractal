@@ -1,5 +1,7 @@
 from property_per_square_OOP import PropertyPerSquare
 from property_perimeter_OOP import PropertyPerimeter
+from property_dimension_OOP import Dimension
+from property_area_OOP import PropertyArea
 import matplotlib.pyplot as plt
 from fractal import Fractal
 from random import randint
@@ -8,21 +10,85 @@ from random import randint
 class Sierpinski(Fractal):
     def __init__(self, x = [], y = [], args = {}):
         Fractal.__init__(self, x, y)
-        self.Create_Fractal(args)
 
 
     def Create_Fractal(self, args = {}):
         default_vars = {"times": 8, "size": 50}
-        variables = self.Define_Vars(args, default_vars)
-        interation_number = 0
-        self.x = [[- variables["size"] / 2, 0, variables["size"] / 2]]
-        self.y = [[- variables["size"] * 3 ** 0.5 / 6, variables["size"] * 3 ** 0.5 / 3, - variables["size"] * 3 ** 0.5 / 6]]
-        while interation_number < variables["times"]:
-            interation_number += 1
+        self.variables = self.Define_Vars(args, default_vars)
+        iteration_number = 0
+        self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2]]
+        self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6]]
+        while iteration_number < self.variables["times"]:
+            iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (interation_number, variables["times"]))
+            print("%d of %d" % (iteration_number, self.variables["times"]))
         self.Triangle_Picker()
         self.Make_Graph()
+
+    
+    def Property_Area(self, value = 10, args={}):
+        default_vars = {"times": 8, "size": 50}
+        self.variables = self.Define_Vars(args, default_vars)
+        iteration_number = 0
+        self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2]]
+        self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6]]
+        while iteration_number < self.variables["times"]:
+            iteration_number += 1
+            self.Setting_Function()
+            print("%d of %d" % (iteration_number, self.variables["times"]))
+        self.Make_Graph()
+        self.passing = self.variables["size"] / value
+        self.new_x, self.new_y = [], []
+        limit = len(self.x)
+        for item in range(limit):
+            self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
+            self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
+            self.new_x.append(self.perimeter_x)
+            self.new_y.append(self.perimeter_y)
+        self.x, self.y = [], []
+        for item in range(limit):
+            self.x.extend(self.new_x[item])
+            self.y.extend(self.new_y[item])
+        self.property_area = PropertyArea(self.x, self.y, value, True, passing = self.passing)
+
+    
+    def Progression_Property_Area(self, value = 10, args={}):
+        master_x = []
+        master_y = []
+
+        default_vars = {"times": 8, "size": 50}
+        self.variables = self.Define_Vars(args, default_vars)
+        iteration_number = 0
+        self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2]]
+        self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6]]
+
+        self.passing = self.variables["size"] / value
+
+        while iteration_number < self.variables["times"]:
+            iteration_number += 1
+            self.Setting_Function()
+            print("%d of %d" % (iteration_number, self.variables["times"]))
+            self.new_x, self.new_y = [], []
+            limit = len(self.x)
+            for item in range(limit):
+                self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
+                self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
+                self.new_x.append(self.perimeter_x)
+                self.new_y.append(self.perimeter_y)
+            self.area_x, self.area_y = [], []
+            for item in range(limit):
+                self.area_x.extend(self.new_x[item])
+                self.area_y.extend(self.new_y[item])
+            self.property_area = PropertyArea(self.area_x, self.area_y, value, passing = self.passing)
+
+            master_x.append(iteration_number)
+            master_y.append(self.property_area.amount_of_marcked_squares)
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property area\nSierpinski Fractal")
+        plt.xlabel("Iteration Number")
+        plt.ylabel("Marcked Squares")
+        plt.show()
 
 
     def Setting_Function(self): 
@@ -110,15 +176,81 @@ class SierpinskiCarpet(Sierpinski):
         
     def Create_Fractal(self, args = {}):
         default_vars = {"times": 4, "size": 50}
-        variables = self.Define_Vars(args, default_vars)
-        interation_number = 0
-        self.x = [[0, 0, variables["size"], variables["size"]]]
-        self.y = [[0, variables["size"], variables["size"], 0]]
-        while interation_number < variables["times"]:
-            interation_number += 1
+        self.variables = self.Define_Vars(args, default_vars)
+        iteration_number = 0
+        self.x = [[0, 0, self.variables["size"], self.variables["size"]]]
+        self.y = [[0, self.variables["size"], self.variables["size"], 0]]
+        while iteration_number < self.variables["times"]:
+            iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (interation_number, variables["times"]))
+            print("%d of %d" % (iteration_number, self.variables["times"]))
         self.Make_Graph()
+
+    
+    def Property_Area(self, value = 10, args={}):
+        default_vars = {"times": 4, "size": 50}
+        self.variables = self.Define_Vars(args, default_vars)
+        iteration_number = 0
+        self.x = [[0, 0, self.variables["size"], self.variables["size"]]]
+        self.y = [[0, self.variables["size"], self.variables["size"], 0]]
+        while iteration_number < self.variables["times"]:
+            iteration_number += 1
+            self.Setting_Function()
+            print("%d of %d" % (iteration_number, self.variables["times"]))
+        self.Make_Graph()
+
+        self.passing = self.variables["size"] / value
+        self.new_x, self.new_y = [], []
+        limit = len(self.x)
+        for item in range(limit):
+            self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
+            self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
+            self.new_x.append(self.perimeter_x)
+            self.new_y.append(self.perimeter_y)
+        self.x, self.y = [], []
+        for item in range(limit):
+            self.x.extend(self.new_x[item])
+            self.y.extend(self.new_y[item])
+        self.property_area = PropertyArea(self.x, self.y, value, True, passing = self.passing)
+
+    
+    def Progression_Property_Area(self, value = 10, args={}):
+        master_x = []
+        master_y = []
+
+        default_vars = {"times": 4, "size": 50}
+        self.variables = self.Define_Vars(args, default_vars)
+        iteration_number = 0
+        self.x = [[0, 0, self.variables["size"], self.variables["size"]]]
+        self.y = [[0, self.variables["size"], self.variables["size"], 0]]
+
+        self.passing = self.variables["size"] / value
+
+        while iteration_number < self.variables["times"]:
+            iteration_number += 1
+            self.Setting_Function()
+            print("%d of %d" % (iteration_number, self.variables["times"]))
+            self.new_x, self.new_y = [], []
+            limit = len(self.x)
+            for item in range(limit):
+                self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
+                self.new_x.append(self.perimeter_x)
+                self.new_y.append(self.perimeter_y)
+            self.area_x, self.area_y = [], []
+            for item in range(limit):
+                self.area_x.extend(self.new_x[item])
+                self.area_y.extend(self.new_y[item])
+            self.property_area = PropertyArea(self.area_x, self.area_y, value, passing = self.passing)
+
+            master_x.append(iteration_number)
+            master_y.append(self.property_area.amount_of_marcked_squares)
+        
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property area\nSierpinski Carpet Fractal")
+        plt.xlabel("Iteration Number")
+        plt.ylabel("Marcked Squares")
+        plt.show()
 
 
 class ArrowHead(Fractal):
@@ -145,7 +277,7 @@ class ArrowHead(Fractal):
     
     def Property_Perimeter(self, value = 10, paint_squares = True):
         self.Create_Fractal()
-        passing = (max(self.x) - min(self.y)) / value
+        passing = (max(self.x) - min(self.x)) / value
         self.property_perimeter = PropertyPerimeter(self.x, self.y)
         self.x, self.y = self.property_perimeter.Perimeter(passing)
         self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
@@ -273,21 +405,48 @@ class ChaoticTriangle(Fractal):
         self.y = [sum(self.y_start) / len(self.y_start)]
         self.counter = 0
         limit = new_points_per_measurement
-        iterantion = 1
+        iteration = 1
         while self.counter <= self.variables["times"]:
             if self.counter == limit or self.counter == self.variables["times"]:
                 self.property_square = PropertyPerSquare(self.x, self.y, value)
-                master_x.append(iterantion)
+                master_x.append(iteration)
                 master_y.append(self.property_square.amount_of_marcked_squares)
-                iterantion += 1
-                limit = iterantion * new_points_per_measurement
+                iteration += 1
+                limit = iteration * new_points_per_measurement
             self.Do_Calculation()
-            # print(self.counter)
         plt.plot(master_x, master_y)
         plt.scatter(master_x, master_y)
         plt.title("Progression of property per square\nChaotic Triangle Fractal")
         plt.xlabel("Points(n * new_points_per_measurement)")
         plt.ylabel("Marcked Squares")
+        plt.show()
+
+    
+    def Property_Dimension(self, value = 10):
+        self.Property_Square(value)
+        self.passing = (max(self.x) - min(self.x)) / value
+        dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
+        self.dimension = dimension_obj.dimension
+
+    
+    def Progression_Property_Dimension(self, value = 10):
+        self.passing = (max(self.x) - min(self.x)) / value
+        times = self.variables["end"]
+        master_x = []
+        master_y = []
+        for iteration in range(2, times + 1):
+            self.variables["end"] = 2 ** iteration
+            self.start = 2 ** (iteration - 1)
+            self.Do_Calculation()
+            self.property_square = PropertyPerSquare(self.x, self.y, value)
+            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
+            master_x.append(iteration)
+            master_y.append(self.dimension_obj.dimension)
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property dimension\nInverted Binary Fractal")
+        plt.xlabel("Iteration")
+        plt.ylabel("Dimension Fractal")
         plt.show()
 
 
@@ -366,6 +525,8 @@ class SierpinskiPascal(Fractal):
         return string_line
 
 
-arrow = ArrowHead(args={"times":10})
-arrow.Progression_Property_Perimeter(value=200)
-arrow.Show_Graph()
+# chaotic_triangle = ChaoticTriangle(args={"times":10000})
+# chaotic_triangle.Create_Fractal()
+# # chaotic_triangle.Progression_Property_Square(value=10)
+# # #, new_points_per_measurement = 1000)
+# chaotic_triangle.Show_Graph()

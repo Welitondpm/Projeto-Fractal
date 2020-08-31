@@ -1,3 +1,17 @@
+#### Inverted Binary
+# from inverted_binary import InvertedBinary
+# binary = InvertedBinary()
+# binary.Property_Square(value = 100, paint_squares = True)
+# print(binary.property_square.amount_of_marcked_squares)
+# binary.Progression_Property_Square(value = 100)
+# binary.Property_Dimension(value = 100)
+# binary.Progression_Property_Dimension(value = 100)
+# binary.Show_Graph()
+
+
+
+
+
 #### Execute Cantor Set
 # cantor_set = CantorSet()
 # cantor_set.Show_Graph()

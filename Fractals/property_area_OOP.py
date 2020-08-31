@@ -3,14 +3,15 @@ from property_perimeter_OOP import PropertyPerimeter
 
 
 class PropertyArea():
-    def __init__(self, x = [], y = [], value = 10):
+    def __init__(self, x = [], y = [], value = 10, show_graph = False, passing = 1000):
         self.x = x
         self.y = y
         minimum_x = min(self.x)
         maximum_x = max(self.x)
-        self.passing = (maximum_x - minimum_x) / value
-        perimeter = PropertyPerimeter(self.x, self.y)
-        self.x, self.y = perimeter.Perimeter(self.passing)
+        self.passing = passing
+        # self.passing = (maximum_x - minimum_x) / value
+        # perimeter = PropertyPerimeter(self.x, self.y)
+        # self.x, self.y = perimeter.Perimeter(self.passing)
         x_copy = self.x[::]
         y_copy = self.y[::]
         new_x = []
@@ -44,7 +45,10 @@ class PropertyArea():
                 if toggle_painted_squares:
                     area_squares += 1
                     prevents_toggle_redundant = False
-                    plt.fill([previous_x, previous_x, next_x, next_x], [previous_y, next_y, next_y, previous_y], color="#00ff00")
+                    if show_graph:
+                        plt.fill([previous_x, previous_x, next_x, next_x], [previous_y, next_y, next_y, previous_y], color="#00ff00")
+                    else:
+                        pass
                 for item in x_copy:
                     if item >= previous_x and item <= next_x:
                         if y_copy[y_position] >= previous_y and y_copy[y_position] <= next_y:
@@ -56,7 +60,10 @@ class PropertyArea():
                                 previous_squares = False
                                 empty_previous_squares = False
                                 if prevents_toggle_redundant:
-                                    plt.fill([previous_x, previous_x, next_x, next_x], [previous_y, next_y, next_y, previous_y], color="#ffff00")
+                                    if show_graph:
+                                        plt.fill([previous_x, previous_x, next_x, next_x], [previous_y, next_y, next_y, previous_y], color="#ffff00")
+                                    else:
+                                        pass
                                     painted_squares += 1
                                 square_already_painted = False
                             else:

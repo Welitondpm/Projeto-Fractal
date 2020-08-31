@@ -17,7 +17,7 @@ class PropertyPerimeter():
             difference_x = next_x_point - x_point
             difference_y = next_y_point - y_point
             distance_x_y = (difference_x ** 2 + difference_y ** 2) ** 0.5
-            amount_squares = int(distance_x_y / size_of_side_of_square) + 1
+            amount_squares = int(abs(distance_x_y) / size_of_side_of_square) + 1
             if amount_squares > 0:
                 for new_point in range(1, amount_squares + 1):
                     new_x.append(x_point + new_point * difference_x / amount_squares)

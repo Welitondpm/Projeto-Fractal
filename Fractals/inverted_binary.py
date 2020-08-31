@@ -1,6 +1,7 @@
+from property_per_square_OOP import PropertyPerSquare
+from property_dimension_OOP import Dimension
 import matplotlib.pyplot as plt
 from fractal import Fractal
-from property_per_square_OOP import PropertyPerSquare
 
 
 class InvertedBinary(Fractal):
@@ -27,7 +28,7 @@ class InvertedBinary(Fractal):
                 self.y.append(point_y)
 
 
-    def Property_Square(self, value = 10, paint_squares = True):
+    def Property_Square(self, value = 10, paint_squares = False):
         self.Create_Fractal()
         self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
 
@@ -36,18 +37,46 @@ class InvertedBinary(Fractal):
         times = self.variables["end"]
         master_x = []
         master_y = []
-        for iterantion in range(1, times + 1):
-            self.variables["end"] = 2 ** iterantion
-            self.start = 2 ** (iterantion - 1)
+        for iteration in range(1, times + 1):
+            self.variables["end"] = 2 ** iteration
+            self.start = 2 ** (iteration - 1)
             self.Do_Calculation()
             self.property_square = PropertyPerSquare(self.x, self.y, value)
-            master_x.append(iterantion)
+            master_x.append(iteration)
             master_y.append(self.property_square.amount_of_marcked_squares)
         plt.plot(master_x, master_y)
         plt.scatter(master_x, master_y)
         plt.title("Progression of property per square\nInverted Binary Fractal")
-        plt.xlabel("Iterantion")
+        plt.xlabel("Iteration")
         plt.ylabel("Marcked Squares")
+        plt.show()
+
+    
+    def Property_Dimension(self, value = 10):
+        self.Property_Square(value)
+        self.passing = 2 ** self.variables["end"] / value
+        dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
+        self.dimension = dimension_obj.dimension
+
+    
+    def Progression_Property_Dimension(self, value = 10):
+        self.passing = 2 ** self.variables["end"] / value
+        times = self.variables["end"]
+        master_x = []
+        master_y = []
+        for iteration in range(2, times + 1):
+            self.variables["end"] = 2 ** iteration
+            self.start = 2 ** (iteration - 1)
+            self.Do_Calculation()
+            self.property_square = PropertyPerSquare(self.x, self.y, value)
+            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
+            master_x.append(iteration)
+            master_y.append(self.dimension_obj.dimension)
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property dimension\nInverted Binary Fractal")
+        plt.xlabel("Iteration")
+        plt.ylabel("Dimension Fractal")
         plt.show()
 
 
