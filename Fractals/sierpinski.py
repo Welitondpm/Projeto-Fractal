@@ -256,7 +256,7 @@ class SierpinskiCarpet(Sierpinski):
 class ArrowHead(Fractal):
     def __init__(self, x = [[0, 1]], y = [[0, 0]], args = {}):
         Fractal.__init__(self, x, y)
-        default_vars = {"times": 12}
+        default_vars = {"times": 8}
         self.variables = self.Define_Vars(args, default_vars)
         
 
@@ -307,6 +307,41 @@ class ArrowHead(Fractal):
         plt.title("Progression of property perimeter\nArrowHead Fractal")
         plt.xlabel("Iteration Number")
         plt.ylabel("Marcked Squares")
+        plt.show()
+
+
+    def Property_Dimension(self, value = 10):
+        self.Property_Perimeter(value)
+        dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+        self.dimension = dimension_obj.dimension
+
+    
+    def Progression_Property_Dimension(self, value = 10):
+        master_x = []
+        master_y = []
+        for iteration_number in range(1, self.variables["times"] + 1):
+            self.Make_Triangle()
+            new_x, new_y = [], []
+            index = 0
+            limit = len(self.x)
+            while index < limit:
+                new_x.extend(self.x[index])
+                new_y.extend(self.y[index])
+                index += 1
+            passing = (max(new_x) - min(new_y)) / value
+            self.property_perimeter = PropertyPerimeter(new_x, new_y)
+            new_x, new_y = self.property_perimeter.Perimeter(passing)
+            self.property_square = PropertyPerSquare(new_x, new_y, value)
+            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+            master_x.append(iteration_number)
+            master_y.append(self.dimension_obj.dimension)
+            print("%d of %d" % (iteration_number, self.variables["times"]))
+                
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property dimension\nArrowHead Fractal")
+        plt.xlabel("Iteration")
+        plt.ylabel("Dimension Fractal")
         plt.show()
 
 
@@ -380,7 +415,7 @@ class ArrowHead(Fractal):
 
 
 class ChaoticTriangle(Fractal):
-    def __init__(self, x = [0, 50, -50], y = [7500 ** 0.5, 0, 0], args = {}):
+    def __init__(self, x = [0, 0.5, -0.5], y = [3 ** 0.5 / 2, 0, 0], args = {}):
         Fractal.__init__(self, x, y)
         default_vars = {"times": 1000000, "value": 2}
         self.variables = self.Define_Vars(args, default_vars)
@@ -399,21 +434,24 @@ class ChaoticTriangle(Fractal):
     def Progression_Property_Square(self, value = 10, new_points_per_measurement = 50000):
         master_x = []
         master_y = []
-        self.x_start = self.x
-        self.y_start = self.y
-        self.x = [sum(self.x_start) / len(self.x_start)]
-        self.y = [sum(self.y_start) / len(self.y_start)]
-        self.counter = 0
+        x_start = self.x
+        y_start = self.y
+        self.x = [sum(x_start) / len(x_start)]
+        self.y = [sum(y_start) / len(y_start)]
+        counter = 0
         limit = new_points_per_measurement
         iteration = 1
-        while self.counter <= self.variables["times"]:
-            if self.counter == limit or self.counter == self.variables["times"]:
+        while counter <= self.variables["times"]:
+            if counter == limit or counter == self.variables["times"]:
                 self.property_square = PropertyPerSquare(self.x, self.y, value)
                 master_x.append(iteration)
                 master_y.append(self.property_square.amount_of_marcked_squares)
                 iteration += 1
                 limit = iteration * new_points_per_measurement
-            self.Do_Calculation()
+            index = randint(0, len(x_start) - 1)
+            self.x.append((x_start[index] + self.x[-1]) / self.variables["value"])
+            self.y.append((y_start[index] + self.y[-1]) / self.variables["value"])
+            counter += 1
         plt.plot(master_x, master_y)
         plt.scatter(master_x, master_y)
         plt.title("Progression of property per square\nChaotic Triangle Fractal")
@@ -424,48 +462,52 @@ class ChaoticTriangle(Fractal):
     
     def Property_Dimension(self, value = 10):
         self.Property_Square(value)
-        self.passing = (max(self.x) - min(self.x)) / value
-        dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
+        dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10):
-        self.passing = (max(self.x) - min(self.x)) / value
-        times = self.variables["end"]
+    def Progression_Property_Dimension(self, value = 10, new_points_per_measurement = 50000):
         master_x = []
         master_y = []
-        for iteration in range(2, times + 1):
-            self.variables["end"] = 2 ** iteration
-            self.start = 2 ** (iteration - 1)
-            self.Do_Calculation()
-            self.property_square = PropertyPerSquare(self.x, self.y, value)
-            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
-            master_x.append(iteration)
-            master_y.append(self.dimension_obj.dimension)
+        x_start = self.x
+        y_start = self.y
+        self.x = [sum(x_start) / len(x_start)]
+        self.y = [sum(y_start) / len(y_start)]
+        counter = 0
+        limit = new_points_per_measurement
+        iteration = 1
+        while counter <= self.variables["times"]:
+            if counter == limit or counter == self.variables["times"]:
+                self.property_square = PropertyPerSquare(self.x, self.y, value)
+                self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+                master_x.append(iteration)
+                master_y.append(self.dimension_obj.dimension)
+                iteration += 1
+                limit = iteration * new_points_per_measurement
+            index = randint(0, len(x_start) - 1)
+            self.x.append((x_start[index] + self.x[-1]) / self.variables["value"])
+            self.y.append((y_start[index] + self.y[-1]) / self.variables["value"])
+            counter += 1
         plt.plot(master_x, master_y)
         plt.scatter(master_x, master_y)
-        plt.title("Progression of property dimension\nInverted Binary Fractal")
-        plt.xlabel("Iteration")
+        plt.title("Progression of property dimension\nChaotic Triangle Fractal")
+        plt.xlabel("Points(n * new_points_per_measurement)")
         plt.ylabel("Dimension Fractal")
         plt.show()
 
 
     def Make_Chaotic_Triangle(self):
-        self.counter = 0
-        self.x_start = self.x
-        self.y_start = self.y
-        self.x = [sum(self.x_start) / len(self.x_start)]
-        self.y = [sum(self.y_start) / len(self.y_start)]
-        while self.counter <= self.variables["times"]:
-            self.Do_Calculation
-            
+        counter = 0
+        x_start = self.x
+        y_start = self.y
+        self.x = [sum(x_start) / len(x_start)]
+        self.y = [sum(y_start) / len(y_start)]
+        while counter <= self.variables["times"]:
+            index = randint(0, len(x_start) - 1)
+            self.x.append((x_start[index] + self.x[-1]) / self.variables["value"])
+            self.y.append((y_start[index] + self.y[-1]) / self.variables["value"])
+            counter += 1
 
-    def Do_Calculation(self):
-        index = randint(0, len(self.x_start) - 1)
-        self.x.append((self.x_start[index] + self.x[-1]) / self.variables["value"])
-        self.y.append((self.y_start[index] + self.y[-1]) / self.variables["value"])
-        self.counter += 1
-        
 
     def Make_Graph(self, color = "#000000"):
         plt.scatter(self.x, self.y, color = color, s=0.01)
@@ -523,10 +565,3 @@ class SierpinskiPascal(Fractal):
                     item_1 = " " + item_1
             string_line += item_1
         return string_line
-
-
-# chaotic_triangle = ChaoticTriangle(args={"times":10000})
-# chaotic_triangle.Create_Fractal()
-# # chaotic_triangle.Progression_Property_Square(value=10)
-# # #, new_points_per_measurement = 1000)
-# chaotic_triangle.Show_Graph()

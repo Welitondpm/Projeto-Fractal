@@ -1,5 +1,6 @@
 from property_per_square_OOP import PropertyPerSquare
 from property_perimeter_OOP import PropertyPerimeter
+from property_dimension_OOP import Dimension
 import matplotlib.pyplot as plt
 from fractal import Fractal
 
@@ -49,6 +50,35 @@ class HilbertCurve(Fractal):
         plt.title("Progression of property perimeter\nHilbert Curve Fractal")
         plt.xlabel("Iteration")
         plt.ylabel("Marcked Squares")
+        plt.show()
+
+    
+    def Property_Dimension(self, value = 10):
+        self.Property_Perimeter(value)
+        dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+        self.dimension = dimension_obj.dimension
+
+    
+    def Progression_Property_Dimension(self, value = 10):
+        master_x = []
+        master_y = []
+        iteration_number = 0
+        while iteration_number < self.variables["times"]:
+            iteration_number += 1
+            self.Do_Calculation(iteration_number)
+            passing = (max(self.x) - min(self.x)) / value
+            print("%d of %d" % (iteration_number, self.variables["times"]))
+            self.property_perimeter = PropertyPerimeter(self.x, self.y)
+            self.x, self.y = self.property_perimeter.Perimeter(passing)
+            self.property_square = PropertyPerSquare(self.x, self.y, value, False) 
+            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+            master_x.append(iteration_number)
+            master_y.append(self.dimension_obj.dimension)
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property dimension\nHilbert Fractal")
+        plt.xlabel("Iteration")
+        plt.ylabel("Dimension Fractal")
         plt.show()
 
 
@@ -114,9 +144,3 @@ class HilbertCurve(Fractal):
         for item in [y_3[::-1], self.y, self.y, y_4]:
             new_y.extend(item)
         self.x, self.y = new_x, new_y
-
-
-# hilbert = HilbertCurve(args={"times":5})
-# hilbert.Progression_Property_Perimeter(value=100)
-# # print("Quadrados pintados %d de %d" % (hilbert.property_square.amount_of_marcked_squares, hilbert.property_square.total_amount_of_squares))
-# hilbert.Show_Graph()

@@ -1,4 +1,5 @@
 from property_per_square_OOP import PropertyPerSquare
+from property_dimension_OOP import Dimension
 import matplotlib.pyplot as plt
 from fractal import Fractal
 
@@ -101,6 +102,12 @@ class Mandelbrot(Fractal):
         
     def Property_Square(self, value = 10, paint_squares = True):
         self.property_square = PropertyPerSquare(self.x[-1], self.y[-1], value, paint_squares)
+    
+    
+    def Property_Dimension(self, value = 10):
+        self.property_square = PropertyPerSquare(self.x[-1], self.y[-1], value)
+        dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+        self.dimension = dimension_obj.dimension
 
 
 class HarmonicMandelbrot(Mandelbrot):

@@ -1,5 +1,6 @@
 from property_per_square_OOP import PropertyPerSquare
 from property_perimeter_OOP import PropertyPerimeter
+from property_dimension_OOP import Dimension
 import matplotlib.pyplot as plt
 from fractal import Fractal
 import random
@@ -9,7 +10,7 @@ import math
 class Tree(Fractal):
     def __init__(self, x = [], y = [], args = {}):
         Fractal.__init__(self, x, y)
-        default_vars = {"times": 12, "size": 50, "angle": 15, "z": 0, "zimp": 0, "w": 0, "wimp": 0}
+        default_vars = {"times": 10, "size": 1, "angle": 15, "z": 0, "zimp": 0, "w": 0, "wimp": 0}
         self.variables = self.Define_Vars(args, default_vars)
         self.x = [[0], [0]]
         self.y = [[0], [self.variables["size"]]]
@@ -44,7 +45,6 @@ class Tree(Fractal):
         master_x.append(1)
         master_y.append(self.variables["size"] / value)
         print("%d of %d" % (1, self.variables["times"]))
-        
         for iteration_number in range(1, self.variables["times"]):
             self.Do_Calculation()
             print("%d of %d" % (iteration_number + 1, self.variables["times"]))
@@ -54,12 +54,43 @@ class Tree(Fractal):
             self.new_xx, self.new_yy = [], []
             master_x.append(iteration_number + 1)
             master_y.append(self.property_square.amount_of_marcked_squares)
-        
         plt.plot(master_x, master_y)
         plt.scatter(master_x, master_y)
         plt.title("Progression of property perimeter\nTree Fractal")
         plt.xlabel("Iteration Number")
         plt.ylabel("Marcked Squares")
+        plt.show()
+
+    
+    def Property_Dimension(self, value = 10):
+        self.Property_Perimeter(value)
+        dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+        self.dimension = dimension_obj.dimension
+
+    
+    def Progression_Property_Dimension(self, value = 10):
+        master_x = []
+        master_y = []
+        self.noshow = True
+        self.Do_Calculation()
+        master_x.append(1)
+        master_y.append(self.variables["size"] / value)
+        print("%d of %d" % (1, self.variables["times"]))
+        for iteration_number in range(1, self.variables["times"]):
+            self.Do_Calculation()
+            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
+            self.passing = (max(self.x[-1]) - min(self.x[-1])) / value
+            self.Make_Graph_Property()
+            self.property_square = PropertyPerSquare(self.new_xx, self.new_yy, value, False)
+            self.new_xx, self.new_yy = [], []
+            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+            master_x.append(iteration_number + 1)
+            master_y.append(self.dimension_obj.dimension)
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property dimension\nTree Fractal")
+        plt.xlabel("Iteration Number")
+        plt.ylabel("Dimension Fractal")
         plt.show()
 
 
@@ -168,9 +199,3 @@ class Tree(Fractal):
         self.x.append(new_x)
         self.y.append(new_y)
         self.Add_Angles()
-
-
-# fractalTree = Tree(args={"times":12})
-# fractalTree.Progression_Property_Perimeter(value=100)
-# # print("Quadrados pintados %d de %d" % (fractalTree.property_square.amount_of_marcked_squares, fractalTree.property_square.total_amount_of_squares))
-# fractalTree.Show_Graph()

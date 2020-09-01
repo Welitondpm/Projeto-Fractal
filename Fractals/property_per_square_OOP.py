@@ -13,10 +13,12 @@ class PropertyPerSquare():
         minimum_y = min(self.y)
         maximum_x = max(self.x)
         maximum_y = max(self.y)
-        passing = (maximum_x - minimum_x) / value
-        next_x = minimum_x + passing
+        if minimum_y == maximum_y:
+            maximum_y += 1 / 10
+        self.passing = (maximum_x - minimum_x) / value
+        next_x = minimum_x + self.passing
         previous_x = minimum_x
-        next_y = minimum_y + passing
+        next_y = minimum_y + self.passing
         previous_y = minimum_y
         total_squares = 0
         painted_squares = 0
@@ -24,9 +26,9 @@ class PropertyPerSquare():
         while previous_y < maximum_y:
             if previous_x >= maximum_x:
                 previous_x = minimum_x
-                next_x = previous_x + passing
+                next_x = previous_x + self.passing
                 previous_y = next_y
-                next_y = previous_y + passing
+                next_y = previous_y + self.passing
             else:
                 total_squares += 1
                 y_position = 0
@@ -54,6 +56,6 @@ class PropertyPerSquare():
                 y_copy = new_y[::]
                 new_x, new_y = [], []
                 previous_x = next_x
-                next_x = previous_x + passing
+                next_x = previous_x + self.passing
         self.total_amount_of_squares = total_squares
         self.amount_of_marcked_squares = painted_squares
