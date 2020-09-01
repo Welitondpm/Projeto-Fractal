@@ -1,4 +1,5 @@
 from property_perimeter_OOP import PropertyPerimeter
+from property_dimension_OOP import Dimension
 from property_area_OOP import PropertyArea
 import matplotlib.pyplot as plt
 from fractal import Fractal
@@ -8,7 +9,7 @@ import math
 class Flake(Fractal):
     def __init__(self, x = [], y = [], args = {}):
         Fractal.__init__(self, x, y)
-        default_vars = {"times": 5, "amount_of_sides": 7, "size": 10, "inwards_out_wards": False}
+        default_vars = {"times": 5, "amount_of_sides": 5, "size": 1, "inwards_out_wards": True}
         self.variables = self.Define_Vars(args, default_vars)
         self.x = [0, self.variables["size"]]
         self.y = [0, 0]
@@ -26,35 +27,58 @@ class Flake(Fractal):
         self.passing = (max(self.x) - min(self.x)) / value
         self.property_perimeter = PropertyPerimeter(self.x, self.y)
         self.x, self.y = self.property_perimeter.Perimeter(self.passing)
-        self.property_area = PropertyArea(self.x, self.y, value)
+        self.property_area = PropertyArea(self.x, self.y, value, passing=self.passing)
 
     
     def Progression_Property_Area(self, value = 10):
         master_x = []
         master_y = []
-        
         for iteration_number in range(self.variables["times"]):
             print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.x, self.y = self.Do_Calculation(iteration_number)
-
             self.passing = (max(self.x) - min(self.x)) / value
             self.property_perimeter = PropertyPerimeter(self.x, self.y)
             self.x, self.y = self.property_perimeter.Perimeter(self.passing)
-            self.property_area = PropertyArea(self.x, self.y, value)
-
+            self.property_area = PropertyArea(self.x, self.y, value, passing=self.passing)
             master_x.append(iteration_number + 1)
             master_y.append(self.property_area.amount_of_marcked_squares)
-        
         plt.plot(master_x, master_y)
         plt.scatter(master_x, master_y)
         plt.title("Progression of property area\nFlake of Koch Fractal")
         plt.xlabel("Iteration Number")
         plt.ylabel("Marcked Squares")
-        plt.show()    
+        plt.show()
+
+
+    def Property_Dimension(self, value = 10):
+        self.Property_Area(value)
+        dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
+        self.dimension = dimension_obj.dimension
+
+    
+    def Progression_Property_Dimension(self, value = 10):
+        master_x = []
+        master_y = []
+        for iteration_number in range(self.variables["times"]):
+            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
+            self.x, self.y = self.Do_Calculation(iteration_number)
+            self.passing = (max(self.x) - min(self.x)) / value
+            self.property_perimeter = PropertyPerimeter(self.x, self.y)
+            self.x, self.y = self.property_perimeter.Perimeter(self.passing)
+            self.property_area = PropertyArea(self.x, self.y, value, passing=self.passing)
+            self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
+            master_x.append(iteration_number + 1)
+            master_y.append(self.dimension_obj.dimension)
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property dimension\nFloco of Koch Fractal")
+        plt.xlabel("Iteration Number")
+        plt.ylabel("Dimension Fractal")
+        plt.show()
 
 
     def Make_Graph(self, color = "#000000"):
-        plt.fill(self.x, self.y, color = color)
+        plt.plot(self.x, self.y, color = color)
 
 
     def Do_Calculation(self, iteration_number):
@@ -107,8 +131,3 @@ class Flake(Fractal):
             new_final_x.extend(new_x)
             new_final_y.extend(new_y)
         return new_final_x, new_final_y
-
-    
-# snow_flake = Flake(args = {"inwards_out_wards": False, "times": 3})
-# snow_flake.Progression_Property_Area(value=100)
-# snow_flake.Show_Graph()

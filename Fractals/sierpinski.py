@@ -13,7 +13,7 @@ class Sierpinski(Fractal):
 
 
     def Create_Fractal(self, args = {}):
-        default_vars = {"times": 8, "size": 50}
+        default_vars = {"times": 8, "size": 1}
         self.variables = self.Define_Vars(args, default_vars)
         iteration_number = 0
         self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2]]
@@ -27,7 +27,7 @@ class Sierpinski(Fractal):
 
     
     def Property_Area(self, value = 10, args={}):
-        default_vars = {"times": 8, "size": 50}
+        default_vars = {"times": 8, "size": 1}
         self.variables = self.Define_Vars(args, default_vars)
         iteration_number = 0
         self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2]]
@@ -55,15 +55,12 @@ class Sierpinski(Fractal):
     def Progression_Property_Area(self, value = 10, args={}):
         master_x = []
         master_y = []
-
-        default_vars = {"times": 8, "size": 50}
+        default_vars = {"times": 8, "size": 1}
         self.variables = self.Define_Vars(args, default_vars)
         iteration_number = 0
         self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2]]
         self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6]]
-
         self.passing = self.variables["size"] / value
-
         while iteration_number < self.variables["times"]:
             iteration_number += 1
             self.Setting_Function()
@@ -80,7 +77,6 @@ class Sierpinski(Fractal):
                 self.area_x.extend(self.new_x[item])
                 self.area_y.extend(self.new_y[item])
             self.property_area = PropertyArea(self.area_x, self.area_y, value, passing = self.passing)
-
             master_x.append(iteration_number)
             master_y.append(self.property_area.amount_of_marcked_squares)
         plt.plot(master_x, master_y)
@@ -89,6 +85,49 @@ class Sierpinski(Fractal):
         plt.xlabel("Iteration Number")
         plt.ylabel("Marcked Squares")
         plt.show()
+
+    
+    def Property_Dimension(self, value = 10, args = {}):
+        self.Property_Area(value, args = args)
+        dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
+        self.dimension = dimension_obj.dimension
+
+    
+    def Progression_Property_Dimension(self, value = 10, args = {}):
+        master_x = []
+        master_y = []
+        default_vars = {"times": 8, "size": 1}
+        self.variables = self.Define_Vars(args, default_vars)
+        iteration_number = 0
+        self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2]]
+        self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6]]
+        self.passing = self.variables["size"] / value
+        while iteration_number < self.variables["times"]:
+            iteration_number += 1
+            self.Setting_Function()
+            print("%d of %d" % (iteration_number, self.variables["times"]))
+            self.new_x, self.new_y = [], []
+            limit = len(self.x)
+            for item in range(limit):
+                self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
+                self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
+                self.new_x.append(self.perimeter_x)
+                self.new_y.append(self.perimeter_y)
+            self.area_x, self.area_y = [], []
+            for item in range(limit):
+                self.area_x.extend(self.new_x[item])
+                self.area_y.extend(self.new_y[item])
+            self.property_area = PropertyArea(self.area_x, self.area_y, value, passing = self.passing)
+            self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
+            master_x.append(iteration_number)
+            master_y.append(self.dimension_obj.dimension)
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property dimension\nSierpinski Triangle Fractal")
+        plt.xlabel("Iteration Number")
+        plt.ylabel("Dimension Fractal")
+        plt.show()
+
 
 
     def Setting_Function(self): 
@@ -175,7 +214,7 @@ class SierpinskiCarpet(Sierpinski):
 
         
     def Create_Fractal(self, args = {}):
-        default_vars = {"times": 4, "size": 50}
+        default_vars = {"times": 4, "size": 1}
         self.variables = self.Define_Vars(args, default_vars)
         iteration_number = 0
         self.x = [[0, 0, self.variables["size"], self.variables["size"]]]
@@ -188,7 +227,7 @@ class SierpinskiCarpet(Sierpinski):
 
     
     def Property_Area(self, value = 10, args={}):
-        default_vars = {"times": 4, "size": 50}
+        default_vars = {"times": 4, "size": 1}
         self.variables = self.Define_Vars(args, default_vars)
         iteration_number = 0
         self.x = [[0, 0, self.variables["size"], self.variables["size"]]]
@@ -198,7 +237,6 @@ class SierpinskiCarpet(Sierpinski):
             self.Setting_Function()
             print("%d of %d" % (iteration_number, self.variables["times"]))
         self.Make_Graph()
-
         self.passing = self.variables["size"] / value
         self.new_x, self.new_y = [], []
         limit = len(self.x)
@@ -217,15 +255,12 @@ class SierpinskiCarpet(Sierpinski):
     def Progression_Property_Area(self, value = 10, args={}):
         master_x = []
         master_y = []
-
-        default_vars = {"times": 4, "size": 50}
+        default_vars = {"times": 4, "size": 1}
         self.variables = self.Define_Vars(args, default_vars)
         iteration_number = 0
         self.x = [[0, 0, self.variables["size"], self.variables["size"]]]
         self.y = [[0, self.variables["size"], self.variables["size"], 0]]
-
         self.passing = self.variables["size"] / value
-
         while iteration_number < self.variables["times"]:
             iteration_number += 1
             self.Setting_Function()
@@ -233,6 +268,7 @@ class SierpinskiCarpet(Sierpinski):
             self.new_x, self.new_y = [], []
             limit = len(self.x)
             for item in range(limit):
+                self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
                 self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
                 self.new_x.append(self.perimeter_x)
                 self.new_y.append(self.perimeter_y)
@@ -241,15 +277,55 @@ class SierpinskiCarpet(Sierpinski):
                 self.area_x.extend(self.new_x[item])
                 self.area_y.extend(self.new_y[item])
             self.property_area = PropertyArea(self.area_x, self.area_y, value, passing = self.passing)
-
             master_x.append(iteration_number)
             master_y.append(self.property_area.amount_of_marcked_squares)
-        
         plt.plot(master_x, master_y)
         plt.scatter(master_x, master_y)
         plt.title("Progression of property area\nSierpinski Carpet Fractal")
         plt.xlabel("Iteration Number")
         plt.ylabel("Marcked Squares")
+        plt.show()
+
+
+    def Property_Dimension(self, value = 10, args = {}):
+        self.Property_Area(value, args = args)
+        dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
+        self.dimension = dimension_obj.dimension
+
+    
+    def Progression_Property_Dimension(self, value = 10, args = {}):
+        master_x = []
+        master_y = []
+        default_vars = {"times": 4, "size": 1}
+        self.variables = self.Define_Vars(args, default_vars)
+        iteration_number = 0
+        self.x = [[0, 0, self.variables["size"], self.variables["size"]]]
+        self.y = [[0, self.variables["size"], self.variables["size"], 0]]
+        self.passing = self.variables["size"] / value
+        while iteration_number < self.variables["times"]:
+            iteration_number += 1
+            self.Setting_Function()
+            print("%d of %d" % (iteration_number, self.variables["times"]))
+            self.new_x, self.new_y = [], []
+            limit = len(self.x)
+            for item in range(limit):
+                self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
+                self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
+                self.new_x.append(self.perimeter_x)
+                self.new_y.append(self.perimeter_y)
+            self.area_x, self.area_y = [], []
+            for item in range(limit):
+                self.area_x.extend(self.new_x[item])
+                self.area_y.extend(self.new_y[item])
+            self.property_area = PropertyArea(self.area_x, self.area_y, value, passing = self.passing)
+            self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
+            master_x.append(iteration_number)
+            master_y.append(self.dimension_obj.dimension)
+        plt.plot(master_x, master_y)
+        plt.scatter(master_x, master_y)
+        plt.title("Progression of property dimension\nSierpinski Carpet Fractal")
+        plt.xlabel("Iteration Number")
+        plt.ylabel("Dimension Fractal")
         plt.show()
 
 

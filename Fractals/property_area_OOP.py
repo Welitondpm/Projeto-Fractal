@@ -3,7 +3,7 @@ from property_perimeter_OOP import PropertyPerimeter
 
 
 class PropertyArea():
-    def __init__(self, x = [], y = [], value = 10, show_graph = False, passing = 1000):
+    def __init__(self, x = [], y = [], value = 10, show_graph = False, passing = 1):
         self.x = x
         self.y = y
         minimum_x = min(self.x)
