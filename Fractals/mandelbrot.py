@@ -246,7 +246,7 @@ class LogisticMap(Fractal):
             n=0
             for j in range(500):
                 n=n**2+i
-                if n<5 and j>450:
+                if abs(n)<5 and j>450:
                     plt.scatter(i,n,s=.01,color="#000000")
 
 
