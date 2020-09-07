@@ -118,7 +118,7 @@ class HarmonicMandelbrot(Mandelbrot):
 
 
     def Coloring_Separator(self, counter, real_number, imaginary_number):
-        counter2 = 2
+        counter2 = 0
         while counter2 < self.variables["amount_of_colors"]:
             if counter < self.variables["depth"] / counter2:
                 self.x[counter2].append(real_number)
@@ -132,18 +132,14 @@ class SegmentedMandelbrot(Mandelbrot):
 
 
     def Coloring_Separator(self, counter, real_number, imaginary_number):
-        counter2 = self.variables["amount_of_colors"]
-        while counter2 >= 1:
-            if counter < self.variables["depth"] / counter2:
-                self.x[counter2 - 1].append(real_number)
-                self.y[counter2 - 1].append(imaginary_number)
-            counter2 -= 1
+        self.x[int(self.variables["amount_of_colors"]*counter/self.variables["depth"])].append(real_number)
+        self.y[int(self.variables["amount_of_colors"]*counter/self.variables["depth"])].append(imaginary_number)
 
 
 class Logistic_Mandelbrot(Fractal):
     def __init__(self, x = [], y = [], z = [], args = {}):
         Fractal3d.__init__(self, x, y, z)
-        default_vars = {"depth": 100, "real_numbers": 5, "imaginary_numbers": 5, "density": 100, "amount_of_colors": 12, "reach": 10}
+        default_vars = {"depth": 100, "real_numbers": 5, "imaginary_numbers": 5, "density": 50, "amount_of_colors": 12, "reach": 10}
         self.variables = self.Define_Vars(args, default_vars)
         
 
@@ -180,7 +176,7 @@ class Logistic_Mandelbrot(Fractal):
                 c = complex(real_number, imaginary_number)
                 for counter in range(self.variables["depth"]):
                     z = z * z + c
-                    if abs(z.real) > 10:
+                    if abs(z.real) > 2:
                         break
                     elif counter > self.variables["depth"] - self.variables["reach"]:
                         # self.x[-1].append(real_number)
