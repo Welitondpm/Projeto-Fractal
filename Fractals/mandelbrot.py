@@ -247,7 +247,7 @@ class LogisticMap(Fractal):
             for j in range(500):
                 n=n**2+i
                 if n<5 and j>450:
-                    plt.scatter(i,n)
+                    plt.scatter(i,n,s=.01,color="#000000")
 
 
 # logisticmap = LogisticMap()          
