@@ -32,6 +32,7 @@ class Fractal():
 
     
     def Show_Graph(self):
+        print("Loading Graph")
         plt.show()
 
     
