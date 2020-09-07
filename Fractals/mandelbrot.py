@@ -240,3 +240,19 @@ class Logistic_Mandelbrot(Fractal):
                 B = B[1:]
             color = '#' + R + G + B
             self.sub.scatter(self.x[item], self.y[item], self.z[item], s=self.dot_size, color = color)
+
+            
+class LogisticMap(Fractal):
+    def __init__(self):
+        for i in range(-400,-200):
+            print(i)
+            i/=200
+            n=0
+            for j in range(500):
+                n=n**2+i
+                if n<5 and j>450:
+                    plt.scatter(i,n)
+
+
+# logisticmap = LogisticMap()          
+# logisticmap.Show_Graph()
