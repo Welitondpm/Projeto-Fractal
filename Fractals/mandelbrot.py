@@ -248,7 +248,3 @@ class LogisticMap(Fractal):
                 n=n**2+i
                 if abs(n)<5 and j>450:
                     plt.scatter(i,n,s=.01,color="#000000")
-
-
-# logisticmap = LogisticMap()          
-# logisticmap.Show_Graph()

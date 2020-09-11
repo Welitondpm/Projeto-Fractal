@@ -1,3 +1,10 @@
+# arquivo = open("Fractals/Dados/dados.txt", "a")
+
+# dados = ["Floco: 9 iterações"]
+
+# arquivo.writelines(dados)
+
+
 #### Inverted Binary
 # from inverted_binary import InvertedBinary
 # binary = InvertedBinary()
