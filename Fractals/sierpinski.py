@@ -93,7 +93,7 @@ class Sierpinski(Fractal):
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10, args = {}):
+    def Progression_Property_Dimension(self, value = 10, args = {}, color = "#000000", make_graph = True):
         master_x = []
         master_y = []
         default_vars = {"times": 8, "size": 1}
@@ -121,13 +121,15 @@ class Sierpinski(Fractal):
             self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
             master_x.append(iteration_number)
             master_y.append(self.dimension_obj.dimension)
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property dimension\nSierpinski Triangle Fractal")
-        plt.xlabel("Iteration Number")
-        plt.ylabel("Dimension Fractal")
-        plt.show()
-
+        if make_graph:
+            plt.plot(master_x, master_y, color = color)
+            plt.scatter(master_x, master_y, color = color)
+            plt.title("Progression of property dimension\nSierpinski Triangle Fractal")
+            plt.xlabel("Iteration Number")
+            plt.ylabel("Dimension Fractal")
+        else:
+            plt.plot(master_x, master_y, color = color, label = "Sierpinski Triangle")
+            plt.scatter(master_x, master_y, color = color)
 
 
     def Setting_Function(self): 
@@ -293,7 +295,7 @@ class SierpinskiCarpet(Sierpinski):
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10, args = {}):
+    def Progression_Property_Dimension(self, value = 10, args = {}, color = "#000000", make_graph = True):
         master_x = []
         master_y = []
         default_vars = {"times": 4, "size": 1}
@@ -321,12 +323,15 @@ class SierpinskiCarpet(Sierpinski):
             self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
             master_x.append(iteration_number)
             master_y.append(self.dimension_obj.dimension)
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property dimension\nSierpinski Carpet Fractal")
-        plt.xlabel("Iteration Number")
-        plt.ylabel("Dimension Fractal")
-        plt.show()
+        if make_graph:
+            plt.plot(master_x, master_y, color = color)
+            plt.scatter(master_x, master_y, color = color)
+            plt.title("Progression of property dimension\nSierpinski Carpet Fractal")
+            plt.xlabel("Iteration Number")
+            plt.ylabel("Dimension Fractal")
+        else:
+            plt.plot(master_x, master_y, color = color, label = "Sierpinski Carpet")
+            plt.scatter(master_x, master_y, color = color)
 
 
 class ArrowHead(Fractal):
@@ -392,7 +397,7 @@ class ArrowHead(Fractal):
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10):
+    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
         master_x = []
         master_y = []
         for iteration_number in range(1, self.variables["times"] + 1):
@@ -412,13 +417,15 @@ class ArrowHead(Fractal):
             master_x.append(iteration_number)
             master_y.append(self.dimension_obj.dimension)
             print("%d of %d" % (iteration_number, self.variables["times"]))
-                
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property dimension\nArrowHead Fractal")
-        plt.xlabel("Iteration")
-        plt.ylabel("Dimension Fractal")
-        plt.show()
+        if make_graph:
+            plt.plot(master_x, master_y, color = color)
+            plt.scatter(master_x, master_y, color = color)
+            plt.title("Progression of property dimension\nArrowHead Fractal")
+            plt.xlabel("Iteration")
+            plt.ylabel("Dimension Fractal")
+        else:
+            plt.plot(master_x, master_y, color = color, label = "Arrowhead")
+            plt.scatter(master_x, master_y, color = color)
 
 
     def Make_Triangle(self):
@@ -542,7 +549,7 @@ class ChaoticTriangle(Fractal):
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10, new_points_per_measurement = 50000):
+    def Progression_Property_Dimension(self, value = 10, new_points_per_measurement = 50000, color = "#000000", make_graph = True):
         master_x = []
         master_y = []
         x_start = self.x
@@ -564,12 +571,15 @@ class ChaoticTriangle(Fractal):
             self.x.append((x_start[index] + self.x[-1]) / self.variables["value"])
             self.y.append((y_start[index] + self.y[-1]) / self.variables["value"])
             counter += 1
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property dimension\nChaotic Triangle Fractal")
-        plt.xlabel("Points(n * new_points_per_measurement)")
-        plt.ylabel("Dimension Fractal")
-        plt.show()
+        if make_graph:
+            plt.plot(master_x, master_y, color = color)
+            plt.scatter(master_x, master_y, color = color)
+            plt.title("Progression of property dimension\nChaotic Triangle Fractal")
+            plt.xlabel("Points(n * new_points_per_measurement)")
+            plt.ylabel("Dimension Fractal")
+        else:
+            plt.plot(master_x, master_y, color = color, label = "Chaotic Triangle")
+            plt.scatter(master_x, master_y, color = color)
 
 
     def Make_Chaotic_Triangle(self):

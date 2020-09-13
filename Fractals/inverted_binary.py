@@ -59,8 +59,8 @@ class InvertedBinary(Fractal):
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10):
-        self.passing = 2 ** self.variables["end"] / value
+    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
+        self.passing = 1 / value
         times = self.variables["end"]
         master_x = []
         master_y = []
@@ -68,16 +68,31 @@ class InvertedBinary(Fractal):
             self.variables["end"] = 2 ** iteration
             self.start = 2 ** (iteration - 1)
             self.Do_Calculation()
-            self.property_square = PropertyPerSquare(self.x, self.y, value)
+            property_x, property_y = Scale_Corrector()
+            self.property_square = PropertyPerSquare(property_x, property_y, value)
             self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
             master_x.append(iteration)
             master_y.append(self.dimension_obj.dimension)
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property dimension\nInverted Binary Fractal")
-        plt.xlabel("Iteration")
-        plt.ylabel("Dimension Fractal")
-        plt.show()
+        if make_graph:
+            plt.plot(master_x, master_y, color = color)
+            plt.scatter(master_x, master_y, color = color)
+            plt.title("Progression of property dimension\nInverted Binary Fractal")
+            plt.xlabel("Iteration")
+            plt.ylabel("Dimension Fractal")
+        else:
+            plt.plot(master_x, master_y, color = color, label = "Inverted Binary")
+            plt.scatter(master_x, master_y, color = color)
+
+        
+    def Scale_Corrector(self):
+        property_x, property_y = [], []
+        limit = len(self.x)
+        index = 0
+        while index < limit:
+            property_x.append(self.x[index] / self.x[-1])
+            property_y.append(self.y[index] / self.x[-1])
+            index += 1
+        return property_x, property_y
 
 
     def Make_Graph(self, color = "#000000"):

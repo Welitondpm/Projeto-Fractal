@@ -68,7 +68,7 @@ class Tree(Fractal):
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10):
+    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
         master_x = []
         master_y = []
         self.noshow = True
@@ -86,12 +86,15 @@ class Tree(Fractal):
             self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
             master_x.append(iteration_number + 1)
             master_y.append(self.dimension_obj.dimension)
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property dimension\nTree Fractal")
-        plt.xlabel("Iteration Number")
-        plt.ylabel("Dimension Fractal")
-        plt.show()
+        if make_graph:
+            plt.plot(master_x, master_y, color = color)
+            plt.scatter(master_x, master_y, color = color)
+            plt.title("Progression of property dimension\nTree Fractal")
+            plt.xlabel("Iteration Number")
+            plt.ylabel("Dimension Fractal")
+        else:
+            plt.plot(master_x, master_y, color = color, label = "Tree")
+            plt.scatter(master_x, master_y, color = color)
 
 
     def Make_Graph_Property(self, color = "#000000"):

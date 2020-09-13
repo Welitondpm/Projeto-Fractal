@@ -64,7 +64,7 @@ class DragonCurve(Fractal):
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10):
+    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
         master_x = []
         master_y = []
         iteration_number = 0
@@ -81,12 +81,16 @@ class DragonCurve(Fractal):
             self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
             master_x.append(iteration_number)
             master_y.append(self.dimension_obj.dimension)
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property dimension\nDragon Curve Fractal")
-        plt.xlabel("Iteration")
-        plt.ylabel("Dimension Fractal")
-        plt.show()
+        if make_graph:
+            plt.plot(master_x, master_y, color = color)
+            plt.scatter(master_x, master_y, color = color)
+            plt.title("Progression of property dimension\nDragon Curve Fractal")
+            plt.xlabel("Iteration")
+            plt.ylabel("Dimension Fractal")
+        else:
+            plt.plot(master_x, master_y, color = color, label = "Dragon Curve")
+            plt.scatter(master_x, master_y, color =color)
+
 
 
     def Make_Graph(self, color = "#000000"):

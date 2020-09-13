@@ -38,18 +38,18 @@ class CantorSet(Fractal):
         return ([x_1, x_2], [x_3, x_4]), ([value_of_y, value_of_y], [value_of_y, value_of_y])
 
     
-    def Create_Fractal(self):
+    def Create_Fractal(self, color = "#000000"):
         self.iteration_number = 0
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
-            self.Make_Graph()
+            self.Make_Graph(color = color)
             self.x, self.y = self.Organizing_Function(self.iteration_number)
             print("%d of %d" % (self.iteration_number, self.variables["times"]))
-        self.Make_Graph()
+        self.Make_Graph(color = color)
 
     
-    def Property_Perimeter(self, value = 10, paint_squares = True):
-        self.Create_Fractal()
+    def Property_Perimeter(self, value = 10, paint_squares = True, color = "#000000"):
+        self.Create_Fractal(color = color)
         passing = self.variables["size"] / value
         limit = len(self.x)
         new_x, new_y = [], []
@@ -61,11 +61,10 @@ class CantorSet(Fractal):
         self.property_square = PropertyPerSquare(new_x, new_y, value, paint_squares)
 
     
-    def Progression_Property_Perimeter(self, value = 10):
+    def Progression_Property_Perimeter(self, value = 10, color = "#000000"):
         passing = self.variables["size"] / value
         master_x = []
         master_y = []
-
         self.iteration_number = 0
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
@@ -81,26 +80,23 @@ class CantorSet(Fractal):
             self.property_square = PropertyPerSquare(new_x, new_y, value, False)
             master_x.append(self.iteration_number)
             master_y.append(self.property_square.amount_of_marcked_squares)
-        
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
+        plt.plot(master_x, master_y, color = color)
+        plt.scatter(master_x, master_y, color = color)
         plt.title("Progression of property per square\nCantor Set Fractal")
         plt.xlabel("Row")
         plt.ylabel("Marcked Squares")
-        plt.show()
 
     
-    def Property_Dimension(self, value = 10):
-        self.Property_Perimeter(value, False)
+    def Property_Dimension(self, value = 10, color = "#000000"):
+        self.Property_Perimeter(value = value, paint_squares = False, color = color)
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10):
+    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
         passing = self.variables["size"] / value
         master_x = []
         master_y = []
-
         self.iteration_number = 0
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
@@ -116,11 +112,13 @@ class CantorSet(Fractal):
             self.property_square = PropertyPerSquare(new_x, new_y, value, False)
             self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
             master_x.append(self.iteration_number)
-            master_y.append(self.dimension_obj.dimension)       
-                
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property dimension\nCantor Set Fractal")
-        plt.xlabel("Points(n * new_points_per_measurement)")
-        plt.ylabel("Dimension Fractal")
-        plt.show()
+            master_y.append(self.dimension_obj.dimension)
+        if make_graph:
+            plt.plot(master_x, master_y, color = color)
+            plt.scatter(master_x, master_y, color = color)
+            plt.title("Progression of property dimension\nCantor Set Fractal")
+            plt.xlabel("Row")
+            plt.ylabel("Dimension Fractal")
+        else:
+            plt.plot(master_x, master_y, color = color, label = "Cantor Set")
+            plt.scatter(master_x, master_y, color = color)
