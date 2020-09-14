@@ -241,7 +241,7 @@ class LogisticMap(Fractal):
         self.variables = self.Define_Vars(args, default_vars)
 
     
-    def Do_Calculation(self):
+    def Create_Fractal(self):
         starter = self.variables["resolution"] * self.variables["limit"]
         for item in range(- starter, 0):
             item /= self.variables["resolution"]

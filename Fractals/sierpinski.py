@@ -10,126 +10,74 @@ from random import randint
 class Sierpinski(Fractal):
     def __init__(self, x = [], y = [], args = {}):
         Fractal.__init__(self, x, y)
-
-
-    def Create_Fractal(self, args = {}):
-        default_vars = {"times": 8, "size": 1}
-        self.variables = self.Define_Vars(args, default_vars)
-        iteration_number = 0
-        self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2]]
-        self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6]]
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
-            self.Setting_Function()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-        self.Triangle_Picker()
-        self.Make_Graph()
+        self.Create_Vars(args)
 
     
-    def Property_Area(self, value = 10, args={}):
-        default_vars = {"times": 8, "size": 1}
+    def Create_Vars(self, args = {}):
+        default_vars = {"times": 8, "size": 1, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
-        iteration_number = 0
+        self.iteration_number = 0
         self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2]]
         self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6]]
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
+        self.property_x, self.property_y = [], []
+        self.passing = self.variables["size"] / self.variables["value"]
+
+
+    def Create_Fractal(self, property_area = False):
+        self.Create_Vars()
+        while self.iteration_number < self.variables["times"]:
+            self.iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
+            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+        if not property_area:
+            self.Triangle_Picker()
         self.Make_Graph()
-        self.passing = self.variables["size"] / value
+
+
+    def Do_Area(self):
         self.new_x, self.new_y = [], []
-        limit = len(self.x)
-        for item in range(limit):
+        self.limit = len(self.x)
+        for item in range(self.limit):
             self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
             self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
             self.new_x.append(self.perimeter_x)
             self.new_y.append(self.perimeter_y)
-        self.x, self.y = [], []
-        for item in range(limit):
-            self.x.extend(self.new_x[item])
-            self.y.extend(self.new_y[item])
-        self.property_area = PropertyArea(self.x, self.y, value, True, passing = self.passing)
+        self.area_x, self.area_y = [], []
+        for item in range(self.limit):
+            self.area_x.extend(self.new_x[item])
+            self.area_y.extend(self.new_y[item])
+        self.property_area = PropertyArea(self.area_x, self.area_y, self.variables["value"], passing = self.passing)
 
     
-    def Progression_Property_Area(self, value = 10, args={}):
-        master_x = []
-        master_y = []
-        default_vars = {"times": 8, "size": 1}
-        self.variables = self.Define_Vars(args, default_vars)
-        iteration_number = 0
-        self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2]]
-        self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6]]
-        self.passing = self.variables["size"] / value
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
-            self.Setting_Function()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-            self.new_x, self.new_y = [], []
-            limit = len(self.x)
-            for item in range(limit):
-                self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
-                self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
-                self.new_x.append(self.perimeter_x)
-                self.new_y.append(self.perimeter_y)
-            self.area_x, self.area_y = [], []
-            for item in range(limit):
-                self.area_x.extend(self.new_x[item])
-                self.area_y.extend(self.new_y[item])
-            self.property_area = PropertyArea(self.area_x, self.area_y, value, passing = self.passing)
-            master_x.append(iteration_number)
-            master_y.append(self.property_area.amount_of_marcked_squares)
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property area\nSierpinski Fractal")
-        plt.xlabel("Iteration Number")
-        plt.ylabel("Marcked Squares")
-        plt.show()
+    def Property_Area(self):
+        self.Create_Fractal(property_area = True)
+        self.Do_Area()
 
     
-    def Property_Dimension(self, value = 10, args = {}):
-        self.Property_Area(value, args = args)
+    def Property_Dimension(self):
+        self.Property_Area()
         dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10, args = {}, color = "#000000", make_graph = True):
-        master_x = []
-        master_y = []
-        default_vars = {"times": 8, "size": 1}
-        self.variables = self.Define_Vars(args, default_vars)
-        iteration_number = 0
-        self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2]]
-        self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6]]
-        self.passing = self.variables["size"] / value
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
+    def Progression_Property(self, property_area = False, make_graph = True):
+        self.Create_Vars()
+        while self.iteration_number < self.variables["times"]:
+            self.iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-            self.new_x, self.new_y = [], []
-            limit = len(self.x)
-            for item in range(limit):
-                self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
-                self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
-                self.new_x.append(self.perimeter_x)
-                self.new_y.append(self.perimeter_y)
-            self.area_x, self.area_y = [], []
-            for item in range(limit):
-                self.area_x.extend(self.new_x[item])
-                self.area_y.extend(self.new_y[item])
-            self.property_area = PropertyArea(self.area_x, self.area_y, value, passing = self.passing)
-            self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
-            master_x.append(iteration_number)
-            master_y.append(self.dimension_obj.dimension)
-        if make_graph:
-            plt.plot(master_x, master_y, color = color)
-            plt.scatter(master_x, master_y, color = color)
-            plt.title("Progression of property dimension\nSierpinski Triangle Fractal")
-            plt.xlabel("Iteration Number")
-            plt.ylabel("Dimension Fractal")
+            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            self.Do_Area()
+            self.property_x.append(self.iteration_number)
+            if property_area:
+                self.property_y.append(self.property_area.amount_of_marcked_squares)
+            else:
+                self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
+                self.property_y.append(self.dimension_obj.dimension)
+        if property_area:
+            description = {"title": "Progression of property area\nSierpinski Triangle Fractal", "label_x": "Iteration Number", "label_y": "Marcked Squares", "label_plot": "Sierpinski Triangle"}
         else:
-            plt.plot(master_x, master_y, color = color, label = "Sierpinski Triangle")
-            plt.scatter(master_x, master_y, color = color)
+            description = {"title": "Progression of property dimension\nSierpinski Triangle Fractal", "label_x": "Iteration Number", "label_y": "Dimension Fractal", "label_plot": "Sierpinski Triangle"}
+        self.Assemble_Graph(self.property_x, self.property_y, description["title"], description["label_x"], description["label_y"], description["label_plot"], make_graph)
 
 
     def Setting_Function(self): 
@@ -175,15 +123,15 @@ class Sierpinski(Fractal):
         self.x, self.y = new_x, new_y
 
 
-    def Make_Graph(self, color = "#000000"):
+    def Make_Graph(self):
         limit = len(self.x)
         for item in range(limit):
-            plt.fill(self.x[item], self.y[item], color = color)
+            plt.fill(self.x[item], self.y[item], color = self.variables["color"])
 
 
 class SierpinskiCarpet(Sierpinski):
-    def __init__(self, x = [], y = [], args = {}):
-        Sierpinski.__init__(self, x, y, args)
+    def __init__(self, args = {}):
+        Sierpinski.__init__(self, [], [], args)
 
     
     def Sierpinski_Triangle(self, x, y):
@@ -214,131 +162,78 @@ class SierpinskiCarpet(Sierpinski):
         return ((square_1_x, square_2_x, square_3_x, square_4_x, square_5_x, square_6_x, square_7_x, square_8_x), 
                 (square_1_y, square_2_y, square_3_y, square_4_y, square_5_y, square_6_y, square_7_y, square_8_y))
 
-        
-    def Create_Fractal(self, args = {}):
-        default_vars = {"times": 4, "size": 1}
+
+    def Create_Vars(self, args = {}):
+        default_vars = {"times": 4, "size": 1, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
-        iteration_number = 0
+        self.iteration_number = 0
         self.x = [[0, 0, self.variables["size"], self.variables["size"]]]
         self.y = [[0, self.variables["size"], self.variables["size"], 0]]
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
+        self.property_x, self.property_y = [], []
+        self.passing = self.variables["size"] / self.variables["value"]
+
+
+    def Create_Fractal(self):
+        self.Create_Vars()
+        while self.iteration_number < self.variables["times"]:
+            self.iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
+            print("%d of %d" % (self.iteration_number, self.variables["times"]))
         self.Make_Graph()
 
     
-    def Property_Area(self, value = 10, args={}):
-        default_vars = {"times": 4, "size": 1}
-        self.variables = self.Define_Vars(args, default_vars)
-        iteration_number = 0
-        self.x = [[0, 0, self.variables["size"], self.variables["size"]]]
-        self.y = [[0, self.variables["size"], self.variables["size"], 0]]
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
-            self.Setting_Function()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-        self.Make_Graph()
-        self.passing = self.variables["size"] / value
+    def Do_Area(self):
         self.new_x, self.new_y = [], []
-        limit = len(self.x)
-        for item in range(limit):
+        self.limit = len(self.x)
+        for item in range(self.limit):
             self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
             self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
             self.new_x.append(self.perimeter_x)
             self.new_y.append(self.perimeter_y)
-        self.x, self.y = [], []
-        for item in range(limit):
-            self.x.extend(self.new_x[item])
-            self.y.extend(self.new_y[item])
-        self.property_area = PropertyArea(self.x, self.y, value, True, passing = self.passing)
+        self.area_x, self.area_y = [], []
+        for item in range(self.limit):
+            self.area_x.extend(self.new_x[item])
+            self.area_y.extend(self.new_y[item])
+        self.property_area = PropertyArea(self.area_x, self.area_y, self.variables["value"], passing = self.passing)
 
     
-    def Progression_Property_Area(self, value = 10, args={}):
-        master_x = []
-        master_y = []
-        default_vars = {"times": 4, "size": 1}
-        self.variables = self.Define_Vars(args, default_vars)
-        iteration_number = 0
-        self.x = [[0, 0, self.variables["size"], self.variables["size"]]]
-        self.y = [[0, self.variables["size"], self.variables["size"], 0]]
-        self.passing = self.variables["size"] / value
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
-            self.Setting_Function()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-            self.new_x, self.new_y = [], []
-            limit = len(self.x)
-            for item in range(limit):
-                self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
-                self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
-                self.new_x.append(self.perimeter_x)
-                self.new_y.append(self.perimeter_y)
-            self.area_x, self.area_y = [], []
-            for item in range(limit):
-                self.area_x.extend(self.new_x[item])
-                self.area_y.extend(self.new_y[item])
-            self.property_area = PropertyArea(self.area_x, self.area_y, value, passing = self.passing)
-            master_x.append(iteration_number)
-            master_y.append(self.property_area.amount_of_marcked_squares)
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property area\nSierpinski Carpet Fractal")
-        plt.xlabel("Iteration Number")
-        plt.ylabel("Marcked Squares")
-        plt.show()
+    def Property_Area(self):
+        self.Create_Fractal()
+        self.Do_Area()
+    
 
-
-    def Property_Dimension(self, value = 10, args = {}):
-        self.Property_Area(value, args = args)
+    def Property_Dimension(self):
+        self.Property_Area()
         dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10, args = {}, color = "#000000", make_graph = True):
-        master_x = []
-        master_y = []
-        default_vars = {"times": 4, "size": 1}
-        self.variables = self.Define_Vars(args, default_vars)
-        iteration_number = 0
-        self.x = [[0, 0, self.variables["size"], self.variables["size"]]]
-        self.y = [[0, self.variables["size"], self.variables["size"], 0]]
-        self.passing = self.variables["size"] / value
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
+    def Progression_Property(self, property_area = False, make_graph = True):
+        self.Create_Vars()
+        while self.iteration_number < self.variables["times"]:
+            self.iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-            self.new_x, self.new_y = [], []
-            limit = len(self.x)
-            for item in range(limit):
-                self.property_perimeter = PropertyPerimeter(self.x[item] + [self.x[item][0]], self.y[item] + [self.y[item][0]])
-                self.perimeter_x, self.perimeter_y = self.property_perimeter.Perimeter(self.passing)
-                self.new_x.append(self.perimeter_x)
-                self.new_y.append(self.perimeter_y)
-            self.area_x, self.area_y = [], []
-            for item in range(limit):
-                self.area_x.extend(self.new_x[item])
-                self.area_y.extend(self.new_y[item])
-            self.property_area = PropertyArea(self.area_x, self.area_y, value, passing = self.passing)
-            self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
-            master_x.append(iteration_number)
-            master_y.append(self.dimension_obj.dimension)
-        if make_graph:
-            plt.plot(master_x, master_y, color = color)
-            plt.scatter(master_x, master_y, color = color)
-            plt.title("Progression of property dimension\nSierpinski Carpet Fractal")
-            plt.xlabel("Iteration Number")
-            plt.ylabel("Dimension Fractal")
+            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            self.Do_Area()
+            self.property_x.append(self.iteration_number)
+            if property_area:
+                self.property_y.append(self.property_area.amount_of_marcked_squares)
+            else:
+                self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
+                self.property_y.append(self.dimension_obj.dimension)
+        if property_area:
+            description = {"title": "Progression of property area\nSierpinski Carpet Fractal", "label_x": "Iteration Number", "label_y": "Marcked Squares", "label_plot": "Sierpinski Carpet"}
         else:
-            plt.plot(master_x, master_y, color = color, label = "Sierpinski Carpet")
-            plt.scatter(master_x, master_y, color = color)
+            description = {"title": "Progression of property dimension\nSierpinski Carpet Fractal", "label_x": "Iteration Number", "label_y": "Dimension Fractal", "label_plot": "Sierpinski Carpet"}
+        self.Assemble_Graph(self.property_x, self.property_y, description["title"], description["label_x"], description["label_y"], description["label_plot"], make_graph)
 
 
-class ArrowHead(Fractal):
+class Arrowhead(Fractal):
     def __init__(self, x = [[0, 1]], y = [[0, 0]], args = {}):
         Fractal.__init__(self, x, y)
-        default_vars = {"times": 8}
+        default_vars = {"times": 8, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
+        self.property_x, self.property_y = [], []
         
 
     def Create_Fractal(self):
@@ -356,50 +251,21 @@ class ArrowHead(Fractal):
         self.Make_Graph()
 
     
-    def Property_Perimeter(self, value = 10, paint_squares = True):
+    def Property_Perimeter(self, paint_squares = True):
         self.Create_Fractal()
-        passing = (max(self.x) - min(self.x)) / value
+        passing = (max(self.x) - min(self.x)) / self.variables["value"]
         self.property_perimeter = PropertyPerimeter(self.x, self.y)
         self.x, self.y = self.property_perimeter.Perimeter(passing)
-        self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
+        self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"], paint_squares)
 
     
-    def Progression_Property_Perimeter(self, value = 10):
-        master_x = []
-        master_y = []
-        for iteration_number in range(1, self.variables["times"] + 1):
-            self.Make_Triangle()
-            new_x, new_y = [], []
-            index = 0
-            limit = len(self.x)
-            while index < limit:
-                new_x.extend(self.x[index])
-                new_y.extend(self.y[index])
-                index += 1
-            passing = (max(new_x) - min(new_y)) / value
-            self.property_perimeter = PropertyPerimeter(new_x, new_y)
-            new_x, new_y = self.property_perimeter.Perimeter(passing)
-            self.property_square = PropertyPerSquare(new_x, new_y, value, False)
-            master_x.append(iteration_number)
-            master_y.append(self.property_square.amount_of_marcked_squares)
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property perimeter\nArrowHead Fractal")
-        plt.xlabel("Iteration Number")
-        plt.ylabel("Marcked Squares")
-        plt.show()
-
-
-    def Property_Dimension(self, value = 10):
-        self.Property_Perimeter(value)
+    def Property_Dimension(self):
+        self.Property_Perimeter()
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
-        master_x = []
-        master_y = []
+    def Progression_Property(self, property_perimeter = False, make_graph = True):
         for iteration_number in range(1, self.variables["times"] + 1):
             self.Make_Triangle()
             new_x, new_y = [], []
@@ -409,23 +275,22 @@ class ArrowHead(Fractal):
                 new_x.extend(self.x[index])
                 new_y.extend(self.y[index])
                 index += 1
-            passing = (max(new_x) - min(new_y)) / value
+            passing = (max(new_x) - min(new_y)) / self.variables["value"]
             self.property_perimeter = PropertyPerimeter(new_x, new_y)
             new_x, new_y = self.property_perimeter.Perimeter(passing)
-            self.property_square = PropertyPerSquare(new_x, new_y, value)
-            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
-            master_x.append(iteration_number)
-            master_y.append(self.dimension_obj.dimension)
+            self.property_square = PropertyPerSquare(new_x, new_y, self.variables["value"])
             print("%d of %d" % (iteration_number, self.variables["times"]))
-        if make_graph:
-            plt.plot(master_x, master_y, color = color)
-            plt.scatter(master_x, master_y, color = color)
-            plt.title("Progression of property dimension\nArrowHead Fractal")
-            plt.xlabel("Iteration")
-            plt.ylabel("Dimension Fractal")
+            self.property_x.append(iteration_number)
+            if property_perimeter:
+                self.property_y.append(self.property_square.amount_of_marcked_squares)
+            else:
+                self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+                self.property_y.append(self.dimension_obj.dimension)
+        if property_perimeter:
+            description = {"title": "Progression of property perimeter\nArrowhead Fractal", "label_x": "Iteration", "label_y": "Marcked Squares", "label_plot": "Arrowhead"}
         else:
-            plt.plot(master_x, master_y, color = color, label = "Arrowhead")
-            plt.scatter(master_x, master_y, color = color)
+            description = {"title": "Progression of property dimension\nArrowhead Fractal", "label_x": "Iteration", "label_y": "Dimension Fractal", "label_plot": "Arrowhead"}
+        self.Assemble_Graph(self.property_x, self.property_y, description["title"], description["label_x"], description["label_y"], description["label_plot"], make_graph)
 
 
     def Make_Triangle(self):
@@ -493,15 +358,16 @@ class ArrowHead(Fractal):
         self.x, self.y = new_x, new_y
 
 
-    def Make_Graph(self, color = "#000000"):
-        plt.plot(self.x, self.y, color = color)
+    def Make_Graph(self):
+        plt.plot(self.x, self.y, color = self.variables["color"])
 
 
 class ChaoticTriangle(Fractal):
     def __init__(self, x = [0, 0.5, -0.5], y = [3 ** 0.5 / 2, 0, 0], args = {}):
         Fractal.__init__(self, x, y)
-        default_vars = {"times": 1000000, "value": 2}
+        default_vars = {"times": 1000000, "divader": 2, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
+        self.property_x, self.property_y = [], []
 
     
     def Create_Fractal(self):
@@ -509,49 +375,18 @@ class ChaoticTriangle(Fractal):
         self.Make_Graph()
 
     
-    def Property_Square(self, value = 10, paint_squares = True):
+    def Property_Square(self, paint_squares = True):
         self.Create_Fractal()
-        self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
-
+        self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"], paint_squares)
     
-    def Progression_Property_Square(self, value = 10, new_points_per_measurement = 50000):
-        master_x = []
-        master_y = []
-        x_start = self.x
-        y_start = self.y
-        self.x = [sum(x_start) / len(x_start)]
-        self.y = [sum(y_start) / len(y_start)]
-        counter = 0
-        limit = new_points_per_measurement
-        iteration = 1
-        while counter <= self.variables["times"]:
-            if counter == limit or counter == self.variables["times"]:
-                self.property_square = PropertyPerSquare(self.x, self.y, value)
-                master_x.append(iteration)
-                master_y.append(self.property_square.amount_of_marcked_squares)
-                iteration += 1
-                limit = iteration * new_points_per_measurement
-            index = randint(0, len(x_start) - 1)
-            self.x.append((x_start[index] + self.x[-1]) / self.variables["value"])
-            self.y.append((y_start[index] + self.y[-1]) / self.variables["value"])
-            counter += 1
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property per square\nChaotic Triangle Fractal")
-        plt.xlabel("Points(n * new_points_per_measurement)")
-        plt.ylabel("Marcked Squares")
-        plt.show()
 
-    
-    def Property_Dimension(self, value = 10):
-        self.Property_Square(value)
+    def Property_Dimension(self):
+        self.Property_Square()
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
-    
-    def Progression_Property_Dimension(self, value = 10, new_points_per_measurement = 50000, color = "#000000", make_graph = True):
-        master_x = []
-        master_y = []
+
+    def Progression_Property(self, new_points_per_measurement = 100000, property_square = False, make_graph = True):
         x_start = self.x
         y_start = self.y
         self.x = [sum(x_start) / len(x_start)]
@@ -561,25 +396,24 @@ class ChaoticTriangle(Fractal):
         iteration = 1
         while counter <= self.variables["times"]:
             if counter == limit or counter == self.variables["times"]:
-                self.property_square = PropertyPerSquare(self.x, self.y, value)
-                self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
-                master_x.append(iteration)
-                master_y.append(self.dimension_obj.dimension)
+                self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"])
+                self.property_x.append(iteration)
+                if property_square:
+                    self.property_y.append(self.property_square.amount_of_marcked_squares)
+                else:
+                    self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+                    self.property_y.append(self.dimension_obj.dimension)
                 iteration += 1
                 limit = iteration * new_points_per_measurement
             index = randint(0, len(x_start) - 1)
-            self.x.append((x_start[index] + self.x[-1]) / self.variables["value"])
-            self.y.append((y_start[index] + self.y[-1]) / self.variables["value"])
+            self.x.append((x_start[index] + self.x[-1]) / self.variables["divader"])
+            self.y.append((y_start[index] + self.y[-1]) / self.variables["divader"])
             counter += 1
-        if make_graph:
-            plt.plot(master_x, master_y, color = color)
-            plt.scatter(master_x, master_y, color = color)
-            plt.title("Progression of property dimension\nChaotic Triangle Fractal")
-            plt.xlabel("Points(n * new_points_per_measurement)")
-            plt.ylabel("Dimension Fractal")
+        if property_square:
+            description = {"title": "Progression of property per square\nChaotic Triangle Fractal", "label_x": "Points(n * new_points_per_measurement)", "label_y": "Marcked Squares", "label_plot": "Chaotic Triangle"}
         else:
-            plt.plot(master_x, master_y, color = color, label = "Chaotic Triangle")
-            plt.scatter(master_x, master_y, color = color)
+            description = {"title": "Progression of property dimension\nChaotic Triangle Fractal", "label_x": "Points(n * new_points_per_measurement)", "label_y": "Dimension Fractal", "label_plot": "Chaotic Triangle"}
+        self.Assemble_Graph(self.property_x, self.property_y, description["title"], description["label_x"], description["label_y"], description["label_plot"], make_graph)
 
 
     def Make_Chaotic_Triangle(self):
@@ -590,13 +424,13 @@ class ChaoticTriangle(Fractal):
         self.y = [sum(y_start) / len(y_start)]
         while counter <= self.variables["times"]:
             index = randint(0, len(x_start) - 1)
-            self.x.append((x_start[index] + self.x[-1]) / self.variables["value"])
-            self.y.append((y_start[index] + self.y[-1]) / self.variables["value"])
+            self.x.append((x_start[index] + self.x[-1]) / self.variables["divader"])
+            self.y.append((y_start[index] + self.y[-1]) / self.variables["divader"])
             counter += 1
 
 
-    def Make_Graph(self, color = "#000000"):
-        plt.scatter(self.x, self.y, color = color, s=0.01)
+    def Make_Graph(self):
+        plt.scatter(self.x, self.y, color = self.variables["color"], s=0.01)
 
 
 class SierpinskiPascal(Fractal):
@@ -604,6 +438,9 @@ class SierpinskiPascal(Fractal):
         self.string_line = ""
         default_vars = {"times": 20}
         self.variables = self.Define_Vars(args, default_vars)
+
+    
+    def Create_Fractal(self):
         number_line = 0
         while number_line < self.variables["times"]:
             number_line += 1

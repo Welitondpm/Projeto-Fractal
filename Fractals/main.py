@@ -22,11 +22,11 @@ from tree import Tree
 from mandelbrot import Mandelbrot
 from mandelbrot import HarmonicMandelbrot
 from mandelbrot import SegmentedMandelbrot
-from mandelbrot import Logistic_Mandelbrot
+from mandelbrot import LogisticMandelbrot
 from mandelbrot import LogisticMap
 from sierpinski import Sierpinski
 from sierpinski import SierpinskiCarpet
-from sierpinski import ArrowHead
+from sierpinski import Arrowhead
 from sierpinski import ChaoticTriangle
 from sierpinski import SierpinskiPascal
 from menger import Menger
@@ -192,50 +192,171 @@ def Do_Koch_Curve(args = {}, save_pdf = False, file_name = "fractal", show_time 
         koch_curve.Show_Graph()
 
 
-def Sierpinski_Triangle_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True):
-    sierpinski_triangle = Sierpinski()
-    sierpinski_triangle.Progression_Property_Dimension(args = args, value = value, color =color, make_graph = make_graph)
-    if make_graph:
+def Do_Mandelbrot(args = {}, save_pdf = False, file_name = "fractal", show_time = False, paint_squares = False, property_dimension = False, property_square = False, harmonic_mandelbrot = False, segmented_mandelbrot = False, logistic_mandelbrot = False, logistic_map = False, multi_colors = False):
+    if harmonic_mandelbrot:
+        mandelbrot = HarmonicMandelbrot(args)
+    elif segmented_mandelbrot:
+        mandelbrot = SegmentedMandelbrot(args)
+    elif logistic_mandelbrot:
+        mandelbrot = LogisticMandelbrot(args)
+    elif logistic_map:
+        mandelbrot = LogisticMap(args)
+    else:
+        mandelbrot = Mandelbrot(args)
+    mandelbrot.Start_Cronometer()
+    mandelbrot.Create_Fractal()
+    if not logistic_map:
+        if not multi_colors:
+            mandelbrot.Define_Colors_Unique()
+        else:
+            mandelbrot.Define_Colors_Multi()
+        if property_square:
+            mandelbrot.Property_Square(paint_squares)
+            print("Marcked Squares %d of %d" % (mandelbrot.property_square.amount_of_marcked_squares, mandelbrot.property_square.total_amount_of_squares))
+        elif property_dimension:
+            mandelbrot.Property_Dimension()
+            print("Dimension = %s" % (mandelbrot.dimension))
+    if save_pdf and not property_dimension:
+        mandelbrot.Save_Pdf(file_name = file_name)
+    if show_time:
+        mandelbrot.End_Cronometer()
+        print("%f seconds" % (mandelbrot.runtime))
+    if not property_dimension:
+        mandelbrot.Show_Graph()
+
+    
+def Do_Sierpinski_Triangle(args = {}, save_pdf = False, file_name = "fractal", show_time = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_area = False, progression_property_area = False):
+    sierpinski_triangle = Sierpinski(args = args)
+    sierpinski_triangle.Start_Cronometer()
+    if property_area:
+        sierpinski_triangle.Property_Area()
+        print("Marcked Squares %d of %d" % (sierpinski_triangle.property_area.amount_of_marcked_squares, sierpinski_triangle.property_area.total_amount_of_squares))
+    elif property_dimension:
+        sierpinski_triangle.Property_Dimension()
+        print("Dimension = %s" % (sierpinski_triangle.dimension))
+    elif progression_property_area:
+        sierpinski_triangle.Progression_Property(property_area = True)
+    elif progression_property_dimension:
+        sierpinski_triangle.Progression_Property(make_graph = make_graph)
+    else:
+        sierpinski_triangle.Create_Fractal()
+    if save_pdf and not property_dimension and make_graph:
+        sierpinski_triangle.Save_Pdf(file_name = file_name)
+    if show_time:
+        sierpinski_triangle.End_Cronometer()
+        print("%f seconds" % (sierpinski_triangle.runtime))
+    if property_dimension or not make_graph:
+        pass
+    else:
         sierpinski_triangle.Show_Graph()
 
     
-def Sierpinski_Carpet_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True):
-    sierpinski_carpet = SierpinskiCarpet()
-    sierpinski_carpet.Progression_Property_Dimension(args = args, value = value, color = color, make_graph = make_graph)
-    if make_graph:
+def Do_Sierpinski_Carpet(args = {}, save_pdf = False, file_name = "fractal", show_time = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_area = False, progression_property_area = False):
+    sierpinski_carpet = SierpinskiCarpet(args = args)
+    sierpinski_carpet.Start_Cronometer()
+    if property_area:
+        sierpinski_carpet.Property_Area()
+        print("Marcked Squares %d of %d" % (sierpinski_carpet.property_area.amount_of_marcked_squares, sierpinski_carpet.property_area.total_amount_of_squares))
+    elif property_dimension:
+        sierpinski_carpet.Property_Dimension()
+        print("Dimension = %s" % (sierpinski_carpet.dimension))
+    elif progression_property_area:
+        sierpinski_carpet.Progression_Property(property_area = True)
+    elif progression_property_dimension:
+        sierpinski_carpet.Progression_Property(make_graph = make_graph)
+    else:
+        sierpinski_carpet.Create_Fractal()
+    if save_pdf and not property_dimension and make_graph:
+        sierpinski_carpet.Save_Pdf(file_name = file_name)
+    if show_time:
+        sierpinski_carpet.End_Cronometer()
+        print("%f seconds" % (sierpinski_carpet.runtime))
+    if property_dimension or not make_graph:
+        pass
+    else:
         sierpinski_carpet.Show_Graph()
 
-
-def Arrowhead_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True):
-    arrowhead = ArrowHead(args = args)
-    arrowhead.Progression_Property_Dimension(value = value, color = color, make_graph = make_graph)
-    if make_graph:
+    
+def Do_Arrowhead(args = {}, save_pdf = False, file_name = "fractal", show_time = False, paint_squares = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_perimeter = False, progression_property_perimeter = False):
+    arrowhead = Arrowhead(args = args)
+    arrowhead.Start_Cronometer()
+    if property_perimeter:
+        arrowhead.Property_Perimeter(paint_squares)
+        print("Marcked Squares %d of %d" % (arrowhead.property_square.amount_of_marcked_squares, arrowhead.property_square.total_amount_of_squares))
+    elif property_dimension:
+        arrowhead.Property_Dimension()
+        print("Dimension = %s" % (arrowhead.dimension))
+    elif progression_property_perimeter:
+        arrowhead.Progression_Property(property_perimeter = True)
+    elif progression_property_dimension:
+        arrowhead.Progression_Property(make_graph = make_graph)
+    else:
+        arrowhead.Create_Fractal()
+    if save_pdf and not property_dimension and make_graph:
+        arrowhead.Save_Pdf(file_name = file_name)
+    if show_time:
+        arrowhead.End_Cronometer()
+        print("%f seconds" % (arrowhead.runtime))
+    if property_dimension or not make_graph:
+        pass
+    else:
         arrowhead.Show_Graph()
+    
 
-
-def Chaotic_Triangle_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True, new_points_per_measurement = 10000):
+def Do_Chaotic_Triangle(args = {}, save_pdf = False, file_name = "fractal", show_time = False, paint_squares = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_square = False, progression_property_square = False):
     chaotic_triangle = ChaoticTriangle(args = args)
-    chaotic_triangle.Progression_Property_Dimension(value = value, color = color, make_graph = make_graph, new_points_per_measurement = new_points_per_measurement)
-    if make_graph:
+    chaotic_triangle.Start_Cronometer()
+    if property_square:
+        chaotic_triangle.Property_Square(paint_squares)
+        print("Marcked Squares %d of %d" % (chaotic_triangle.property_square.amount_of_marcked_squares, chaotic_triangle.property_square.total_amount_of_squares))
+    elif property_dimension:
+        chaotic_triangle.Property_Dimension()
+        print("Dimension = %s" % (chaotic_triangle.dimension))
+    elif progression_property_square:
+        chaotic_triangle.Progression_Property(property_square = True)
+    elif progression_property_dimension:
+        chaotic_triangle.Progression_Property(make_graph = make_graph)
+    else:
+        chaotic_triangle.Create_Fractal()
+    if save_pdf and not property_dimension and make_graph:
+        chaotic_triangle.Save_Pdf(file_name = file_name)
+    if show_time:
+        chaotic_triangle.End_Cronometer()
+        print("%f seconds" % (chaotic_triangle.runtime))
+    if property_dimension or not make_graph:
+        pass
+    else:
         chaotic_triangle.Show_Graph()
 
 
-def Tree_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True):
-    tree = Tree(args = args)
-    tree.Progression_Property_Dimension(value = value, color = color, make_graph = make_graph)
-    if make_graph:
+def Do_Tree(args = {}, save_pdf = False, file_name = "fractal", show_time = False, paint_squares = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_perimeter = False, progression_property_perimeter = False):
+    tree = CantorSet(args = args)
+    tree.Start_Cronometer()
+    if property_perimeter:
+        tree.Property_Perimeter(paint_squares)
+        print("Marcked Squares %d of %d" % (tree.property_square.amount_of_marcked_squares, tree.property_square.total_amount_of_squares))
+    elif property_dimension:
+        tree.Property_Dimension()
+        print("Dimension = %s" % (tree.dimension))
+    elif progression_property_perimeter:
+        tree.Progression_Property(property_perimeter = True)
+    elif progression_property_dimension:
+        tree.Progression_Property(make_graph = make_graph)
+    else:
+        tree.Create_Fractal()
+    if save_pdf and not property_dimension and make_graph:
+        tree.Save_Pdf(file_name = file_name)
+    if show_time:
+        tree.End_Cronometer()
+        print("%f seconds" % (tree.runtime))
+    if property_dimension or not make_graph:
+        pass
+    else:
         tree.Show_Graph()
 
 
 def Calculation_Progression_Fractal_2D(value = 10):
-    Sierpinski_Carpet_Progression_Dimension(args = {"times": 3}, value = value, color = "#00ff00", make_graph = False)
-    Sierpinski_Triangle_Progression_Dimension(args = {"times": 5}, value = value, color = "#ff0000", make_graph = False)
-    # Chaotic_Triangle_Progression_Dimension(args = {"times": 500000}, new_points_per_measurement = 100000, value = value, color = "#ff8800", make_graph = False)
-    Arrowhead_Progression_Dimension(args = {"times": 5}, value = value, color = "#0000ff", make_graph = False)
     plt.legend(loc='center left', bbox_to_anchor=(1.04, 0.5))
-    plt.savefig("Progression_fractal.png")
-    fractal = Fractal()
-    fractal.Save_Pdf(file_name = "Progression_fractal")
     plt.show()
 
 

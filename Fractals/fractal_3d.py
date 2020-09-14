@@ -10,10 +10,13 @@ class Fractal3d():
         self.z = z
 
         
-    def Cronometer(self, args):
-        start = time.time()
+    def Start_Cronometer(self):
+        self.start = time.time()
+    
+
+    def End_Cronometer(self):
         the_end = time.time()
-        self.runtime = round(the_end - start, 5)
+        self.runtime = round(the_end - self.start, 5)
 
     
     def Define_Vars(self, args, default_vars):
