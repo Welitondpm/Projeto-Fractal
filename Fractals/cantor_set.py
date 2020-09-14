@@ -6,18 +6,19 @@ from fractal import Fractal
 
 
 class CantorSet(Fractal):
-    def __init__(self, x = [], y = [], args = {}):
-        Fractal.__init__(self, x, y)
-        default_vars = {"times": 10, "size": 1}
+    def __init__(self, args = {}):
+        default_vars = {"times": 10, "size": 1, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
-        self.x = [[0, self.variables["size"]]]
-        self.y = [[0, 0]]
+        Fractal.__init__(self, [[0, self.variables["size"]]], [[0, 0]])
+        self.iteration_number = 0
+        self.property_x, self.property_y = [], []
+        self.passing = self.variables["size"] / self.variables["value"]
 
 
-    def Make_Graph(self, color = "#000000"):
+    def Make_Graph(self):
         limit = len(self.x)
         for item in range(limit):
-            plt.plot(self.x[item], self.y[item], color = color, linewidth = 1)
+            plt.plot(self.x[item], self.y[item], color = self.variables["color"], linewidth = 1)
 
 
     def Organizing_Function(self, value_of_y):
@@ -38,87 +39,51 @@ class CantorSet(Fractal):
         return ([x_1, x_2], [x_3, x_4]), ([value_of_y, value_of_y], [value_of_y, value_of_y])
 
     
-    def Create_Fractal(self, color = "#000000"):
-        self.iteration_number = 0
+    def Create_Fractal(self):
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
-            self.Make_Graph(color = color)
+            self.Make_Graph()
             self.x, self.y = self.Organizing_Function(self.iteration_number)
             print("%d of %d" % (self.iteration_number, self.variables["times"]))
-        self.Make_Graph(color = color)
+        self.Make_Graph()
 
-    
-    def Property_Perimeter(self, value = 10, paint_squares = True, color = "#000000"):
-        self.Create_Fractal(color = color)
-        passing = self.variables["size"] / value
+
+    def Do_Perimeter(self, paint_squares = False):
         limit = len(self.x)
         new_x, new_y = [], []
         for item in range(limit):
             self.property_perimeter = PropertyPerimeter(self.x[item], self.y[item])
-            new_x_perimeter, new_y_perimeter = self.property_perimeter.Perimeter(passing)
+            new_x_perimeter, new_y_perimeter = self.property_perimeter.Perimeter(self.passing)
             new_x.extend(new_x_perimeter)
             new_y.extend(new_y_perimeter)
-        self.property_square = PropertyPerSquare(new_x, new_y, value, paint_squares)
+        self.property_square = PropertyPerSquare(new_x, new_y, self.variables["value"], paint_squares)
 
     
-    def Progression_Property_Perimeter(self, value = 10, color = "#000000"):
-        passing = self.variables["size"] / value
-        master_x = []
-        master_y = []
-        self.iteration_number = 0
-        while self.iteration_number < self.variables["times"]:
-            self.iteration_number += 1
-            self.x, self.y = self.Organizing_Function(self.iteration_number)
-            print("%d of %d" % (self.iteration_number, self.variables["times"]))
-            limit = len(self.x)
-            new_x, new_y = [], []
-            for item in range(limit):
-                self.property_perimeter = PropertyPerimeter(self.x[item], self.y[item])
-                new_x_perimeter, new_y_perimeter = self.property_perimeter.Perimeter(passing)
-                new_x.extend(new_x_perimeter)
-                new_y.extend(new_y_perimeter)
-            self.property_square = PropertyPerSquare(new_x, new_y, value, False)
-            master_x.append(self.iteration_number)
-            master_y.append(self.property_square.amount_of_marcked_squares)
-        plt.plot(master_x, master_y, color = color)
-        plt.scatter(master_x, master_y, color = color)
-        plt.title("Progression of property per square\nCantor Set Fractal")
-        plt.xlabel("Row")
-        plt.ylabel("Marcked Squares")
+    def Property_Perimeter(self, paint_squares = True):
+        self.Create_Fractal()
+        self.Do_Perimeter(paint_squares)
 
     
-    def Property_Dimension(self, value = 10, color = "#000000"):
-        self.Property_Perimeter(value = value, paint_squares = False, color = color)
+    def Property_Dimension(self):
+        self.Property_Perimeter(paint_squares = False)
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
-        passing = self.variables["size"] / value
-        master_x = []
-        master_y = []
-        self.iteration_number = 0
+    def Progression_Property(self, property_perimeter = False, make_graph = True):
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
             self.x, self.y = self.Organizing_Function(self.iteration_number)
             print("%d of %d" % (self.iteration_number, self.variables["times"]))
-            limit = len(self.x)
-            new_x, new_y = [], []
-            for item in range(limit):
-                self.property_perimeter = PropertyPerimeter(self.x[item], self.y[item])
-                new_x_perimeter, new_y_perimeter = self.property_perimeter.Perimeter(passing)
-                new_x.extend(new_x_perimeter)
-                new_y.extend(new_y_perimeter)
-            self.property_square = PropertyPerSquare(new_x, new_y, value, False)
-            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
-            master_x.append(self.iteration_number)
-            master_y.append(self.dimension_obj.dimension)
-        if make_graph:
-            plt.plot(master_x, master_y, color = color)
-            plt.scatter(master_x, master_y, color = color)
-            plt.title("Progression of property dimension\nCantor Set Fractal")
-            plt.xlabel("Row")
-            plt.ylabel("Dimension Fractal")
+            self.Do_Perimeter()
+            self.property_x.append(self.iteration_number)
+            if property_perimeter:
+                self.property_y.append(self.property_square.amount_of_marcked_squares)
+            else:
+                self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+                self.property_y.append(self.dimension_obj.dimension)
+        if property_perimeter:
+            description = {"title": "Progression of property per square\nCantor Set Fractal", "label_x": "Row", "label_y": "Marcked Squares", "label_plot": "Cantor Set"}
         else:
-            plt.plot(master_x, master_y, color = color, label = "Cantor Set")
-            plt.scatter(master_x, master_y, color = color)
+            description = {"title": "Progression of property dimension\nCantor Set Fractal", "label_x": "Row", "label_y": "Dimension Fractal", "label_plot": "Cantor Set"}
+        self.Assemble_Graph(self.property_x, self.property_y, description["title"], description["label_x"], description["label_y"], description["label_plot"], make_graph)

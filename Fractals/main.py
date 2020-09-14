@@ -36,48 +36,30 @@ from menger import ColorfulSierpinskiTetrahedron
 from koch_tetrahedron import KochTetrahedron
 
 
-def Do_Cantor_Set(args = {}, color = "#000000", save_pdf = False, file_name = "fractal", show_time = False):
+def Do_Cantor_Set(args = {}, save_pdf = False, file_name = "fractal", show_time = False, paint_squares = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_perimeter = False, progression_property_perimeter = False):
     cantor_set = CantorSet(args = args)
-    cantor_set.Cronometer(color = color)
-    if save_pdf:
+    cantor_set.Start_Cronometer()
+    if property_perimeter:
+        cantor_set.Property_Perimeter(paint_squares)
+        print("Marcked Squares %d of %d" % (cantor_set.property_square.amount_of_marcked_squares, cantor_set.property_square.total_amount_of_squares))
+    elif property_dimension:
+        cantor_set.Property_Dimension()
+        print("Dimension = %s" % (cantor_set.dimension))
+    elif progression_property_perimeter:
+        cantor_set.Progression_Property(property_perimeter = True)
+    elif progression_property_dimension:
+        cantor_set.Progression_Property(make_graph = make_graph)
+    else:
+        cantor_set.Create_Fractal()
+    if save_pdf and not property_dimension and make_graph:
         cantor_set.Save_Pdf(file_name = file_name)
     if show_time:
-        print(cantor_set.runtime)
-    cantor_set.Show_Graph()
-
-
-def Cantor_Set_Perimeter(args = {}, value = 10, paint_squares = False, color = "#000000"):
-    cantor_set = CantorSet(args = args)
-    cantor_set.Property_Perimeter(value = value, paint_squares = paint_squares, color = color)
-    print("Marcked Squares %d of %d" % (cantor_set.property_square.amount_of_marcked_squares, cantor_set.property_square.total_amount_of_squares))
-    cantor_set.Show_Graph()
-
-
-def Cantor_Set_Progression_Perimeter(args = {}, value = 10, color = "#000000"):
-    cantor_set = CantorSet(args = args)
-    cantor_set.Progression_Property_Perimeter(value = value, color = color)
-    cantor_set.Show_Graph()
-
-
-def Cantor_Set_Dimension(args = {}, value = 10, color = "#000000"):
-    cantor_set = CantorSet(args = args)
-    cantor_set.Property_Dimension(value = value, color = color)
-    print("Dimension = %s" % (cantor_set.dimension))
-
-
-def Cantor_Set_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True):
-    cantor_set = CantorSet(args = args)
-    cantor_set.Progression_Property_Dimension(value = value, color = color, make_graph = make_graph)
-    if make_graph:
+        cantor_set.End_Cronometer()
+        print("%f segundos" % (cantor_set.runtime))
+    if property_dimension or not make_graph:
+        pass
+    else:
         cantor_set.Show_Graph()
-
-
-def Cantor_Set_Time(args = {}, color = "#000000"):
-    Do_Cantor_Set(args = args, color = color, show_time = True)
-
-
-def Cantor_Set_Save_Pdf(args = {}, color = "#000000", file_name = "fractal"):
-    Do_Cantor_Set(args = args, color = color, save_pdf = True, file_name = file_name)
 
 
 def Dragon_Curve_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True):
@@ -153,9 +135,9 @@ def Inverted_Binary_Progression_Dimension(args = {}, value = 10, color = "#00000
 def Calculation_Progression_Fractal_2D(value = 10):
     Sierpinski_Carpet_Progression_Dimension(args = {"times": 3}, value = value, color = "#00ff00", make_graph = False)
     Sierpinski_Triangle_Progression_Dimension(args = {"times": 5}, value = value, color = "#ff0000", make_graph = False)
-    Chaotic_Triangle_Progression_Dimension(args = {"times": 500000}, new_points_per_measurement = 100000, value = value, color = "#ff8800", make_graph = False)
+    # Chaotic_Triangle_Progression_Dimension(args = {"times": 500000}, new_points_per_measurement = 100000, value = value, color = "#ff8800", make_graph = False)
     Arrowhead_Progression_Dimension(args = {"times": 5}, value = value, color = "#0000ff", make_graph = False)
-    Cantor_Set_Progression_Dimension(args = {"times": 5}, value = value, color = "#ff00ff", make_graph = False)
+    # Cantor_Set_Progression_Dimension(args = {"times": 5}, value = value, color = "#ff00ff", make_graph = False)
     Dragon_Curve_Progression_Dimension(args = {"times": 5}, value = value, color = "#ff88ff", make_graph = False)
     Koch_Progression_Dimension(args = {"times": 5}, value = value, color = "#880000", make_graph = False)
     Flake_of_Koch_Progression_Dimension(args = {"times": 3}, value = value, color = "#00ff88", make_graph = False)
@@ -169,7 +151,8 @@ def Calculation_Progression_Fractal_2D(value = 10):
     plt.show()
 
 
-Calculation_Progression_Fractal_2D(value= 100)
+# Do_Cantor_Set(show_time=True)
+# Calculation_Progression_Fractal_2D(value= 500)
 
 
 # arquivo = open("Fractals/Dados/dados.txt", "a")
