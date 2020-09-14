@@ -5,11 +5,12 @@ from fractal import Fractal
 
 
 class InvertedBinary(Fractal):
-    def __init__(self, x = [], y = [], args = {}):
-        Fractal.__init__(self, x, y)
-        default_vars = {"end": 18}
+    def __init__(self, args = {}):
+        Fractal.__init__(self, [], [])
+        default_vars = {"end": 18, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
         self.start = 0
+        self.property_x, self.property_y = [], []
 
     
     def Create_Fractal(self):
@@ -28,60 +29,39 @@ class InvertedBinary(Fractal):
                 self.y.append(point_y)
 
 
-    def Property_Square(self, value = 10, paint_squares = False):
+    def Property_Square(self, paint_squares = False):
         self.Create_Fractal()
-        self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
-
-
-    def Progression_Property_Square(self, value = 10):
-        times = self.variables["end"]
-        master_x = []
-        master_y = []
-        for iteration in range(1, times + 1):
-            self.variables["end"] = 2 ** iteration
-            self.start = 2 ** (iteration - 1)
-            self.Do_Calculation()
-            self.property_square = PropertyPerSquare(self.x, self.y, value)
-            master_x.append(iteration)
-            master_y.append(self.property_square.amount_of_marcked_squares)
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property per square\nInverted Binary Fractal")
-        plt.xlabel("Iteration")
-        plt.ylabel("Marcked Squares")
-        plt.show()
+        self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"], paint_squares)
 
     
-    def Property_Dimension(self, value = 10):
-        self.Property_Square(value)
-        self.passing = 2 ** self.variables["end"] / value
+    def Property_Dimension(self):
+        self.Property_Square()
+        self.passing = 2 ** self.variables["end"] / self.variables["value"]
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
-        self.passing = 1 / value
+    def Progression_Property(self, property_square = False, make_graph = True):
+        self.passing = 1 / self.variables["value"]
         times = self.variables["end"]
-        master_x = []
-        master_y = []
         for iteration in range(2, times + 1):
             self.variables["end"] = 2 ** iteration
             self.start = 2 ** (iteration - 1)
             self.Do_Calculation()
-            property_x, property_y = Scale_Corrector()
-            self.property_square = PropertyPerSquare(property_x, property_y, value)
-            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
-            master_x.append(iteration)
-            master_y.append(self.dimension_obj.dimension)
-        if make_graph:
-            plt.plot(master_x, master_y, color = color)
-            plt.scatter(master_x, master_y, color = color)
-            plt.title("Progression of property dimension\nInverted Binary Fractal")
-            plt.xlabel("Iteration")
-            plt.ylabel("Dimension Fractal")
+            self.property_x.append(iteration)
+            if property_square:
+                self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"])
+                self.property_y.append(self.property_square.amount_of_marcked_squares)
+            else:
+                property_x, property_y = self.Scale_Corrector()
+                self.property_square = PropertyPerSquare(property_x, property_y, self.variables["value"])
+                self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
+                self.property_y.append(self.dimension_obj.dimension)
+        if property_square:
+            description = {"title": "Progression of property per square\nInverted Binary Fractal", "label_x": "Iteration", "label_y": "Marcked Squares", "label_plot": "Inverted Binary"}
         else:
-            plt.plot(master_x, master_y, color = color, label = "Inverted Binary")
-            plt.scatter(master_x, master_y, color = color)
+            description = {"title": "Progression of property dimension\nInverted Binary Fractal", "label_x": "Iteration", "label_y": "Dimension Fractal", "label_plot": "Inverted Binary"}
+        self.Assemble_Graph(self.property_x, self.property_y, description["title"], description["label_x"], description["label_y"], description["label_plot"], make_graph)
 
         
     def Scale_Corrector(self):
@@ -95,8 +75,8 @@ class InvertedBinary(Fractal):
         return property_x, property_y
 
 
-    def Make_Graph(self, color = "#000000"):
-        plt.scatter(self.x, self.y, color = color, s = 0.01)
+    def Make_Graph(self):
+        plt.scatter(self.x, self.y, color = self.variables["color"], s = 0.01)
 
 
     def Prime_Number(self, point_x):

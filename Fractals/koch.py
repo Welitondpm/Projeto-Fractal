@@ -7,13 +7,12 @@ import math
 
 
 class Koch(Fractal):
-    def __init__(self, x = [], y = [], args = {}):
-        Fractal.__init__(self, x, y)
-        default_vars = {"times": 5, "amount_of_sides": 3, "size": 1}
+    def __init__(self, args = {}):
+        default_vars = {"times": 5, "amount_of_sides": 3, "size": 1, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
-        self.x = [0, self.variables["size"]]
-        self.y = [0, 0]
-        
+        Fractal.__init__(self, [0, self.variables["size"]], [0, 0])
+        self.property_x, self.property_y = [], []
+
 
     def Create_Fractal(self):
         for iteration_number in range(self.variables["times"]):
@@ -22,66 +21,44 @@ class Koch(Fractal):
         self.Make_Graph()
 
     
-    def Property_Perimeter(self, value = 10, paint_squares = True):
-        self.Create_Fractal()
-        passing = self.variables["size"] / value
+    def Do_Perimeter(self, paint_squares = False):
+        passing = self.variables["size"] / self.variables["value"]
         self.property_perimeter = PropertyPerimeter(self.x, self.y)
         self.x, self.y = self.property_perimeter.Perimeter(passing)
-        self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
+        self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"], paint_squares)
 
-
-    def Progression_Property_Perimeter(self, value = 10):
-        master_x = []
-        master_y = []
-        for iteration_number in range(self.variables["times"]):
-            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
-            self.x, self.y = self.Do_Calculation()
-            passing = self.variables["size"] / value
-            self.property_perimeter = PropertyPerimeter(self.x, self.y)
-            self.x, self.y = self.property_perimeter.Perimeter(passing)
-            self.property_square = PropertyPerSquare(self.x, self.y, value, False)
-            master_x.append(iteration_number)
-            master_y.append(self.property_square.amount_of_marcked_squares)   
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property perimeter\nKoch Curve Fractal")
-        plt.xlabel("Iteration")
-        plt.ylabel("Marcked Squares")
-        plt.show()
     
+    def Property_Perimeter(self, paint_squares = True):
+        self.Create_Fractal()
+        self.Do_Perimeter(paint_squares)
 
-    def Property_Dimension(self, value = 10):
-        self.Property_Perimeter(value)
+    
+    def Property_Dimension(self):
+        self.Property_Perimeter()
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
-        master_x = []
-        master_y = []
+    def Progression_Property(self, property_perimeter = False, make_graph = True):
         for iteration_number in range(self.variables["times"]):
             print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.x, self.y = self.Do_Calculation()
-            passing = self.variables["size"] / value
-            self.property_perimeter = PropertyPerimeter(self.x, self.y)
-            self.x, self.y = self.property_perimeter.Perimeter(passing)
-            self.property_square = PropertyPerSquare(self.x, self.y, value, False)
-            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
-            master_x.append(iteration_number + 1)
-            master_y.append(self.dimension_obj.dimension)
-        if make_graph:
-            plt.plot(master_x, master_y, color = color)
-            plt.scatter(master_x, master_y, color = color)
-            plt.title("Progression of property dimension\nKoch Fractal")
-            plt.xlabel("Iteration")
-            plt.ylabel("Dimension Fractal")
+            self.Do_Perimeter()
+            self.property_x.append(iteration_number + 1)
+            if property_perimeter:
+                self.property_y.append(self.property_square.amount_of_marcked_squares)
+            else:
+                self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+                self.property_y.append(self.dimension_obj.dimension)
+        if property_perimeter:
+            description = {"title": "Progression of property perimeter\nKoch Curve Fractal", "label_x": "Iteration", "label_y": "Marcked Squares", "label_plot": "Koch Curve"}
         else:
-            plt.plot(master_x, master_y, color = color, label = "Koch")
-            plt.scatter(master_x, master_y, color = color)
+            description = {"title": "Progression of property dimension\nKoch Curve Fractal", "label_x": "Iteration", "label_y": "Dimension Fractal", "label_plot": "Koch Curve"}
+        self.Assemble_Graph(self.property_x, self.property_y, description["title"], description["label_x"], description["label_y"], description["label_plot"], make_graph)
 
 
-    def Make_Graph(self, color = "#000000"):
-        plt.plot(self.x, self.y, color = color)
+    def Make_Graph(self):
+        plt.plot(self.x, self.y, color = self.variables["color"])
 
 
     def Do_Calculation(self):

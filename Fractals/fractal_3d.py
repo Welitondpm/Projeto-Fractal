@@ -1,4 +1,3 @@
-# from propriedades/propriedade_por_quadrado.py import *
 from matplotlib.backends.backend_pdf import PdfPages
 import matplotlib.pyplot as plt
 import time
@@ -13,7 +12,6 @@ class Fractal3d():
         
     def Cronometer(self, args):
         start = time.time()
-        # self.Create_Fractal(args)
         the_end = time.time()
         self.runtime = round(the_end - start, 5)
 

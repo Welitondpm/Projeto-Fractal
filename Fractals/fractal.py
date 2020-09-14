@@ -37,13 +37,13 @@ class Fractal():
         plt.show()
 
     
-    def Assemble_Graph(self, master_x = [], master_y = [], title = "Title", label_x = "Label X", label_y = "Label Y", label_plot = "Label Graph", make_graph = True):
+    def Assemble_Graph(self, property_x = [], property_y = [], title = "Title", label_x = "Label X", label_y = "Label Y", label_plot = "Label Graph", make_graph = True):
         if make_graph:
-            plt.plot(master_x, master_y, color = self.variables["color"])
-            plt.scatter(master_x, master_y, color = self.variables["color"])
+            plt.plot(property_x, property_y, color = self.variables["color"])
+            plt.scatter(property_x, property_y, color = self.variables["color"])
             plt.title(title)
             plt.xlabel(label_x)
             plt.ylabel(label_y)
         else:
-            plt.plot(master_x, master_y, color = self.variables["color"], label = label_plot)
-            plt.scatter(master_x, master_y, color = self.variables["color"])
+            plt.plot(property_x, property_y, color = self.variables["color"], label = label_plot)
+            plt.scatter(property_x, property_y, color = self.variables["color"])

@@ -6,95 +6,71 @@ from fractal import Fractal
 
 
 class HilbertCurve(Fractal):
-    def __init__(self, x = [], y = [], args = {}):
-        Fractal.__init__(self, x, y)
-        default_vars = {"times": 5, "scale": 1}
+    def __init__(self, args = {}):
+        default_vars = {"times": 5, "scale": 1, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
-        self.x = [0, 0, self.variables["scale"], self.variables["scale"]]
-        self.y = [self.variables["scale"], 0, 0, self.variables["scale"]]
+        x = [0, 0, self.variables["scale"], self.variables["scale"]]
+        y = [self.variables["scale"], 0, 0, self.variables["scale"]]
+        Fractal.__init__(self, x, y)
+        self.iteration_number = 0
+        self.property_x, self.property_y = [], []
         
         
     def Create_Fractal(self):
-        iteration_number = 0
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
-            self.Do_Calculation(iteration_number)
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-        self.Make_Graph()     
+        while self.iteration_number < self.variables["times"]:
+            self.iteration_number += 1
+            self.Do_Calculation()
+            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+        self.Make_Graph()
 
 
-    def Property_Perimeter(self, value = 10, paint_squares = True):
-        self.Create_Fractal()
-        passing = (max(self.x) - min(self.x)) / value
+    def Do_Perimeter(self, paint_squares = False):
+        self.passing = (max(self.x) - min(self.x)) / self.variables["value"]
         self.property_perimeter = PropertyPerimeter(self.x, self.y)
-        self.x, self.y = self.property_perimeter.Perimeter(passing)
-        self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
+        self.x, self.y = self.property_perimeter.Perimeter(self.passing)
+        self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"], paint_squares)
 
 
-    def Progression_Property_Perimeter(self, value = 10):
-        master_x = []
-        master_y = []
-        iteration_number = 0
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
-            self.Do_Calculation(iteration_number)
-            passing = (max(self.x) - min(self.x)) / value
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-            self.property_perimeter = PropertyPerimeter(self.x, self.y)
-            self.x, self.y = self.property_perimeter.Perimeter(passing)
-            self.property_square = PropertyPerSquare(self.x, self.y, value, False)
-            master_x.append(iteration_number)
-            master_y.append(self.property_square.amount_of_marcked_squares)   
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property perimeter\nHilbert Curve Fractal")
-        plt.xlabel("Iteration")
-        plt.ylabel("Marcked Squares")
-        plt.show()
+    def Property_Perimeter(self, paint_squares = True):
+        self.Create_Fractal()
+        self.Do_Perimeter(paint_squares)
 
     
-    def Property_Dimension(self, value = 10):
-        self.Property_Perimeter(value)
+    def Property_Dimension(self):
+        self.Property_Perimeter()
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
-        master_x = []
-        master_y = []
-        iteration_number = 0
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
-            self.Do_Calculation(iteration_number)
-            passing = (max(self.x) - min(self.x)) / value
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-            self.property_perimeter = PropertyPerimeter(self.x, self.y)
-            self.x, self.y = self.property_perimeter.Perimeter(passing)
-            self.property_square = PropertyPerSquare(self.x, self.y, value, False) 
-            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
-            master_x.append(iteration_number)
-            master_y.append(self.dimension_obj.dimension)
-        if make_graph:
-            plt.plot(master_x, master_y, color = color)
-            plt.scatter(master_x, master_y, color = color)
-            plt.title("Progression of property dimension\nHilbert Fractal")
-            plt.xlabel("Iteration")
-            plt.ylabel("Dimension Fractal")
+    def Progression_Property(self, property_perimeter = False, make_graph = True):
+        while self.iteration_number < self.variables["times"]:
+            self.iteration_number += 1
+            self.Do_Calculation()
+            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            self.Do_Perimeter()
+            self.property_x.append(self.iteration_number)
+            if property_perimeter:
+                self.property_y.append(self.property_square.amount_of_marcked_squares)
+            else:
+                self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+                self.property_y.append(self.dimension_obj.dimension)
+        if property_perimeter:
+            description = {"title": "Progression of property perimeter\nHilbert Curve Fractal", "label_x": "Iteration", "label_y": "Marcked Squares", "label_plot": "Hilbert Curve"}
         else:
-            plt.plot(master_x, master_y, color = color, label = "Hilbert Curve")
-            plt.scatter(master_x, master_y, color = color)
+            description = {"title": "Progression of property dimension\nHilbert Curve Fractal", "label_x": "Iteration", "label_y": "Dimension Fractal", "label_plot": "Hilbert Curve"}
+        self.Assemble_Graph(self.property_x, self.property_y, description["title"], description["label_x"], description["label_y"], description["label_plot"], make_graph)
 
 
-    def Make_Graph(self, color = "#000000"):
-        plt.plot(self.x, self.y, color = color)
+    def Make_Graph(self):
+        plt.plot(self.x, self.y, color = self.variables["color"])
 
 
-    def Reduces_Size(self, iteration_number):
+    def Reduces_Size(self):
         new_x, new_y = [], []
         for item in self.x:
-            new_x.append(item / ((2 ** (iteration_number + 1) - 1) / ((2 ** (iteration_number + 1) - 2) / 2)))
+            new_x.append(item / ((2 ** (self.iteration_number + 1) - 1) / ((2 ** (self.iteration_number + 1) - 2) / 2)))
         for item in self.y:
-            new_y.append(item / ((2 ** (iteration_number + 1) - 1) / ((2 ** (iteration_number + 1) - 2) / 2)))
+            new_y.append(item / ((2 ** (self.iteration_number + 1) - 1) / ((2 ** (self.iteration_number + 1) - 2) / 2)))
         self.x, self.y = new_x, new_y
 
 
@@ -116,15 +92,14 @@ class HilbertCurve(Fractal):
         return new_x, new_y
 
 
-    def Do_Calculation(self, iteration_number):
+    def Do_Calculation(self):
         size = self.x[-1] - self.x[0]
         disposable_list = []
         new_x, new_y = [], []
-        self.Reduces_Size(iteration_number)
-        addition = size / (2 ** (iteration_number + 1) - 1)
+        self.Reduces_Size()
+        addition = size / (2 ** (self.iteration_number + 1) - 1)
         x_3, y_3 = self.Rotate_Counterclockwise()
         x_4, y_4 = self.Rotate_Clockwise()
-
         for item in self.x:
             disposable_list.append(item + addition + (self.x[-1] - self.x[0]))
         x_2 = disposable_list[::]
@@ -141,7 +116,6 @@ class HilbertCurve(Fractal):
             disposable_list.append(item + addition)
         y_4 = disposable_list[::]
         disposable_list = []
-
         for item in [x_3[::-1], self.x, x_2, x_4]:
             new_x.extend(item)
         for item in [y_3[::-1], self.y, self.y, y_4]:

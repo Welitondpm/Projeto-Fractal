@@ -6,95 +6,65 @@ from fractal import Fractal
 
 
 class DragonCurve(Fractal):
-    def __init__(self, x = [], y = [], args = {}):
-        Fractal.__init__(self, x, y)
-        default_vars = {"times": 10}
+    def __init__(self, args = {}):
+        default_vars = {"times": 10, "scale": 1, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
-        self.x = [0, 1]
-        self.y = [0, 0]
-        
+        Fractal.__init__(self, [0, self.variables["scale"]], [0, 0])
+        self.iteration_number = 0
+        self.property_x, self.property_y = [], []
 
     
     def Create_Fractal(self):
-        iteration_number = 0
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
+        while self.iteration_number < self.variables["times"]:
+            self.iteration_number += 1
             self.Do_Calculation()
-            if iteration_number > 2:
+            if self.iteration_number > 2:
                 self.Scale_Corrector()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
+            print("%d of %d" % (self.iteration_number, self.variables["times"]))
         self.Make_Graph()
 
     
-    def Property_Perimeter(self, value = 10, paint_squares = True):
-        self.Create_Fractal()
-        passing = (max(self.x) - min(self.y)) / value
+    def Do_Perimeter(self, paint_squares = False):
+        self.passing = (max(self.x) - min(self.y)) / self.variables["value"]
         self.property_perimeter = PropertyPerimeter(self.x, self.y)
-        self.x, self.y = self.property_perimeter.Perimeter(passing)
-        self.property_square = PropertyPerSquare(self.x, self.y, value, paint_squares)
-
-
-    def Progression_Property_Perimeter(self, value = 10):
-        master_x = []
-        master_y = []
-        iteration_number = 0
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
-            self.Do_Calculation()
-            if iteration_number > 2:
-                self.Scale_Corrector()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-            passing = (max(self.x) - min(self.y)) / value
-            self.property_perimeter = PropertyPerimeter(self.x, self.y)
-            self.x, self.y = self.property_perimeter.Perimeter(passing)
-            self.property_square = PropertyPerSquare(self.x, self.y, value, False)
-            master_x.append(iteration_number)
-            master_y.append(self.property_square.amount_of_marcked_squares)   
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property perimeter\nDragon Curve Fractal")
-        plt.xlabel("Iteration")
-        plt.ylabel("Marcked Squares")
-        plt.show()
+        self.x, self.y = self.property_perimeter.Perimeter(self.passing)
+        self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"], paint_squares)
 
     
-    def Property_Dimension(self, value = 10):
-        self.Property_Perimeter(value)
+    def Property_Perimeter(self, paint_squares = True):
+        self.Create_Fractal()
+        self.Do_Perimeter(paint_squares)
+
+    
+    def Property_Dimension(self):
+        self.Property_Perimeter(paint_squares = False)
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
-    
-    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
-        master_x = []
-        master_y = []
-        iteration_number = 0
-        while iteration_number < self.variables["times"]:
-            iteration_number += 1
+
+    def Progression_Property(self, property_perimeter = False, make_graph = True):
+        while self.iteration_number < self.variables["times"]:
+            self.iteration_number += 1
             self.Do_Calculation()
-            if iteration_number > 2:
+            if self.iteration_number > 2:
                 self.Scale_Corrector()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
-            passing = (max(self.x) - min(self.y)) / value
-            self.property_perimeter = PropertyPerimeter(self.x, self.y)
-            self.x, self.y = self.property_perimeter.Perimeter(passing)
-            self.property_square = PropertyPerSquare(self.x, self.y, value, False)
-            self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
-            master_x.append(iteration_number)
-            master_y.append(self.dimension_obj.dimension)
-        if make_graph:
-            plt.plot(master_x, master_y, color = color)
-            plt.scatter(master_x, master_y, color = color)
-            plt.title("Progression of property dimension\nDragon Curve Fractal")
-            plt.xlabel("Iteration")
-            plt.ylabel("Dimension Fractal")
+            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            self.Do_Perimeter(False)
+            self.property_x.append(self.iteration_number)
+            if property_perimeter:
+                self.property_y.append(self.property_square.amount_of_marcked_squares)
+            else:
+                self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
+                self.property_y.append(self.dimension_obj.dimension)
+        if property_perimeter:
+            description = {"title": "Progression of property perimeter\nDragon Curve Fractal", "label_x": "Iteration", "label_y": "Marcked Squares", "label_plot": "Dragon Curve"}
         else:
-            plt.plot(master_x, master_y, color = color, label = "Dragon Curve")
-            plt.scatter(master_x, master_y, color =color)
+            description = {"title": "Progression of property dimension\nDragon Curve Fractal", "label_x": "Iteration", "label_y": "Dimension Fractal", "label_plot": "Dragon Curve"}
+        self.Assemble_Graph(self.property_x, self.property_y, description["title"], description["label_x"], description["label_y"], description["label_plot"], make_graph)
 
 
-
-    def Make_Graph(self, color = "#000000"):
-        plt.plot(self.x, self.y, color = color)
+    def Make_Graph(self):
+        plt.plot(self.x, self.y, color = self.variables["color"])
 
 
     def Do_Calculation(self):

@@ -55,39 +55,141 @@ def Do_Cantor_Set(args = {}, save_pdf = False, file_name = "fractal", show_time 
         cantor_set.Save_Pdf(file_name = file_name)
     if show_time:
         cantor_set.End_Cronometer()
-        print("%f segundos" % (cantor_set.runtime))
+        print("%f seconds" % (cantor_set.runtime))
     if property_dimension or not make_graph:
         pass
     else:
         cantor_set.Show_Graph()
 
 
-def Dragon_Curve_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True):
+def Do_Dragon_Curve(args = {}, save_pdf = False, file_name = "fractal", show_time = False, paint_squares = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_perimeter = False, progression_property_perimeter = False):
     dragon_curve = DragonCurve(args = args)
-    dragon_curve.Progression_Property_Dimension(value = value, color = color, make_graph = make_graph)
-    if make_graph:
+    dragon_curve.Start_Cronometer()
+    if property_perimeter:
+        dragon_curve.Property_Perimeter(paint_squares)
+        print("Marcked Squares %d of %d" % (dragon_curve.property_square.amount_of_marcked_squares, dragon_curve.property_square.total_amount_of_squares))
+    elif property_dimension:
+        dragon_curve.Property_Dimension()
+        print("Dimension = %s" % (dragon_curve.dimension))
+    elif progression_property_perimeter:
+        dragon_curve.Progression_Property(property_perimeter = True)
+    elif progression_property_dimension:
+        dragon_curve.Progression_Property(make_graph = make_graph)
+    else:
+        dragon_curve.Create_Fractal()
+    if save_pdf and not property_dimension and make_graph:
+        dragon_curve.Save_Pdf(file_name = file_name)
+    if show_time:
+        dragon_curve.End_Cronometer()
+        print("%f seconds" % (dragon_curve.runtime))
+    if property_dimension or not make_graph:
+        pass
+    else:
         dragon_curve.Show_Graph()
 
+
+def Do_Koch_Flake(args = {}, save_pdf = False, file_name = "fractal", show_time = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_area = False, progression_property_area = False):
+    koch_flake = Flake(args = args)
+    koch_flake.Start_Cronometer()
+    if property_area:
+        koch_flake.Property_Area()
+        print("Marcked Squares %d of %d" % (koch_flake.property_area.amount_of_marcked_squares, koch_flake.property_area.total_amount_of_squares))
+    elif property_dimension:
+        koch_flake.Property_Dimension()
+        print("Dimension = %s" % (koch_flake.dimension))
+    elif progression_property_area:
+        koch_flake.Progression_Property(property_area = True)
+    elif progression_property_dimension:
+        koch_flake.Progression_Property(make_graph = make_graph)
+    else:
+        koch_flake.Create_Fractal()
+    if save_pdf and not property_dimension and make_graph:
+        koch_flake.Save_Pdf(file_name = file_name)
+    if show_time:
+        koch_flake.End_Cronometer()
+        print("%f seconds" % (koch_flake.runtime))
+    if property_dimension or not make_graph:
+        pass
+    else:
+        koch_flake.Show_Graph()
+
     
-def Flake_of_Koch_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True):
-    flake = Flake(args = args)
-    flake.Progression_Property_Dimension(value = value, color = color, make_graph = make_graph)
-    if make_graph:
-        flake.Show_Graph()
-
-
-def Hilbert_Curve(args = {}, value = 10, color = "#000000", make_graph = True):
+def Do_Hilbert_Curve(args = {}, save_pdf = False, file_name = "fractal", show_time = False, paint_squares = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_perimeter = False, progression_property_perimeter = False):
     hilbert_curve = HilbertCurve(args = args)
-    hilbert_curve.Progression_Property_Dimension(value = value, color = color, make_graph = make_graph)
-    if make_graph:
+    hilbert_curve.Start_Cronometer()
+    if property_perimeter:
+        hilbert_curve.Property_Perimeter(paint_squares)
+        print("Marcked Squares %d of %d" % (hilbert_curve.property_square.amount_of_marcked_squares, hilbert_curve.property_square.total_amount_of_squares))
+    elif property_dimension:
+        hilbert_curve.Property_Dimension()
+        print("Dimension = %s" % (hilbert_curve.dimension))
+    elif progression_property_perimeter:
+        hilbert_curve.Progression_Property(property_perimeter = True)
+    elif progression_property_dimension:
+        hilbert_curve.Progression_Property(make_graph = make_graph)
+    else:
+        hilbert_curve.Create_Fractal()
+    if save_pdf and not property_dimension and make_graph:
+        hilbert_curve.Save_Pdf(file_name = file_name)
+    if show_time:
+        hilbert_curve.End_Cronometer()
+        print("%f seconds" % (hilbert_curve.runtime))
+    if property_dimension or not make_graph:
+        pass
+    else:
         hilbert_curve.Show_Graph()
 
+    
+def Do_Inverted_Binary(args = {}, save_pdf = False, file_name = "fractal", show_time = False, paint_squares = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_square = False, progression_property_square = False):
+    inverted_binary = InvertedBinary(args = args)
+    inverted_binary.Start_Cronometer()
+    if property_square:
+        inverted_binary.Property_Square(paint_squares)
+        print("Marcked Squares %d of %d" % (inverted_binary.property_square.amount_of_marcked_squares, inverted_binary.property_square.total_amount_of_squares))
+    elif property_dimension:
+        inverted_binary.Property_Dimension()
+        print("Dimension = %s" % (inverted_binary.dimension))
+    elif progression_property_square:
+        inverted_binary.Progression_Property(property_square = True)
+    elif progression_property_dimension:
+        inverted_binary.Progression_Property(make_graph = make_graph)
+    else:
+        inverted_binary.Create_Fractal()
+    if save_pdf and not property_dimension and make_graph:
+        inverted_binary.Save_Pdf(file_name = file_name)
+    if show_time:
+        inverted_binary.End_Cronometer()
+        print("%f seconds" % (inverted_binary.runtime))
+    if property_dimension or not make_graph:
+        pass
+    else:
+        inverted_binary.Show_Graph()
 
-def Koch_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True):
-    koch = Koch(args = args)
-    koch.Progression_Property_Dimension(value = value, color = color, make_graph = make_graph)
-    if make_graph:
-        koch.Show_Graph()
+
+def Do_Koch_Curve(args = {}, save_pdf = False, file_name = "fractal", show_time = False, paint_squares = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_perimeter = False, progression_property_perimeter = False):
+    koch_curve = Koch(args = args)
+    koch_curve.Start_Cronometer()
+    if property_perimeter:
+        koch_curve.Property_Perimeter(paint_squares)
+        print("Marcked Squares %d of %d" % (koch_curve.property_square.amount_of_marcked_squares, koch_curve.property_square.total_amount_of_squares))
+    elif property_dimension:
+        koch_curve.Property_Dimension()
+        print("Dimension = %s" % (koch_curve.dimension))
+    elif progression_property_perimeter:
+        koch_curve.Progression_Property(property_perimeter = True)
+    elif progression_property_dimension:
+        koch_curve.Progression_Property(make_graph = make_graph)
+    else:
+        koch_curve.Create_Fractal()
+    if save_pdf and not property_dimension and make_graph:
+        koch_curve.Save_Pdf(file_name = file_name)
+    if show_time:
+        koch_curve.End_Cronometer()
+        print("%f seconds" % (koch_curve.runtime))
+    if property_dimension or not make_graph:
+        pass
+    else:
+        koch_curve.Show_Graph()
 
 
 def Sierpinski_Triangle_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True):
@@ -125,34 +227,16 @@ def Tree_Progression_Dimension(args = {}, value = 10, color = "#000000", make_gr
         tree.Show_Graph()
 
 
-def Inverted_Binary_Progression_Dimension(args = {}, value = 10, color = "#000000", make_graph = True):
-    inverted_binary = InvertedBinary(args = args)
-    inverted_binary.Progression_Property_Dimension(value = value, color = color, make_graph = make_graph)
-    if make_graph:
-        inverted_binary.Show_Graph()
-
-
 def Calculation_Progression_Fractal_2D(value = 10):
     Sierpinski_Carpet_Progression_Dimension(args = {"times": 3}, value = value, color = "#00ff00", make_graph = False)
     Sierpinski_Triangle_Progression_Dimension(args = {"times": 5}, value = value, color = "#ff0000", make_graph = False)
     # Chaotic_Triangle_Progression_Dimension(args = {"times": 500000}, new_points_per_measurement = 100000, value = value, color = "#ff8800", make_graph = False)
     Arrowhead_Progression_Dimension(args = {"times": 5}, value = value, color = "#0000ff", make_graph = False)
-    # Cantor_Set_Progression_Dimension(args = {"times": 5}, value = value, color = "#ff00ff", make_graph = False)
-    Dragon_Curve_Progression_Dimension(args = {"times": 5}, value = value, color = "#ff88ff", make_graph = False)
-    Koch_Progression_Dimension(args = {"times": 5}, value = value, color = "#880000", make_graph = False)
-    Flake_of_Koch_Progression_Dimension(args = {"times": 3}, value = value, color = "#00ff88", make_graph = False)
     plt.legend(loc='center left', bbox_to_anchor=(1.04, 0.5))
-    plt.tight_layout()
-    mng = plt.get_current_fig_manager()
-    mng.full_screen_toggle()
-    plt.savefig("Progression_fractal.png", bbox_inches='tight')
+    plt.savefig("Progression_fractal.png")
     fractal = Fractal()
     fractal.Save_Pdf(file_name = "Progression_fractal")
     plt.show()
-
-
-# Do_Cantor_Set(show_time=True)
-# Calculation_Progression_Fractal_2D(value= 500)
 
 
 # arquivo = open("Fractals/Dados/dados.txt", "a")

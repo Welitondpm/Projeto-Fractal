@@ -7,9 +7,9 @@ from fractal_3d import Fractal3d
 
 
 class Mandelbrot(Fractal):
-    def __init__(self, x = [], y = [], args = {}):
-        Fractal.__init__(self, x, y)
-        default_vars = {"depth": 50, "real_numbers": 2, "imaginary_numbers": 2, "density": 200, "amount_of_colors": 12}
+    def __init__(self, args = {}):
+        Fractal.__init__(self, [], [])
+        default_vars = {"depth": 50, "real_numbers": 2, "imaginary_numbers": 2, "density": 200, "amount_of_colors": 12, "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
         
 
@@ -66,7 +66,7 @@ class Mandelbrot(Fractal):
             while len(color) < 6:
                 color = '0' + color
             color = "#" + color
-            plt.scatter(self.x[item], self.y[item], s=self.dot_size, color = color)
+            plt.scatter(self.x[item], self.y[item], s = self.dot_size, color = color)
 
 
     def Define_Colors_Multi(self):
@@ -102,19 +102,19 @@ class Mandelbrot(Fractal):
             plt.scatter(self.x[item], self.y[item], s=self.dot_size, color = color)
 
         
-    def Property_Square(self, value = 10, paint_squares = True):
-        self.property_square = PropertyPerSquare(self.x[-1], self.y[-1], value, paint_squares)
+    def Property_Square(self, paint_squares = True):
+        self.property_square = PropertyPerSquare(self.x[-1], self.y[-1], self.variables["value"], paint_squares)
     
     
-    def Property_Dimension(self, value = 10):
-        self.property_square = PropertyPerSquare(self.x[-1], self.y[-1], value)
+    def Property_Dimension(self):
+        self.property_square = PropertyPerSquare(self.x[-1], self.y[-1], self.variables["value"])
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
 
 class HarmonicMandelbrot(Mandelbrot):
-    def __init__(self, x = [], y = [], args = {}):
-        Mandelbrot.__init__(self, x, y, args)
+    def __init__(self, args = {}):
+        Mandelbrot.__init__(self, args)
 
 
     def Coloring_Separator(self, counter, real_number, imaginary_number):
@@ -127,8 +127,8 @@ class HarmonicMandelbrot(Mandelbrot):
 
 
 class SegmentedMandelbrot(Mandelbrot):
-    def __init__(self, x = [], y = [], args = {}):
-        Mandelbrot.__init__(self, x, y, args)
+    def __init__(self, args = {}):
+        Mandelbrot.__init__(self, args)
 
 
     def Coloring_Separator(self, counter, real_number, imaginary_number):
@@ -136,9 +136,9 @@ class SegmentedMandelbrot(Mandelbrot):
         self.y[int(self.variables["amount_of_colors"]*counter/self.variables["depth"])].append(imaginary_number)
 
 
-class Logistic_Mandelbrot(Fractal):
-    def __init__(self, x = [], y = [], z = [], args = {}):
-        Fractal3d.__init__(self, x, y, z)
+class LogisticMandelbrot(Fractal3d):
+    def __init__(self, args = {}):
+        Fractal3d.__init__(self, [], [], [])
         default_vars = {"depth": 100, "real_numbers": 5, "imaginary_numbers": 5, "density": 50, "amount_of_colors": 12, "reach": 10}
         self.variables = self.Define_Vars(args, default_vars)
         
@@ -160,7 +160,7 @@ class Logistic_Mandelbrot(Fractal):
             list_of_lists_z.append([])
         self.universe_set_of_real_numbers = range(- self.variables["real_numbers"] * self.variables["density"], self.variables["real_numbers"] * self.variables["density"])
         self.universe_set_of_imaginary_numbers = range(- self.variables["imaginary_numbers"] * self.variables["density"], self.variables["imaginary_numbers"] * self.variables["density"])
-        self.dot_size = 1#1000 / self.variables["density"]
+        self.dot_size = 1 # 1000 / self.variables["density"]
         self.x, self.y, self.z = list_of_lists_x, list_of_lists_y, list_of_lists_z
         self.limit = 1 / self.variables["depth"]
 
@@ -179,9 +179,6 @@ class Logistic_Mandelbrot(Fractal):
                     if abs(z.real) > 2:
                         break
                     elif counter > self.variables["depth"] - self.variables["reach"]:
-                        # self.x[-1].append(real_number)
-                        # self.y[-1].append(imaginary_number)
-                        # self.z[-1].append(z.real)
                         self.Coloring_Separator(counter, real_number, imaginary_number, z.real)
 
 
@@ -202,7 +199,7 @@ class Logistic_Mandelbrot(Fractal):
             while len(color) < 6:
                 color = '0' + color
             color = "#" + color
-            self.sub.scatter(self.x[item], self.y[item], self.z[item], s=self.dot_size, color = color)
+            self.sub.scatter(self.x[item], self.y[item], self.z[item], s = self.dot_size, color = color)
 
 
     def Define_Colors_Multi(self):
@@ -235,16 +232,29 @@ class Logistic_Mandelbrot(Fractal):
             while len(B) > 2:
                 B = B[1:]
             color = '#' + R + G + B
-            self.sub.scatter(self.x[item], self.y[item], self.z[item], s=self.dot_size, color = color)
+            self.sub.scatter(self.x[item], self.y[item], self.z[item], s = self.dot_size, color = color)
 
             
 class LogisticMap(Fractal):
-    def __init__(self):
-        for i in range(-400,-200):
-            print(i)
-            i/=200
-            n=0
-            for j in range(500):
-                n=n**2+i
-                if abs(n)<5 and j>450:
-                    plt.scatter(i,n,s=.01,color="#000000")
+    def __init__(self, args = {}):
+        default_vars = {"color": "#000000", "depth": 500, "initiator": 0, "resolution": 200, "limit": 2, "reach": 50}
+        self.variables = self.Define_Vars(args, default_vars)
+
+    
+    def Do_Calculation(self):
+        starter = self.variables["resolution"] * self.variables["limit"]
+        for item in range(- starter, 0):
+            item /= self.variables["resolution"]
+            self.Twice_Loop(item) 
+
+        
+    def Twice_Loop(self, item):
+        minimum = self.variables["depth"] - self.variables["reach"]
+        for subitem in range(self.variables["depth"]):
+            self.variables["initiator"] **= 2 + item
+            if abs(self.variables["initiator"]) < 5 and subitem > minimum:
+                self.Make_Graph(item)
+
+            
+    def Make_Graph(self, item):
+        plt.scatter(item, self.variables["initiator"], s = 0.01, color = self.variables["color"])

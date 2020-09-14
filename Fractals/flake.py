@@ -7,12 +7,11 @@ import math
 
 
 class Flake(Fractal):
-    def __init__(self, x = [], y = [], args = {}):
-        Fractal.__init__(self, x, y)
-        default_vars = {"times": 5, "amount_of_sides": 5, "size": 1, "inwards_out_wards": True}
+    def __init__(self, args = {}):
+        default_vars = {"times": 5, "amount_of_sides": 5, "scale": 1, "inwards_out_wards": True, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
-        self.x = [0, self.variables["size"]]
-        self.y = [0, 0]
+        Fractal.__init__(self, [0, self.variables["scale"]], [0, 0])
+        self.property_x, self.property_y = [], []
 
     
     def Create_Fractal(self):
@@ -21,68 +20,45 @@ class Flake(Fractal):
             self.x, self.y = self.Do_Calculation(iteration_number)
         self.Make_Graph()
 
-
-    def Property_Area(self, value = 10):
-        self.Create_Fractal()
-        self.passing = (max(self.x) - min(self.x)) / value
+    
+    def Do_Area(self):
+        self.passing = (max(self.x) - min(self.x)) / self.variables["value"]
         self.property_perimeter = PropertyPerimeter(self.x, self.y)
         self.x, self.y = self.property_perimeter.Perimeter(self.passing)
-        self.property_area = PropertyArea(self.x, self.y, value, passing=self.passing)
+        self.property_area = PropertyArea(self.x, self.y, self.variables["value"], passing = self.passing)
+
+
+    def Property_Area(self):
+        self.Create_Fractal()
+        self.Do_Area()
 
     
-    def Progression_Property_Area(self, value = 10):
-        master_x = []
-        master_y = []
-        for iteration_number in range(self.variables["times"]):
-            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
-            self.x, self.y = self.Do_Calculation(iteration_number)
-            self.passing = (max(self.x) - min(self.x)) / value
-            self.property_perimeter = PropertyPerimeter(self.x, self.y)
-            self.x, self.y = self.property_perimeter.Perimeter(self.passing)
-            self.property_area = PropertyArea(self.x, self.y, value, passing=self.passing)
-            master_x.append(iteration_number + 1)
-            master_y.append(self.property_area.amount_of_marcked_squares)
-        plt.plot(master_x, master_y)
-        plt.scatter(master_x, master_y)
-        plt.title("Progression of property area\nFlake of Koch Fractal")
-        plt.xlabel("Iteration Number")
-        plt.ylabel("Marcked Squares")
-        plt.show()
-
-
-    def Property_Dimension(self, value = 10):
-        self.Property_Area(value)
+    def Property_Dimension(self):
+        self.Property_Area()
         dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property_Dimension(self, value = 10, color = "#000000", make_graph = True):
-        master_x = []
-        master_y = []
+    def Progression_Property(self, property_area = False, make_graph = True):
         for iteration_number in range(self.variables["times"]):
             print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.x, self.y = self.Do_Calculation(iteration_number)
-            self.passing = (max(self.x) - min(self.x)) / value
-            self.property_perimeter = PropertyPerimeter(self.x, self.y)
-            self.x, self.y = self.property_perimeter.Perimeter(self.passing)
-            self.property_area = PropertyArea(self.x, self.y, value, passing=self.passing)
-            self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
-            master_x.append(iteration_number + 1)
-            master_y.append(self.dimension_obj.dimension)
-        if make_graph:
-            plt.plot(master_x, master_y, color = color)
-            plt.scatter(master_x, master_y, color = color)
-            plt.title("Progression of property dimension\nFloco of Koch Fractal")
-            plt.xlabel("Iteration Number")
-            plt.ylabel("Dimension Fractal")
+            self.Do_Area()
+            self.property_x.append(iteration_number + 1)
+            if property_area:
+                self.property_y.append(self.property_area.amount_of_marcked_squares)
+            else:
+                self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
+                self.property_y.append(self.dimension_obj.dimension)
+        if property_area:
+            description = {"title": "Progression of property area\nKoch Flake Fractal", "label_x": "Iteration", "label_y": "Marcked Squares", "label_plot": "Koch Flake"}
         else:
-            plt.plot(master_x, master_y, color = color, label = "Flake of Koch")
-            plt.scatter(master_x, master_y, color = color)
+            description = {"title": "Progression of property dimension\nKoch Flake Fractal", "label_x": "Iteration", "label_y": "Dimension Fractal", "label_plot": "Koch Flake"}
+        self.Assemble_Graph(self.property_x, self.property_y, description["title"], description["label_x"], description["label_y"], description["label_plot"], make_graph)
 
 
-
-    def Make_Graph(self, color = "#000000"):
-        plt.plot(self.x, self.y, color = color)
+    def Make_Graph(self):
+        plt.plot(self.x, self.y, color = self.variables["color"])
 
 
     def Do_Calculation(self, iteration_number):

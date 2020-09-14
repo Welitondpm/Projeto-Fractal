@@ -7,12 +7,12 @@ from fractal import Fractal
 
 class CantorSet(Fractal):
     def __init__(self, args = {}):
-        default_vars = {"times": 10, "size": 1, "color": "#000000", "value": 10}
+        default_vars = {"times": 10, "scale": 1, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
-        Fractal.__init__(self, [[0, self.variables["size"]]], [[0, 0]])
+        Fractal.__init__(self, [[0, self.variables["scale"]]], [[0, 0]])
         self.iteration_number = 0
         self.property_x, self.property_y = [], []
-        self.passing = self.variables["size"] / self.variables["value"]
+        self.passing = self.variables["scale"] / self.variables["value"]
 
 
     def Make_Graph(self):
