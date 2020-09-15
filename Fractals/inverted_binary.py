@@ -9,7 +9,7 @@ class InvertedBinary(Fractal):
         Fractal.__init__(self, [], [])
         default_vars = {"end": 18, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
-        self.start = 0
+        self.initiator = 0
         self.property_x, self.property_y = [], []
 
     
@@ -20,7 +20,7 @@ class InvertedBinary(Fractal):
 
 
     def Do_Calculation(self):
-        for point_x in range(self.start, self.variables["end"]):
+        for point_x in range(self.initiator, self.variables["end"]):
             if self.Prime_Number(point_x):
                 binary_number = self.Binary(point_x)
                 decimal_number = self.Decimal(binary_number)
@@ -36,7 +36,8 @@ class InvertedBinary(Fractal):
     
     def Property_Dimension(self):
         self.Property_Square()
-        self.passing = 2 ** self.variables["end"] / self.variables["value"]
+        self.x, self.y = self.Scale_Corrector()
+        self.passing = 1 / self.variables["value"]
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
         self.dimension = dimension_obj.dimension
 
@@ -46,7 +47,7 @@ class InvertedBinary(Fractal):
         times = self.variables["end"]
         for iteration in range(2, times + 1):
             self.variables["end"] = 2 ** iteration
-            self.start = 2 ** (iteration - 1)
+            self.initiator = 2 ** (iteration - 1)
             self.Do_Calculation()
             self.property_x.append(iteration)
             if property_square:

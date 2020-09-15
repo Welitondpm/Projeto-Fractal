@@ -118,7 +118,7 @@ class HarmonicMandelbrot(Mandelbrot):
 
 
     def Coloring_Separator(self, counter, real_number, imaginary_number):
-        counter2 = 0
+        counter2 = 1
         while counter2 < self.variables["amount_of_colors"]:
             if counter < self.variables["depth"] / counter2:
                 self.x[counter2].append(real_number)
@@ -237,7 +237,8 @@ class LogisticMandelbrot(Fractal3d):
             
 class LogisticMap(Fractal):
     def __init__(self, args = {}):
-        default_vars = {"color": "#000000", "depth": 500, "initiator": 0, "resolution": 200, "limit": 2, "reach": 50}
+        Fractal.__init__(self, [], [])
+        default_vars = {"color": "#000000", "depth": 50, "initiator": 0, "resolution": 20, "limit": 2, "reach": 10}
         self.variables = self.Define_Vars(args, default_vars)
 
     

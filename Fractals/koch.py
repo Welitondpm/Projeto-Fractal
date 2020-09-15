@@ -14,11 +14,12 @@ class Koch(Fractal):
         self.property_x, self.property_y = [], []
 
 
-    def Create_Fractal(self):
+    def Create_Fractal(self, property_dimension = False):
         for iteration_number in range(self.variables["times"]):
             print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.x, self.y = self.Do_Calculation()
-        self.Make_Graph()
+        if not property_dimension:
+            self.Make_Graph()
 
     
     def Do_Perimeter(self, paint_squares = False):
@@ -28,13 +29,13 @@ class Koch(Fractal):
         self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"], paint_squares)
 
     
-    def Property_Perimeter(self, paint_squares = True):
-        self.Create_Fractal()
+    def Property_Perimeter(self, paint_squares = True, property_dimension = False):
+        self.Create_Fractal(property_dimension)
         self.Do_Perimeter(paint_squares)
 
     
     def Property_Dimension(self):
-        self.Property_Perimeter()
+        self.Property_Perimeter(paint_squares = False, property_dimension = True)
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 

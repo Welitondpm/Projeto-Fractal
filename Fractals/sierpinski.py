@@ -365,7 +365,7 @@ class Arrowhead(Fractal):
 class ChaoticTriangle(Fractal):
     def __init__(self, x = [0, 0.5, -0.5], y = [3 ** 0.5 / 2, 0, 0], args = {}):
         Fractal.__init__(self, x, y)
-        default_vars = {"times": 1000000, "divader": 2, "color": "#000000", "value": 10}
+        default_vars = {"times": 100000, "divader": 2, "color": "#000000", "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
         self.property_x, self.property_y = [], []
 
@@ -381,12 +381,12 @@ class ChaoticTriangle(Fractal):
     
 
     def Property_Dimension(self):
-        self.Property_Square()
+        self.Property_Square(paint_squares = False)
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
 
-    def Progression_Property(self, new_points_per_measurement = 100000, property_square = False, make_graph = True):
+    def Progression_Property(self, new_points_per_measurement = 10000, property_square = False, make_graph = True):
         x_start = self.x
         y_start = self.y
         self.x = [sum(x_start) / len(x_start)]

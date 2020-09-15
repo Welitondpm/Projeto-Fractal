@@ -7,6 +7,7 @@ class Fractal():
     def __init__(self, x = [], y = []):
         self.x = x
         self.y = y
+        plt.clf()
 
     
     def Save_Pdf(self, file_name = "fractal"):

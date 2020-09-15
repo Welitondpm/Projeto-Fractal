@@ -34,6 +34,7 @@ class Tree(Fractal):
 
     
     def Property_Perimeter(self, paint_squares = True):
+        self.noshow = not paint_squares
         for iteration_number in range(self.variables["times"]):
             self.Do_Calculation()
             print("%d of %d" % (iteration_number + 1, self.variables["times"]))
@@ -41,7 +42,7 @@ class Tree(Fractal):
 
     
     def Property_Dimension(self):
-        self.Property_Perimeter()
+        self.Property_Perimeter(paint_squares = False)
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
@@ -95,10 +96,10 @@ class Tree(Fractal):
                 list_y.append(list_of_list_y[subitem][item])
             self.property_perimeter = PropertyPerimeter(list_x, list_y)
             new_x, new_y = self.property_perimeter.Perimeter(self.passing)
-            # if self.noshow:
-            #     pass
-            # else:
-                # plt.plot(list_x, list_y, color = self.variables["color"])
+            if self.noshow:
+                pass
+            else:
+                plt.plot(list_x, list_y, color = self.variables["color"])
             self.new_xx.extend(new_x)
             self.new_yy.extend(new_y)
             list_x, list_y = [], [] ## Jamais comente essa linha POR FAVOR!!!!!

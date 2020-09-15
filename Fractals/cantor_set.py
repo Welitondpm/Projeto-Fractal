@@ -44,7 +44,7 @@ class CantorSet(Fractal):
             self.iteration_number += 1
             self.Make_Graph()
             self.x, self.y = self.Organizing_Function(self.iteration_number)
-            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            # print("%d of %d" % (self.iteration_number, self.variables["times"]))
         self.Make_Graph()
 
 

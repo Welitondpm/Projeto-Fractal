@@ -2,6 +2,9 @@ import matplotlib.pyplot as plt
 import math
 import time
 import random
+# import os
+# import psutil
+# import cpuinfo
 from random import randint
 from fractal import Fractal
 from fractal_3d import Fractal3d
@@ -206,9 +209,9 @@ def Do_Mandelbrot(args = {}, save_pdf = False, file_name = "fractal", show_time 
     mandelbrot.Start_Cronometer()
     mandelbrot.Create_Fractal()
     if not logistic_map:
-        if not multi_colors:
+        if not multi_colors and not property_dimension:
             mandelbrot.Define_Colors_Unique()
-        else:
+        elif not property_dimension:
             mandelbrot.Define_Colors_Multi()
         if property_square:
             mandelbrot.Property_Square(paint_squares)
@@ -330,7 +333,7 @@ def Do_Chaotic_Triangle(args = {}, save_pdf = False, file_name = "fractal", show
 
 
 def Do_Tree(args = {}, save_pdf = False, file_name = "fractal", show_time = False, paint_squares = False, make_graph = True, property_dimension = False, progression_property_dimension = False, property_perimeter = False, progression_property_perimeter = False):
-    tree = CantorSet(args = args)
+    tree = Tree(args = args)
     tree.Start_Cronometer()
     if property_perimeter:
         tree.Property_Perimeter(paint_squares)
@@ -355,17 +358,88 @@ def Do_Tree(args = {}, save_pdf = False, file_name = "fractal", show_time = Fals
         tree.Show_Graph()
 
 
-def Calculation_Progression_Fractal_2D(value = 10):
-    plt.legend(loc='center left', bbox_to_anchor=(1.04, 0.5))
-    plt.show()
+# Do_Cantor_Set(show_time=True, paint_squares=True)
+# Do_Cantor_Set(show_time=True, paint_squares=True, property_dimension=True)
+# Do_Cantor_Set(show_time=True, paint_squares=True, property_perimeter=True)
+# Do_Cantor_Set(show_time=True, paint_squares=True, progression_property_dimension= True)
+# Do_Cantor_Set(show_time=True, paint_squares=True, progression_property_perimeter=True)
 
 
-# arquivo = open("Fractals/Dados/dados.txt", "a")
-# dados = ["Floco: 9 iterações"]
-# arquivo.writelines(dados)
+# Do_Dragon_Curve(show_time=True, paint_squares=True)
+# Do_Dragon_Curve(show_time=True, paint_squares=True, property_dimension=True)
+# Do_Dragon_Curve(show_time=True, paint_squares=True, property_perimeter=True)
+# Do_Dragon_Curve(show_time=True, paint_squares=True, progression_property_dimension=True)
+# Do_Dragon_Curve(show_time=True, paint_squares=True, progression_property_perimeter=True)
 
 
-#### Execute Segmented Mandelbrot
-# mandelbrot = SegmentedMandelbrot()
-# mandelbrot.Define_Colors_Unique()       ## Atenção nunca execute essa linha junto com a inferior
-# # mandelbrot.Define_Colors_Multi()      ## Atenção nunca execute essa linha junto com superior
+# Do_Koch_Flake(show_time=True)
+# Do_Koch_Flake(show_time=True, property_dimension=True)
+# Do_Koch_Flake(show_time=True, property_area=True)
+# Do_Koch_Flake(show_time=True, progression_property_dimension=True)
+# Do_Koch_Flake(show_time=True, progression_property_area=True)
+
+
+# Do_Hilbert_Curve(show_time=True, paint_squares=True)
+# Do_Hilbert_Curve(show_time=True, paint_squares=True, property_dimension=True)
+# Do_Hilbert_Curve(show_time=True, paint_squares=True, property_perimeter=True)
+# Do_Hilbert_Curve(show_time=True, paint_squares=True, progression_property_perimeter=True)
+# Do_Hilbert_Curve(show_time=True, paint_squares=True, progression_property_dimension=True)
+
+
+# Do_Inverted_Binary(show_time=True, paint_squares=True)
+# Do_Inverted_Binary(show_time=True, paint_squares=True, property_square=True)
+# Do_Inverted_Binary(show_time=True, paint_squares=True, property_dimension=True)
+# Do_Inverted_Binary(show_time=True, paint_squares=True, progression_property_square=True)
+# Do_Inverted_Binary(show_time=True, paint_squares=True, progression_property_dimension=True)
+
+
+# Do_Koch_Curve(show_time=True, paint_squares=True)
+# Do_Koch_Curve(show_time=True, paint_squares=True, property_perimeter=True)
+# Do_Koch_Curve(show_time=True, paint_squares=True, property_dimension=True)
+# Do_Koch_Curve(show_time=True, paint_squares=True, progression_property_perimeter=True)
+# Do_Koch_Curve(show_time=True, paint_squares=True, progression_property_dimension=True)
+
+
+# Do_Mandelbrot(show_time=True, paint_squares=True)
+# Do_Mandelbrot(show_time=True, paint_squares=True, multi_colors=True)
+# Do_Mandelbrot(show_time=True, paint_squares=True, harmonic_mandelbrot=True)
+# Do_Mandelbrot(show_time=True, paint_squares=True, segmented_mandelbrot=True)
+# Do_Mandelbrot(show_time=True, paint_squares=True, property_square=True)
+# Do_Mandelbrot(show_time=True, property_dimension=True)
+# Do_Mandelbrot(show_time=True, logistic_mandelbrot=True)
+# Do_Mandelbrot(show_time=True, logistic_map=True)      #Code Break
+
+
+# Do_Sierpinski_Triangle(show_time=True)
+# Do_Sierpinski_Triangle(show_time=True, property_area=True)
+# Do_Sierpinski_Triangle(show_time=True, property_dimension=True)
+# Do_Sierpinski_Triangle(show_time=True, progression_property_area=True)
+# Do_Sierpinski_Triangle(show_time=True, progression_property_dimension=True)
+
+
+# Do_Sierpinski_Carpet(show_time=True)
+# Do_Sierpinski_Carpet(show_time=True, property_area=True)
+# Do_Sierpinski_Carpet(show_time=True, property_dimension=True)
+# Do_Sierpinski_Carpet(show_time=True, progression_property_area=True)
+# Do_Sierpinski_Carpet(show_time=True, progression_property_dimension=True)
+
+
+# Do_Arrowhead(show_time=True, paint_squares=True)
+# Do_Arrowhead(show_time=True, paint_squares=True, property_perimeter=True)
+# Do_Arrowhead(show_time=True, paint_squares=True, property_dimension=True)
+# Do_Arrowhead(show_time=True, paint_squares=True, progression_property_perimeter=True)
+# Do_Arrowhead(show_time=True, paint_squares=True, progression_property_dimension=True)
+
+
+# Do_Chaotic_Triangle(show_time=True, paint_squares=True)
+# Do_Chaotic_Triangle(show_time=True, paint_squares=True, property_square=True)
+# Do_Chaotic_Triangle(show_time=True, paint_squares=True, property_dimension=True)
+# Do_Chaotic_Triangle(show_time=True, paint_squares=True, progression_property_square=True)
+# Do_Chaotic_Triangle(show_time=True, paint_squares=True, progression_property_dimension=True)
+
+
+# Do_Tree(show_time=True, paint_squares=True)
+# Do_Tree(show_time=True, paint_squares=True, property_perimeter=True)
+# Do_Tree(show_time=True, paint_squares=True, property_dimension=True)
+# Do_Tree(show_time=True, paint_squares=True, progression_property_perimeter=True)
+# Do_Tree(show_time=True, paint_squares=True, progression_property_dimension=True)
