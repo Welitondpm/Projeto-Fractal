@@ -1,0 +1,92 @@
+'Cantor_Set', 'Iteration: 1', 'Time: 0.015'//
+'Cantor_Set', 'Iteration: 2', 'Time: 0.0127'//
+'Cantor_Set', 'Iteration: 3', 'Time: 0.01474'//
+'Cantor_Set', 'Iteration: 4', 'Time: 0.04336'//
+'Cantor_Set', 'Iteration: 5', 'Time: 0.03224'//
+'Cantor_Set', 'Iteration: 6', 'Time: 0.05886'//
+'Cantor_Set', 'Iteration: 7', 'Time: 0.10325'//
+'Cantor_Set', 'Iteration: 8', 'Time: 0.18821'//
+'Cantor_Set', 'Iteration: 9', 'Time: 0.3657'//
+'Cantor_Set', 'Iteration: 10', 'Time: 0.84035'//
+'Cantor_Set', 'Iteration: 11', 'Time: 1.76134'//
+'Cantor_Set', 'Iteration: 12', 'Time: 3.59245'//
+'Cantor_Set', 'Iteration: 13', 'Time: 8.41724'//
+'Cantor_Set', 'Iteration: 11', 'Value: 50', 'Dimension: 0.765773520176279', 'Time: 2.93835'//
+'Cantor_Set', 'Iteration: 11', 'Value: 100', 'Dimension: 0.7720321294465728', 'Time: 1.82643'//
+'Cantor_Set', 'Iteration: 11', 'Value: 150', 'Dimension: 0.7362082701526723', 'Time: 1.88465'//
+'Cantor_Set', 'Iteration: 11', 'Value: 200', 'Dimension: 0.7528759171144171', 'Time: 1.92658'//
+'Cantor_Set', 'Iteration: 11', 'Value: 250', 'Dimension: 0.7532199613982581', 'Time: 1.85679'//
+'Cantor_Set', 'Iteration: 11', 'Value: 300', 'Dimension: 0.7397721374906635', 'Time: 1.91362'//
+'Cantor_Set', 'Iteration: 11', 'Value: 350', 'Dimension: 0.7543329660399314', 'Time: 1.83906'//
+'Cantor_Set', 'Iteration: 11', 'Value: 400', 'Dimension: 0.7453769722150914', 'Time: 1.89166'//
+'Cantor_Set', 'Iteration: 11', 'Value: 450', 'Dimension: 0.7172763056614997', 'Time: 1.94425'//
+'Cantor_Set', 'Iteration: 11', 'Value: 500', 'Dimension: 0.7361208615504313', 'Time: 1.85922'//
+'Cantor_Set', 'Iteration: 11', 'Value: 550', 'Dimension: 0.7360448082397092', 'Time: 1.91836'//
+'Cantor_Set', 'Iteration: 11', 'Value: 600', 'Dimension: 0.7319328515196264', 'Time: 1.9578'//
+'Cantor_Set', 'Iteration: 11', 'Value: 650', 'Dimension: 0.7391545199524672', 'Time: 1.9868'//
+'Cantor_Set', 'Iteration: 11', 'Value: 700', 'Dimension: 0.7370243027520129', 'Time: 1.92504'//
+'Cantor_Set', 'Iteration: 11', 'Value: 750', 'Dimension: 0.7329257302339531', 'Time: 1.98442'//
+'Cantor_Set', 'Iteration: 11', 'Value: 800', 'Dimension: 0.7327024705680443', 'Time: 1.895'//
+'Cantor_Set', 'Iteration: 11', 'Value: 850', 'Dimension: 0.746740945853154', 'Time: 1.97315'//
+'Cantor_Set', 'Iteration: 11', 'Value: 900', 'Dimension: 0.7221937130975788', 'Time: 2.01851'//
+'Cantor_Set', 'Iteration: 11', 'Value: 950', 'Dimension: 0.7317580971716247', 'Time: 1.93596'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1000', 'Dimension: 0.7356074230579057', 'Time: 2.0007'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1050', 'Dimension: 0.7322229079859115', 'Time: 2.04746'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1100', 'Dimension: 0.722003483131352', 'Time: 2.07822'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1150', 'Dimension: 0.7201352654291457', 'Time: 2.00529'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1200', 'Dimension: 0.7268304008343767', 'Time: 2.06387'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1250', 'Dimension: 0.7210388954111234', 'Time: 2.00431'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1300', 'Dimension: 0.7265538487037936', 'Time: 2.0579'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1350', 'Dimension: 0.704115501162633', 'Time: 2.10757'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1400', 'Dimension: 0.7198735294986749', 'Time: 2.03265'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1450', 'Dimension: 0.7200864536519447', 'Time: 2.07475'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1500', 'Dimension: 0.7189017939100284', 'Time: 2.44979'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1550', 'Dimension: 0.7171035585776339', 'Time: 2.47253'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1600', 'Dimension: 0.7181461639633148', 'Time: 2.04179'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1650', 'Dimension: 0.7191531439811384', 'Time: 2.10944'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1700', 'Dimension: 0.7238786314744837', 'Time: 2.04337'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1750', 'Dimension: 0.7204529105796458', 'Time: 2.09255'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1800', 'Dimension: 0.717128974989742', 'Time: 2.13351'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1850', 'Dimension: 0.7132806199641618', 'Time: 2.0787'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1900', 'Dimension: 0.7231602630206618', 'Time: 2.12877'//
+'Cantor_Set', 'Iteration: 11', 'Value: 1950', 'Dimension: 0.7229086126149649', 'Time: 2.16547'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2000', 'Dimension: 0.7237627463918582', 'Time: 2.20451'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2050', 'Dimension: 0.7176177753887398', 'Time: 2.14402'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2100', 'Dimension: 0.7196790356782908', 'Time: 2.20841'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2150', 'Dimension: 0.7190517845225328', 'Time: 2.14038'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2200', 'Dimension: 0.7126607780329086', 'Time: 2.19675'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2250', 'Dimension: 0.7189135989184501', 'Time: 2.25265'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2300', 'Dimension: 0.7163686563153898', 'Time: 2.19301'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2350', 'Dimension: 0.715386428509414', 'Time: 2.24115'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2400', 'Dimension: 0.7178568343891764', 'Time: 2.27878'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2450', 'Dimension: 0.7159601183418605', 'Time: 2.30939'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2500', 'Dimension: 0.7136318273235739', 'Time: 2.2616'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2550', 'Dimension: 0.7267395931998089', 'Time: 2.31347'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2600', 'Dimension: 0.7170488769696944', 'Time: 2.26429'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2650', 'Dimension: 0.713038348911096', 'Time: 2.31624'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2700', 'Dimension: 0.7095037403489431', 'Time: 2.36248'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2750', 'Dimension: 0.7119703288192828', 'Time: 2.30712'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2800', 'Dimension: 0.7125761328216133', 'Time: 2.36023'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2850', 'Dimension: 0.715734870911928', 'Time: 2.39147'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2900', 'Dimension: 0.7129000872780445', 'Time: 2.43586'//
+'Cantor_Set', 'Iteration: 11', 'Value: 2950', 'Dimension: 0.7117997737294144', 'Time: 2.37997'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3000', 'Dimension: 0.7184986797422248', 'Time: 2.4529'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3050', 'Dimension: 0.7092639403365665', 'Time: 2.3917'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3100', 'Dimension: 0.7094990416638044', 'Time: 2.43462'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3150', 'Dimension: 0.7157132379321505', 'Time: 2.52075'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3200', 'Dimension: 0.7050449394009879', 'Time: 2.48269'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3250', 'Dimension: 0.7186294884511298', 'Time: 2.95495'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3300', 'Dimension: 0.707672344656236', 'Time: 2.56416'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3350', 'Dimension: 0.7106708228874067', 'Time: 2.59236'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3400', 'Dimension: 0.7127870396841703', 'Time: 2.50775'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3450', 'Dimension: 0.708104750127715', 'Time: 2.61756'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3500', 'Dimension: 0.7068562118691096', 'Time: 2.61176'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3550', 'Dimension: 0.7134050627527376', 'Time: 2.66384'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3600', 'Dimension: 0.7136107222382383', 'Time: 2.72112'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3650', 'Dimension: 0.7127635768742051', 'Time: 2.61939'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3700', 'Dimension: 0.7094541268072163', 'Time: 2.66895'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3750', 'Dimension: 0.7079390294809311', 'Time: 2.76589'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3800', 'Dimension: 0.7075150889767241', 'Time: 2.80403'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3850', 'Dimension: 0.707807396588937', 'Time: 2.73971'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3900', 'Dimension: 0.7108378740138367', 'Time: 2.82779'//
+'Cantor_Set', 'Iteration: 11', 'Value: 3950', 'Dimension: 0.7094057109400946', 'Time: 2.75622'//

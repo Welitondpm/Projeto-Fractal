@@ -20,7 +20,7 @@ class DragonCurve(Fractal):
             self.Do_Calculation()
             if self.iteration_number > 2:
                 self.Scale_Corrector()
-            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            # print("%d of %d" % (self.iteration_number, self.variables["times"]))
         self.Make_Graph()
 
     
@@ -48,7 +48,7 @@ class DragonCurve(Fractal):
             self.Do_Calculation()
             if self.iteration_number > 2:
                 self.Scale_Corrector()
-            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            # print("%d of %d" % (self.iteration_number, self.variables["times"]))
             self.Do_Perimeter(False)
             self.property_x.append(self.iteration_number)
             if property_perimeter:

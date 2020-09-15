@@ -1,0 +1,3 @@
+'Floco', 'Iteration: 8', 'Time: 20'//
+'Koch', 'Iteration: 8', 'Time: 20'//
+'Cantor', 'Iteration: 8', 'Time: 20'

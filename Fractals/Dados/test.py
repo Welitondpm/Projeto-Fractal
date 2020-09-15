@@ -6,24 +6,25 @@ import cpuinfo
 # print(os.getpid())
 # print(psutil.virtual_memory())
 # print(cpuinfo.get_cpu_info()['brand_raw'])
+# cpu = cpuinfo.get_cpu_info()['brand_raw']
+# cpu = cpu.split()
+# print(cpu[2])
 
-# arquivo = open("Fractals/Dados/dados.txt", "a")
-# dados = ["Floco: 9 iterações"]
+# arquivo = open("Dados/tempo.txt", "a")
+# dados = ["'Floco', 'Iteration: 8', 'Time: 20'//", "\n'Koch', 'Iteration: 8', 'Time: 20'//", "\n'Cantor', 'Iteration: 8', 'Time: 20'"]
 # arquivo.writelines(dados)
 
+
+# arquivo = open("Dados/tempo.txt", "r")
+# a = arquivo.read()
+# a = a.split("//")
+# for item in a:
+#     item = item.split(", ")
+#     print(item[1])
+
 def runtieeeeee():
+    pass
     # arquivo = open("Fractals/Dados/tempo.txt", "a")
-    runtime = 0
-    iteration = 1
     # dados = []
-    # dados = ["Floco: 9 iterações"]
-    while runtime <= 240:
-        runtime = Do_Cantor_Set(make_graph=False, args = {"times": iteration})
-        if psutil.virtual_memory().percent >= 60:
-            break
-        else:
-            print("ainda não")
-        # dados.append("Cantor Set:   Iteração %d    Tempo %f" % (iteration, tempo))
-        iteration += 1
-        # print(iteration, "   ", tempo)
+    # dados.append("Cantor Set:   Iteração %d    Tempo %f" % (iteration, tempo))
     # arquivo.writelines(dados)

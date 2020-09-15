@@ -23,7 +23,7 @@ class Tree(Fractal):
     def Create_Fractal(self):
         for iteration_number in range(self.variables["times"]):
             self.Do_Calculation()
-            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
+            # print("%d of %d" % (iteration_number + 1, self.variables["times"]))
         self.Make_Graph()
 
     
@@ -37,7 +37,7 @@ class Tree(Fractal):
         self.noshow = not paint_squares
         for iteration_number in range(self.variables["times"]):
             self.Do_Calculation()
-            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
+            # print("%d of %d" % (iteration_number + 1, self.variables["times"]))
         self.Do_Perimeter(paint_squares)        
 
     
@@ -52,10 +52,10 @@ class Tree(Fractal):
         self.Do_Calculation()
         self.property_x.append(1)
         self.property_y.append(self.variables["size"] / self.variables["value"])
-        print("%d of %d" % (1, self.variables["times"]))
+        # print("%d of %d" % (1, self.variables["times"]))
         for iteration_number in range(1, self.variables["times"]):
             self.Do_Calculation()
-            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
+            # print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.Do_Perimeter()
             self.new_xx, self.new_yy = [], []
             self.property_x.append(iteration_number + 1)

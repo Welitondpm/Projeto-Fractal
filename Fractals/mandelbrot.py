@@ -9,7 +9,7 @@ from fractal_3d import Fractal3d
 class Mandelbrot(Fractal):
     def __init__(self, args = {}):
         Fractal.__init__(self, [], [])
-        default_vars = {"depth": 50, "real_numbers": 2, "imaginary_numbers": 2, "density": 200, "amount_of_colors": 12, "value": 10}
+        default_vars = {"depth": 1000, "real_numbers": 2, "imaginary_numbers": 2, "density": 200, "amount_of_colors": 12, "value": 10}
         self.variables = self.Define_Vars(args, default_vars)
         
 
@@ -34,7 +34,7 @@ class Mandelbrot(Fractal):
     def Go_Through_Universe(self):
         for real_number in self.universe_set_of_real_numbers:     
             percent = round(50 + 100 * real_number / len(self.universe_set_of_real_numbers), 2)
-            print(percent, " %")
+            # print(percent, " %")
             real_number /= self.variables["density"]
             for imaginary_number in self.universe_set_of_imaginary_numbers:
                 imaginary_number /= self.variables["density"]
@@ -168,7 +168,7 @@ class LogisticMandelbrot(Fractal3d):
     def Go_Through_Universe(self):
         for real_number in self.universe_set_of_real_numbers:     
             percent = round(50 + 100 * real_number / len(self.universe_set_of_real_numbers), 2)
-            print(percent, " %")
+            # print(percent, " %")
             real_number /= self.variables["density"]
             for imaginary_number in self.universe_set_of_imaginary_numbers:
                 imaginary_number /= self.variables["density"]
@@ -238,24 +238,26 @@ class LogisticMandelbrot(Fractal3d):
 class LogisticMap(Fractal):
     def __init__(self, args = {}):
         Fractal.__init__(self, [], [])
-        default_vars = {"color": "#000000", "depth": 50, "initiator": 0, "resolution": 20, "limit": 2, "reach": 10}
+        default_vars = {"color": "#000000", "depth":500, "initiator": 0, "resolution": 40, "limit": 2, "reach": 50}
         self.variables = self.Define_Vars(args, default_vars)
 
     
     def Create_Fractal(self):
-        starter = self.variables["resolution"] * self.variables["limit"]
-        for item in range(- starter, 0):
+        starter = int(self.variables["resolution"] * self.variables["limit"])
+        for item in range(-starter, 0):
             item /= self.variables["resolution"]
-            self.Twice_Loop(item) 
+            initiator = self.variables["initiator"]
+            self.Twice_Loop(item, initiator)
+            # print(item)
 
         
-    def Twice_Loop(self, item):
+    def Twice_Loop(self, item, initiator):
         minimum = self.variables["depth"] - self.variables["reach"]
         for subitem in range(self.variables["depth"]):
-            self.variables["initiator"] **= 2 + item
-            if abs(self.variables["initiator"]) < 5 and subitem > minimum:
-                self.Make_Graph(item)
+            if abs(initiator) < 5 and subitem > minimum:
+                initiator = initiator ** 2 + item
+                self.Make_Graph(item, initiator)
 
             
-    def Make_Graph(self, item):
-        plt.scatter(item, self.variables["initiator"], s = 0.01, color = self.variables["color"])
+    def Make_Graph(self, item, initiator):
+        plt.scatter(item, initiator, s = 0.01, color = self.variables["color"])

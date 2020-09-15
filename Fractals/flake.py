@@ -16,7 +16,7 @@ class Flake(Fractal):
     
     def Create_Fractal(self):
         for iteration_number in range(self.variables["times"]):
-            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
+            # print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.x, self.y = self.Do_Calculation(iteration_number)
         self.Make_Graph()
 
@@ -41,7 +41,7 @@ class Flake(Fractal):
     
     def Progression_Property(self, property_area = False, make_graph = True):
         for iteration_number in range(self.variables["times"]):
-            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
+            # print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.x, self.y = self.Do_Calculation(iteration_number)
             self.Do_Area()
             self.property_x.append(iteration_number + 1)

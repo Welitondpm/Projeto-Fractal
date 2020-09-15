@@ -16,7 +16,7 @@ class Koch(Fractal):
 
     def Create_Fractal(self, property_dimension = False):
         for iteration_number in range(self.variables["times"]):
-            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
+            # print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.x, self.y = self.Do_Calculation()
         if not property_dimension:
             self.Make_Graph()
@@ -42,7 +42,7 @@ class Koch(Fractal):
     
     def Progression_Property(self, property_perimeter = False, make_graph = True):
         for iteration_number in range(self.variables["times"]):
-            print("%d of %d" % (iteration_number + 1, self.variables["times"]))
+            # print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.x, self.y = self.Do_Calculation()
             self.Do_Perimeter()
             self.property_x.append(iteration_number + 1)

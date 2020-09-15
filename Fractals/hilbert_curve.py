@@ -20,7 +20,7 @@ class HilbertCurve(Fractal):
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
             self.Do_Calculation()
-            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            # print("%d of %d" % (self.iteration_number, self.variables["times"]))
         self.Make_Graph()
 
 
@@ -46,7 +46,7 @@ class HilbertCurve(Fractal):
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
             self.Do_Calculation()
-            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            # print("%d of %d" % (self.iteration_number, self.variables["times"]))
             self.Do_Perimeter()
             self.property_x.append(self.iteration_number)
             if property_perimeter:

@@ -28,7 +28,7 @@ class Sierpinski(Fractal):
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            # print("%d of %d" % (self.iteration_number, self.variables["times"]))
         if not property_area:
             self.Triangle_Picker()
         self.Make_Graph()
@@ -65,7 +65,7 @@ class Sierpinski(Fractal):
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            # print("%d of %d" % (self.iteration_number, self.variables["times"]))
             self.Do_Area()
             self.property_x.append(self.iteration_number)
             if property_area:
@@ -178,7 +178,7 @@ class SierpinskiCarpet(Sierpinski):
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            # print("%d of %d" % (self.iteration_number, self.variables["times"]))
         self.Make_Graph()
 
     
@@ -213,7 +213,7 @@ class SierpinskiCarpet(Sierpinski):
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (self.iteration_number, self.variables["times"]))
+            # print("%d of %d" % (self.iteration_number, self.variables["times"]))
             self.Do_Area()
             self.property_x.append(self.iteration_number)
             if property_area:
@@ -239,7 +239,7 @@ class Arrowhead(Fractal):
     def Create_Fractal(self):
         for iteration_number in range(1, self.variables["times"] + 1):
             self.Make_Triangle()
-            print("%d of %d" % (iteration_number, self.variables["times"]))
+            # print("%d of %d" % (iteration_number, self.variables["times"]))
         new_x, new_y = [], []
         index = 0
         limit = len(self.x)
@@ -279,7 +279,7 @@ class Arrowhead(Fractal):
             self.property_perimeter = PropertyPerimeter(new_x, new_y)
             new_x, new_y = self.property_perimeter.Perimeter(passing)
             self.property_square = PropertyPerSquare(new_x, new_y, self.variables["value"])
-            print("%d of %d" % (iteration_number, self.variables["times"]))
+            # print("%d of %d" % (iteration_number, self.variables["times"]))
             self.property_x.append(iteration_number)
             if property_perimeter:
                 self.property_y.append(self.property_square.amount_of_marcked_squares)
@@ -447,7 +447,7 @@ class SierpinskiPascal(Fractal):
             line = self.Make_Line_Pascal(number_line)
             line = line[1:-1]
             self.string_line = self.Make_Spacing(line)
-            print(self.string_line.center(175))
+            # print(self.string_line.center(175))
             self.string_line = ""
 
 
