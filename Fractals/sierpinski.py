@@ -49,18 +49,18 @@ class Sierpinski(Fractal):
         self.property_area = PropertyArea(self.area_x, self.area_y, self.variables["value"], passing = self.passing)
 
     
-    def Property_Area(self):
+    def First_Property(self):
         self.Create_Fractal(property_area = True)
         self.Do_Area()
 
     
     def Property_Dimension(self):
-        self.Property_Area()
+        self.First_Property()
         dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property(self, property_area = False, make_graph = True):
+    def Progression_Property(self, first_property = False, make_graph = True):
         self.Create_Vars()
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
@@ -68,12 +68,12 @@ class Sierpinski(Fractal):
             # print("%d of %d" % (self.iteration_number, self.variables["times"]))
             self.Do_Area()
             self.property_x.append(self.iteration_number)
-            if property_area:
+            if first_property:
                 self.property_y.append(self.property_area.amount_of_marcked_squares)
             else:
                 self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
                 self.property_y.append(self.dimension_obj.dimension)
-        if property_area:
+        if first_property:
             description = {"title": "Progression of property area\nSierpinski Triangle Fractal", "label_x": "Iteration Number", "label_y": "Marcked Squares", "label_plot": "Sierpinski Triangle"}
         else:
             description = {"title": "Progression of property dimension\nSierpinski Triangle Fractal", "label_x": "Iteration Number", "label_y": "Dimension Fractal", "label_plot": "Sierpinski Triangle"}
@@ -197,18 +197,18 @@ class SierpinskiCarpet(Sierpinski):
         self.property_area = PropertyArea(self.area_x, self.area_y, self.variables["value"], passing = self.passing)
 
     
-    def Property_Area(self):
+    def First_Property(self):
         self.Create_Fractal()
         self.Do_Area()
     
 
     def Property_Dimension(self):
-        self.Property_Area()
+        self.First_Property()
         dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property(self, property_area = False, make_graph = True):
+    def Progression_Property(self, first_property = False, make_graph = True):
         self.Create_Vars()
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
@@ -216,12 +216,12 @@ class SierpinskiCarpet(Sierpinski):
             # print("%d of %d" % (self.iteration_number, self.variables["times"]))
             self.Do_Area()
             self.property_x.append(self.iteration_number)
-            if property_area:
+            if first_property:
                 self.property_y.append(self.property_area.amount_of_marcked_squares)
             else:
                 self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
                 self.property_y.append(self.dimension_obj.dimension)
-        if property_area:
+        if first_property:
             description = {"title": "Progression of property area\nSierpinski Carpet Fractal", "label_x": "Iteration Number", "label_y": "Marcked Squares", "label_plot": "Sierpinski Carpet"}
         else:
             description = {"title": "Progression of property dimension\nSierpinski Carpet Fractal", "label_x": "Iteration Number", "label_y": "Dimension Fractal", "label_plot": "Sierpinski Carpet"}
@@ -251,7 +251,7 @@ class Arrowhead(Fractal):
         self.Make_Graph()
 
     
-    def Property_Perimeter(self, paint_squares = True):
+    def First_Property(self, paint_squares = True):
         self.Create_Fractal()
         passing = (max(self.x) - min(self.x)) / self.variables["value"]
         self.property_perimeter = PropertyPerimeter(self.x, self.y)
@@ -260,12 +260,12 @@ class Arrowhead(Fractal):
 
     
     def Property_Dimension(self):
-        self.Property_Perimeter()
+        self.First_Property()
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property(self, property_perimeter = False, make_graph = True):
+    def Progression_Property(self, first_property = False, make_graph = True):
         for iteration_number in range(1, self.variables["times"] + 1):
             self.Make_Triangle()
             new_x, new_y = [], []
@@ -281,12 +281,12 @@ class Arrowhead(Fractal):
             self.property_square = PropertyPerSquare(new_x, new_y, self.variables["value"])
             # print("%d of %d" % (iteration_number, self.variables["times"]))
             self.property_x.append(iteration_number)
-            if property_perimeter:
+            if first_property:
                 self.property_y.append(self.property_square.amount_of_marcked_squares)
             else:
                 self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
                 self.property_y.append(self.dimension_obj.dimension)
-        if property_perimeter:
+        if first_property:
             description = {"title": "Progression of property perimeter\nArrowhead Fractal", "label_x": "Iteration", "label_y": "Marcked Squares", "label_plot": "Arrowhead"}
         else:
             description = {"title": "Progression of property dimension\nArrowhead Fractal", "label_x": "Iteration", "label_y": "Dimension Fractal", "label_plot": "Arrowhead"}
@@ -375,18 +375,18 @@ class ChaoticTriangle(Fractal):
         self.Make_Graph()
 
     
-    def Property_Square(self, paint_squares = True):
+    def First_Property(self, paint_squares = True):
         self.Create_Fractal()
         self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"], paint_squares)
     
 
     def Property_Dimension(self):
-        self.Property_Square(paint_squares = False)
+        self.First_Property(paint_squares = False)
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
 
-    def Progression_Property(self, new_points_per_measurement = 10000, property_square = False, make_graph = True):
+    def Progression_Property(self, new_points_per_measurement = 10000, first_property = False, make_graph = True):
         x_start = self.x
         y_start = self.y
         self.x = [sum(x_start) / len(x_start)]
@@ -398,7 +398,7 @@ class ChaoticTriangle(Fractal):
             if counter == limit or counter == self.variables["times"]:
                 self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"])
                 self.property_x.append(iteration)
-                if property_square:
+                if first_property:
                     self.property_y.append(self.property_square.amount_of_marcked_squares)
                 else:
                     self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
@@ -409,7 +409,7 @@ class ChaoticTriangle(Fractal):
             self.x.append((x_start[index] + self.x[-1]) / self.variables["divader"])
             self.y.append((y_start[index] + self.y[-1]) / self.variables["divader"])
             counter += 1
-        if property_square:
+        if first_property:
             description = {"title": "Progression of property per square\nChaotic Triangle Fractal", "label_x": "Points(n * new_points_per_measurement)", "label_y": "Marcked Squares", "label_plot": "Chaotic Triangle"}
         else:
             description = {"title": "Progression of property dimension\nChaotic Triangle Fractal", "label_x": "Points(n * new_points_per_measurement)", "label_y": "Dimension Fractal", "label_plot": "Chaotic Triangle"}

@@ -31,30 +31,30 @@ class HilbertCurve(Fractal):
         self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"], paint_squares)
 
 
-    def Property_Perimeter(self, paint_squares = True):
+    def First_Property(self, paint_squares = True):
         self.Create_Fractal()
         self.Do_Perimeter(paint_squares)
 
     
     def Property_Dimension(self):
-        self.Property_Perimeter()
+        self.First_Property()
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property(self, property_perimeter = False, make_graph = True):
+    def Progression_Property(self, first_property = False, make_graph = True):
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
             self.Do_Calculation()
             # print("%d of %d" % (self.iteration_number, self.variables["times"]))
             self.Do_Perimeter()
             self.property_x.append(self.iteration_number)
-            if property_perimeter:
+            if first_property:
                 self.property_y.append(self.property_square.amount_of_marcked_squares)
             else:
                 self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
                 self.property_y.append(self.dimension_obj.dimension)
-        if property_perimeter:
+        if first_property:
             description = {"title": "Progression of property perimeter\nHilbert Curve Fractal", "label_x": "Iteration", "label_y": "Marcked Squares", "label_plot": "Hilbert Curve"}
         else:
             description = {"title": "Progression of property dimension\nHilbert Curve Fractal", "label_x": "Iteration", "label_y": "Dimension Fractal", "label_plot": "Hilbert Curve"}

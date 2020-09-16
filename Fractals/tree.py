@@ -33,7 +33,7 @@ class Tree(Fractal):
         self.property_square = PropertyPerSquare(self.new_xx, self.new_yy, self.variables["value"], paint_squares)
 
     
-    def Property_Perimeter(self, paint_squares = True):
+    def First_Property(self, paint_squares = True):
         self.noshow = not paint_squares
         for iteration_number in range(self.variables["times"]):
             self.Do_Calculation()
@@ -42,12 +42,12 @@ class Tree(Fractal):
 
     
     def Property_Dimension(self):
-        self.Property_Perimeter(paint_squares = False)
+        self.First_Property(paint_squares = False)
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property(self, property_perimeter = False, make_graph = True):
+    def Progression_Property(self, first_property = False, make_graph = True):
         self.noshow = True
         self.Do_Calculation()
         self.property_x.append(1)
@@ -59,12 +59,12 @@ class Tree(Fractal):
             self.Do_Perimeter()
             self.new_xx, self.new_yy = [], []
             self.property_x.append(iteration_number + 1)
-            if property_perimeter:
+            if first_property:
                 self.property_y.append(self.property_square.amount_of_marcked_squares)
             else:
                 self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
                 self.property_y.append(self.dimension_obj.dimension)
-        if property_perimeter:
+        if first_property:
             description = {"title": "Progression of property perimeter\nTree Fractal", "label_x": "Iteration Number", "label_y": "Marcked Squares", "label_plot": "Tree"}
         else:
             description = {"title": "Progression of property dimension\nTree Fractal", "label_x": "Iteration Number", "label_y": "Dimension Fractal", "label_plot": "Tree"}

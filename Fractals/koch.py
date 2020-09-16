@@ -29,29 +29,29 @@ class Koch(Fractal):
         self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"], paint_squares)
 
     
-    def Property_Perimeter(self, paint_squares = True, property_dimension = False):
+    def First_Property(self, paint_squares = True, property_dimension = False):
         self.Create_Fractal(property_dimension)
         self.Do_Perimeter(paint_squares)
 
     
     def Property_Dimension(self):
-        self.Property_Perimeter(paint_squares = False, property_dimension = True)
+        self.First_Property(paint_squares = False, property_dimension = True)
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property(self, property_perimeter = False, make_graph = True):
+    def Progression_Property(self, first_property = False, make_graph = True):
         for iteration_number in range(self.variables["times"]):
             # print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.x, self.y = self.Do_Calculation()
             self.Do_Perimeter()
             self.property_x.append(iteration_number + 1)
-            if property_perimeter:
+            if first_property:
                 self.property_y.append(self.property_square.amount_of_marcked_squares)
             else:
                 self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.property_square.passing)
                 self.property_y.append(self.dimension_obj.dimension)
-        if property_perimeter:
+        if first_property:
             description = {"title": "Progression of property perimeter\nKoch Curve Fractal", "label_x": "Iteration", "label_y": "Marcked Squares", "label_plot": "Koch Curve"}
         else:
             description = {"title": "Progression of property dimension\nKoch Curve Fractal", "label_x": "Iteration", "label_y": "Dimension Fractal", "label_plot": "Koch Curve"}

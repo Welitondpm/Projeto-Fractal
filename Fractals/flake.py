@@ -28,29 +28,29 @@ class Flake(Fractal):
         self.property_area = PropertyArea(self.x, self.y, self.variables["value"], passing = self.passing)
 
 
-    def Property_Area(self):
+    def First_Property(self):
         self.Create_Fractal()
         self.Do_Area()
 
     
     def Property_Dimension(self):
-        self.Property_Area()
+        self.First_Property()
         dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property(self, property_area = False, make_graph = True):
+    def Progression_Property(self, first_property = False, make_graph = True):
         for iteration_number in range(self.variables["times"]):
             # print("%d of %d" % (iteration_number + 1, self.variables["times"]))
             self.x, self.y = self.Do_Calculation(iteration_number)
             self.Do_Area()
             self.property_x.append(iteration_number + 1)
-            if property_area:
+            if first_property:
                 self.property_y.append(self.property_area.amount_of_marcked_squares)
             else:
                 self.dimension_obj = Dimension(self.property_area.amount_of_marcked_squares, self.property_area.passing)
                 self.property_y.append(self.dimension_obj.dimension)
-        if property_area:
+        if first_property:
             description = {"title": "Progression of property area\nKoch Flake Fractal", "label_x": "Iteration", "label_y": "Marcked Squares", "label_plot": "Koch Flake"}
         else:
             description = {"title": "Progression of property dimension\nKoch Flake Fractal", "label_x": "Iteration", "label_y": "Dimension Fractal", "label_plot": "Koch Flake"}

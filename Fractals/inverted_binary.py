@@ -29,20 +29,20 @@ class InvertedBinary(Fractal):
                 self.y.append(point_y)
 
 
-    def Property_Square(self, paint_squares = False):
+    def First_Property(self, paint_squares = False):
         self.Create_Fractal()
         self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"], paint_squares)
 
     
     def Property_Dimension(self):
-        self.Property_Square()
+        self.First_Property()
         self.x, self.y = self.Scale_Corrector()
         self.passing = 1 / self.variables["value"]
         dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
         self.dimension = dimension_obj.dimension
 
     
-    def Progression_Property(self, property_square = False, make_graph = True):
+    def Progression_Property(self, first_property = False, make_graph = True):
         self.passing = 1 / self.variables["value"]
         times = self.variables["end"]
         for iteration in range(2, times + 1):
@@ -50,7 +50,7 @@ class InvertedBinary(Fractal):
             self.initiator = 2 ** (iteration - 1)
             self.Do_Calculation()
             self.property_x.append(iteration)
-            if property_square:
+            if first_property:
                 self.property_square = PropertyPerSquare(self.x, self.y, self.variables["value"])
                 self.property_y.append(self.property_square.amount_of_marcked_squares)
             else:
@@ -58,7 +58,7 @@ class InvertedBinary(Fractal):
                 self.property_square = PropertyPerSquare(property_x, property_y, self.variables["value"])
                 self.dimension_obj = Dimension(self.property_square.amount_of_marcked_squares, self.passing)
                 self.property_y.append(self.dimension_obj.dimension)
-        if property_square:
+        if first_property:
             description = {"title": "Progression of property per square\nInverted Binary Fractal", "label_x": "Iteration", "label_y": "Marcked Squares", "label_plot": "Inverted Binary"}
         else:
             description = {"title": "Progression of property dimension\nInverted Binary Fractal", "label_x": "Iteration", "label_y": "Dimension Fractal", "label_plot": "Inverted Binary"}
