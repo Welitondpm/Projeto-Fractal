@@ -24,7 +24,6 @@ class Sierpinski(Fractal):
 
 
     def Create_Fractal(self, property_area = False):
-        self.Create_Vars()
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
             self.Setting_Function()
@@ -174,7 +173,6 @@ class SierpinskiCarpet(Sierpinski):
 
 
     def Create_Fractal(self):
-        self.Create_Vars()
         while self.iteration_number < self.variables["times"]:
             self.iteration_number += 1
             self.Setting_Function()

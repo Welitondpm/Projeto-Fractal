@@ -14,22 +14,12 @@ import cpuinfo
 # dados = ["'Floco', 'Iteration: 8', 'Time: 20'//", "\n'Koch', 'Iteration: 8', 'Time: 20'//", "\n'Cantor', 'Iteration: 8', 'Time: 20'"]
 # arquivo.writelines(dados)
 
-
 # arquivo = open("Dados/tempo.txt", "r")
 # a = arquivo.read()
 # a = a.split("//")
 # for item in a:
 #     item = item.split(", ")
 #     print(item[1])
-
-def runtieeeeee():
-    pass
-    # arquivo = open("Fractals/Dados/tempo.txt", "a")
-    # dados = []
-    # dados.append("Cantor Set:   Iteração %d    Tempo %f" % (iteration, tempo))
-    # arquivo.writelines(dados)
-
-
 
 
 def Test_Max_Value():
@@ -38,18 +28,6 @@ def Test_Max_Value():
     file = open("Dados/" + cpu[2] + ".txt", "a")
     max_time = 5
     max_time_property = 10
-    # Max_Value_Cantor_Set(file, max_time, max_time_property)
-    # Max_Value_Dragon_Curve(file, max_time, max_time_property)
-    # Max_Value_Koch_Flake(file, max_time, max_time_property)
-    # Max_Value_Hilbert_Curve(file, max_time, max_time_property)
-    # Max_Value_Inverted_Binary(file, max_time, max_time_property)
-    # Max_Value_Koch_Curve(file, max_time, max_time_property)
-    # Max_Value_Mandelbrot(file, max_time, max_time_property)
-    # Max_Value_Sierpinski_Triangle(file, max_time, max_time_property)
-    # Max_Value_Sierpinski_Triangle(file, max_time, max_time_property)
-    # Max_Value_Arrowhead(file, max_time, max_time_property)
-    # Max_Value_Chaotic_Triangle(file, max_time, max_time_property)
-    # Max_Value_Tree(file, max_time, max_time_property)
 
 
 # Test_Max_Value()

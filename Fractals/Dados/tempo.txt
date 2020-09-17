@@ -1,3 +1,48 @@
-'Floco', 'Iteration: 8', 'Time: 20'//
-'Koch', 'Iteration: 8', 'Time: 20'//
-'Cantor', 'Iteration: 8', 'Time: 20'
+'Cantor_Set', 'Iteration: 15', 'Dimension: 0.903089932324774', 'Time: 28.22174'//
+'Dragon_Curve', 'Iteration: 20', 'Dimension: 3.2475052937953706', 'Time: 16.88545'//
+'Koch_Flake', 'Iteration: 8', 'Dimension: 2.426103800682108', 'Time: 15.0462'//
+'Hilbert_Curve', 'Iteration: 9', 'Dimension: 1.9999999999999925', 'Time: 11.8493'//
+'Inverted_Binary', 'End: 21', 'Dimension: 1.6989700043360019', 'Time: 12.32724'//
+'Koch_Curve', 'Iteration: 11', 'Dimension: 1.2304459048023386', 'Time: 18.16791'//
+'Mandelbrot', 'Density: 400', 'Dimension: 2.0889020243220484', 'Time: 63.38109'//
+'Sierpinski_Triangle', 'Iteration: 10', 'Dimension: 1.8450980400142385', 'Time: 26.08111'//
+'Sierpinski_Carpet', 'Iteration: 5', 'Dimension: 2.082785370316429', 'Time: 15.54856'//
+'Arrowhead', 'Iteration: 13', 'Dimension: 1.5051100808008657', 'Time: 24.949'//
+'Chaotic_Triangle', 'Iteration: 1500000', 'Dimension: 1.7074743043486862', 'Time: 17.22033'//
+
+'Cantor_Set', 'Iteration: 15'
+'Dragon_Curve', 'Iteration: 20'
+'Koch_Flake', 'Iteration: 8'
+'Hilbert_Curve', 'Iteration: 9'
+'Inverted_Binary', 'End: 21'
+'Koch_Curve', 'Iteration: 11'
+'Mandelbrot', 'Density: 400'
+'Sierpinski_Triangle', 'Iteration: 10'
+'Sierpinski_Carpet', 'Iteration: 5'
+'Arrowhead', 'Iteration: 13'
+'Chaotic_Triangle', 'Iteration: 1500000'
+
+
+'Cantor_Set', 'Iteration: 15', 'Dimension: 0.7657394353446939', 'Time: 28.62672'//
+'Dragon_Curve', 'Iteration: 13', 'Dimension: 2.2373453117675646', 'Time: 14.05546'//
+'Koch_Flake', 'Iteration: 6', 'Dimension: 2.0823355846076237', 'Time: 25.35184'//
+'Hilbert_Curve', 'Iteration: 6', 'Dimension: 1.9999999999999902', 'Time: 15.50682'//
+'Inverted_Binary', 'End: 18', 'Dimension: 1.7694124944689427', 'Time: 17.65285'//
+'Koch_Curve', 'Iteration: 8', 'Dimension: 1.276899248990031', 'Time: 10.77597'//
+'Mandelbrot', 'Density: 400', 'Dimension: 1.0194069717295615', 'Time: 71.45186'//
+'Sierpinski_Triangle', 'Iteration: 8', 'Dimension: 1.7992311002370662', 'Time: 9.98602'//
+'Sierpinski_Carpet', 'Iteration: 4', 'Dimension: 1.9776032687709608', 'Time: 22.96553'//
+'Arrowhead', 'Iteration: 9', 'Dimension: 1.5574748196995223', 'Time: 10.65756'//
+'Chaotic_Triangle', 'Iteration: 150000', 'Dimension: 1.6641363620854344', 'Time: 77.37252'//
+
+'Cantor_Set', 'Iteration: 15'
+'Dragon_Curve', 'Iteration: 13'
+'Koch_Flake', 'Iteration: 6'
+'Hilbert_Curve', 'Iteration: 6'
+'Inverted_Binary', 'End: 18'
+'Koch_Curve', 'Iteration: 8'
+'Mandelbrot', 'Density: 400'
+'Sierpinski_Triangle', 'Iteration: 8'
+'Sierpinski_Carpet', 'Iteration: 4'
+'Arrowhead', 'Iteration: 9'
+'Chaotic_Triangle', 'Iteration: 150000'

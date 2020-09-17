@@ -3,8 +3,8 @@ import math
 import time
 import random
 # import os
-# import psutil
-# import cpuinfo
+import psutil
+import cpuinfo
 from random import randint
 from fractal import Fractal
 from fractal_3d import Fractal3d
@@ -42,6 +42,7 @@ from koch_tetrahedron import KochTetrahedron
 class CreateFractals():
     def __init__(self, fractal, args = {}, max_time = 600, args_property = {}, harmonic_mandelbrot = False, segmented_mandelbrot = False, 
                 logistic_mandelbrot = False, logistic_map = False):
+        self.var_else = 0
         if fractal == "Cantor_Set":
             self.object_fractal = CantorSet(args = args)
             default_vars = {"show_time": True, "save_pdf": False, "file_name": "fractal", "property_dimension": False,  
@@ -109,11 +110,15 @@ class CreateFractals():
                             "progression_property_dimension": False, "make_graph": True, "paint_squares": False, 
                             "first_property": False, "progression_first_property": False}
         else:
+            self.var_else = 1
             print("Fractal não encontrado certifique-se que está escrito conforme o exemplo. EX: Cantor_Set.")
-        self.variable_property = self.Define_Vars(args_property, default_vars)
-        self.fractal = fractal
-        self.max_time = max_time
-        self.Create()
+        if self.var_else == 0:
+            self.variable_property = self.Define_Vars(args_property, default_vars)
+            self.fractal = fractal
+            self.max_time = max_time
+            self.Create()
+        else:
+            print("Você Digitou: %s" % (fractal))
     
 
     def Define_Vars(self, args, default_vars):
@@ -138,13 +143,13 @@ class CreateFractals():
         if self.variable_property["first_property"]:
             if property_area:
                 self.object_fractal.First_Property()
-                print("Marcked Squares %d of %d" % (self.object_fractal.property_area.amount_of_marcked_squares, self.object_fractal.property_area.total_amount_of_squares))
+                # print("Marcked Squares %d of %d" % (self.object_fractal.property_area.amount_of_marcked_squares, self.object_fractal.property_area.total_amount_of_squares))
             else:
                 self.object_fractal.First_Property(self.variable_property["paint_squares"])
-                print("Marcked Squares %d of %d" % (self.object_fractal.property_square.amount_of_marcked_squares, self.object_fractal.property_square.total_amount_of_squares))
+                # print("Marcked Squares %d of %d" % (self.object_fractal.property_square.amount_of_marcked_squares, self.object_fractal.property_square.total_amount_of_squares))
         elif self.variable_property["property_dimension"]:
             self.object_fractal.Property_Dimension()
-            print("Dimension = %s" % (self.object_fractal.dimension))
+            # print("Dimension = %s" % (self.object_fractal.dimension))
         elif self.variable_property["progression_first_property"]:
             self.object_fractal.Progression_Property(first_property = True)
         elif self.variable_property["progression_property_dimension"]:
@@ -162,10 +167,10 @@ class CreateFractals():
                 self.object_fractal.Define_Colors_Multi()
             if self.variable_property["property_square"]:
                 self.object_fractal.Property_Square(self.variable_property["paint_squares"])
-                print("Marcked Squares %d of %d" % (self.object_fractal.property_square.amount_of_marcked_squares, self.object_fractal.property_square.total_amount_of_squares))
+                # print("Marcked Squares %d of %d" % (self.object_fractal.property_square.amount_of_marcked_squares, self.object_fractal.property_square.total_amount_of_squares))
             elif self.variable_property["property_dimension"]:
                 self.object_fractal.Property_Dimension()
-                print("Dimension = %s" % (self.object_fractal.dimension))
+                # print("Dimension = %s" % (self.object_fractal.dimension))
 
 
     def Show_Property(self):
@@ -174,7 +179,7 @@ class CreateFractals():
                 self.object_fractal.Save_Pdf(file_name = self.variable_property["file_name"])
             if self.variable_property["show_time"]:
                 self.object_fractal.End_Cronometer()
-                print("%f seconds" % (self.object_fractal.runtime))
+                # print("%f seconds" % (self.object_fractal.runtime))
             if not self.variable_property["property_dimension"]:
                 self.object_fractal.Show_Graph()
         else:
@@ -182,11 +187,75 @@ class CreateFractals():
                 self.object_fractal.Save_Pdf(file_name = self.variable_property["file_name"])
             if self.variable_property["show_time"]:
                 self.object_fractal.End_Cronometer()
-                print("%f seconds" % (self.object_fractal.runtime))
+                # print("%f seconds" % (self.object_fractal.runtime))
             if self.variable_property["property_dimension"] or not self.variable_property["make_graph"]:
                 pass
             else:
                 self.object_fractal.Show_Graph()
+
+
+def Max_Value(file, name_fractal, max_time = 10, iteration_start = 0, value_start = 0, step_value = 100, max_iteration = 10):
+    runtime = 0
+    iteration = max_iteration
+    value = value_start
+    while runtime <= max_time:
+        value += step_value
+        if name_fractal == "Mandelbrot":
+            fractal = CreateFractals("Mandelbrot", args = {"density": iteration, "value": value}, args_property={"property_dimension": True})
+        elif name_fractal == "Inverted_Binary":
+            fractal = CreateFractals("Inverted_Binary", args = {"end": iteration, "value": value}, args_property={"property_dimension": True})
+        else:
+            fractal = CreateFractals(name_fractal, args = {"times": iteration,  "value": value}, args_property={"property_dimension": True})
+        if fractal.var_else == 1:
+            break
+        runtime = fractal.object_fractal.runtime
+        dimension = fractal.object_fractal.dimension
+        if name_fractal == "Mandelbrot":
+            data = ["'Mandelbrot', 'Density: " + str(iteration) + "', 'Value: " + str(value) + "', 'Dimension: " + str(dimension) + "', 'Time: " + str(runtime) + "'//\n"]
+        elif name_fractal == "Inverted_Binary":
+            data = ["'Inverted_Binary', 'End: " + str(iteration) + "', 'Value: " + str(value) + "', 'Dimension: " + str(dimension) + "', 'Time: " + str(runtime) + "'//\n"]
+        else:
+            data = ["'" + name_fractal + "', 'Iteration: " + str(iteration) + "', 'Value: " + str(value) + "', 'Dimension: " + str(dimension) + "', 'Time: " + str(runtime) + "'//\n"]
+        file.writelines(data)
+        if psutil.virtual_memory().percent >= 60:
+            break
+    if fractal.var_else == 0:
+        print(name_fractal + ", Iteration: %d, Value: %d, Dimension: %f, Time: %f" % (iteration, value, dimension, runtime))
+
+
+def Test_Max_Value():
+    cpu = cpuinfo.get_cpu_info()['brand_raw']
+    cpu = cpu.split()
+    file = open("Dados/" + cpu[2] + ".txt", "a")
+    max_time = 300
+    Max_Value(file, "Cantor_Set", max_time, max_iteration = 15)
+    Max_Value(file, "Dragon_Curve", max_time, max_iteration = 13)
+    Max_Value(file, "Koch_Flake", max_time, max_iteration = 6)
+    Max_Value(file, "Hilbert_Curve", max_time, max_iteration = 6)
+    Max_Value(file, "Inverted_Binary", max_time, max_iteration = 18)
+    Max_Value(file, "Koch_Curve", max_time, max_iteration = 8)
+    Max_Value(file, "Mandelbrot", max_time, max_iteration = 400)
+    Max_Value(file, "Sierpinski_Triangle", max_time, max_iteration = 8)
+    Max_Value(file, "Sierpinski_Carpet", max_time, max_iteration = 4)
+    Max_Value(file, "Arrowhead", max_time, max_iteration = 9)
+    Max_Value(file, "Chaotic_Triangle", max_time, max_iteration = 150000)
+    # # Max_Value(file, "Tree", max_time, iteration_start = 1)  # Code Break
+
+
+Test_Max_Value()
+
+
+# 'Cantor_Set', 'Iteration: 15'
+# 'Dragon_Curve', 'Iteration: 13'
+# 'Koch_Flake', 'Iteration: 6'
+# 'Hilbert_Curve', 'Iteration: 6'
+# 'Inverted_Binary', 'End: 18'
+# 'Koch_Curve', 'Iteration: 8'
+# 'Mandelbrot', 'Density: 400'
+# 'Sierpinski_Triangle', 'Iteration: 8'
+# 'Sierpinski_Carpet', 'Iteration: 4'
+# 'Arrowhead', 'Iteration: 9'
+# 'Chaotic_Triangle', 'Iteration: 150000'
 
 
 # fractal = CreateFractals("Cantor_Set")

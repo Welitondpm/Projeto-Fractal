@@ -1,92 +1,129 @@
-'Cantor_Set', 'Iteration: 1', 'Time: 0.015'//
-'Cantor_Set', 'Iteration: 2', 'Time: 0.0127'//
-'Cantor_Set', 'Iteration: 3', 'Time: 0.01474'//
-'Cantor_Set', 'Iteration: 4', 'Time: 0.04336'//
-'Cantor_Set', 'Iteration: 5', 'Time: 0.03224'//
-'Cantor_Set', 'Iteration: 6', 'Time: 0.05886'//
-'Cantor_Set', 'Iteration: 7', 'Time: 0.10325'//
-'Cantor_Set', 'Iteration: 8', 'Time: 0.18821'//
-'Cantor_Set', 'Iteration: 9', 'Time: 0.3657'//
-'Cantor_Set', 'Iteration: 10', 'Time: 0.84035'//
-'Cantor_Set', 'Iteration: 11', 'Time: 1.76134'//
-'Cantor_Set', 'Iteration: 12', 'Time: 3.59245'//
-'Cantor_Set', 'Iteration: 13', 'Time: 8.41724'//
-'Cantor_Set', 'Iteration: 11', 'Value: 50', 'Dimension: 0.765773520176279', 'Time: 2.93835'//
-'Cantor_Set', 'Iteration: 11', 'Value: 100', 'Dimension: 0.7720321294465728', 'Time: 1.82643'//
-'Cantor_Set', 'Iteration: 11', 'Value: 150', 'Dimension: 0.7362082701526723', 'Time: 1.88465'//
-'Cantor_Set', 'Iteration: 11', 'Value: 200', 'Dimension: 0.7528759171144171', 'Time: 1.92658'//
-'Cantor_Set', 'Iteration: 11', 'Value: 250', 'Dimension: 0.7532199613982581', 'Time: 1.85679'//
-'Cantor_Set', 'Iteration: 11', 'Value: 300', 'Dimension: 0.7397721374906635', 'Time: 1.91362'//
-'Cantor_Set', 'Iteration: 11', 'Value: 350', 'Dimension: 0.7543329660399314', 'Time: 1.83906'//
-'Cantor_Set', 'Iteration: 11', 'Value: 400', 'Dimension: 0.7453769722150914', 'Time: 1.89166'//
-'Cantor_Set', 'Iteration: 11', 'Value: 450', 'Dimension: 0.7172763056614997', 'Time: 1.94425'//
-'Cantor_Set', 'Iteration: 11', 'Value: 500', 'Dimension: 0.7361208615504313', 'Time: 1.85922'//
-'Cantor_Set', 'Iteration: 11', 'Value: 550', 'Dimension: 0.7360448082397092', 'Time: 1.91836'//
-'Cantor_Set', 'Iteration: 11', 'Value: 600', 'Dimension: 0.7319328515196264', 'Time: 1.9578'//
-'Cantor_Set', 'Iteration: 11', 'Value: 650', 'Dimension: 0.7391545199524672', 'Time: 1.9868'//
-'Cantor_Set', 'Iteration: 11', 'Value: 700', 'Dimension: 0.7370243027520129', 'Time: 1.92504'//
-'Cantor_Set', 'Iteration: 11', 'Value: 750', 'Dimension: 0.7329257302339531', 'Time: 1.98442'//
-'Cantor_Set', 'Iteration: 11', 'Value: 800', 'Dimension: 0.7327024705680443', 'Time: 1.895'//
-'Cantor_Set', 'Iteration: 11', 'Value: 850', 'Dimension: 0.746740945853154', 'Time: 1.97315'//
-'Cantor_Set', 'Iteration: 11', 'Value: 900', 'Dimension: 0.7221937130975788', 'Time: 2.01851'//
-'Cantor_Set', 'Iteration: 11', 'Value: 950', 'Dimension: 0.7317580971716247', 'Time: 1.93596'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1000', 'Dimension: 0.7356074230579057', 'Time: 2.0007'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1050', 'Dimension: 0.7322229079859115', 'Time: 2.04746'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1100', 'Dimension: 0.722003483131352', 'Time: 2.07822'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1150', 'Dimension: 0.7201352654291457', 'Time: 2.00529'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1200', 'Dimension: 0.7268304008343767', 'Time: 2.06387'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1250', 'Dimension: 0.7210388954111234', 'Time: 2.00431'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1300', 'Dimension: 0.7265538487037936', 'Time: 2.0579'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1350', 'Dimension: 0.704115501162633', 'Time: 2.10757'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1400', 'Dimension: 0.7198735294986749', 'Time: 2.03265'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1450', 'Dimension: 0.7200864536519447', 'Time: 2.07475'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1500', 'Dimension: 0.7189017939100284', 'Time: 2.44979'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1550', 'Dimension: 0.7171035585776339', 'Time: 2.47253'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1600', 'Dimension: 0.7181461639633148', 'Time: 2.04179'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1650', 'Dimension: 0.7191531439811384', 'Time: 2.10944'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1700', 'Dimension: 0.7238786314744837', 'Time: 2.04337'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1750', 'Dimension: 0.7204529105796458', 'Time: 2.09255'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1800', 'Dimension: 0.717128974989742', 'Time: 2.13351'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1850', 'Dimension: 0.7132806199641618', 'Time: 2.0787'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1900', 'Dimension: 0.7231602630206618', 'Time: 2.12877'//
-'Cantor_Set', 'Iteration: 11', 'Value: 1950', 'Dimension: 0.7229086126149649', 'Time: 2.16547'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2000', 'Dimension: 0.7237627463918582', 'Time: 2.20451'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2050', 'Dimension: 0.7176177753887398', 'Time: 2.14402'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2100', 'Dimension: 0.7196790356782908', 'Time: 2.20841'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2150', 'Dimension: 0.7190517845225328', 'Time: 2.14038'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2200', 'Dimension: 0.7126607780329086', 'Time: 2.19675'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2250', 'Dimension: 0.7189135989184501', 'Time: 2.25265'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2300', 'Dimension: 0.7163686563153898', 'Time: 2.19301'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2350', 'Dimension: 0.715386428509414', 'Time: 2.24115'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2400', 'Dimension: 0.7178568343891764', 'Time: 2.27878'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2450', 'Dimension: 0.7159601183418605', 'Time: 2.30939'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2500', 'Dimension: 0.7136318273235739', 'Time: 2.2616'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2550', 'Dimension: 0.7267395931998089', 'Time: 2.31347'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2600', 'Dimension: 0.7170488769696944', 'Time: 2.26429'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2650', 'Dimension: 0.713038348911096', 'Time: 2.31624'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2700', 'Dimension: 0.7095037403489431', 'Time: 2.36248'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2750', 'Dimension: 0.7119703288192828', 'Time: 2.30712'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2800', 'Dimension: 0.7125761328216133', 'Time: 2.36023'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2850', 'Dimension: 0.715734870911928', 'Time: 2.39147'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2900', 'Dimension: 0.7129000872780445', 'Time: 2.43586'//
-'Cantor_Set', 'Iteration: 11', 'Value: 2950', 'Dimension: 0.7117997737294144', 'Time: 2.37997'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3000', 'Dimension: 0.7184986797422248', 'Time: 2.4529'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3050', 'Dimension: 0.7092639403365665', 'Time: 2.3917'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3100', 'Dimension: 0.7094990416638044', 'Time: 2.43462'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3150', 'Dimension: 0.7157132379321505', 'Time: 2.52075'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3200', 'Dimension: 0.7050449394009879', 'Time: 2.48269'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3250', 'Dimension: 0.7186294884511298', 'Time: 2.95495'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3300', 'Dimension: 0.707672344656236', 'Time: 2.56416'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3350', 'Dimension: 0.7106708228874067', 'Time: 2.59236'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3400', 'Dimension: 0.7127870396841703', 'Time: 2.50775'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3450', 'Dimension: 0.708104750127715', 'Time: 2.61756'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3500', 'Dimension: 0.7068562118691096', 'Time: 2.61176'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3550', 'Dimension: 0.7134050627527376', 'Time: 2.66384'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3600', 'Dimension: 0.7136107222382383', 'Time: 2.72112'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3650', 'Dimension: 0.7127635768742051', 'Time: 2.61939'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3700', 'Dimension: 0.7094541268072163', 'Time: 2.66895'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3750', 'Dimension: 0.7079390294809311', 'Time: 2.76589'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3800', 'Dimension: 0.7075150889767241', 'Time: 2.80403'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3850', 'Dimension: 0.707807396588937', 'Time: 2.73971'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3900', 'Dimension: 0.7108378740138367', 'Time: 2.82779'//
-'Cantor_Set', 'Iteration: 11', 'Value: 3950', 'Dimension: 0.7094057109400946', 'Time: 2.75622'//
+'Cantor_Set', 'Iteration: 1', 'Dimension: 0.9025755260453765', 'Time: 0.01382'//
+'Cantor_Set', 'Iteration: 2', 'Dimension: 0.8280180360813364', 'Time: 0.01316'//
+'Cantor_Set', 'Iteration: 3', 'Dimension: 0.7355749689358254', 'Time: 0.01786'//
+'Cantor_Set', 'Iteration: 4', 'Dimension: 0.7055833516449785', 'Time: 0.04093'//
+'Cantor_Set', 'Iteration: 5', 'Dimension: 0.6700089319887604', 'Time: 0.03408'//
+'Cantor_Set', 'Iteration: 6', 'Dimension: 0.7381202952542958', 'Time: 0.05673'//
+'Cantor_Set', 'Iteration: 7', 'Dimension: 0.7655873586178961', 'Time: 0.10418'//
+'Cantor_Set', 'Iteration: 8', 'Dimension: 0.7719829142601364', 'Time: 0.20654'//
+'Cantor_Set', 'Iteration: 9', 'Dimension: 0.7657225624189077', 'Time: 0.40287'//
+'Cantor_Set', 'Iteration: 10', 'Dimension: 0.7720283439531842', 'Time: 0.8705'//
+'Cantor_Set', 'Iteration: 11', 'Dimension: 0.7720321294465728', 'Time: 1.75393'//
+'Cantor_Set', 'Iteration: 12', 'Dimension: 0.7720333912669567', 'Time: 3.74954'//
+'Cantor_Set', 'Iteration: 13', 'Dimension: 0.7720338118725574', 'Time: 7.99023'//
+'Cantor_Set', 'Iteration: 14', 'Dimension: 0.765739388991829', 'Time: 15.0102'//
+'Cantor_Set', 'Iteration: 15', 'Dimension: 0.7657394353446939', 'Time: 28.62672'//
+'Cantor_Set', 'Iteration: 16', 'Dimension: 0.7657394507956473', 'Time: 57.34986'//
+'Dragon_Curve', 'Iteration: 1', 'Dimension: 1.1458567574555933', 'Time: 0.08258'//
+'Dragon_Curve', 'Iteration: 2', 'Dimension: 1.2999415360368372', 'Time: 0.37244'//
+'Dragon_Curve', 'Iteration: 3', 'Dimension: 1.4481026261218253', 'Time: 0.38537'//
+'Dragon_Curve', 'Iteration: 4', 'Dimension: 1.5620058758911592', 'Time: 0.3709'//
+'Dragon_Curve', 'Iteration: 5', 'Dimension: 1.6250397123668296', 'Time: 0.50717'//
+'Dragon_Curve', 'Iteration: 6', 'Dimension: 1.5928920050617272', 'Time: 0.71497'//
+'Dragon_Curve', 'Iteration: 7', 'Dimension: 1.7959143122141716', 'Time: 0.36819'//
+'Dragon_Curve', 'Iteration: 8', 'Dimension: 1.933946500433063', 'Time: 0.47769'//
+'Dragon_Curve', 'Iteration: 9', 'Dimension: 1.988633204337525', 'Time: 1.65842'//
+'Dragon_Curve', 'Iteration: 10', 'Dimension: 2.0290284071519564', 'Time: 4.77798'//
+'Dragon_Curve', 'Iteration: 11', 'Dimension: 2.1863161119200667', 'Time: 6.02934'//
+'Dragon_Curve', 'Iteration: 12', 'Dimension: 2.2519242107478714', 'Time: 7.45497'//
+'Dragon_Curve', 'Iteration: 13', 'Dimension: 2.2373453117675646', 'Time: 14.05546'//
+'Dragon_Curve', 'Iteration: 14', 'Dimension: 2.230487520630512', 'Time: 32.66325'//
+'Koch_Flake', 'Iteration: 1', 'Dimension: 2.1402837442314286', 'Time: 0.17828'//
+'Koch_Flake', 'Iteration: 2', 'Dimension: 1.9867134933116497', 'Time: 0.35257'//
+'Koch_Flake', 'Iteration: 3', 'Dimension: 1.9907699745670613', 'Time: 0.7243'//
+'Koch_Flake', 'Iteration: 4', 'Dimension: 2.0484792458911754', 'Time: 1.88288'//
+'Koch_Flake', 'Iteration: 5', 'Dimension: 2.080748186886345', 'Time: 4.19594'//
+'Koch_Flake', 'Iteration: 6', 'Dimension: 2.0823355846076237', 'Time: 25.35184'//
+'Koch_Flake', 'Iteration: 7', 'Dimension: 2.0888474490337585', 'Time: 186.90216'//
+'Hilbert_Curve', 'Iteration: 1', 'Dimension: 1.347740838245092', 'Time: 0.48613'//
+'Hilbert_Curve', 'Iteration: 2', 'Dimension: 1.4737168609435178', 'Time: 0.91836'//
+'Hilbert_Curve', 'Iteration: 3', 'Dimension: 1.6123959782463324', 'Time: 1.76123'//
+'Hilbert_Curve', 'Iteration: 4', 'Dimension: 1.7599139968878506', 'Time: 8.99487'//
+'Hilbert_Curve', 'Iteration: 5', 'Dimension: 1.8993943569756149', 'Time: 8.35401'//
+'Hilbert_Curve', 'Iteration: 6', 'Dimension: 1.9999999999999902', 'Time: 15.50682'//
+'Hilbert_Curve', 'Iteration: 7', 'Dimension: 2.000542190646101', 'Time: 51.84215'//
+'Inverted_Binary', 'End: 1', 'Dimension: 0.15051499783198982', 'Time: 0.01389'//
+'Inverted_Binary', 'End: 2', 'Dimension: 0.30102999566397964', 'Time: 0.01371'//
+'Inverted_Binary', 'End: 3', 'Dimension: 0.3890756251918198', 'Time: 0.01244'//
+'Inverted_Binary', 'End: 4', 'Dimension: 0.45154499349596944', 'Time: 0.01422'//
+'Inverted_Binary', 'End: 5', 'Dimension: 0.5569716761534155', 'Time: 0.01635'//
+'Inverted_Binary', 'End: 6', 'Dimension: 0.6505149978319873', 'Time: 0.02086'//
+'Inverted_Binary', 'End: 7', 'Dimension: 0.7525749891599491', 'Time: 0.02859'//
+'Inverted_Binary', 'End: 8', 'Dimension: 0.8661968799114799', 'Time: 0.03897'//
+'Inverted_Binary', 'End: 9', 'Dimension: 0.9888618026444189', 'Time: 0.0726'//
+'Inverted_Binary', 'End: 10', 'Dimension: 1.1047575072713098', 'Time: 0.10947'//
+'Inverted_Binary', 'End: 11', 'Dimension: 1.22894094836699', 'Time: 0.2138'//
+'Inverted_Binary', 'End: 12', 'Dimension: 1.3516456890593238', 'Time: 0.39938'//
+'Inverted_Binary', 'End: 13', 'Dimension: 1.4621396430309332', 'Time: 0.75647'//
+'Inverted_Binary', 'End: 14', 'Dimension: 1.5704110900546473', 'Time: 1.37691'//
+'Inverted_Binary', 'End: 15', 'Dimension: 1.6531052540838722', 'Time: 2.55586'//
+'Inverted_Binary', 'End: 16', 'Dimension: 1.7211614778727784', 'Time: 4.90743'//
+'Inverted_Binary', 'End: 17', 'Dimension: 1.757273876330134', 'Time: 9.40206'//
+'Inverted_Binary', 'End: 18', 'Dimension: 1.7694124944689427', 'Time: 17.65285'//
+'Inverted_Binary', 'End: 19', 'Dimension: 1.7711636913869782', 'Time: 34.26747'//
+'Koch_Curve', 'Iteration: 1', 'Dimension: 1.0563756388534362', 'Time: 0.0142'//
+'Koch_Curve', 'Iteration: 2', 'Dimension: 1.1155109038092743', 'Time: 0.02373'//
+'Koch_Curve', 'Iteration: 3', 'Dimension: 1.1746813762316477', 'Time: 0.0349'//
+'Koch_Curve', 'Iteration: 4', 'Dimension: 1.249533475697206', 'Time: 0.07389'//
+'Koch_Curve', 'Iteration: 5', 'Dimension: 1.2739733922010053', 'Time: 0.16456'//
+'Koch_Curve', 'Iteration: 6', 'Dimension: 1.2825416163825536', 'Time: 0.64264'//
+'Koch_Curve', 'Iteration: 7', 'Dimension: 1.2768147093904496', 'Time: 2.61963'//
+'Koch_Curve', 'Iteration: 8', 'Dimension: 1.276899248990031', 'Time: 10.77597'//
+'Koch_Curve', 'Iteration: 9', 'Dimension: 1.2763200270515174', 'Time: 51.35786'//
+'Mandelbrot', 'Density: 150', 'Dimension: 0.7337735054795375', 'Time: 9.031'//
+'Mandelbrot', 'Density: 200', 'Dimension: 0.8097773996742343', 'Time: 18.01162'//
+'Mandelbrot', 'Density: 250', 'Dimension: 0.866299478841904', 'Time: 27.81818'//
+'Mandelbrot', 'Density: 300', 'Dimension: 0.9201523062824126', 'Time: 39.51239'//
+'Mandelbrot', 'Density: 350', 'Dimension: 0.9119221547632574', 'Time: 53.30718'//
+'Mandelbrot', 'Density: 400', 'Dimension: 1.0194069717295615', 'Time: 71.45186'//
+'Sierpinski_Triangle', 'Iteration: 1', 'Dimension: 1.7793542852665738', 'Time: 0.17762'//
+'Sierpinski_Triangle', 'Iteration: 2', 'Dimension: 1.740649636666419', 'Time: 0.26644'//
+'Sierpinski_Triangle', 'Iteration: 3', 'Dimension: 1.729167812995965', 'Time: 0.40369'//
+'Sierpinski_Triangle', 'Iteration: 4', 'Dimension: 1.7400753626366314', 'Time: 0.65374'//
+'Sierpinski_Triangle', 'Iteration: 5', 'Dimension: 1.7745016310128847', 'Time: 1.16572'//
+'Sierpinski_Triangle', 'Iteration: 6', 'Dimension: 1.7938554825094466', 'Time: 2.91774'//
+'Sierpinski_Triangle', 'Iteration: 7', 'Dimension: 1.7938554825094466', 'Time: 3.24484'//
+'Sierpinski_Triangle', 'Iteration: 8', 'Dimension: 1.7992311002370662', 'Time: 9.98602'//
+'Sierpinski_Triangle', 'Iteration: 9', 'Dimension: 1.8021130265422258', 'Time: 30.58459'//
+'Sierpinski_Carpet', 'Iteration: 1', 'Dimension: 1.9203039395046353', 'Time: 0.69746'//
+'Sierpinski_Carpet', 'Iteration: 2', 'Dimension: 1.8905184693105563', 'Time: 2.02408'//
+'Sierpinski_Carpet', 'Iteration: 3', 'Dimension: 1.9118674941993559', 'Time: 5.47623'//
+'Sierpinski_Carpet', 'Iteration: 4', 'Dimension: 1.9776032687709608', 'Time: 22.96553'//
+'Sierpinski_Carpet', 'Iteration: 5', 'Dimension: 1.9788993874649887', 'Time: 114.09415'//
+'Arrowhead', 'Iteration: 1', 'Dimension: 1.023060887654882', 'Time: 0.07953'//
+'Arrowhead', 'Iteration: 2', 'Dimension: 1.1103251151532536', 'Time: 0.11121'//
+'Arrowhead', 'Iteration: 3', 'Dimension: 1.2039879455353808', 'Time: 0.16832'//
+'Arrowhead', 'Iteration: 4', 'Dimension: 1.2995820619614378', 'Time: 0.27011'//
+'Arrowhead', 'Iteration: 5', 'Dimension: 1.394964007535808', 'Time: 0.46076'//
+'Arrowhead', 'Iteration: 6', 'Dimension: 1.4883744168800381', 'Time: 0.8373'//
+'Arrowhead', 'Iteration: 7', 'Dimension: 1.5411569698124756', 'Time: 1.38162'//
+'Arrowhead', 'Iteration: 8', 'Dimension: 1.5597822919600646', 'Time: 3.30786'//
+'Arrowhead', 'Iteration: 9', 'Dimension: 1.5574748196995223', 'Time: 10.65756'//
+'Arrowhead', 'Iteration: 10', 'Dimension: 1.5633826993637743', 'Time: 30.65118'//
+'Chaotic_Triangle', 'Iteration: 100000', 'Dimension: 1.6627811711560991', 'Time: 43.24971'//
+'Chaotic_Triangle', 'Iteration: 150000', 'Dimension: 1.6641363620854344', 'Time: 77.37252'//
+'Cantor_Set', 'Iteration: 15', 'Value: 1000', 'Dimension: 0.7347066460605267', 'Time: 32.04003'//
+'Cantor_Set', 'Iteration: 15', 'Value: 2000', 'Dimension: 0.7237638081722522', 'Time: 37.63978'//
+'Cantor_Set', 'Iteration: 15', 'Value: 3000', 'Dimension: 0.720466659397396', 'Time: 36.50026'//
+'Cantor_Set', 'Iteration: 15', 'Value: 4000', 'Dimension: 0.7136313395312549', 'Time: 41.93386'//
+'Cantor_Set', 'Iteration: 15', 'Value: 5000', 'Dimension: 0.709462918005058', 'Time: 41.43337'//
+'Cantor_Set', 'Iteration: 15', 'Value: 6000', 'Dimension: 0.711570183606574', 'Time: 47.11673'//
+'Cantor_Set', 'Iteration: 15', 'Value: 7000', 'Dimension: 0.7072202622337154', 'Time: 46.22911'//
+'Cantor_Set', 'Iteration: 15', 'Value: 8000', 'Dimension: 0.7048976760676251', 'Time: 48.78734'//
+'Cantor_Set', 'Iteration: 15', 'Value: 9000', 'Dimension: 0.7096630832142378', 'Time: 51.43316'//
+'Cantor_Set', 'Iteration: 15', 'Value: 10000', 'Dimension: 0.7012051590686947', 'Time: 57.29527'//
+'Cantor_Set', 'Iteration: 15', 'Value: 11000', 'Dimension: 0.7025988875743906', 'Time: 56.78508'//
+'Cantor_Set', 'Iteration: 15', 'Value: 12000', 'Dimension: 0.7039581523167556', 'Time: 62.54541'//
+'Cantor_Set', 'Iteration: 15', 'Value: 13000', 'Dimension: 0.7010861551061789', 'Time: 62.66993'//
+'Cantor_Set', 'Iteration: 15', 'Value: 14000', 'Dimension: 0.6992724585539578', 'Time: 69.61955'//
+'Cantor_Set', 'Iteration: 15', 'Value: 15000', 'Dimension: 0.700366867476848', 'Time: 70.86857'//
+'Cantor_Set', 'Iteration: 15', 'Value: 16000', 'Dimension: 0.7004975781276415', 'Time: 71.38312'//
+'Cantor_Set', 'Iteration: 15', 'Value: 17000', 'Dimension: 0.7010300759802367', 'Time: 75.79147'//
+'Cantor_Set', 'Iteration: 15', 'Value: 18000', 'Dimension: 0.7026329142493724', 'Time: 84.73283'//
+'Cantor_Set', 'Iteration: 15', 'Value: 19000', 'Dimension: 0.7008337930980597', 'Time: 81.62209'//
+'Cantor_Set', 'Iteration: 15', 'Value: 20000', 'Dimension: 0.7007856913663121', 'Time: 86.88287'//
+'Cantor_Set', 'Iteration: 15', 'Value: 21000', 'Dimension: 0.6988945353993213', 'Time: 91.01116'//
+'Cantor_Set', 'Iteration: 15', 'Value: 22000', 'Dimension: 0.6994773836764584', 'Time: 94.19036'//
+'Cantor_Set', 'Iteration: 15', 'Value: 23000', 'Dimension: 0.6950943165729585', 'Time: 96.22645'//
+'Cantor_Set', 'Iteration: 15', 'Value: 24000', 'Dimension: 0.6968406063156958', 'Time: 101.85994'//
+'Cantor_Set', 'Iteration: 15', 'Value: 25000', 'Dimension: 0.6967087745052252', 'Time: 106.52276'//
