@@ -217,6 +217,7 @@ def Max_Value(file, name_fractal, max_time = 10, iteration_start = 0, value_star
         else:
             data = ["'" + name_fractal + "', 'Iteration: " + str(iteration) + "', 'Value: " + str(value) + "', 'Dimension: " + str(dimension) + "', 'Time: " + str(runtime) + "'//\n"]
         file.writelines(data)
+        print(data)
         if psutil.virtual_memory().percent >= 60:
             break
     if fractal.var_else == 0:
@@ -228,7 +229,7 @@ def Test_Max_Value():
     cpu = cpu.split()
     file = open("Dados/" + cpu[2] + ".txt", "a")
     max_time = 300
-    Max_Value(file, "Cantor_Set", max_time, max_iteration = 15)
+    Max_Value(file, "Cantor_Set", max_time, max_iteration = 15, value_start = 25000, step_value = 5000)
     Max_Value(file, "Dragon_Curve", max_time, max_iteration = 13)
     Max_Value(file, "Koch_Flake", max_time, max_iteration = 6)
     Max_Value(file, "Hilbert_Curve", max_time, max_iteration = 6)
