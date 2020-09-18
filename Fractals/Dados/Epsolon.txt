@@ -1,0 +1,54 @@
+Cantor Set: Value : 1000, Epison : 0.001//
+Cantor Set: Value : 5000, Epison : 0.0002//
+Cantor Set: Value : 10000, Epison : 0.0001//
+Cantor Set: Value : 15000, Epison : 6.666666666666667e-05//
+Cantor Set: Value : 20000, Epison : 5e-05//
+Cantor Set: Value : 25000, Epison : 4e-05//
+Cantor Set: Value : 30000, Epison : 3.3333333333333335e-05//
+Cantor Set: Value : 35000, Epison : 2.857142857142857e-05//
+Cantor Set: Value : 40000, Epison : 2.5e-05//
+Cantor Set: Value : 45000, Epison : 2.2222222222222223e-05//
+Cantor Set: Value : 50000, Epison : 2e-05//
+Cantor Set: Value : 55000, Epison : 1.8181818181818182e-05//
+Cantor Set: Value : 60000, Epison : 1.6666666666666667e-05//
+Cantor Set: Value : 65000, Epison : 1.5384615384615384e-05//
+Cantor Set: Value : 70000, Epison : 1.4285714285714285e-05//
+Cantor Set: Value : 75000, Epison : 1.3333333333333333e-05//
+Dragon Curve: Value : 100, Epison : 0.023422912126804366//
+Dragon Curve: Value : 200, Epison : 0.011711456063402183//
+Dragon Curve: Value : 300, Epison : 0.007807637375601455//
+Dragon Curve: Value : 400, Epison : 0.0058557280317010916//
+Koch Flake: Value : 100, Epison : 0.016180339887498948//
+Koch Flake: Value : 200, Epison : 0.008090169943749474//
+Koch Flake: Value : 300, Epison : 0.005393446629166316//
+Koch Flake: Value : 400, Epison : 0.004045084971874737//
+Hilbert Curve: Value : 100, Epison : 0.010000000000000004//
+Hilbert Curve: Value : 200, Epison : 0.005000000000000002//
+Hilbert Curve: Value : 300, Epison : 0.003333333333333335//
+Inverted Binary: Value : 100, Epison : 0.01//
+Inverted Binary: Value : 200, Epison : 0.005//
+Inverted Binary: Value : 300, Epison : 0.0033333333333333335//
+Inverted Binary: Value : 400, Epison : 0.0025//
+Inverted Binary: Value : 500, Epison : 0.002//
+Koch Curve: Value : 100, Epison : 0.01//
+Koch Curve: Value : 200, Epison : 0.005//
+Koch Curve: Value : 300, Epison : 0.0033333333333333335//
+Koch Curve: Value : 400, Epison : 0.0025//
+Koch Curve: Value : 500, Epison : 0.002//
+Koch Curve: Value : 600, Epison : 0.0016666666666666668//
+Sierpinski Triangle: Value : 100, Epison : 0.01//
+Sierpinski Triangle: Value : 200, Epison : 0.005//
+Sierpinski Triangle: Value : 300, Epison : 0.0033333333333333335//
+Sierpinski Triangle: Value : 400, Epison : 0.0025//
+Sierpinski Triangle: Value : 500, Epison : 0.002//
+Sierpinski Carpet: Value : 100, Epison : 0.01//
+Sierpinski Carpet: Value : 200, Epison : 0.005//
+Sierpinski Carpet: Value : 300, Epison : 0.0033333333333333335//
+Arrowhead: Value : 100, Epison : 0.01//
+Arrowhead: Value : 200, Epison : 0.005//
+Arrowhead: Value : 300, Epison : 0.0033333333333333335//
+Arrowhead: Value : 400, Epison : 0.0025//
+Arrowhead: Value : 500, Epison : 0.002//
+Arrowhead: Value : 600, Epison : 0.0016666666666666668//
+Chaotic Triangle: Value : 100, Epison : 0.01//
+Chaotic Triangle: Value : 200, Epison : 0.005//

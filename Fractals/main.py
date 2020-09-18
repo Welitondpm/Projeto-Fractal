@@ -3,8 +3,8 @@ import math
 import time
 import random
 # import os
-import psutil
-import cpuinfo
+# import psutil
+# import cpuinfo
 from random import randint
 from fractal import Fractal
 from fractal_3d import Fractal3d
@@ -241,9 +241,6 @@ def Test_Max_Value():
     Max_Value(file, "Arrowhead", max_time, max_iteration = 9)
     Max_Value(file, "Chaotic_Triangle", max_time, max_iteration = 150000)
     # # Max_Value(file, "Tree", max_time, iteration_start = 1)  # Code Break
-
-
-Test_Max_Value()
 
 
 # 'Cantor_Set', 'Iteration: 15'
