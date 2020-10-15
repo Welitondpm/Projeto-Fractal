@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     <h1 style="text-align: center;">Projeto Fractal</h1>
     <hr>
     <h2>Dependências</h2>
@@ -71,5 +63,3 @@
     # 'Sierpinski_Carpet', 'Iteration: 4'
     # 'Arrowhead', 'Iteration: 9'
     # 'Chaotic_Triangle', 'Iteration: 150000' -->
-</body>
-</html>
