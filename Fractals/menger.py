@@ -10,14 +10,17 @@ class Menger(Fractal3d):
         Fractal3d.__init__(self, x, y, z)
         default_vars = {"times": 3, "size": 50}
         self.variables = self.Define_Vars(args, default_vars)
-        interation_number = 0
         self.x = [[0, 0, self.variables["size"], self.variables["size"], self.variables["size"], self.variables["size"], 0, 0]]
         self.y = [[0, self.variables["size"], self.variables["size"], 0, 0, self.variables["size"], self.variables["size"], 0]]
         self.z = [[0, 0, 0, 0, self.variables["size"], self.variables["size"], self.variables["size"], self.variables["size"]]]
-        while interation_number < self.variables["times"]:
-            interation_number += 1
+    
+
+    def Create_Fractal(self):
+        iteration_number = 0
+        while iteration_number < self.variables["times"]:
+            iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (interation_number, self.variables["times"]))
+            # print("%d of %d" % (iteration_number, self.variables["times"]))
         self.Make_Graph()
 
 
@@ -123,14 +126,17 @@ class SierpinskiTetrahedron(Menger):
         sub = fig.add_subplot(1, 1, 1, projection="3d")
         default_vars = {"times": 4, "size": 50}
         self.variables = self.Define_Vars(args, default_vars)
-        interation_number = 0
         self.x = [[- self.variables["size"] / 2, 0, self.variables["size"] / 2, 0]]
         self.y = [[- self.variables["size"] * 3 ** 0.5 / 6, self.variables["size"] * 3 ** 0.5 / 3, - self.variables["size"] * 3 ** 0.5 / 6, 0]]
         self.z = [[- self.variables["size"] * 3 ** 0.5 / 24, - self.variables["size"] * 3 ** 0.5 / 24, - self.variables["size"] * 3 ** 0.5 / 24, self.variables["size"] * 3 ** 0.5 / 12]]
-        while interation_number < self.variables["times"]:
-            interation_number += 1
+        
+        
+    def Create_Fractal(self):
+        iteration_number = 0
+        while iteration_number < self.variables["times"]:
+            iteration_number += 1
             self.Setting_Function()
-            print("%d of %d" % (interation_number, self.variables["times"]))
+            # print("%d of %d" % (iteration_number, self.variables["times"]))
         self.Make_Graph()
 
 

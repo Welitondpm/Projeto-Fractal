@@ -10,10 +10,10 @@ from fractal import Fractal
 from fractal_3d import Fractal3d
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.backends.backend_pdf import PdfPages
-from property_per_square_OOP import PropertyPerSquare
-from property_per_cube_OOP import PropertyPerCube
-from property_perimeter_OOP import PropertyPerimeter
-from property_area_OOP import PropertyArea
+from DD_property_per_square import PropertyPerSquare
+from DDD_property_per_cube import PropertyPerCube
+from DD_property_perimeter import PropertyPerimeter
+from DD_property_area import PropertyArea
 from property_dimension_OOP import Dimension
 from cantor_set import CantorSet
 from dragon_curve import DragonCurve

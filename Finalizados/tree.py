@@ -1,6 +1,6 @@
-from property_per_square_OOP import PropertyPerSquare
-from property_perimeter_OOP import PropertyPerimeter
-from property_dimension_OOP import Dimension
+from DD_property_per_square import PropertyPerSquare
+from DD_property_perimeter import PropertyPerimeter
+from property_dimension import Dimension
 import matplotlib.pyplot as plt
 from fractal import Fractal
 import random

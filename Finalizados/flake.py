@@ -1,6 +1,6 @@
-from property_perimeter_OOP import PropertyPerimeter
-from property_dimension_OOP import Dimension
-from property_area_OOP import PropertyArea
+from DD_property_perimeter import PropertyPerimeter
+from property_dimension import Dimension
+from DD_property_area import PropertyArea
 import matplotlib.pyplot as plt
 from fractal import Fractal
 import math

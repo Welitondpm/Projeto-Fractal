@@ -1,5 +1,5 @@
-from property_per_square_OOP import PropertyPerSquare
-from property_dimension_OOP import Dimension
+from DD_property_per_square import PropertyPerSquare
+from property_dimension import Dimension
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from fractal import Fractal
@@ -138,7 +138,7 @@ class SegmentedMandelbrot(Mandelbrot):
 
 class LogisticMandelbrot(Fractal3d):
     def __init__(self, args = {}):
-        Fractal3d.__init__(self, [], [], [])
+        Fractal3d.__init__(self)
         default_vars = {"depth": 100, "real_numbers": 5, "imaginary_numbers": 5, "density": 50, "amount_of_colors": 12, "reach": 10}
         self.variables = self.Define_Vars(args, default_vars)
         
@@ -167,7 +167,7 @@ class LogisticMandelbrot(Fractal3d):
     
     def Go_Through_Universe(self):
         for real_number in self.universe_set_of_real_numbers:     
-            percent = round(50 + 100 * real_number / len(self.universe_set_of_real_numbers), 2)
+            # percent = round(50 + 100 * real_number / len(self.universe_set_of_real_numbers), 2)
             # print(percent, " %")
             real_number /= self.variables["density"]
             for imaginary_number in self.universe_set_of_imaginary_numbers:
