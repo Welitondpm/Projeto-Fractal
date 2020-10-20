@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 from fractal_3d import Fractal3d
 from DDD_property_perimeter import PropertyPerimeter
 from DDD_property_per_cube import PropertyPerCube
-from DDD_property_surface import PropertySurface 
+from DDD_property_surface import PropertySurface
+from DDD_property_volume import PropertyVolume
 import math
 
 
@@ -98,12 +99,12 @@ class KochTetrahedron(Fractal3d):
             new_x, new_y, new_z = perimeter.Perimeter(passing)
             self.newer_x += new_x
             self.newer_y += new_y
-            self.newer_z += new_z  
-        self.sub.scatter(self.newer_x , self.newer_y, self.newer_z)    
+            self.newer_z += new_z
+        # self.sub.scatter(self.newer_x , self.newer_y, self.newer_z)    
 
 
     def Property_Surface(self, value = 10):
-        
+        all_x_x, all_y_y, all_z_z = [], [], []
         passing = self.variables["size"] / value
         for element in self.all_triangles_last_iteration:
             surface_x, surface_y, surface_z = [], [], []
@@ -131,29 +132,34 @@ class KochTetrahedron(Fractal3d):
                 difference_z = all_z[item][-1] - all_z[item][0]
                 distance_x_y_z = (difference_x ** 2 + difference_y ** 2 + difference_z ** 2) ** 0.5
                 amount_squares = abs(distance_x_y_z) / max_size_line
+                if amount_squares == 0:
+                    continue
                 perimeter = PropertyPerimeter([all_x[item][-1],  all_x[item][0]], [all_y[item][-1], all_y[item][0]], [all_z[item][-1], all_z[item][0]])
                 new_x, new_y, new_z = perimeter.Perimeter(amount_squares)
                 all_x_end.append(new_x)
                 all_y_end.append(new_y)
                 all_z_end.append(new_z)
-            for item in range(len(all_x_end[0])):
-                list_x = [all_x_end[0][item], all_x_end[1][item], all_x_end[2][item], all_x_end[0][item]]
-                list_y = [all_y_end[0][item], all_y_end[1][item], all_y_end[2][item], all_y_end[0][item]]
-                list_z = [all_z_end[0][item], all_z_end[1][item], all_z_end[2][item], all_z_end[0][item]]
-                perimeter = PropertyPerimeter(list_x, list_y, list_z)
-                new_x, new_y, new_z = perimeter.Perimeter(passing)
-                surface_x.extend(new_x)
-                surface_y.extend(new_y)
-                surface_z.extend(new_z)
-            self.sub.scatter(surface_x, surface_y, surface_z)
-            
-       
+            if len(all_x_end) != 0:
+                for item in range(len(all_x_end[0])):
+                    list_x = [all_x_end[0][item], all_x_end[1][item], all_x_end[2][item], all_x_end[0][item]]
+                    list_y = [all_y_end[0][item], all_y_end[1][item], all_y_end[2][item], all_y_end[0][item]]
+                    list_z = [all_z_end[0][item], all_z_end[1][item], all_z_end[2][item], all_z_end[0][item]]
+                    perimeter = PropertyPerimeter(list_x, list_y, list_z)
+                    new_x, new_y, new_z = perimeter.Perimeter(passing)
+                    surface_x.extend(new_x)
+                    surface_y.extend(new_y)
+                    surface_z.extend(new_z)
+            # self.sub.scatter(surface_x, surface_y, surface_z)
+            all_x_x.extend(surface_x)
+            all_y_y.extend(surface_y)
+            all_z_z.extend(surface_z)
+        property_volume = PropertyVolume(x = all_x_x, y = all_y_y, z = all_z_z, show_graph = True, passing = passing)
+        property_volume.Row_Verifier()
         
 
 
 a = KochTetrahedron()
 a.Create_Fractal()
-# a.Show_Graph()
 
 # a.Property_Perimeter([[[1, 0, 1, 1], [1, 0, 0, 1], [0, 0, 0, 0]]], value=30) #[[1,2,3,1],[1,3,2,1],[1,-4,5,1]]
 a.Property_Surface(value=30)
