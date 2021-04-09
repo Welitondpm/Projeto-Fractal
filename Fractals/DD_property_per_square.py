@@ -50,20 +50,18 @@ class PropertyPerSquare():
             
     def List_Updater(self):
         for item in self.x_copy:
-            if item >= self.previous_x and item <= self.next_x:
-                if self.y_copy[self.y_position] >= self.previous_y and self.y_copy[self.y_position] <= self.next_y:
-                    if self.square_already_painted:
-                        if self.paint_squares:
-                            self.fig = plt.fill([self.previous_x, self.previous_x, self.next_x, self.next_x], [self.previous_y, self.next_y, self.next_y, self.previous_y], color="#ffff00", alpha=0.3)
-                        else:
-                            pass
-                        self.painted_squares += 1
-                        self.square_already_painted = False
+            if (item >= self.previous_x and item <= self.next_x and
+                self.y_copy[self.y_position] >= self.previous_y and self.y_copy[self.y_position] <= self.next_y
+            ):
+                if self.square_already_painted:
+                    if self.paint_squares:
+                        self.fig = plt.fill([self.previous_x, self.previous_x, self.next_x, self.next_x], [self.previous_y, self.next_y, self.next_y, self.previous_y], color="#ffff00", alpha=0.3)
                     else:
                         pass
+                    self.painted_squares += 1
+                    self.square_already_painted = False
                 else:
-                    self.new_x.append(item)
-                    self.new_y.append(self.y_copy[self.y_position])
+                    pass
             else:
                 self.new_x.append(item)
                 self.new_y.append(self.y_copy[self.y_position])

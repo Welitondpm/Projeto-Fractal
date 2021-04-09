@@ -18,7 +18,6 @@ class Fractal():
         
     def Start_Cronometer(self):
         self.start = time.time()
-        # self.Create_Fractal()
     
 
     def End_Cronometer(self):

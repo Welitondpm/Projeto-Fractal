@@ -63,28 +63,21 @@ class PropertyPerCube():
     
     def List_Updater(self):
         for item in self.x_copy:
-            if item >= self.previous_x and item <= self.next_x:
-                if self.z_copy[self.z_y_position] >= self.previous_z and self.z_copy[self.z_y_position] <= self.next_z:
-                    if self.y_copy[self.z_y_position] >= self.previous_y and self.y_copy[self.z_y_position] <= self.next_y:
-                        if self.cube_already_painted:
-                            plt.plot(
-                                [self.previous_x, self.previous_x, self.next_x, self.next_x, self.previous_x, self.previous_x, self.next_x, self.next_x, self.next_x, self.next_x, self.previous_x, self.previous_x, self.previous_x, self.previous_x, self.previous_x, self.next_x, self.next_x],
-                                [self.previous_y, self.previous_y, self.previous_y, self.previous_y, self.previous_y, self.next_y, self.next_y, self.previous_y, self.previous_y, self.next_y, self.next_y, self.previous_y, self.next_y, self.next_y, self.next_y, self.next_y, self.next_y],
-                                [self.previous_z, self.next_z, self.next_z, self.previous_z, self.previous_z, self.previous_z, self.previous_z, self.previous_z, self.next_z, self.next_z, self.next_z, self.next_z, self.next_z, self.previous_z, self.previous_z, self.previous_z, self.next_z],
-                                color="#ff5300"
-                            )
-                            self.painted_cubes += 1
-                            self.cube_already_painted = False
-                        else:
-                            pass
-                    else:
-                        self.new_x.append(item)
-                        self.new_y.append(self.y_copy[self.z_y_position])
-                        self.new_z.append(self.z_copy[self.z_y_position])
+            if (item >= self.previous_x and item <= self.next_x and
+                self.z_copy[self.z_y_position] >= self.previous_z and self.z_copy[self.z_y_position] <= self.next_z and
+                self.y_copy[self.z_y_position] >= self.previous_y and self.y_copy[self.z_y_position] <= self.next_y
+            ):
+                if self.cube_already_painted:
+                    plt.plot(
+                        [self.previous_x, self.previous_x, self.next_x, self.next_x, self.previous_x, self.previous_x, self.next_x, self.next_x, self.next_x, self.next_x, self.previous_x, self.previous_x, self.previous_x, self.previous_x, self.previous_x, self.next_x, self.next_x],
+                        [self.previous_y, self.previous_y, self.previous_y, self.previous_y, self.previous_y, self.next_y, self.next_y, self.previous_y, self.previous_y, self.next_y, self.next_y, self.previous_y, self.next_y, self.next_y, self.next_y, self.next_y, self.next_y],
+                        [self.previous_z, self.next_z, self.next_z, self.previous_z, self.previous_z, self.previous_z, self.previous_z, self.previous_z, self.next_z, self.next_z, self.next_z, self.next_z, self.next_z, self.previous_z, self.previous_z, self.previous_z, self.next_z],
+                        color="#ff5300"
+                    )
+                    self.painted_cubes += 1
+                    self.cube_already_painted = False
                 else:
-                    self.new_x.append(item)
-                    self.new_y.append(self.y_copy[self.z_y_position])
-                    self.new_z.append(self.z_copy[self.z_y_position])
+                    pass
             else:
                 self.new_x.append(item)
                 self.new_y.append(self.y_copy[self.z_y_position])

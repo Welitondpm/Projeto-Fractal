@@ -24,7 +24,7 @@ class KochTetrahedron(Fractal3d):
         self.all_triangles_last_iteration = []
         self.newer_x, self.newer_y, self.newer_z = [], [], []
 
-    
+
     def Create_Fractal(self):
         self.Initiator()
         self.Do_Calculation()
@@ -60,8 +60,8 @@ class KochTetrahedron(Fractal3d):
                     self.all_y_lists += [new_y]
                     self.all_z_lists += [new_z]
                     new_x, new_y, new_z = [], [], []
-            self.x, self.y, self.z = self.all_x_lists[::], self.all_y_lists[::], self.all_z_lists[::]    
-        
+            self.x, self.y, self.z = self.all_x_lists[::], self.all_y_lists[::], self.all_z_lists[::]
+
 
     def Make_Graph(self, x, y, z, color = "#000000"):
         self.sub.plot(x, y, z, color = color)
@@ -92,15 +92,15 @@ class KochTetrahedron(Fractal3d):
         return (triangle_1, triangle_2, triangle_3, face_2, face_3, face_4)
 
 
-    def Property_Perimeter(self, xyz = [], value = 10):
+    def Property_Perimeter(self, value = 10):
         passing = self.variables["size"] / value
-        for list in xyz: # self.all_triangles_last_iteration:
+        for list in self.all_triangles_last_iteration:
             perimeter = PropertyPerimeter(list[0], list[1], list[2])
             new_x, new_y, new_z = perimeter.Perimeter(passing)
             self.newer_x += new_x
             self.newer_y += new_y
             self.newer_z += new_z
-        # self.sub.scatter(self.newer_x , self.newer_y, self.newer_z)    
+        self.sub.scatter(self.newer_x , self.newer_y, self.newer_z)
 
 
     def Property_Surface(self, value = 10):
@@ -155,13 +155,12 @@ class KochTetrahedron(Fractal3d):
             all_z_z.extend(surface_z)
         property_volume = PropertyVolume(x = all_x_x, y = all_y_y, z = all_z_z, show_graph = True, passing = passing)
         property_volume.Row_Verifier()
-        
 
 
-a = KochTetrahedron()
+
+a = KochTetrahedron(args = {"times": 3})
 a.Create_Fractal()
-
-# a.Property_Perimeter([[[1, 0, 1, 1], [1, 0, 0, 1], [0, 0, 0, 0]]], value=30) #[[1,2,3,1],[1,3,2,1],[1,-4,5,1]]
-a.Property_Surface(value=30)
-# self.sub.scatter([-10,10],[-10,10],[-10,10]) 
+# a.Property_Perimeter(value=30)
+# a.Property_Surface(value=30)
+# self.sub.scatter([-10,10], [-10,10], [-10,10])
 a.Show_Graph()

@@ -33,7 +33,7 @@ class Mandelbrot(Fractal):
     
     def Go_Through_Universe(self):
         for real_number in self.universe_set_of_real_numbers:     
-            percent = round(50 + 100 * real_number / len(self.universe_set_of_real_numbers), 2)
+            # percent = round(50 + 100 * real_number / len(self.universe_set_of_real_numbers), 2)
             # print(percent, " %")
             real_number /= self.variables["density"]
             for imaginary_number in self.universe_set_of_imaginary_numbers:
