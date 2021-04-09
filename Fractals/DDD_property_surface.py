@@ -6,4 +6,3 @@ class PropertySurface():
         middle_x = sum(x) / len(x)
         middle_y = sum(y) / len(y)
         middle_z = sum(z) / len(z)
-        
