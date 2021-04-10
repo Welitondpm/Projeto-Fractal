@@ -158,9 +158,9 @@ class KochTetrahedron(Fractal3d):
 
 
 
-a = KochTetrahedron(args = {"times": 3})
-a.Create_Fractal()
+# a = KochTetrahedron(args = {"times": 3})
+# a.Create_Fractal()
 # a.Property_Perimeter(value=30)
 # a.Property_Surface(value=30)
 # self.sub.scatter([-10,10], [-10,10], [-10,10])
-a.Show_Graph()
+# a.Show_Graph()

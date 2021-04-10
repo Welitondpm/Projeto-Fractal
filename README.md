@@ -1,15 +1,15 @@
 # Projeto-Fractal
  
 ## Dependências:
-* Python 3
- #### Downloads
- * Windos / Mac: [Clique Aqui!](https://www.python.org/downloads/)
- * Linux: `$ sudo apt-get install python3`
+### Python 3
+  #### Downloads
+  * Windows / Mac: [Clique Aqui!](https://www.python.org/downloads/)
+  * Linux: `$ sudo apt-get install python3`
  
-* Matplotlib
- #### Download e Instalação
- `$ python -m pip install -U pip`
- `$ python -m pip install -U matplotlib`
+### Matplotlib
+  #### Download e Instalação
+  `$ python -m pip install -U pip`
+  `$ python -m pip install -U matplotlib`
  
 ## Fractais produzidos e estudados durante o Projeto:
  
@@ -18,25 +18,25 @@
 * <a href="hilbert_curve"> Hilbert Curve | Curva de Hilbert </a>
 * <a href="inverted_binary"> Inverted Binary | Binário Invertido </a>
 * <a href="koch_curve"> Koch Curve | Curva de Koch </a>
- * <a href="flake"> Koch Flake | Floco de Koch</a>
- * <a href="koch_tetrahedron">Koch Tetrahedron | Tetraedro de Koch</a>
+  * <a href="flake"> Koch Flake | Floco de Koch</a>
+  * <a href="koch_tetrahedron">Koch Tetrahedron | Tetraedro de Koch</a>
 * <a href="mandelbrot"> Mandelbrot </a>
- * <a href="logarithmic_mandelbrot"> Logarithmic Mandelbrot | Mandelbrot Logarítmico </a>
- * <a href="harmonic_mandelbrot"> Harmonic Mandelbrot | Mandelbrot Harmônico </a>
- * <a href="segmented_mandelbrot"> Segmented Mandelbrot | Mandelbrot Segmentado </a>
+  * <a href="logarithmic_mandelbrot"> Logarithmic Mandelbrot | Mandelbrot Logarítmico </a>
+  * <a href="harmonic_mandelbrot"> Harmonic Mandelbrot | Mandelbrot Harmônico </a>
+  * <a href="segmented_mandelbrot"> Segmented Mandelbrot | Mandelbrot Segmentado </a>
 * <a href="logistic_map"> Logistic Map | Mapa Logístico </a>
 * <a href="Logistic Mandelbrot"> Logistic Mandelbrot | Mandelbrot Logístico </a>
 * <a href="sierpinski_triangle"> Sierpinski Triangle | Triângulo de Sierpinski </a>
- * <a href="sierpinski_carpet"> Sierpinski Carpet | Tapete de Sierpinski </a>
- * <a href="sierpinski_tetrahedron"> Sierpinski Tetrahedron | Tetraedro de Sierpinski </a>
-   * <a href="colorful_sierpinski_tetrahedron"> Colorful Sierpinski Tetrahedron | Tetraedro de Sierpinski Colorido </a>
- * <a href="menger_sponge"> Merger Sponge | Esponja de Menger </a>
-   * <a href="colorful_menger_sponge"> Colorful Merger Sponge | Esponja de Menger Colorida </a>
+  * <a href="sierpinski_carpet"> Sierpinski Carpet | Tapete de Sierpinski </a>
+  * <a href="sierpinski_tetrahedron"> Sierpinski Tetrahedron | Tetraedro de Sierpinski </a>
+    * <a href="colorful_sierpinski_tetrahedron"> Colorful Sierpinski Tetrahedron | Tetraedro de Sierpinski Colorido </a>
+  * <a href="menger_sponge"> Merger Sponge | Esponja de Menger </a>
+    * <a href="colorful_menger_sponge"> Colorful Merger Sponge | Esponja de Menger Colorida </a>
 * <a href="sierpinski_arrowhead"> Sierpinski Arrowhead | Ponta de Seta de Sierpinski </a>
 * <a href="sierpinski_triangle_chaotic"> Sierpinski Triangle (Chaotic) | Triângulo de Sierpinski (Caótico) </a>
 * <a href="sierpinski_triangle_pascal"> Sierpinski Triangle from Pascal's Triangle | Triângulo de Sierpinski no Triângulo de Pascal </a>
 * <a href="tree"> Tree | Árvore </a>
-<hr>
+---
 ## Cantor Set | Conjunto de Cantor <a name="cantor_set"></a>
  
 #### Definição:
@@ -47,7 +47,7 @@ Este fractal é resultado de um algoritmo que, a cada iteração, remove a terç
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/cantor_set.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Dragon Curve | Curva do Dragão <a name="dragon_curve"></a>
  
 #### Definição:
@@ -58,7 +58,7 @@ Esse fractal surge ao sempre copiar o(s) segmento(s) do iniciador ou do conjunto
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/dragon_curve.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Hilbert Curve | Curva de Hilbert <a name="hilbert_curve"></a>
  
 #### Definição:
@@ -69,7 +69,7 @@ Essa curva de preenchimento de espaço é gerada acrescentando ao iniciador ou a
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/hilbert_curve.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Inverted Binary | Binário Invertido <a name="inverted_binary"></a>
  
 #### Definição:
@@ -80,7 +80,7 @@ Este fractal é resultado de um algoritmo que, para cada valor natural do eixo d
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/inverted_binary.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Koch Curve | Curva de Koch <a name="koch_curve"></a>
  
 #### Definição:
@@ -95,7 +95,7 @@ Em cada iteração, cada segmento é substituído por n segmentos com um terço 
 #### Derivados: 
 * <a href="flake"> Koch Flake | Floco de Koch</a>
 * <a href="koch_tetrahedron">Koch Tetrahedron | Tetraedro de Koch</a>
-<hr>
+---
 ## Koch Flake | Floco de Koch <a name="flake"></a>
  
 #### Definição:
@@ -106,7 +106,7 @@ Um polígono regular de n lados com uma Curva de Koch no lugar de cada um.
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/flake.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Koch Tetrahedron | Tetraedro de Koch <a name="koch_tetrahedron"></a>
  
 #### Definição:
@@ -117,7 +117,7 @@ Um tetraedro regular que a cada iteração adquire tetraedros com uma das faces 
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/koch_tetrahedron.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Mandelbrot <a name="mandelbrot"></a>
  
 #### Definição:
@@ -133,7 +133,7 @@ O conjunto dos números complexos que não aumentam indefinidamente em módulo a
 * <a href="logarithmic_mandelbrot"> Logarithmic Mandelbrot | Mandelbrot Logarítmico </a>
 * <a href="harmonic_mandelbrot"> Harmonic Mandelbrot | Mandelbrot Harmônico </a>
 * <a href="segmented_mandelbrot"> Segmented Mandelbrot | Mandelbrot Segmentado </a>
-<hr>
+---
 ## Logarithmic Mandelbrot | Mandelbrot Logarítmico <a name="logarithmic_mandelbrot"></a>
  
 #### Definição:
@@ -144,7 +144,7 @@ O conjunto de Mandelbrot, com as cores periféricas se dando em função do cres
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/mandelbrot.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Harmonic Mandelbrot | Mandelbrot Harmônico <a name="harmonic_mandelbrot"></a>
  
 #### Definição:
@@ -155,7 +155,7 @@ O conjunto de Mandelbrot, com as cores periféricas se dando em função do cres
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/mandelbrot.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Segmented Mandelbrot | Mandelbrot Segmentado <a name="segmented_mandelbrot"></a>
  
 #### Definição:
@@ -166,7 +166,7 @@ O conjunto de Mandelbrot, com as cores periféricas se dando em função do cres
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/mandelbrot.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Logistic Map | Mapa Logístico <a name="logistic_map"></a>
  
 #### Definição:
@@ -177,7 +177,7 @@ Resultados estáveis da soma de números reais com o quadrado do resultado da it
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/mandelbrot.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Logistic Mandelbrot | Mandelbrot Logístico <a name="logistic_mandelbrot"></a>
  
 #### Definição:
@@ -188,7 +188,7 @@ O conjunto de Mandelbrot, com as partes reais estáveis registradas no terceiro 
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/mandelbrot.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Sierpinski Triangle | Triângulo de Sierpinski <a name="sierpinski_triangle"></a>
  
 #### Definição:
@@ -204,7 +204,7 @@ Esse fractal se define como um triângulo equilátero, do qual é subtraído o t
 * <a href="sierpinski_carpet"> Sierpinski Carpet | Tapete de Sierpinski </a>
 * <a href="sierpinski_tetrahedron"> Sierpinski Tetrahedron | Tetraedro de Sierpinski </a>
 * <a href="menger_sponge"> Merger Sponge | Esponja de Menger </a>
-<hr>
+---
 ## Sierpinski Carpet | Tapete de Sierpinski <a name="sierpinski_carpet"></a>
  
 #### Definição:
@@ -215,7 +215,7 @@ Esse fractal se define como um quadrado, do qual é subtraído o quadrado de cen
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/sierpinski.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Sierpinski Tetrahedron | Tetraedro de Sierpinski <a name="sierpinski_tetrahedron"></a>
  
 #### Definição:
@@ -229,7 +229,7 @@ Esse fractal se define como um tetraedro, do qual é subtraído o tetraedro de c
  
 #### Derivados:
 * <a href="colorful_sierpinski_tetrahedron"> Colorful Sierpinski Tetrahedron | Tetraedro de Sierpinski Colorido </a>
-<hr>
+---
 ## Colorful Sierpinski Tetrahedron | Tetraedro de Sierpinski Colorido<a name="colorful_sierpinski_tetrahedron"></a>
  
 #### Definição:
@@ -240,7 +240,7 @@ Um Tetraedro de Sierpinski cuja luminosidade é inversamente proporcional ao mó
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/sierpinski.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Menger Sponge | Esponja de Menger <a name="menger_sponge"></a>
  
 #### Definição:
@@ -254,7 +254,7 @@ Esse fractal se define como um cubo, do qual é subtraído o cubo de centro comu
  
 #### Derivados:
 * <a href="colorful_menger_sponge"> Colorful Merger Sponge | Esponja de Menger Colorida </a>
-<hr>
+---
 ## Colorful Menger Sponge | Esponja de Menger Colorida <a name="colorful_menger_sponge"></a>
  
 #### Definição:
@@ -265,7 +265,7 @@ Uma Esponja de Menger colorizada de acordo com a posição espacial dos pontos t
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/menger.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Sierpinski Arrowhead | Ponta de seta de Sierpinski <a name="sierpinski_arrowhead"></a>
  
 #### Definição:
@@ -276,7 +276,7 @@ Uma curva que tende a formar um Triângulo De Sierpinski. A semente são três s
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/sierpinski.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Sierpinski Triangle (Chaotic) | Triângulo de Sierpinski (Caótico) <a name="sierpinski_triangle_chaotic"></a>
  
 #### Definição:
@@ -287,7 +287,7 @@ Esse fractal é gerado marcando os pontos que, a cada iteração, vê-se o ponto
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/sierpinski.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Sierpinski Triangle from Pascal’s Triangle | Triângulo de Sierpinski no Triângulo de Pascal <a name="sierpinski_triangle_pascal"></a>
  
 #### Definição:
@@ -298,7 +298,7 @@ Triângulo de Sierpinski formado pelos números ímpares do Triângulo de Pascal
 #### Variáveis de Input:
  
 #### Código: <a href="https://github.com/Welitondpm/Projeto-Fractal/blob/master/Fractals/sierpinski.py" target="_blank">Clique aqui (o código será aberto em outra aba)</a>
-<hr>
+---
 ## Tree | Árvore <a name="tree"></a>
  
 #### Definição:

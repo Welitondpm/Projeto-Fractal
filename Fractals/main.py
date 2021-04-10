@@ -14,7 +14,7 @@ from DD_property_per_square import PropertyPerSquare
 from DDD_property_per_cube import PropertyPerCube
 from DD_property_perimeter import PropertyPerimeter
 from DD_property_area import PropertyArea
-from property_dimension_OOP import Dimension
+from property_dimension import Dimension
 from cantor_set import CantorSet
 from dragon_curve import DragonCurve
 from flake import Flake
